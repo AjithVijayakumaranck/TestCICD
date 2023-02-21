@@ -6,7 +6,7 @@ const moment = require("moment");
 const { sentVerificationOtp, verifyPhoneOtp } = require("./otp/twilio");
 
 module.exports = {
-
+    
     //sendOTP and Save user record as undefined
     userRegistration: async (req, res) => {
         try {
@@ -68,6 +68,7 @@ module.exports = {
         }
     },
 
+
     //verify email otp
     verifyEmail: async (req, res) => {
         try {
@@ -96,6 +97,7 @@ module.exports = {
         }
     },
 
+
     //userRegistration Mobile
     userRegistration_mobile: async(req,res)=>{
       try {
@@ -104,6 +106,7 @@ module.exports = {
         console.log(error.message);
       }
     },
+
 
     //verifyPhone
     verifyphone: async(req,res)=>{
