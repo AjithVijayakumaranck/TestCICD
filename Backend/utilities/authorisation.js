@@ -34,4 +34,4 @@ const authoriseJwt = (req,res,next)=>{
 }
 
 
-module.exports = {autherisotionMiddleware,authoriseJwt}
+module.exports = {authorisationMiddleware,authoriseJwt}

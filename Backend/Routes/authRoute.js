@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const passport = require('passport')
 
-const { autherisotionMiddleware,authoriseJwt } = require('../utilities/authorisation')
+const { authorisationMiddleware,authoriseJwt } = require('../utilities/authorisation')
 const auth_Controller= require('../Controllers/auth_controller')
 
 
@@ -20,7 +20,7 @@ const {CLIENT_URL} = process.env
 //     res.send("<a href=/auth/google>Signin with google</a>")
 // })
 
-router.get('/loginsuccess',autherisotionMiddleware,auth_Controller.LoginSuccess)
+router.get('/loginsuccess',authorisationMiddleware,auth_Controller.LoginSuccess)
 
 router.get('/loginfailed',auth_Controller.LoginFailed)
 
