@@ -12,7 +12,7 @@ module.exports = {
         try {
             const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
             const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber }],
+                $or: [{ email: email }, { phoneNumber: phonenumber },{googleVerified:false}],
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
@@ -72,7 +72,7 @@ module.exports = {
                         res.status(500).json({ message: "Invalid Otp" });
                     } else {
                         console.log(email, "verify email");
-                        await USER.updateOne({ email: email }, { emailVerified: true });
+                        await USER.updateOne({$and : [{ email: email},{googleVerified:false}]}, { emailVerified: true });
                         res.status(200).json({ message: "User verified" });
                     }
                 }
@@ -91,7 +91,7 @@ module.exports = {
         try {
             const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
             const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber }],
+                $or: [{ email: email }, { phoneNumber: phonenumber },{googleVerified:false}],
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
@@ -148,7 +148,7 @@ module.exports = {
             const { phonenumber, otp } = req.body
             verifyPhoneOtp(phonenumber, otp).then(async() => {
                 console.log("otp approved",phonenumber);
-                 await  USER.updateOne({ phoneNumber: phonenumber }, { phoneVerified: true });
+                 await  USER.updateOne({$and : [{ phoneNumber: phonenumber },{googleVerified:false}]}, { phoneVerified: true });
                 res.status(200).json({ message: "User verified" });
             }).catch(() => {
                 console.log(verificationStatus);
@@ -159,8 +159,10 @@ module.exports = {
             console.log(error);
             res.status(500).json({ message: "something went qrong" });
         }
-    }
+    },
 };
+
+
 
 
 

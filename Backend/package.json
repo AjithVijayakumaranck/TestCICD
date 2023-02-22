@@ -14,11 +14,14 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "gitignore": "^0.7.0",
     "moment": "^2.29.4",
     "mongoose": "^6.9.2",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "passport-google-oauth20": "^2.0.0",
     "twilio": "^4.7.2"
   }
 }

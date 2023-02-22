@@ -6,6 +6,9 @@ const USERschema = new schema({
     type:String,
     require:true
   },
+  googleId:{
+     type: String
+  },
   surname:{
     type:String,
     require:true
@@ -39,7 +42,11 @@ const USERschema = new schema({
     type:Boolean,
     default:false
   },
-  delete:{
+  googleVerified:{
+    type:Boolean,
+    default:false
+  },
+  deleteed:{
     type:Boolean,
     default:false
   }
