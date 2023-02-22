@@ -1,20 +1,23 @@
 const router = require('express').Router()
 const passport = require('passport')
 
+const { autherisotionMiddleware,authoriseJwt } = require('../utilities/authorisation')
 const auth_Controller= require('../Controllers/auth_controller')
 
+
 const {CLIENT_URL} = process.env
+
+
+
 
 
 //google auth
 
 router.get('/',(req,res)=>{
-    
+    res.send("<a href=/auth/google>Signin with google</a>")
 })
 
-router.get('/loginsuccess',(req,res)=>{
-    console.log(req.user,"userrrr");
-})
+router.get('/loginsuccess',autherisotionMiddleware,auth_Controller.LoginSuccess)
 
 router.get('/loginfailed',auth_Controller.LoginFailed)
 
