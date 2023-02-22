@@ -13,9 +13,12 @@ const {CLIENT_URL} = process.env
 
 //google auth
 
-router.get('/',(req,res)=>{
-    res.send("<a href=/auth/google>Signin with google</a>")
-})
+
+//test route for google auth
+
+// router.get('/',(req,res)=>{
+//     res.send("<a href=/auth/google>Signin with google</a>")
+// })
 
 router.get('/loginsuccess',autherisotionMiddleware,auth_Controller.LoginSuccess)
 
