@@ -4,6 +4,7 @@ const { hashData, verifyHashedData } = require("../utilities/hashData");
 const { sendOTP } = require("./otp/otp");
 const moment = require("moment");
 const { sentVerificationOtp, verifyPhoneOtp } = require("./otp/twilio");
+const { Encrypt } = require("../utilities/encryption");
 
 module.exports = {
 
@@ -12,7 +13,7 @@ module.exports = {
         try {
             const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
             const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber },{googleVerified:false}],
+                $or: [{ email: email }, { phoneNumber: phonenumber }],googleVerified:false
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
@@ -33,6 +34,8 @@ module.exports = {
                 });
                 userTemplate.save().then(async () => {
                     const createdOTP = await sendOTP({ email });
+                    const passEncription = await Encrypt(password)
+                    console.log(passEncription,"pass encription");
                     res.status(200).json(createdOTP);
                 })
                     .catch((error) =>
@@ -91,7 +94,7 @@ module.exports = {
         try {
             const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
             const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber },{googleVerified:false}],
+                $or: [{ email: email }, { phoneNumber: phonenumber }],googleVerified:false
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
@@ -110,8 +113,8 @@ module.exports = {
                     password: hashedPassword,
                 });
                 userTemplate.save().then(async () => {
-                    console.log(phoneNumber);
                     sentVerificationOtp(phonenumber).then(() => {
+
                         res.status(200).json("otp sented");
                     }).catch(() => {
                         res.status(500).json("something went wrong");
@@ -125,11 +128,12 @@ module.exports = {
             } else {
                 if (!userInfo.phoneVerified) {
                     console.log("need verification", phonenumber);
-                    sentVerificationOtp(phonenumber).then(() => {
+                    sentVerificationOtp(phonenumber).then(async() => {
+                        const passEncription = await Encrypt(password)
+                        console.log(passEncription,"pass encription");
                         res.status(200).json("otp sented");
                     }).catch(() => {
                         res.status(500).json("something went wrong");
-
                     })
                 } else {
                     res.status(400).json({ message: "EmailId or PhoneNumber already used" });
