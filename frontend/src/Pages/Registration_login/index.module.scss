@@ -1,8 +1,16 @@
+@import "../../StyleHelpers/Variables.scss";
+
 .Registration_wrapper {
-    color: red;
-}
-.form_wrapper{
-    max-width: 50rem;
-    height: 40px;
-    background-color: aquamarine;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form_wrapper{
+    box-shadow: 2px 3px 8px 0px rgba(0,0,0,0.31);
+    min-height: 30rem;
+    width: 55rem;
+    background-color: aliceblue;
+    }
+
 }

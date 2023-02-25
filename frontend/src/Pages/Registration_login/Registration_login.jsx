@@ -10,7 +10,7 @@ const Registration_login = () => {
   return (
     <div className={style.Registration_wrapper}>
       <div className={style.form_wrapper}>
-      {signup ? <Signup/> : <Login/> }
+          {signup ? <Signup setLogin={setSignup}/> : <Login setLogin={setSignup}/> }
       </div>
     </div>
   )

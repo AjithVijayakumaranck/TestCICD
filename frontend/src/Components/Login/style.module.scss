@@ -1,0 +1,119 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.form_container {
+
+    display: flex;
+    min-height: 30rem;
+
+
+    .left_section {
+        width: 65%;
+        padding: 20px;
+        background-color: white;
+
+        .login_Details  {
+            h1 {
+                padding: 2px;
+                color:$secondary_color;
+                font-size: 20px;
+            }
+            p {
+                padding: 10px 0px;
+                font-size: 12px;
+            }
+           
+        }
+
+        form {
+
+            .input_div {
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px;
+                gap: 4px;
+
+                input {
+                    border-width: .3px;
+                    border-color:rgb(149 149 149 / 52%);
+                    outline: none;
+                    padding: 15px 10px;  
+                    background-color: $base_color;
+                }
+                label {
+                    font-size: 12px;
+                }   
+            }
+            button {
+                cursor: pointer;
+                margin-top: 5px;
+                background-color: $primary_color;
+                width: 100%;
+                color:white;
+                border:none;
+                padding: 15px 0px;
+                font-size: 15px;
+                &:hover{
+                    background-color: $secondary_color;
+                }
+            }
+        }
+
+        .additional_options {
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            p {
+                font-size: 13px;
+            } 
+            .navigation {
+                text-decoration: none;
+            }
+        }
+        
+        .Google_authentication {
+
+          padding-top: 20px;
+           
+            .break {
+              color: $base_color2;
+              display: flex;
+              font-size: 12px;
+              justify-content: space-evenly;
+              align-items: center;
+
+              div {
+                background: rgba(0, 0, 0, 0.511);
+                height: .5px;
+                width: 8rem;
+               
+              }
+            }
+            .GoogleButton {
+                padding: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+            }
+            button {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                background-color: white;
+                border:none;
+                padding: 2rem 3rem;
+                font-size: 15px;
+                &:hover{
+                    background-color: $base_color;
+                    border-radius: 50px;
+                }
+            }
+            
+        }
+    }
+
+    .right_section {
+        width: 45%;
+        background-color: $primary_color;
+
+    }
+}

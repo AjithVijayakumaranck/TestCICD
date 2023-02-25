@@ -1,0 +1,18 @@
+//colors
+$primary_color:#046BD2;
+$secondary_color:#10E3C2;
+$base_color:#F3F3F3;
+$base_color2:#373737;
+
+
+
+//breakpoints
+
+@mixin breakpoint($point) {
+    @if $point == md {
+        // 768px
+        @media (min-width: 48em) {
+            @content;
+        }
+    }
+}

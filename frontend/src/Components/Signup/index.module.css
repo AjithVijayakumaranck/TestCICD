@@ -1,1 +1,111 @@
-/*# sourceMappingURL=index.module.css.map */
+.form_container {
+  display: flex;
+  min-height: 30rem;
+  overflow: hidden;
+}
+.form_container .left_section {
+  width: 65%;
+  padding: 20px;
+  background-color: white;
+}
+.form_container .left_section .login_Details h1 {
+  padding: 2px;
+  color: #046BD2;
+  font-size: 20px;
+}
+.form_container .left_section .login_Details p {
+  padding: 10px 0px;
+  font-size: 12px;
+}
+.form_container .left_section form .input_div {
+  padding: 2px;
+  display: flex;
+  gap: 10px;
+}
+.form_container .left_section form .input_div div {
+  width: 100%;
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.form_container .left_section form .input_div div input {
+  border-width: 0.3px;
+  border-color: rgba(149, 149, 149, 0.52);
+  outline: none;
+  padding: 15px 10px;
+  background-color: #F3F3F3;
+}
+.form_container .left_section form .input_div div label {
+  font-size: 12px;
+}
+.form_container .left_section form button {
+  cursor: pointer;
+  margin-top: 5px;
+  background-color: #046BD2;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 15px 0px;
+  font-size: 15px;
+}
+.form_container .left_section form button:hover {
+  background-color: #10E3C2;
+}
+.form_container .left_section .additional_options {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.form_container .left_section .additional_options p {
+  font-size: 13px;
+}
+.form_container .left_section .additional_options .navigation {
+  text-decoration: none;
+}
+.form_container .left_section .Google_authentication {
+  padding-top: 20px;
+}
+.form_container .left_section .Google_authentication .break {
+  color: #373737;
+  display: flex;
+  font-size: 12px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.form_container .left_section .Google_authentication .break div {
+  background: rgba(0, 0, 0, 0.511);
+  height: 0.5px;
+  width: 8rem;
+}
+.form_container .left_section .Google_authentication .GoogleButton {
+  padding: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+}
+.form_container .left_section .Google_authentication button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: white;
+  border: none;
+  padding: 2rem 3rem;
+  font-size: 15px;
+}
+.form_container .left_section .Google_authentication button:hover {
+  background-color: #F3F3F3;
+  border-radius: 50px;
+}
+.form_container .right_section {
+  width: 45%;
+  background-color: #10E3C2;
+}
+
+@media (min-width: 960px) {
+  .right_section {
+    width: 0%;
+  }
+  .left_section {
+    width: 65%;
+  }
+}/*# sourceMappingURL=index.module.css.map */
