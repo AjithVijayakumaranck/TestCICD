@@ -5,7 +5,7 @@ import style from './index.module.css'
 
 const Registration_login = () => {
 
-    const [signup,setSignup]=useState(true)
+    const [signup,setSignup]=useState(false)
      
   return (
     <div className={style.Registration_wrapper}>

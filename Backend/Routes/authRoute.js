@@ -26,7 +26,7 @@ router.get('/loginfailed',auth_Controller.LoginFailed)
 
 router.get('/google',passport.authenticate('google', { scope: [ 'email', 'profile' ] }));
 
-router.get('/google/callback',passport.authenticate('google', {failureRedirect: '/auth/loginfailed' , successRedirect:'/auth/loginsuccess'}));
+router.get('/google/callback',passport.authenticate('google', {failureRedirect: '/auth/loginfailed' , successRedirect:CLIENT_URL}));
 
 
 

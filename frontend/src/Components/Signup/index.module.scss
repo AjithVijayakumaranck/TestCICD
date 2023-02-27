@@ -13,11 +13,24 @@
         width: 100%;
         padding: 20px;
         background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-        @include breakpoint(md) {
-            width: 65%;
-            background-color: red;
+
+        h1 {
+            color: $primary_color;
+            margin-bottom: 10px;
         }
+
+        p {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        // @include breakpoint(md) {
+        //     width: 65%;
+        // }
 
         .login_Details  {
 
@@ -34,16 +47,46 @@
         }
 
         form {
+            .error_para{
+                color:red;
+                font-size: 13px;
+                  text-align: center;
+            }
+
+            p {
+                font-size: 12px;
+                color:red;
+                margin-top: 5px;
+            }
+
+       
 
             .input_div {
                 padding: 2px;
                 display: flex;
                 gap: 10px;
+
                 div {
                   width: 100%;
                   display: flex;
                   gap: 6px;
                   flex-direction: column;
+
+                    p{
+                    font-size: 12px;
+                    color:red;
+                    }
+
+                    span{
+                        color: $primary_color;
+                        cursor: pointer;
+                        font-size: 10px;
+                        margin-left: 10px;
+                        &:hover {
+                            color: $secondary_color;    
+                        }
+                    }
+
                     input {
                         border-width: .3px;
                         border-color:rgb(149 149 149 / 52%);
@@ -130,7 +173,7 @@
         background-color: $secondary_color;
 
         @include breakpoint(md) {
-            display: none;
+            // display: none;
         }
     }
 }

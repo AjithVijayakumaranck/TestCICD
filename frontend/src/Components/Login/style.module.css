@@ -77,18 +77,26 @@
   display: flex;
   justify-content: center;
 }
-.form_container .left_section .Google_authentication button {
+.form_container .left_section .Google_authentication a {
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: white;
+  text-decoration: none;
   border: none;
   padding: 2rem 3rem;
   font-size: 15px;
+  background-color: white;
 }
-.form_container .left_section .Google_authentication button:hover {
+.form_container .left_section .Google_authentication a:hover {
   background-color: #F3F3F3;
   border-radius: 50px;
+}
+.form_container .left_section .Google_authentication a button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  background-color: transparent;
 }
 .form_container .right_section {
   width: 45%;

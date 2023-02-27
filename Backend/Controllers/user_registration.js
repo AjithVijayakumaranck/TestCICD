@@ -11,15 +11,16 @@ module.exports = {
     //sendOTP and Save user record as undefined
     userRegistration: async (req, res) => {
         try {
-            const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
+            const { email, firstname, lastname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
+            console.log(req.body);
             const userInfo = await USER.findOne({
                 $or: [{ email: email }, { phoneNumber: phonenumber }],googleVerified:false
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
                 const userTemplate = new USER({
-                    fullname: fullname,
-                    surname: surname,
+                    fullname: firstname,
+                    surname: lastname,
                     phoneNumber: phonenumber,
                     username: username,
                     dob: dateofbirth,
@@ -47,7 +48,7 @@ module.exports = {
                     const createdOTP = await sendOTP({ email });
                     res.status(200).json(createdOTP);
                 } else {
-                    res.status(400).json({ message: "EmailId or PhoneNumber already used" });
+                    res.status(400).json({ message: "EmailId already used" });
                 }
             }
         } catch (error) {
@@ -61,12 +62,11 @@ module.exports = {
     verifyEmail: async (req, res) => {
         try {
             console.log("otp verification");
+            console.log(req.body);
             const { email, otp } = req.body;
-            const otpInfo = await OTP.findOne({ email: email });
+            const otpInfo = await OTP.findOne({email:email});
             if (otpInfo) {
                 if (moment().diff(otpInfo.expireAt, "minutes") > 0) {
-                    console.log(moment(otpInfo.expireAt).format('MMMM Do YYYY, h:mm:ss a'), "hello google");
-                    console.log(moment().diff(otpInfo.expireAt, "minutes"));
                     res.status(400).json({ message: "otp expired" });
                 } else {
                     console.log(moment().diff(otpInfo.expireAt, "minutes"));
@@ -136,7 +136,7 @@ module.exports = {
                         res.status(500).json("something went wrong");
                     })
                 } else {
-                    res.status(400).json({ message: "EmailId or PhoneNumber already used" });
+                    res.status(400).json({ message: "PhoneNumber already used" });
                 }
             }
 
@@ -149,10 +149,10 @@ module.exports = {
     //verifyPhone
     verifyphone: (req, res) => {
         try {
-            const { phonenumber, otp } = req.body
+            const { phonenumber , otp } = req.body
             verifyPhoneOtp(phonenumber, otp).then(async() => {
                 console.log("otp approved",phonenumber);
-                 await  USER.updateOne({$and : [{ phoneNumber: phonenumber },{googleVerified:false}]}, { phoneVerified: true });
+                await  USER.updateOne({$and : [{ phoneNumber: phonenumber },{googleVerified:false}]}, { phoneVerified: true });
                 res.status(200).json({ message: "User verified" });
             }).catch(() => {
                 console.log(verificationStatus);

@@ -4,9 +4,20 @@
   overflow: hidden;
 }
 .form_container .left_section {
-  width: 65%;
+  width: 100%;
   padding: 20px;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form_container .left_section h1 {
+  color: #046BD2;
+  margin-bottom: 10px;
+}
+.form_container .left_section p {
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 .form_container .left_section .login_Details h1 {
   padding: 2px;
@@ -16,6 +27,16 @@
 .form_container .left_section .login_Details p {
   padding: 10px 0px;
   font-size: 12px;
+}
+.form_container .left_section form .error_para {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+.form_container .left_section form p {
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
 }
 .form_container .left_section form .input_div {
   padding: 2px;
@@ -27,6 +48,19 @@
   display: flex;
   gap: 6px;
   flex-direction: column;
+}
+.form_container .left_section form .input_div div p {
+  font-size: 12px;
+  color: red;
+}
+.form_container .left_section form .input_div div span {
+  color: #046BD2;
+  cursor: pointer;
+  font-size: 10px;
+  margin-left: 10px;
+}
+.form_container .left_section form .input_div div span:hover {
+  color: #10E3C2;
 }
 .form_container .left_section form .input_div div input {
   border-width: 0.3px;
@@ -99,13 +133,4 @@
 .form_container .right_section {
   width: 45%;
   background-color: #10E3C2;
-}
-
-@media (min-width: 960px) {
-  .right_section {
-    width: 0%;
-  }
-  .left_section {
-    width: 65%;
-  }
 }/*# sourceMappingURL=index.module.css.map */

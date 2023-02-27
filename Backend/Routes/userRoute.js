@@ -22,7 +22,7 @@ router.post('/verifyphone', user_registration.verifyphone)
 
 //Login with email
 
-router.post('/loginwithemail',authentication_controllers.loginWithEmail)
+router.post('/login',authentication_controllers.login)
 
 //login with phone
 
