@@ -36,7 +36,6 @@ const sendOTP = async ({ email, subject="", message="", duration = 1 }) => {
             otp: hashedOTP,
             expireAt:moment().add(10,"minutes")
         })
-        console.log(moment(newOTP.expireAt).format('MMMM Do YYYY, h:mm:ss a'),"hello gooel");
         const createdOTPRecord = await newOTP.save()
         return createdOTPRecord;
 

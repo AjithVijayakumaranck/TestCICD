@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import instance from "../../instance/AxiosInstance";
 import Style from "./style.module.css";
 
@@ -18,12 +19,12 @@ const Login = ({setLogin}) => {
   const loginHandler = (e) => {
     console.log("hello9 login");
     e.preventDefault();
-    
     instance.post('api/login',userData).then((response)=>{
       console.log(response);
       navigate('/')
     }).catch((error)=>{
       console.log(error);
+      toast.error("Credentials are invalid")
       navigate('/registration_login')
     })
   }
@@ -39,18 +40,18 @@ const Login = ({setLogin}) => {
         <form onSubmit={(e)=>{loginHandler(e)}}>
           <div className={Style.input_div}>
             <label htmlFor="email/phonenumber" >Email / Phonenumber</label>
-            <input type="text" placeholder="email / password" require id="email/phonenumber" value={userData.data} onChange={(e)=>{setUserData({...userData,data:e.target.value})}}/>
+            <input type="text" placeholder="email / phonenumber" required id="email/phonenumber" value={userData.data} onChange={(e)=>{setUserData({...userData,data:e.target.value})}}/>
           </div>
           <div className={Style.input_div}>
             <label htmlFor="password" >password</label>
-            <input type="password" placeholder="password" require id="password" value={userData.password} onChange={(e)=>{setUserData({...userData,password:e.target.value})}} />
+            <input type="password" placeholder="password" required id="password" value={userData.password} onChange={(e)=>{setUserData({...userData,password:e.target.value})}} />
           </div>
           <button>
             Login
           </button>
         </form>
         <div className={Style.additional_options}>
-          <p><Link className={Style.navigation}>Forgot Password?</Link></p>
+          <p><Link className={Style.navigation} to='/forgotpassword'>Forgot Password?</Link></p>
           <p>Dont have an account?<Link className={Style.navigation} onClick={()=>{setLogin(true)}}>Signup</Link></p>
         </div>
         <div className={Style.Google_authentication}>

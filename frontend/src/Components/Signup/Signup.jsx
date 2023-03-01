@@ -4,6 +4,7 @@ import instance from "../../instance/AxiosInstance";
 import Style from "./index.module.css";
 
 import LoadingSpin from "react-loading-spin";
+import { toast } from "react-toastify";
 
 const Signup = ({ setLogin }) => {
 
@@ -248,7 +249,9 @@ const Signup = ({ setLogin }) => {
             .then((response) => {
               setLoading(false);
               console.log(response,"helll");
+              setLogin(false)
               setOtp(false)
+              toast.success("User Regitered")
             })
             .catch((error) => {
               setLoading(false);
@@ -260,7 +263,9 @@ const Signup = ({ setLogin }) => {
             .then((response) => {
               setLoading(false);
               console.log(response,"helloooo");
+              setLogin(false)
               setOtp(false)
+              toast.success("User Regitered")
             })
             .catch((error) => {
               setLoading(false);
@@ -465,9 +470,6 @@ const Signup = ({ setLogin }) => {
             <p className={Style.error_para}>{responseError}</p>
           </form>
           <div className={Style.additional_options}>
-            <p>
-              <Link className={Style.navigation}>Forgot Password?</Link>
-            </p>
             <p>
               Already Have Account?
               <Link

@@ -6,10 +6,16 @@ const session = require('express-session');
 const passport = require('passport');
 require('./Controllers/passport/passport')
 const cors = require('cors');
+const bodyParser= require('body-parser');
+
+
 
 
 const connect = require('./Connections/db')
 
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 //Routes
 const userRoute = require('./Routes/userRoute');

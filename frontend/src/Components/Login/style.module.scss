@@ -3,13 +3,21 @@
 .form_container {
 
     display: flex;
-    min-height: 30rem;
+    min-height: 100vh;
 
+    @include breakpoint(md){
+        min-height: 30rem;
+        transition: 0.5s ease-in-out;
+    }
 
     .left_section {
-        width: 65%;
+        width: 100%;
         padding: 20px;
         background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
 
         .login_Details  {
             h1 {
@@ -62,7 +70,16 @@
         .additional_options {
             padding-top: 10px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            gap:5px;
+            align-items: center;
+          
+
+            @include breakpoint(md){
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
             p {
                 font-size: 13px;
             } 
@@ -115,7 +132,8 @@
                     gap: 5px;
                     border:none;
                     background-color: transparent;
-            
+             
+                   
                 }
             }
             
@@ -123,8 +141,14 @@
     }
 
     .right_section {
-        width: 45%;
+        display: none;
         background-color: $primary_color;
 
+        @include breakpoint(md){
+            display: flex;
+            width: 45%;
+
+            transition: .3s ease-all;
+        }
     }
 }

@@ -1,0 +1,74 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+}
+.form_container {
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    @include breakpoint(md){
+        width: 55rem;
+        padding: 0 5rem;
+        min-height: 30rem;
+        transition: 0.5s ease-in-out;
+    }
+    
+    h1{
+        color: $primary_color;
+    }
+
+    p {
+        font-size: .8rem;
+        padding: 1rem 0;
+    }
+
+    form {
+    
+        div{
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: .8rem;
+                padding: .5rem 0;
+            }
+            input {
+                border-width: .3px;
+                border-color:rgb(149 149 149 / 52%);
+                outline: none;
+                padding: 15px 10px;  
+                background-color: $base_color;
+            }
+            p{
+                color: red;
+                font-size: 12px;
+                text-align: start;
+            }
+        }
+        button {
+            cursor: pointer;
+            margin-top: 10px;
+            background-color: $primary_color;
+            width: 100%;
+            color:white;
+            border:none;
+            padding: 15px 0px;
+            font-size: 15px;
+            &:hover{
+                background-color: $secondary_color;
+            }
+        }
+        p {
+            font-size: .8rem;
+            text-align: center;
+            padding-top: .5rem;
+        }
+    } 
+}

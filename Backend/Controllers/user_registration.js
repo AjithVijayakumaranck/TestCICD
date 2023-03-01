@@ -12,9 +12,8 @@ module.exports = {
     userRegistration: async (req, res) => {
         try {
             const { email, firstname, lastname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
-            console.log(req.body);
             const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber }],googleVerified:false
+                $or: [{ email: email },{ phoneNumber: phonenumber }],googleVerified:false
             });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
@@ -35,7 +34,7 @@ module.exports = {
                 });
                 userTemplate.save().then(async () => {
                     const createdOTP = await sendOTP({ email });
-                    const passEncription = await Encrypt(password)
+                    const passEncription = await Encrypt(password);
                     console.log(passEncription,"pass encription");
                     res.status(200).json(createdOTP);
                 })
@@ -114,11 +113,9 @@ module.exports = {
                 });
                 userTemplate.save().then(async () => {
                     sentVerificationOtp(phonenumber).then(() => {
-
                         res.status(200).json("otp sented");
                     }).catch(() => {
                         res.status(500).json("something went wrong");
-
                     })
 
                 })
