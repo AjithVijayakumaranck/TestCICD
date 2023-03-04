@@ -1,0 +1,283 @@
+.Container {
+  padding: 0 100px;
+  min-height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  overflow-x: hidden;
+}
+@media (max-width: 550px) {
+  .Container {
+    padding: 0;
+    flex-direction: column;
+  }
+}
+@media (min-width: 900px) and (max-width: 1200px) {
+  .Container {
+    padding: 0 5px;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container {
+    padding: 0 10px;
+  }
+}
+.Container .Branding {
+  flex: 2;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+@media (max-width: 550px) {
+  .Container .Branding {
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+}
+.Container .Branding div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.Container .Branding div button {
+  border: 0;
+  background: transparent;
+  aspect-ratio: 1;
+  font-size: 20px;
+  display: none;
+  cursor: pointer;
+}
+.Container .Branding div button:hover {
+  color: #046BD2;
+}
+@media (max-width: 550px) {
+  .Container .Branding div button {
+    display: flex;
+    align-items: center;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Branding div button {
+    display: flex;
+    align-items: center;
+  }
+}
+.Container .Branding h1 {
+  color: #046BD2;
+  font-size: 35px;
+}
+@media (max-width: 550px) {
+  .Container .Branding h1 {
+    font-size: 25px;
+    padding: 5px 5px;
+  }
+}
+.Container .Branding .location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: rgb(95, 95, 95);
+  font-weight: 100px;
+}
+.Container .Search {
+  display: flex;
+  flex: 8;
+}
+.Container .Search .Search_container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #046BD2;
+}
+@media (max-width: 550px) {
+  .Container .Search .Search_container {
+    width: 100%;
+  }
+}
+.Container .Search .Search_container input {
+  display: flex;
+  align-items: center;
+  border: none;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: rgb(31, 31, 31);
+  font-weight: 100px;
+  background: transparent;
+  outline: none;
+  width: 70%;
+  text-align: start;
+}
+.Container .Search .Search_container div select {
+  border: none;
+  background: transparent;
+  outline: none;
+  display: none;
+}
+.Container .Search .Search_container div select option {
+  border: none;
+  background: transparent;
+  outline: none;
+}
+.Container .Search button {
+  position: absolute;
+  color: white;
+  right: 0;
+  font-size: 20px;
+  border: none;
+  aspect-ratio: 1;
+  background-color: #046BD2;
+  height: 100%;
+}
+.Container .Options {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex: 3;
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Options {
+    flex: 0;
+  }
+}
+@media (max-width: 550px) {
+  .Container .Options {
+    flex: 0;
+  }
+}
+.Container .Options .icon {
+  color: black;
+  aspect-ratio: 1;
+  font-size: 20px;
+}
+@media (max-width: 550px) {
+  .Container .Options .icon {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Options .icon {
+    display: none;
+  }
+}
+.Container .Options .profile {
+  aspect-ratio: 1;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid #046BD2;
+  overflow: hidden;
+}
+@media (max-width: 550px) {
+  .Container .Options .profile {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Options .profile {
+    display: none;
+  }
+}
+.Container .Options .profile img {
+  width: 100%;
+}
+.Container .Options .ButtonContainer button {
+  border: none;
+  background: transparent;
+  color: white;
+  background-color: #046BD2;
+  border: 1px solid #046BD2;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Container .Options .ButtonContainer button:hover {
+  background-color: white;
+  color: #046BD2;
+}
+@media (max-width: 550px) {
+  .Container .Options .ButtonContainer {
+    position: fixed;
+    z-index: 99;
+    bottom: 30px;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Options .ButtonContainer {
+    position: fixed;
+    z-index: 99;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+  }
+}
+@media (min-width: 900px) and (max-width: 1200px) {
+  .Container .Options .ButtonContainer {
+    position: fixed;
+    z-index: 1;
+    bottom: 30px;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+  }
+}
+.Container .Mobile_screen {
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  height: 100vh;
+  padding: 5rem 50px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 9999;
+  display: none;
+}
+@media (max-width: 550px) {
+  .Container .Mobile_screen {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .Container .Mobile_screen {
+    display: flex;
+  }
+}
+.Container .Mobile_screen .ProfileContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.Container .Mobile_screen .ProfileContainer .profile {
+  aspect-ratio: 1;
+  height: 80px;
+  border-radius: 100%;
+  border: 1px solid #046BD2;
+  overflow: hidden;
+}
+.Container .Mobile_screen .ProfileContainer .profile img {
+  width: 100%;
+}
+.Container .Mobile_screen .ProfileContainer div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.Container .Mobile_screen .ProfileContainer div h5 {
+  color: #046BD2;
+  text-decoration: underline;
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 1px;
+}/*# sourceMappingURL=index.module.css.map */

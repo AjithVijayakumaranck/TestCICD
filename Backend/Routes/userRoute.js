@@ -35,6 +35,7 @@ router.post('/otpsent_email',authentication_controllers.email_otpSent)
 router.post('/otpsent_mobile',authentication_controllers.sendphoneOtp)
 
 //otp verify routes
+
 router.post('/verifyotp_email',authentication_controllers.verifyOtp)
 
 router.post('/verifyotp_mobile',authentication_controllers.verificationPhoneOtp)

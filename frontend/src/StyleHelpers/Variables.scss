@@ -4,6 +4,7 @@ $primary_color:#046BD2;
 $secondary_color:#10E3C2;
 $base_color:#F3F3F3;
 $base_color2:#373737;
+$base_color3:#c0c0c0;
 
 
 
@@ -11,15 +12,18 @@ $base_color2:#373737;
 
 @mixin breakpoint($point) {
     @if $point == md {
-        // 768px
-        @media (min-width: 48em) {
-            @content;
-        }
-    }
-
-    @if $point == sm {
-        @media(min-width:550px){
+        @media(max-width:550px) {
             @content;
         }
     }
 }
+
+@mixin mediumScreen {
+    @media (min-width:550px) and (max-width: 900px) { @content; }
+  }
+@mixin LargeScreen {
+    @media (min-width:900px) and (max-width: 1200px) { @content; }
+  }
+@mixin extraLargeScreen {
+    @media (min-width:900px) and (max-width: 1800px) { @content; }
+  }

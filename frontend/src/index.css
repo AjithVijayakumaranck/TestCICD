@@ -3,12 +3,16 @@
   font-family: 'Inter', sans-serif;
    -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F3F3F3;
+  /* background-color: #F3F3F3; */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+*{
+  margin: 0;
+  padding: 0;
 }
 
 p {
@@ -17,7 +21,43 @@ p {
 h1 {
   margin: 0px;
 }
+h2 {
+  margin: 0px;
+}
+h3 {
+  margin: 0px;
+}
+h5 {
+  margin: 0px;
+}
+h6 {
+  margin: 0px;
+}
+h4 {
+  margin: 0px;
+}
 
 input:required {
   background-color: black;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c0c0c0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #046BD2 ;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

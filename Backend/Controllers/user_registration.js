@@ -34,8 +34,10 @@ module.exports = {
                 });
                 userTemplate.save().then(async () => {
                     const createdOTP = await sendOTP({ email });
+
                     const passEncription = await Encrypt(password);
                     console.log(passEncription,"pass encription");
+                    
                     res.status(200).json(createdOTP);
                 })
                     .catch((error) =>
