@@ -1,3 +1,31 @@
+@import '../../StyleHelpers/Variables.scss';
+
 .home_container {
-    
+    height: 100vh;
+
+    .card_container {
+        padding: 0rem 8rem;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr 1fr 1fr;  
+        gap: 20px 20px;
+        background-color: $base_color3;
+
+        @include breakpoint(md){
+            grid-template-columns: 1fr;
+            padding:0px 10px;
+            gap: 10px 0px;
+        }
+
+        @include LargeScreen{
+            grid-template-columns: 1fr 1fr 1fr 1fr ;
+            padding:0px 10px;
+            gap: 20px 20px;
+        }
+
+        @include mediumScreen{
+            grid-template-columns: 1fr 1fr 1fr;
+            padding:0px 10px;
+            gap: 20px 20px;
+        }
+    }
 }

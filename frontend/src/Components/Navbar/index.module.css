@@ -231,16 +231,14 @@
   }
 }
 .Container .Mobile_screen {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   height: 100vh;
-  padding: 5rem 50px;
   left: 0;
-  overflow: hidden;
+  bottom: 0;
   position: absolute;
   z-index: 9999;
-  display: none;
 }
 @media (max-width: 550px) {
   .Container .Mobile_screen {
@@ -252,32 +250,75 @@
 @media (min-width: 550px) and (max-width: 900px) {
   .Container .Mobile_screen {
     display: flex;
+    justify-content: start;
+    align-items: start;
   }
 }
 .Container .Mobile_screen .ProfileContainer {
+  padding: 50px 50px;
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  align-items: center;
+  align-items: end;
 }
-.Container .Mobile_screen .ProfileContainer .profile {
+.Container .Mobile_screen .ProfileContainer div button {
+  background-color: transparent;
+  border: 0;
+  font-size: 30px;
+  cursor: pointer;
+}
+.Container .Mobile_screen .ProfileContainer div button:hover {
+  color: #046BD2;
+}
+.Container .Mobile_screen .ProfileContainer .profile_wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.Container .Mobile_screen .ProfileContainer .profile_wrap .profile {
   aspect-ratio: 1;
   height: 80px;
   border-radius: 100%;
   border: 1px solid #046BD2;
   overflow: hidden;
 }
-.Container .Mobile_screen .ProfileContainer .profile img {
+.Container .Mobile_screen .ProfileContainer .profile_wrap .profile img {
   width: 100%;
 }
-.Container .Mobile_screen .ProfileContainer div {
+.Container .Mobile_screen .ProfileContainer .profile_wrap div {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
-.Container .Mobile_screen .ProfileContainer div h5 {
+.Container .Mobile_screen .ProfileContainer .profile_wrap div h5 {
   color: #046BD2;
   text-decoration: underline;
   font-size: 12px;
   font-style: italic;
   font-weight: 1px;
+}
+
+.in {
+  animation: slide-in 0.5s ease-in-out forwards;
+}
+
+.out {
+  animation: slide-Out 0.5s ease-in-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-Out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }/*# sourceMappingURL=index.module.css.map */

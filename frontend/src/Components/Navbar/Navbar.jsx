@@ -3,13 +3,15 @@ import Style from "./index.module.css"
 import { } from 'react-icons/fa';
 import { BsBell, BsChat, BsFillCompassFill, BsHammer, BsSearch } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoLocation } from "react-icons/io5";
+import { IoCloseOutline, IoLocation } from "react-icons/io5";
 import Select from 'react-select'
 
 
 const Navbar = () => {
 
     const [Toggle,setToggle]= useState(false)
+
+    const [isVisible, setIsVisible] = useState(false);
 
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -42,7 +44,10 @@ const Navbar = () => {
     <div className={Style.Container}>
      <div className={Style.Branding}>
       <div>
-     <button onClick={()=>setToggle(true)} className={Style.Toggle}><GiHamburgerMenu /></button>
+     <button onClick={()=>{
+      setToggle(true)
+      setIsVisible(true)
+    }} className={`${Style.Toggle}`}><GiHamburgerMenu /></button>
      <h1>DealNBuy</h1>
       </div>
         <div className={Style.location}>
@@ -68,9 +73,13 @@ const Navbar = () => {
         </div>
      </div>
   {
-    Toggle ?    <div onClick={()=>setToggle(false)} className={Style.Mobile_screen}>
+    Toggle ?    <div  className={`${Style.Mobile_screen} ${Toggle ? Style.in : Style.out}`}>
        
     <div className={Style.ProfileContainer}>
+    <div>
+     <button> <IoCloseOutline onClick={()=>setToggle(false)}/></button>
+    </div>
+    <div className={Style.profile_wrap}>
     <div className={Style.profile}>
        <img src="/imgs/profile.jpg" alt="" />
      </div>
@@ -78,6 +87,7 @@ const Navbar = () => {
     <h6>"Hello"</h6>
        <h4>Ajith Vijayakumaran</h4>
        <h5>View and edit Profile</h5>
+    </div>  
     </div>
     </div>
   </div> : ""

@@ -236,16 +236,19 @@
       }
     }
   }
+
+
+
   .Mobile_screen {
-    background-color: rgba($color: #ffffff, $alpha: .9);
+    background-color: rgba($color: #ffffff, $alpha: .5);
     backdrop-filter: blur(10px);
     height: 100vh;
-    padding: 5rem 50px;
     left:0;
-    overflow: hidden;
+    bottom: 0;
     position: absolute;
     z-index: 9999;
-    display: none;
+
+
     @include breakpoint(md){
       display: flex;
       justify-content: start;
@@ -253,11 +256,31 @@
     }
     @include mediumScreen{
       display: flex;
+      justify-content: start;
+      align-items: start;
+     
     }
     .ProfileContainer {
+      padding: 50px 50px;
       display: flex;
+      flex-direction: column;;
       gap: 20px;
-      align-items: center;
+      align-items: end;
+      div{
+        button{
+          background-color: transparent;
+          border: 0;
+          font-size: 30px;
+          cursor: pointer;
+          &:hover {
+            color:$primary_color
+          }
+        }
+      }
+      .profile_wrap{
+        display: flex;
+        align-items: center;
+       gap:20px;
       .profile{
         aspect-ratio: 1;
         height: 80px;
@@ -268,16 +291,17 @@
           width: 100% ;
         }
       }
-      div{
-        display: flex;
-        flex-direction: column;
-        gap:3px;
-        h5 {
-          color: $primary_color;
-          text-decoration: underline;
-          font-size: 12px;
-          font-style: italic;
-          font-weight: 1px;
+        div{
+          display: flex;
+          flex-direction: column;
+          gap:3px;
+          h5 {
+            color: $primary_color;
+            text-decoration: underline;
+            font-size: 12px;
+            font-style: italic;
+            font-weight: 1px;
+          }
         }
       }
     }
@@ -285,3 +309,34 @@
   }
 }
 
+.in {
+  animation: slide-in 0.5s ease-in-out forwards;
+}
+
+.out {
+  animation: slide-Out 0.5s ease-in-out forwards;
+}
+
+
+
+//Keyframes
+
+//slide in 
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// slide Out
+@keyframes slide-Out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

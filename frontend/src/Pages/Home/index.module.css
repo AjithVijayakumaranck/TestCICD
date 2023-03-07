@@ -1,1 +1,31 @@
-/*# sourceMappingURL=index.module.css.map */
+.home_container {
+  height: 100vh;
+}
+.home_container .card_container {
+  padding: 0rem 8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px 20px;
+  background-color: #f3f3f3;
+}
+@media (max-width: 550px) {
+  .home_container .card_container {
+    grid-template-columns: 1fr;
+    padding: 0px 10px;
+    gap: 10px 0px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1200px) {
+  .home_container .card_container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 0px 10px;
+    gap: 20px 20px;
+  }
+}
+@media (min-width: 550px) and (max-width: 900px) {
+  .home_container .card_container {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0px 10px;
+    gap: 20px 20px;
+  }
+}/*# sourceMappingURL=index.module.css.map */

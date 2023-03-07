@@ -10,7 +10,7 @@
   width: 100vw;
   background-color: aliceblue;
 }
-@media (min-width: 48em) {
+@media (max-width: 550px) {
   .Registration_wrapper .form_wrapper {
     width: 55rem;
     min-height: 30rem;

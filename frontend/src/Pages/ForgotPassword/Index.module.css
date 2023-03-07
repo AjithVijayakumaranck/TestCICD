@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
 }
-@media (min-width: 48em) {
+@media (max-width: 550px) {
   .container .form_container {
     width: 55rem;
     padding: 0 5rem;
