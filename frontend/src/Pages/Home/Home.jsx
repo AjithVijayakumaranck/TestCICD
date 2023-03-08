@@ -10,13 +10,8 @@ const Home = () => {
     <div className={Style.home_container}>
       <Navbar/>
       <Catagory/>
-      <SimpleSlider/>
+      {/* <SimpleSlider/> */}
       <div className={Style.card_container}>
-         <Card/>
-         <Card/>
-         <Card/>
-         <Card/>
-         <Card/>
          <Card/>
          <Card/>
          <Card/>

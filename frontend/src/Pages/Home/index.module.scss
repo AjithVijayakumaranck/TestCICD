@@ -4,10 +4,10 @@
     height: 100vh;
 
     .card_container {
-        padding: 0rem 8rem;
+        padding: 1rem 8rem;
         display: grid;
         grid-template-columns:1fr 1fr 1fr 1fr 1fr;  
-        gap: 20px 20px;
+        gap: 20px 30px;
         background-color: $base_color3;
 
         @include breakpoint(md){
