@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({
 //Routes
 const userRoute = require('./Routes/userRoute');
 const googleAuth = require('./Routes/authRoute')
+const category = require('./Routes/categoryRoutes')
 
 
 app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }));
@@ -41,7 +42,8 @@ connect()
 
 //mainRoutes
 app.use('/api',userRoute)
-app.use('/auth',googleAuth)
+app.use('/api/auth',googleAuth)
+app.use('/api/category',category)
 
 //server port
 app.listen(8080,()=>{
