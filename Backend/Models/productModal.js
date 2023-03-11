@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const SubCategory = require('./subCategoryModel');
 const schema = mongoose.Schema;
 
-const PRODUCTschema = new schema({
+
+
+
+const productSchema = new schema({
 
   title: {
     type: String,
@@ -11,38 +14,38 @@ const PRODUCTschema = new schema({
   location: {
     type: {
       type: String,
-      enum: ['Point'],
-      required: true
+      default: 'Point'
     },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
+    coordinates: [Number]
   },
-  discription: {
+  description: {
     type: String,
   },
   contact: {
     type: String
   },
-  images: [String]
-  ,
-  deleted:{
-    type: Boolean,
-    default:false
-  },
-  category:{
-    type:String,
-    ref:'category'
-  },
-  SubCategory:[{
-    type:String,
-    ref:'subcategory'
+  images: [{
+    type: schema.Types.Mixed
   }]
+  ,
+  deleted: {
+    type: Boolean,
+    default: false
+  },
+  userId: {
+    type: String,
+    required: true,
+    ref: "USER"
+  },
+  category: {
+    type: String,
+    ref: 'category'
+  },
+  SubCategory: [{ type: String, ref: 'subcategory'}]
 
 }, { timestamps: true })
 
-PRODUCTschema.index({ location: '2dsphere' });
-const PRODUCT = mongoose.model("products", PRODUCTschema);
+productSchema.index({ location: '2dsphere' });
+const PRODUCT = mongoose.model("products", productSchema);
 
 module.exports = PRODUCT

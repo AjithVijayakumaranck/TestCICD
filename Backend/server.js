@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const env = require('dotenv')
+const fs = require('fs')
 env.config()
 const session = require('express-session');
 const passport = require('passport');
@@ -21,6 +22,17 @@ app.use(bodyParser.urlencoded({
 const userRoute = require('./Routes/userRoute');
 const googleAuth = require('./Routes/authRoute')
 const category = require('./Routes/categoryRoutes')
+const wishlist = require('./Routes/wishlistRoutes')
+const product = require('./Routes/productRoute')
+
+
+if (!fs.existsSync("./uploads")) {
+    fs.mkdirSync("./uploads");
+}
+
+//static Flolder
+app.use(express.static(__dirname + "/public"));
+app.use("/uploads", express.static("uploads"));
 
 
 app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }));
@@ -44,6 +56,8 @@ connect()
 app.use('/api',userRoute)
 app.use('/api/auth',googleAuth)
 app.use('/api/category',category)
+app.use('/api/user/wishlist',wishlist)
+app.use('/api/user/product',product)
 
 //server port
 app.listen(8080,()=>{

@@ -7,7 +7,7 @@ router.post('/add_category',Category_subController.addCategory) // add new categ
 
 router.delete('/delete_category',Category_subController.deleteCategory) // delete existing category record
 
-router.put('/update_category',Category_subController.updateCategory) // update existing category record
+router.put('/update_category',Category_subController.updateCategory) // update existing category record 
 
 
 //subcategory MANAGING ROUTES
