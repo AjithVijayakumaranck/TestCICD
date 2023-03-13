@@ -14,9 +14,21 @@ module.exports = {
                 return(
                     cloudUpload(locaFilePath,title)
                 )
+              
             })
             const results = await Promise.all(Upload);
             if(results){
+                // fs.unlink('/uploads'+file, (err) => {
+                //     if (err) {
+                //       res.status(500).send({
+                //         message: "Could not delete the file. " + err,
+                //       });
+                //     }
+                
+                //     res.status(200).send({
+                //       message: "File is deleted.",
+                //     });
+                //   });
                 console.log(...subcategory,"hellllo");
                 const productTemplate = new PRODUCT({
                     title:title,

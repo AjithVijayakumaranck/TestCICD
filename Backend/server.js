@@ -24,6 +24,7 @@ const googleAuth = require('./Routes/authRoute')
 const category = require('./Routes/categoryRoutes')
 const wishlist = require('./Routes/wishlistRoutes')
 const product = require('./Routes/productRoute')
+const filter = require('./Routes/filterRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -58,6 +59,7 @@ app.use('/api/auth',googleAuth)
 app.use('/api/category',category)
 app.use('/api/user/wishlist',wishlist)
 app.use('/api/user/product',product)
+app.use('/api/user/filter',filter)
 
 //server port
 app.listen(8080,()=>{
