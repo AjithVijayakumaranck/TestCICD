@@ -6,7 +6,15 @@ router.get('/get_location',filter_controller.get_locations)
 
 
 //api to get location from coordinates
-router.get('/get_location',filter_controller.get_Revlocations)
+router.get('/get_revlocation',filter_controller.get_Revlocations)
+
+
+//products with in a polygon
+router.get('/filterproducts',filter_controller.getFiltered)
+ 
+
+//products with in a distance
+router.get('/filter_by_distance',filter_controller.filterDistance)
 
 
 module.exports = router
