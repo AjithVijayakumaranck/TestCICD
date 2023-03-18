@@ -19,10 +19,13 @@ module.exports = {
     },
     get_locations : async (req,res)=>{
         try {
-            const locationDetails = await getLocation("india")
+            const {location} = req.query
+            console.log(location,"hello lopcatopmn");
+            const locationDetails = await getLocation(location)
+            console.log(locationDetails);
             res.status(200).json(locationDetails) 
         } catch (error) {
-            console.log(error);
+            console.log(error,"error");
             res.status(400).json(error.message)     
         }
     },

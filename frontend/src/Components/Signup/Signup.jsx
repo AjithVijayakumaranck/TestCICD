@@ -209,7 +209,7 @@ const Signup = ({ setLogin }) => {
       setLoading(true);
       if (auth) {
         instance
-          .post("/api/registerphone", userData)
+          .post("/registerphone", userData)
           .then((response) => {
             setLoading(false);
             setOtp(true);

@@ -2,6 +2,7 @@ const Category_subController = require('../Controllers/Category_subController')
 const router = require('express').Router()
 
 //CATEGORY MANAGING ROUTES
+router.get('/get_categories',Category_subController.getCategories)//get all document from category collection
 
 router.post('/add_category',Category_subController.addCategory) // add new category record
 

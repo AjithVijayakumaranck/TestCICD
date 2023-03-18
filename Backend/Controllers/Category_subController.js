@@ -6,6 +6,24 @@ module.exports = {
 
     //CATEGORY CONTROLLERS
 
+    //getting Categories
+
+    getCategories: async (req,res)=>{
+        try {
+            console.log("get categories");
+            const categories = await CATEGORY.find()
+            console.log(categories);
+            if(!categories){
+                res.status(400).json({message:"Category not found"})
+            }else{
+                res.status(200).json(categories)
+            }
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
     //add new category
     addCategory: async (req, res) => {
         try {
