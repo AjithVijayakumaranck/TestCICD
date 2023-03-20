@@ -17,4 +17,9 @@ router.get('/filterproducts',filter_controller.getFiltered)
 router.get('/filter_by_distance',filter_controller.filterDistance)
 
 
+//search Management Routes
+
+router.post('/search_products',filter_controller.searchProducts)
+
+
 module.exports = router

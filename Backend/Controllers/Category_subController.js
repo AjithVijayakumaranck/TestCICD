@@ -167,5 +167,15 @@ module.exports = {
             res.status(500).json({message:"Something went wrong"})
 
         }
+    },
+
+
+    //searching Function
+    searchProducts:(req,res)=>{
+        try {
+            const {} = req.query
+        } catch (error) {
+            
+        }
     }
 }

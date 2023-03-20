@@ -1,5 +1,5 @@
 const PRODUCT = require("../Models/productModal");
-const { getLocation, getReverseLocation } = require("../utilities/geoCoding")
+const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding")
 
 
 
@@ -8,8 +8,9 @@ module.exports = {
     get_Revlocations : async (req,res)=>{
         try {
             console.log("api here");
-            // const {longitude,latitude} = req.params
-            const locationDetails = await getReverseLocation(-73.989,40.733)
+            const {longitude,latitude} = req.query
+            console.log(longitude,latitude,"laty and long");
+            const locationDetails = await getReverseLocation(longitude,latitude)
             console.log(locationDetails,"heee");
             res.status(200).json(locationDetails) 
         } catch (error) {
@@ -71,5 +72,46 @@ module.exports = {
         } catch (error) {
             res.status(500).json({message:"something went wrong"})
         }
-    }
+    },
+
+        //searching Function
+        // searchProducts:async(req,res)=>{
+        //     try {
+        //         // const {polygon}= req.body
+        //        getPolygon()
+        //     } catch (error) {
+        //         console.log(error.message);
+        //         res.status(500).json({message:"something went wrong"})
+        //     }
+        // }
+
+
+
+        searchProducts:async(req,res)=>{
+            try {
+                const {SearchQuery,category,polygon} = req.body
+                
+                console.log(SearchQuery,category,polygon);
+
+    
+                if(category == ""){
+                    const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    if(!result){
+                            res.status(400).json({message:"No products found with this criteria"})
+                        }else{
+                            res.status(200).json(result)
+                    }
+                }else{
+                    const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{category:category},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    if(!result){
+                        res.status(400).json({message:"No products found with this criteria"})
+                    }else{
+                        res.status(200).json(result)
+                }
+                }
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({message:"something went wrong"})
+            }
+        }
 }

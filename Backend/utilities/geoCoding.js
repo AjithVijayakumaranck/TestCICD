@@ -43,4 +43,24 @@ const getReverseLocation = (longitude,latitude)=>{
 
 }
 
-module.exports = {getLocation,getReverseLocation} 
+const getPolygon = (longitude,latitude) =>{
+    return new Promise((resolve, reject) =>{
+        const options = {
+            method: 'GET',
+            // ${76.6469,10.74}
+            url: `https://api.mapbox.com/v4/mapbox.enterprise-boundaries-a0-v2/tilequery/76.6469,10.74.json?access_token=${MAP_BOX_TOKEN}`,
+            // params: {
+            //     access_token:MAP_BOX_TOKEN,
+            //    }
+          };
+          axios.request(options).then(function (response) {
+              console.log(response,"res");
+              resolve(response)
+          }).catch(function (error) {
+              console.log(error.message,"error");
+              reject(error)
+          }); 
+    })    
+}
+
+module.exports = {getLocation,getReverseLocation,getPolygon} 
