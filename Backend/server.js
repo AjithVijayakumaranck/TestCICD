@@ -61,6 +61,7 @@ app.use('/api/category',category)
 app.use('/api/user/wishlist',wishlist)
 app.use('/api/user/product',product)
 app.use('/api/user/filter',filter)
+app.use('/api/user/profile',profile)
 
 //server port
 app.listen(8080,()=>{

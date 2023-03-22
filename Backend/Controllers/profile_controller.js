@@ -185,7 +185,7 @@ module.exports = {
 
             const {Id} = req.params
             const userDetails = await USER.findOne({_id:Id})
-
+ 
             if(!userDetails){
                     res.status(404).json({message:"user not found"})
             }else{
