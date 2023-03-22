@@ -96,13 +96,14 @@ module.exports = {
     //add subcategory
      addSubcategory: async (req, res) => {
         try {
-            const { categoryId, subcategory } = req.body
+            const { categoryId, subcategory , formInputs} = req.body
             const subCatinfo = await SUBCAT.findOne({ subcategory: subcategory })
             if (subCatinfo) {
                 res.status(400).json({ message: "Subcategory already exists" })
             } else {
                 const subCatTemplate = new SUBCAT({
-                    subcategory: subCategory
+                    subcategory: subCategory,
+                    formInputs: [...formInputs]
                 })
                 subCatTemplate.save().then((response) => {
                     CATEGORY.updateOne({ _id: categoryId }, { $push: { subcategory: response._id } })
@@ -170,12 +171,5 @@ module.exports = {
     },
 
 
-    //searching Function
-    searchProducts:(req,res)=>{
-        try {
-            const {} = req.query
-        } catch (error) {
-            
-        }
-    }
+
 }

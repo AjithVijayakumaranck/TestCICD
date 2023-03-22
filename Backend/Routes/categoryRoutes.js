@@ -20,7 +20,5 @@ router.delete('/delete_subcategory',Category_subController.deleteSubCategory) //
 router.put('/update_subcategory',Category_subController.updateSubcategory) //update existing record to subcategory collection
 
 
-//search Management Routes
 
-router.get('/search_products',Category_subController.searchProducts)
 module.exports = router

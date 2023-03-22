@@ -7,6 +7,9 @@ const SubCategoryschema = new schema({
         unique:true,
         require:true
     },
+    formInputs : [ {
+        type:String
+    }]
 },{timestamps:true})
 const SUBCAT =  mongoose.model("subcategory",SubCategoryschema);
 

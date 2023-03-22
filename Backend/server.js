@@ -25,6 +25,7 @@ const category = require('./Routes/categoryRoutes')
 const wishlist = require('./Routes/wishlistRoutes')
 const product = require('./Routes/productRoute')
 const filter = require('./Routes/filterRoute')
+const profile = require('./Routes/profileRoute')
 
 
 if (!fs.existsSync("./uploads")) {
