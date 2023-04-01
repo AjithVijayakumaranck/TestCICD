@@ -7,7 +7,7 @@ const router = require('express').Router()
 
 
 //get profile route
-router.get('/get_profile',authoriseJwt,profile_controller.getProfile)
+router.get('/get_profile/:userId',authoriseJwt,profile_controller.getProfile)
 
 //update profile
 router.put('/update_profile',authoriseJwt,profile_controller.updateProfile)

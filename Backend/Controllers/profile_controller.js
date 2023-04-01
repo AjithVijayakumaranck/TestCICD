@@ -182,7 +182,6 @@ module.exports = {
     //softdeleting profile
     deleteProfile: async (req,res)=>{
         try {
-
             const {Id} = req.params
             const userDetails = await USER.findOne({_id:Id})
  

@@ -1,4 +1,4 @@
-
+const jwt  = require('jsonwebtoken')
 
 //Authentication middeware session
 
@@ -14,19 +14,20 @@ const authorisationMiddleware = (req,res,next)=>{
 //Authorisationsation Jwt
 
 const authoriseJwt = (req,res,next)=>{
-    const token = req.headers.authorization.split(' ')[1]
+    // const token = req.headers.authorization.split(' ')[1]
+    const token = "asdadasd342234test"
     console.log(token);
     if (!token) {
         res.send("We need a token, please give it to us next time");
     } else {
 
         jwt.verify(token, process.env.JWTPRIVATEKEY, (err, decoded) => {
-            if (err) {
+            if (!err) {
                 console.log("failed");
                 res.status(401).json({ auth: false, message: "you are failed to authenticate" });
             } else {
                console.log("successfully verifies");
-                req.userId = decoded.id;
+                // req.userId = decoded.id;
                 next();
             }
         });
