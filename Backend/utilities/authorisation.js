@@ -1,7 +1,6 @@
 const jwt  = require('jsonwebtoken')
 
 //Authentication middeware session
-
 const authorisationMiddleware = (req,res,next)=>{
     if(req.user){
         console.log("user autherised");
@@ -12,11 +11,9 @@ const authorisationMiddleware = (req,res,next)=>{
 }
 
 //Authorisationsation Jwt
-
-const authoriseJwt = (req,res,next)=>{
-    // const token = req.headers.authorization.split(' ')[1]
-    const token = "asdadasd342234test"
-    console.log(token);
+const authoriseJwt =async (req,res,next)=>{
+    // const token =await req.headers.authorization.split(' ')[1]
+    const token = "1313123token"
     if (!token) {
         res.send("We need a token, please give it to us next time");
     } else {

@@ -24,6 +24,25 @@ module.exports = {
         }
     },
 
+    //get single category 
+
+    getSingleCategory: async (req,res)=>{
+        {
+            try {
+                const categoryId = req.query
+                const category = await CATEGORY.findOne({_id: categoryId}).populate("subcategory")
+                if(category){
+                    res.status(200).json(category)
+                }else{
+                    res.status(400).json({message:"Category not found"})
+                }
+                
+            } catch (error) {
+                res.status(500).json({message:"Something went wrong"})
+            }
+        }
+    },
+
     //add new category
     addCategory: async (req, res) => {
         try {

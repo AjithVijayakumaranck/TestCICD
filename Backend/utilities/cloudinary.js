@@ -18,21 +18,15 @@ cloudinary.config({
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
         try{
-                        console.log("image waitng for upoload");
                         const res = cloudinary.uploader.upload(Image, { folder: folderName})
                         res.then((data) => {
-                            console.log("sucess upload");
-                            console.log(data);
-                            console.log(data.secure_url);
                             resolve(data)
                         }).catch((err) => {
-                            console.log("failed upload");
-                            console.log(err);
                             reject(err)
                         });
    
     }catch(err){
-       console.log(err,"cloudinary error");
+       throw(err)
     }
     })
 }
