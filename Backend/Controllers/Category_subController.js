@@ -29,8 +29,10 @@ module.exports = {
     getSingleCategory: async (req,res)=>{
         {
             try {
-                const categoryId = req.query
+                const categoryId = req.query.categoryId
+                console.log(categoryId,"category");
                 const category = await CATEGORY.findOne({_id: categoryId}).populate("subcategory")
+                console.log(category);
                 if(category){
                     res.status(200).json(category)
                 }else{
@@ -115,8 +117,10 @@ module.exports = {
     //add subcategory
      addSubcategory: async (req, res) => {
         try {
-            const { categoryId, subcategory , formInputs} = req.body
-            const subCatinfo = await SUBCAT.findOne({ subcategory: subcategory })
+            console.log("hello");
+            const formInputs = []
+            const { categoryId, subCategory } = req.body
+            const subCatinfo = await SUBCAT.findOne({ subcategory: subCategory })
             if (subCatinfo) {
                 res.status(400).json({ message: "Subcategory already exists" })
             } else {
@@ -132,12 +136,14 @@ module.exports = {
                         } else {
                             res.status(200).json({ message: "Successfully added" })
                         }
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.log(err);
                         res.status(500).json({ message: "Something went wrong" })
                     })
                 })
             }
         } catch (error) {
+            console.log(error);
             res.status(500).json({ message: "Something went wrong" })
         }
 
