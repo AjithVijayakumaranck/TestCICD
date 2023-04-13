@@ -7,7 +7,7 @@ const router = require('express').Router()
 //CATEGORY MANAGING ROUTES
 router.get('/get_categories',authoriseJwt,Category_subController.getCategories)//get all document from category collection
 
-router.get('/get_singlecategory',authoriseJwt,Category_subController.getSingleCategory)
+router.get('/get_singlecategory',authoriseJwt,Category_subController.getSingleCategory) //get an single category document
 
 router.post('/add_category',authoriseJwt,Category_subController.addCategory) // add new category record
 
@@ -17,6 +17,7 @@ router.put('/update_category',authoriseJwt,Category_subController.updateCategory
 
 
 //subcategory MANAGING ROUTES
+router.get('/get_singlesubcategory',Category_subController.getSingleSubcategory) //get an single subcategory document
 
 router.post('/add_subcategory',Category_subController.addSubcategory)   //add new record to subcategory collection
 

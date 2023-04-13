@@ -149,8 +149,29 @@ module.exports = {
 
     },
 
-    //delete Subcategory
+    getSingleSubcategory: async (req,res)=>{
+        {
+            try {
+                console.log(req.query,"sub cat");
+                const subCategoryId = req.query.subCategoryId
+                console.log(subCategoryId,"idd");
+                const subCategory = await SUBCAT.findOne({_id: subCategoryId})
+                console.log(subCategory);
+                if(subCategory){
+                    res.status(200).json(subCategory)
+                }else{
+                    console.log("sub cat n");
+                    res.status(400).json({message:"subcategory not found"})
+                }
+                
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({message:"Something went wrong"})
+            }
+        }
+    },
 
+    //delete Subcategory
     deleteSubCategory :async (req,res)=>{
         try {
             const {categoryId,subcategoryId}= req.query
