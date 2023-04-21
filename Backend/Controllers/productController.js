@@ -58,5 +58,23 @@ module.exports = {
             console.log(error);
             res.status(500).json({message:"something went wrong"})
         } 
-    }
+    },
+
+    //get single products
+    getSinlgeProduct : async (req,res)=>{
+        try {
+            const {ProductId} = req.query
+            const productDetails = await PRODUCT.findOne({_id:productId})
+            if(productDetails){
+                res.status(200).json(productDetails)
+            }else{
+                res.status(404).json({messagge:"product not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+
 }

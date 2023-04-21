@@ -10,4 +10,8 @@ const {}= process.env
 //add products route
 router.post('/addproduct',upload.array("files"),authoriseJwt,productController.addProduct)
 
+//get single Product
+router.post('/addproduct',upload.array("files"),authoriseJwt,productController.addProduct)
+
+
 module.exports = router
