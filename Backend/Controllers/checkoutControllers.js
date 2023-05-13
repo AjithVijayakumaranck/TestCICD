@@ -1,9 +1,12 @@
+const Stripe = require('stripe')
+
+const stripe = Stripe(process.env.STRIPE_KEY)
+
+
 module.exports = {
 
-
     //stripe checkout
-    sripeCheckout : (req,res)=>{
-        app.post('/create-checkout-session', async (req, res) => {
+    sripeCheckout :async (req,res)=>{
             const session = await stripe.checkout.sessions.create({
               line_items: [
                 {
@@ -21,8 +24,6 @@ module.exports = {
               success_url: 'http://localhost:4242/success',
               cancel_url: 'http://localhost:4242/cancel',
             });
-          
-            res.redirect(303, session.url);
-          });
+            res.send({url:session.url});  
     }
 }
