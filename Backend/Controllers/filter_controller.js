@@ -86,23 +86,52 @@ module.exports = {
         // }
 
 
+        //uses co ordinates to search
+
+        // searchProducts:async(req,res)=>{
+        //     try {
+        //         const {SearchQuery,category,polygon} = req.body
+                
+        //         console.log(SearchQuery,category,polygon);
+
+    
+        //         if(category == ""){
+        //             const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+        //             if(!result){
+        //                     res.status(400).json({message:"No products found with this criteria"})
+        //                 }else{
+        //                     res.status(200).json(result)
+        //             }
+        //         }else{
+        //             const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{category:category},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+        //             if(!result){
+        //                 res.status(400).json({message:"No products found with this criteria"})
+        //             }else{
+        //                 res.status(200).json(result)
+        //         }
+        //         }
+        //     } catch (error) {
+        //         console.log(error);
+        //         res.status(500).json({message:"something went wrong"})
+        //     }
+        // },
 
         searchProducts:async(req,res)=>{
             try {
-                const {SearchQuery,category,polygon} = req.body
+                const {SearchQuery="",district="",state=""} = req.query
                 
                 console.log(SearchQuery,category,polygon);
 
     
                 if(category == ""){
-                    const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    const result = await  PRODUCT.find({$and:[{district:district},{state:state},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
                     if(!result){
                             res.status(400).json({message:"No products found with this criteria"})
                         }else{
                             res.status(200).json(result)
                     }
                 }else{
-                    const result = await  PRODUCT.find({$and:[{location: { $geoIntersects: { $geometry: polygon.bbox }}},{category:category},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    const result = await  PRODUCT.find({$and:[{district:district},{state:state},{category:category},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
                     if(!result){
                         res.status(400).json({message:"No products found with this criteria"})
                     }else{

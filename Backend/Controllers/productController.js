@@ -1,6 +1,5 @@
 const { cloudUpload } = require("../utilities/cloudinary")
 const path = require("path");
-const { log } = require("console");
 const PRODUCT = require("../Models/productModal");
 
 module.exports = {

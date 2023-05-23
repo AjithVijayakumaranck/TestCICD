@@ -6,7 +6,7 @@ const stripe = Stripe(process.env.STRIPE_KEY)
 module.exports = {
 
     //stripe checkout
-    sripeCheckout :async (req,res)=>{
+      sripeCheckout :async (req,res)=>{
             const session = await stripe.checkout.sessions.create({
               line_items: [
                 {

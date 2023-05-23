@@ -19,7 +19,16 @@ router.get('/filter_by_distance',filter_controller.filterDistance)
 
 //search Management Routes
 
-router.post('/search_products',filter_controller.searchProducts)
+// router.post('/search_products',filter_controller.searchProducts)
+
+
+
+//filtering using 
+
+router.get('/search_products',filter_controller.searchProducts)
+
+
+
 
 
 module.exports = router

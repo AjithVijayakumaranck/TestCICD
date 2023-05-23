@@ -1,7 +1,7 @@
 const { CONVERSATION } = require("../Models/conversationModel");
 const { MESSAGE } = require("../Models/messageModel");
 
-module.export = {
+module.exports = {
 
     //create a conversation between two specific users
     createConversation : async (req,res,next)=>{
