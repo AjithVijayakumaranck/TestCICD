@@ -4,7 +4,7 @@ const { MESSAGE } = require("../Models/messageModel");
 module.exports = {
 
     //create a conversation between two specific users
-    createConversation : async (req,res,next)=>{
+    createConversation : async (req,res)=>{
         try{
             const {senderId,recieverId} = req.body
             let newConversation =await new CONVERSATION({
@@ -20,21 +20,21 @@ module.exports = {
     
 
     //get conversations of a specific user
-    getConversation: async (req,res,next)=>{
+    getConversation: async (req,res)=>{
         try{
             const  {userId} = req.params
+            console.log(userId);
             const  conversation = await CONVERSATION.find({member:{
                 $in:[userId]
             }})
             res.status(200).json(conversation)
-    
         }catch(err){
             res.status(500).json(err)
         }
     },
 
    //add  a new record to chat collecton
-    addMessage: async (req,res,next)=>{
+    addMessage: async (req,res)=>{
         try{
             const {sender,text,conversationId} = req.body
             const newMessage =await new MESSAGE(
@@ -53,7 +53,7 @@ module.exports = {
 
 
     //get all the messasges of a specific converstion
-    getMessage : async (req,res,next)=>{
+    getMessage : async (req,res)=>{
         console.log(req.params.conversationId,"hello");
         try{
             const {conversationId} = req.params

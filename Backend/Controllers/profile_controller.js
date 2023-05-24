@@ -11,7 +11,7 @@ module.exports = {
         try {
             const {userId} = req.params
             const profileDetails = await USER.findOne({_id:userId})
-            if(!profileDetails){
+            if(profileDetails){
                  res.status(200).json(profileDetails)
                 }else{
                     res.status(400).json({message:"user not found"})
