@@ -27,6 +27,7 @@ const product = require('./Routes/productRoute')
 const filter = require('./Routes/filterRoute')
 const profile = require('./Routes/profileRoute')
 const chat = require('./Routes/chatRoutes')
+const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -64,6 +65,7 @@ app.use('/api/user/product',product)
 app.use('/api/user/filter',filter)
 app.use('/api/user/profile',profile)
 app.use('/api/user/chat',chat)
+app.use('/api/super_admin',superAdmin)
 
 //server port
 app.listen(8080,()=>{

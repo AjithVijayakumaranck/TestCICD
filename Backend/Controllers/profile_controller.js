@@ -14,7 +14,7 @@ module.exports = {
             if(profileDetails){
                  res.status(200).json(profileDetails)
                 }else{
-                    res.status(400).json({message:"user not found"})
+                 res.status(400).json({message:"user not found"})
             }
         } catch (error) {
             res.status(500).json({messgae:"something went wrong"})

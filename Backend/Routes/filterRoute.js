@@ -28,6 +28,11 @@ router.get('/filter_by_distance',filter_controller.filterDistance)
 router.get('/search_products',filter_controller.searchProducts)
 
 
+//search Locality
+
+router.get('/search_locality',filter_controller.searchLocality)
+
+
 
 
 

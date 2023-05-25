@@ -1,5 +1,6 @@
 const PRODUCT = require("../Models/productModal");
-const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding")
+const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding");
+const fetchLocality = require("../utilities/localityFetch");
 
 
 
@@ -138,6 +139,14 @@ module.exports = {
                         res.status(200).json(result)
                 }
                 }
+            } catch (error) {
+                console.log(error);
+                res.status(500).json({message:"something went wrong"})
+            }
+        }, 
+        searchLocality :async (req,res)=>{
+            try {
+               const locality = await fetchLocality(state,village,subdistrict,village)
             } catch (error) {
                 console.log(error);
                 res.status(500).json({message:"something went wrong"})
