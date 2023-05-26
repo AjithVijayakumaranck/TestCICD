@@ -16,6 +16,8 @@ let users = []
 
 //add new user to the online users array
 const addUser = (userId, socketId) => {
+    console.log(userId,"sdadas")
+    console.log(users,"users arrau")
     !users.some((user) => user.userId === userId) &&
         users.push({ userId, socketId });
 };
@@ -27,6 +29,9 @@ const removeUser = (socketId) => {
 
 //function for getting a specific user socket id
 const getUser = (userId) => {
+    console.log(userId,"sadasdsa");
+    console.log(users);
+    console.log(users.find((user) => user.userId === userId));
     return users.find((user) => user.userId === userId);
 };
 
@@ -46,8 +51,7 @@ io.on("connection", (socket) => {
 
     //take userId and socketId from user
     socket.on("addUser", (userId) => {
-        console.log(userId);
-        addUser(userId, socket.id);
+        addUser(userId.userId, socket.id);
         io.emit("getUsers", users);
     });
 
@@ -55,6 +59,7 @@ io.on("connection", (socket) => {
     //capturing message senting event   
     socket.on("sendMessage", ({ userId, receiverId, text }) => {
         const user = getUser(receiverId)
+        console.log("asdads",user,"reciver websoicket");
         io.to(user?.socketId).emit('getMessage', {
             userId, text
         })

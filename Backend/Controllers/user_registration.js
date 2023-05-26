@@ -11,18 +11,19 @@ module.exports = {
     //sendOTP and Save user record as undefined
     userRegistration: async (req, res) => {
         try {
-            const { email, firstname, lastname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
-            const userInfo = await USER.findOne({
-                $or: [{ email: email },{ phoneNumber: phonenumber }],googleVerified:false
-            });
+            console.log(req.body,"req.body");
+            let { email, fullname, lastname, phonenumber, username, dateOfbirth, password, locality, district, state, region } = req.body
+            console.log(req.body,fullname,lastname,phonenumber,dateOfbirth,"req.body");
+            const userInfo = await USER.findOne({ email: email ,googleVerified:false });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
+                console.log(hashedPassword,"passs");
                 const userTemplate = new USER({
-                    fullname: firstname,
+                    fullname: fullname,
                     surname: lastname,
                     phoneNumber: phonenumber,
                     username: username,
-                    dob: dateofbirth,
+                    dob: dateOfbirth,
                     email: email,
                     address: {
                         locality: locality,
@@ -32,6 +33,7 @@ module.exports = {
                     },
                     password: hashedPassword,
                 });
+                console.log("passeeeees");
                 userTemplate.save().then(async () => {
                     const createdOTP = await sendOTP({ email });
 
@@ -49,6 +51,7 @@ module.exports = {
                     const createdOTP = await sendOTP({ email });
                     res.status(200).json(createdOTP);
                 } else {
+                    console.log(userInfo,"userrr");
                     res.status(400).json({ message: "EmailId already used" });
                 }
             }
@@ -93,10 +96,9 @@ module.exports = {
     //userRegistration Mobile
     userRegistration_mobile: async (req, res) => {
         try {
+            console.log(req.body,"req.body");
             const { email, fullname, surname, phonenumber, username, dateofbirth, password, locality, district, state, region } = req.body;
-            const userInfo = await USER.findOne({
-                $or: [{ email: email }, { phoneNumber: phonenumber }],googleVerified:false
-            });
+            const userInfo = await USER.findOne({ phoneNumber: phonenumber ,googleVerified:false });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
                 const userTemplate = new USER({
@@ -105,6 +107,7 @@ module.exports = {
                     phoneNumber: phonenumber,
                     username: username,
                     dob: dateofbirth,
+                    email:email,
                     address: {
                         locality: locality,
                         district: district,

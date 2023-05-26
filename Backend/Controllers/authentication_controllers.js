@@ -14,7 +14,22 @@ module.exports = {
         try {
             const { data, password } = req.body
             console.log(data, password);
-            const userInfo = await USER.findOne({ $or: [{ email: data }, { phoneNumber: data }], $or: [{ phoneVerified: true }, { emailVerified: true }], googleVerified: false })
+            const userInfo = await USER.findOne({
+                $and: [{
+                    $or: [
+                        { email: data },
+                        { phoneNumber: data }
+                    ]
+                },
+                {
+                    $or: [
+                        { phoneVerified: true },
+                        { emailVerified: true }
+                    ]
+                },
+                { googleVerified: false }
+                ]
+            });
             console.log(userInfo, "userdata");
             const verified = await verifyHashedData(password, userInfo.password)
             console.log(verified, "verification sTATUIS");
@@ -61,7 +76,7 @@ module.exports = {
             if (userInfo) {
                 const createdOTP = await sendOTP({ email });
                 console.log(createdOTP);
-                res.status(200).json({ message: "otp Sented",userInfo:userInfo})
+                res.status(200).json({ message: "otp Sented", userInfo: userInfo })
             } else {
                 res.status(400).json({ message: "User not found" })
             }
@@ -81,7 +96,7 @@ module.exports = {
             if (otpInfo) {
                 const verified = await verifyHashedData(otp, otpInfo.otp)
                 if (verified) {
-                    res.status(200).json({message: "otp verified"})
+                    res.status(200).json({ message: "otp verified" })
                 } else {
                     res.status(400).json({ message: "Invalid otp" })
                 }
@@ -102,7 +117,8 @@ module.exports = {
             const userInfo = await USER.findOne({ phoneNumber: phonenumber })
             if (userInfo) {
                 sentVerificationOtp(phonenumber).then(() => {
-                    res.status(200).json({ message: "otp sented",userInfo: userInfo
+                    res.status(200).json({
+                        message: "otp sented", userInfo: userInfo
                     });
                 }).catch(() => {
                     res.status(400).json("invalid otp");
@@ -134,15 +150,15 @@ module.exports = {
     },
 
     //reset password 
-    resetPassword: async (req,res) => {
+    resetPassword: async (req, res) => {
         try {
-            console.log(req.body,"hello");
-            const { data , password } = req.body
-            console.log(password,"password");
-            console.log(data,"data");
-            const hashedPassword = await hashData(password );
-            const userInfo =await USER.findOne({ $or: [{ email: data }, { phoneNumber: data }], googleVerified: false })
-            if(userInfo){
+            console.log(req.body, "hello");
+            const { data, password } = req.body
+            console.log(password, "password");
+            console.log(data, "data");
+            const hashedPassword = await hashData(password);
+            const userInfo = await USER.findOne({ $or: [{ email: data }, { phoneNumber: data }], googleVerified: false })
+            if (userInfo) {
                 USER.updateOne({ $or: [{ email: data }, { phoneNumber: data }], googleVerified: false }, { password: hashedPassword }).then((response) => {
                     console.log("userUpdated");
                     res.status(200).json({ message: "passwords updated successfully" })
@@ -150,9 +166,9 @@ module.exports = {
                     console.log("userUpdate error");
                     res.status(400).json({ message: "update password failed" })
                 })
-            }else{
+            } else {
                 console.log("user not dfound");
-                res.status(404).json({message:"user not found"})
+                res.status(404).json({ message: "user not found" })
             }
         } catch (error) {
             console.log("userUpdate error update");
