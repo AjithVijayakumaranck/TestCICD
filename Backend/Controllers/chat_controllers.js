@@ -6,9 +6,11 @@ module.exports = {
     //create a conversation between two specific users
     createConversation : async (req,res)=>{
         try{
-            const {senderId,recieverId} = req.body
+            const {senderId,recieverId,productId} = req.body
+            console.log(productId);
             let newConversation =await new CONVERSATION({
-                member:[senderId,recieverId]
+                member:[senderId,recieverId],
+                product:productId
             })
             const savedConversation = await newConversation.save()
             res.status(200).json(savedConversation)
@@ -26,7 +28,7 @@ module.exports = {
             console.log(userId);
             const  conversation = await CONVERSATION.find({member:{
                 $in:[userId]
-            }})
+            }}).populate('product')
             res.status(200).json(conversation)
         }catch(err){
             res.status(500).json(err)
@@ -36,12 +38,13 @@ module.exports = {
    //add  a new record to chat collecton
     addMessage: async (req,res)=>{
         try{
-            const {sender,text,conversationId} = req.body
+            const {sender,text,conversationId,offerMade} = req.body
             const newMessage =await new MESSAGE(
               {
                conversationId:conversationId,
                sender:sender,
-               text:text
+               text:text,
+               offerMade:offerMade
               }
             )
           const savedMessage = await newMessage.save()

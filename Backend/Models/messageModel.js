@@ -15,6 +15,10 @@ text:{
 },
 file:{
     type:String
+},
+offerMade:{
+    type:Boolean,
+    default:false
 }
 
 },{ timestamps: true })

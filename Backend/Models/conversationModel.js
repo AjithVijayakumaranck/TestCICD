@@ -7,6 +7,11 @@ const CONVERSATION_SCHEMA =  new mongoose.Schema({
 
 member:{
     type:Array,
+},
+product:{
+ type:ObjectId,
+ required:true,
+ ref:"USER"
 }
 
 },{ timestamps: true })
