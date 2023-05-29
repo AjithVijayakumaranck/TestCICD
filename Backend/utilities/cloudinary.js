@@ -18,12 +18,12 @@ cloudinary.config({
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
         try{
-                        const res = cloudinary.uploader.upload(Image, { folder: folderName})
-                        res.then((data) => {
-                            resolve(data)
-                        }).catch((err) => {
-                            reject(err)
-                        });
+             const res = cloudinary.uploader.upload(Image, { folder: folderName})
+             res.then((data) => {
+                 resolve(data)
+             }).catch((err) => {
+                 reject(err)
+             });
    
     }catch(err){
        throw(err)

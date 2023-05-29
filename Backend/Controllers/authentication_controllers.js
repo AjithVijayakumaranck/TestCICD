@@ -81,7 +81,7 @@ module.exports = {
                 res.status(400).json({ message: "User not found" })
             }
         } catch (e) {
-            res.status(400).json({ message: "some thing went wrong" })
+            res.status(500).json({ message: "some thing went wrong" })
         }
     },
 
@@ -152,10 +152,7 @@ module.exports = {
     //reset password 
     resetPassword: async (req, res) => {
         try {
-            console.log(req.body, "hello");
             const { data, password } = req.body
-            console.log(password, "password");
-            console.log(data, "data");
             const hashedPassword = await hashData(password);
             const userInfo = await USER.findOne({ $or: [{ email: data }, { phoneNumber: data }], googleVerified: false })
             if (userInfo) {

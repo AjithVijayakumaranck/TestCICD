@@ -1,5 +1,7 @@
+const OTP = require("../../Models/otp")
 const SUPERADMIN = require("../../Models/superadminProfileModel")
 const { verifyHashedData } = require("../../utilities/hashData")
+const { sendOTP } = require("../otp/otp")
 
 module.exports = {
     superAdminLogin : async (req,res)=>{
@@ -13,11 +15,78 @@ module.exports = {
                 if(!verified){
                     res.status(401).json({message:"UserId or Password is wrong"})
                 }else{
-                    res.status(200).json({superAdminDetails,message:"Welcome Administrator"})
+                    const token = await jwt.sign({ ...superAdminDetails }, process.env.JWT_SECRET_KEY)
+                    res.status(200).json({superAdminDetails,message:"Welcome Administrator",token})
                 }
             }
         } catch (error) {
             res.status(500).json({message:"Something went wrong"})
+        }
+    },
+    forgotPassword:async (req,res)=>{
+        try {
+            const {email} = req.body
+            const adminInfo = await SUPERADMIN.findOne({ email: email })
+            if (adminInfo) {
+                const createdOTP = await sendOTP({ email });
+                console.log(createdOTP);
+                res.status(200).json({ message: "otp Sented", adminInfo: adminInfo })
+            } else {
+                res.status(400).json({ message: "User not found" })
+            }
+        } catch (error) {
+            res.status(500).json({message:"Something went wrong"})
+        }
+    },
+
+    
+    verifyOtp: async (req, res) => {
+
+        try {
+            const { otp, email } = req.body
+            console.log(req.body);
+            const otpInfo = await OTP.findOne({ email: email })
+            if (otpInfo) {
+                const verified = await verifyHashedData(otp, otpInfo.otp)
+                if (verified) {
+                    OTP.deleteOne({email:email}).then(()=>{
+                        res.status(200).json({ message: "otp verified" })
+                    }).catch(()=>{
+                        res.status(500).json({ message: "something wrong" })
+                    })
+                } else {
+                    res.status(400).json({ message: "Invalid otp" })
+                }
+            } else {
+                res.status(400).json({ message: "otp not found" })
+            }
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).son({ message: "Something went wrong" })
+        }
+    },
+
+    resetPassword: async (req,res)=>{
+        try {
+            const { data, password } = req.body
+            const hashedPassword = await hashData(password);
+            const adminInfo = await USER.findOne({email:data})
+            if (adminInfo) {
+                SUPERADMIN.updateOne({email:data}, { password: hashedPassword }).then((response) => {
+                    console.log("password Updated");
+                    res.status(200).json({ message: "passwords updated successfully" })
+                }).catch((error) => {
+                    console.log("Update error");
+                    res.status(400).json({ message: "update password failed" })
+                })
+            } else {
+                console.log("admin not found");
+                res.status(404).json({ message: "user not found" })
+            }
+        } catch (error) {
+            console.log("userUpdate error update");
+            console.log(error);
+            res.status(500).json({ message: "something went wrong" })
         }
     }
 }

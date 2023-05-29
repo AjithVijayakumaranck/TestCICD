@@ -63,9 +63,11 @@ module.exports = {
     //email update
     updateEmail: async (req,res)=>{
         try {
-            const {currentEmail,updatingEmail} = req.body
+            const {userId,currentEmail,updatingEmail} = req.body
             const profileDetails = await  USER.findOne({email:currentEmail,googleVerified:false})
-            if(!profileDetails){
+            // const profileDetails = await  USER.findOne({_id:userId})
+            const emailUsed = await USER.findOne({email:updatingEmail,googleVerified:false})
+            if(!profileDetails ){
                 res.status(404).json({message:"user not found"})
             }else{
                 const createdOTP = await sendOTP({ updatingEmail });

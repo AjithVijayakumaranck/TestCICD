@@ -117,9 +117,7 @@ module.exports = {
     //add subcategory
      addSubcategory: async (req, res) => {
         try {
-            console.log("hello");
-            const formInputs = []
-            const { categoryId, subCategory } = req.body
+            const { categoryId, subCategory, formInputs } = req.body
             const subCatinfo = await SUBCAT.findOne({ subcategory: subCategory })
             if (subCatinfo) {
                 res.status(400).json({ message: "Subcategory already exists" })
@@ -199,10 +197,10 @@ module.exports = {
     //update subcategory
     updateSubcategory: async (req,res)=>{
         try {
-            const {subcategoryId,newInfo}=req.query 
+            const {subcategoryId,newInfo,formInputs}=req.query 
             const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId}) 
             if(subCategoryInfo){
-              SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInf}).then(()=>{
+              SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInfo,formInputs:formInputs}).then(()=>{
                 res.status(200).json({message:"Successfully updated"})
               }).catch((err)=>{
                 res.status(500).json({message:"Error updating"})

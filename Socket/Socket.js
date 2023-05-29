@@ -53,10 +53,10 @@ io.on("connection", (socket) => {
 
 
     //capturing message senting event   
-    socket.on("sendMessage", ({ userId, receiverId, text }) => {
+    socket.on("sendMessage", ({ userId, receiverId, text ,offerMade}) => {
         const user = getUser(receiverId)
         io.to(user?.socketId).emit('getMessage', {
-            userId, text
+            userId, text , offerMade
         })
     })
 

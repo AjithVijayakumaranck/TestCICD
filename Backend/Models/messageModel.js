@@ -8,7 +8,7 @@ conversationId:{
     type:String,
 },
 sender:{
-    type:String
+    type:String 
 },
 text:{
     type:String
