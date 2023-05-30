@@ -4,16 +4,15 @@ const PRODUCT = require("../Models/productModal");
 
 module.exports = {
     addProduct :async (req,res)=>{
+        console.log("iam here");
         try {
-            const {title,description,longitude,latitude,contact,subcategory,category,userId} = req.body
-            console.log(req.body,"hello body");
+            const {title,description,address,contact,subcategory,category,userId} = req.body
             const Upload =  req.files.map((file)=>{
                 let locaFilePath = file.path;
                 console.log(locaFilePath,"file path");
                 return(
                     cloudUpload(locaFilePath,title)
-                )
-              
+                )  
             })
             const results = await Promise.all(Upload);
             if(results){
@@ -32,13 +31,19 @@ module.exports = {
                 const productTemplate = new PRODUCT({
                     title:title,
                     description:description,
-                    location:{
-                        type:"Point",
-                        coordinates:[Number(longitude),Number(latitude)]
-                    },
+                    address:{
+                        locality:address.locality,
+                        district:address.district,
+                        state:address.state,
+                        country:address.region
+                      },
+                    // location:{
+                    //     type:"Point",
+                    //     coordinates:[Number(longitude),Number(latitude)]
+                    // },
                     contact:contact,
                     category:category,
-                    SubCategory:[...subcategory],
+                    SubCategory:subcategory,
                     images:[...results],
                     userId:userId
                 })
@@ -62,8 +67,8 @@ module.exports = {
     //get single products
     getSinlgeProduct : async (req,res)=>{
         try {
-            const {ProductId} = req.query
-            const productDetails = await PRODUCT.findOne({_id:productId})
+            const {productId} = req.query
+            const productDetails = await PRODUCT.findOne({_id:productId,deleted:false})
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -74,6 +79,41 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
         }
     },
+
+    //get all Product products
+    getProducts : async (req,res)=>{
+        try {
+            const productDetails = await PRODUCT.find({deleted:false})
+            if(productDetails){
+                res.status(200).json(productDetails)
+            }else{
+                res.status(404).json({messagge:"products not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+    blockProducts  : async (req,res)=>{
+        try {
+            const {productId} = req.params
+            const productDetails = await PRODUCT.findOne({_id:productId,deleted:false})
+            if(productDetails){
+                PRODUCT.updateOne({_id:productDetails._id},{deleted:true}).then(()=>{
+                    res.status(200).json(productDetails)
+                }).catch(()=>{
+                    res.status(404).json({messagge:"failed to block"})
+                })
+            }else{
+                res.status(404).json({messagge:"products not found"})
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+
 
 
 }

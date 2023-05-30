@@ -6,6 +6,9 @@ const CATEGORYchema = new schema({
   categoryName:{
     type:String
   },
+  icon:{
+    type:Object
+  },
   subcategory:[{
     type:String,
     ref:"subcategory"

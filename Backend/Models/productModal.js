@@ -11,12 +11,18 @@ const productSchema = new schema({
     type: String,
     required: true
   },
-  location: {
-    type: {
-      type: String,
-      default: 'Point'
-    },
-    coordinates: [Number]
+  // location: {
+  //   type: {
+  //     type: String,
+  //     default: 'Point'
+  //   },
+  //   coordinates: [Number]
+  // },
+  location:{
+    locality:{type:String},
+    district:{type:String},
+    state:{type:String},
+    country:{type:String}
   },
   description: {
     type: String,
@@ -45,7 +51,7 @@ const productSchema = new schema({
 
 }, { timestamps: true })
 
-productSchema.index({ location: '2dsphere' });
+// productSchema.index({ location: '2dsphere' });
 const PRODUCT = mongoose.model("products", productSchema);
 
 module.exports = PRODUCT

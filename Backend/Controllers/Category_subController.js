@@ -1,6 +1,7 @@
 const CATEGORY = require("../Models/categoryModel")
 const PRODUCT = require("../Models/productModal")
-const SUBCAT = require("../Models/subCategoryModel")
+const SUBCAT = require("../Models/subCategoryModel");
+const { cloudUpload } = require("../utilities/cloudinary");
 
 module.exports = {
 
@@ -11,7 +12,7 @@ module.exports = {
     getCategories: async (req,res)=>{
         try {
             console.log("get categories");
-            const categories = await CATEGORY.find()
+            const categories = await CATEGORY.find({deleted:false})
             console.log(categories);
             if(!categories){
                 res.status(400).json({message:"Category not found"})
@@ -25,7 +26,6 @@ module.exports = {
     },
 
     //get single category 
-
     getSingleCategory: async (req,res)=>{
         {
             try {
@@ -48,19 +48,27 @@ module.exports = {
     //add new category
     addCategory: async (req, res) => {
         try {
-            const { category } = req.body
+            const { category = "Automobile" } = req.body
             const categoryInfo = await CATEGORY.findOne({ categoryName: category })
             if (categoryInfo) {
                 res.status(400).json({ message: "Category already exists" })
             } else {
-                const categoryTemplate = new CATEGORY({
-                    categoryName: category
-                })
-
-                categoryTemplate.save().then(() => {
-                    res.status(200).json({ message: "Category successfully added" })
-                }).catch(() => {
-                    res.status(400).json({ message: "Category failed to be added" })
+                console.log(req.file,"filesss");
+                const File = req.file.path;
+                cloudUpload(File,"Category") .then((result)=>{
+                    const categoryTemplate = new CATEGORY({
+                        categoryName: category,
+                        icon : result
+                    })
+                    categoryTemplate.save().then(() => {
+                        res.status(200).json({ message: "Category successfully added" })
+                    }).catch((err) => {
+                        console.log(err,"err");
+                        res.status(400).json({ message: "Category failed to be added" })
+                    })
+                }).catch((error)=>{
+                    console.log(error);
+                    res.status(400).json({message:"cloud upload failed"})
                 })
 
             }
@@ -96,10 +104,15 @@ module.exports = {
             const { categoryId, CategoryDet } = req.query
             const categoryInfo = await CATEGORY.findOne({ _id: categoryId })
             if (categoryInfo) {
-                CATEGORY.updateOne({ _id: categoryId }, { categoryName: CategoryDet }).then(() => {
-                    res.status(200).json({ message: "Successfully updated category" })
-                }).catch(() => {
-                    res.status(500).json({ message: "something went wrong" })
+                const File = req.file.path
+                cloudUpload(File,"Catagory").then((result)=>{
+                    CATEGORY.updateOne({ _id: categoryId }, { categoryName: CategoryDet ,icon : result}).then(() => {
+                        res.status(200).json({ message: "Successfully updated category" })
+                    }).catch(() => {
+                        res.status(500).json({ message: "something went wrong" })
+                    })
+                }).catch((err)=>{
+                    res.status(400).json({ message: "Image upload failed" })
                 })
             } else {
                 res.status(404).json({ message: "category not found" })
@@ -113,6 +126,19 @@ module.exports = {
 
 
     //Subcategory Management
+
+    getSubCategories: async (req,res)=>{
+        try {
+            const subcategories = await SUBCAT.find({deleted:false})
+            if(subcategories){
+                res.status(200).json(subcategories)
+            }else{
+                res.status(404).json({messasge:"Empty subcategory"})
+            }
+        } catch (error) {
+            res.status(500).json({messasge:"something went wrong"})
+        }
+    },
 
     //add subcategory
      addSubcategory: async (req, res) => {

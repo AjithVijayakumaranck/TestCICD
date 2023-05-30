@@ -10,7 +10,7 @@ cloudinary.config({
     cloud_name: "dnzi1ioil",
     api_key: CLOUD_API_KEY,
     api_secret: CLOUD_API_SECRET
-});
+}); 
 
 
 // Upload
@@ -18,6 +18,7 @@ cloudinary.config({
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
         try{
+            console.log(Image,"image ");
              const res = cloudinary.uploader.upload(Image, { folder: folderName})
              res.then((data) => {
                  resolve(data)

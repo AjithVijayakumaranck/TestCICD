@@ -39,4 +39,6 @@ const superAdminSchema = new schema({
 
 const SUPERADMIN =  mongoose.model("SUPERADMIN",superAdminSchema);
 
+
+
 module.exports = SUPERADMIN

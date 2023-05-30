@@ -1,13 +1,14 @@
 const OTP = require("../../Models/otp")
 const SUPERADMIN = require("../../Models/superadminProfileModel")
-const { verifyHashedData } = require("../../utilities/hashData")
+const { verifyHashedData, hashData } = require("../../utilities/hashData")
+const jwt = require('jsonwebtoken')
 const { sendOTP } = require("../otp/otp")
 
 module.exports = {
     superAdminLogin : async (req,res)=>{
         try {
             const {userId,password} = req.body
-            const superAdminDetails = SUPERADMIN.findOne({userId:userId})
+            const superAdminDetails =await SUPERADMIN.findOne({userId:userId})
             if(!superAdminDetails){
                 res.status(404).json({message:"User not found"})
             }else{
@@ -87,6 +88,35 @@ module.exports = {
             console.log("userUpdate error update");
             console.log(error);
             res.status(500).json({ message: "something went wrong" })
+        }
+    },
+
+    superSignup: async (req,res)=>{
+        try {
+            const {fullName,surName,email,password} = req.body
+            const hashedPassword = await hashData(password)
+            const superAdminTemplate = await new SUPERADMIN({
+                fullname:fullName,
+                  surname:surName,
+                  email:email,
+                  password:hashedPassword,
+                  address:{
+                    locality:"",
+                    district:"",
+                    state:"",
+                    region:"India"
+                  },
+            })
+
+        superAdminTemplate.save().then(()=>{
+            console.log("saved");
+            res.status(200).json({message:"Admin add successfully"})
+        }).catch((err)=>{
+            console.log(err,"error");
+            res.status(500).json({err,message:"something went wrong"})
+        })
+        } catch (error) {
+            res.status(500).json({ error,message: "something went wrong" })
         }
     }
 }

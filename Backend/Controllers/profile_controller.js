@@ -186,7 +186,6 @@ module.exports = {
         try {
             const {Id} = req.params
             const userDetails = await USER.findOne({_id:Id})
- 
             if(!userDetails){
                     res.status(404).json({message:"user not found"})
             }else{
@@ -199,6 +198,20 @@ module.exports = {
 
         } catch (error) {
             res.status(500).json({message:"something went wrong"})
+        }
+    },
+    
+    getAllProfiles :async (req,res)=>{
+        try {
+             const allProfiles = await USER.find({deleted:false})
+             if(!allProfiles){
+                 console.log(err);
+                 res.status(404).json({message:""})
+                }else{
+                    res.status(200).json(allProfiles)
+                }
+        } catch (error) {
+            res.status(500).json({message:"something went Wrong"})
         }
     }
 }

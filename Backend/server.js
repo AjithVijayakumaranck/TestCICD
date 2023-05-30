@@ -31,6 +31,8 @@ const chat = require('./Routes/chatRoutes')
 //Super Admin Routes
 const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
 const categoryRoute = require('./Routes/SuperAdmin/categoryControleRoute')
+const userControllRoute = require('./Routes/SuperAdmin/usersRoute')
+const productControllRoute = require('./Routes/SuperAdmin/productControleRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -72,6 +74,8 @@ app.use('/api/user/chat',chat)
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)
 app.use('/api/super_admin/category',categoryRoute)
+app.use('/api/super_admin/user_control',userControllRoute)
+app.use('/api/super_admin/product_control',productControllRoute)
 
 //server port
 app.listen(8080,()=>{

@@ -1,5 +1,6 @@
 const Category_subController = require('../Controllers/Category_subController')
 const { authoriseJwt } = require('../utilities/authorisation')
+const upload = require('../utilities/multer')
 const router = require('express').Router()
 
 
@@ -9,7 +10,7 @@ router.get('/get_categories',authoriseJwt,Category_subController.getCategories)/
 
 router.get('/get_singlecategory',authoriseJwt,Category_subController.getSingleCategory) //get an single category document
 
-router.post('/add_category',authoriseJwt,Category_subController.addCategory) // add new category record
+router.post('/add_category',authoriseJwt,upload.single("file"),Category_subController.addCategory) // add new category record
 
 router.delete('/delete_category',authoriseJwt,Category_subController.deleteCategory) // delete existing category record
 
