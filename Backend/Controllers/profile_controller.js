@@ -1,4 +1,5 @@
 const USER = require("../Models/userModel");
+const { cloudUpload } = require("../utilities/cloudinary");
 const { verifyHashedData, hashData } = require("../utilities/hashData");
 const { sendOTP } = require("./otp/otp");
 const { sentVerificationOtp } = require("./otp/twilio");
@@ -25,36 +26,55 @@ module.exports = {
     //profile updateFunction
     updateProfile: async (req,res)=>{
         try {
-            const {userDetails} = req.body
+            const {userDetails={
+                _id:"646ca82602c3b676a3224f24",
+                fullname:"Anudhin",
+                surname:"Intutive",
+                username:"test@001",
+                dob:"2023-05-04",
+                address:{    
+                    locality:"Vadakara",
+                    district:"Kozhikode",
+                    state:"Kerala",
+                    region:"India"
+                }
+            }} = req.body
             const profileDetails = await USER.findOne({_id:userDetails._id})
             if(!profileDetails){
              res.status(404).json({message:"user not found"})
             }else{
-               USER.updateOne({_id:profileDetails._id},{
-                $set:{
-                    fullname:userDetails.fullname,
-                    surname:userDetails.surname,
-                    username:userDetails.username,
-                    dob:userDetails.dob,
-                    address:{
-                        locality:userDetails.address.locality,
-                        district:userDetails.address.district,
-                        state:userDetails.address.state,
-                        region:userDetails.address.region,
-                    }
-                }
-               }).then(async(response)=>{
-                const updatedDetails = await USER.findOne({_id:userDetails._id})
-                if(!updatedDetails){
-                    res.status(400).json({message:"error occured after updating"})
-                }else{
-                    res.status(200).json({  profileDetails:updatedDetails, message:"Successfully updated" })
-                }
-               }).catch((error)=>{
-                res.status(400).json({message:"Error updating"})
-               })
+                const File = req.file.path
+                cloudUpload(File,"Profiles").then((result)=>{
+                    console.log(result.compressedUrl,"hello");
+                    USER.updateOne({_id:profileDetails._id},{
+                        $set:{
+                            fullname:userDetails.fullname,
+                            surname:userDetails.surname,
+                            username:userDetails.username,
+                            dob:userDetails.dob,
+                            address:{
+                                locality:userDetails.address.locality,
+                                district:userDetails.address.district,
+                                state:userDetails.address.state,
+                                region:userDetails.address.region,
+                            },
+                            profilePicture:result,
+                        }
+                       }).then(async(response)=>{
+                        const updatedDetails = await USER.findOne({_id:userDetails._id})
+                        if(!updatedDetails){
+                            res.status(400).json({message:"error occured after updating"})
+                        }else{
+                            res.status(200).json({  profileDetails:updatedDetails, message:"Successfully updated" })
+                        }
+                       }).catch((error)=>{
+                        res.status(400).json({message:"Error updating"})
+                       })
+                })
+           
             }
         } catch (error) {
+            console.log(error,"errorrrr");
             res.status(500).json({messgae:"something went wrong"})
         }
     },

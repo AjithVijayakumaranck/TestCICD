@@ -8,7 +8,7 @@ module.exports = {
     superAdminLogin : async (req,res)=>{
         try {
             const {userId,password} = req.body
-            const superAdminDetails =await SUPERADMIN.findOne({userId:userId})
+            const superAdminDetails =await SUPERADMIN.findOne({email:userId})
             if(!superAdminDetails){
                 res.status(404).json({message:"User not found"})
             }else{

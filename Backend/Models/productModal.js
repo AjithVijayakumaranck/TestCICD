@@ -27,6 +27,9 @@ const productSchema = new schema({
   description: {
     type: String,
   },
+  otherDetails:{
+    type:Object
+  },
   contact: {
     type: String
   },
@@ -46,6 +49,10 @@ const productSchema = new schema({
   category: {
     type: String,
     ref: 'category'
+  },
+  price:{
+    type:String,
+    required:true
   },
   SubCategory: [{ type: String, ref: 'subcategory'}]
 

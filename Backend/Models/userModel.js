@@ -9,6 +9,9 @@ const USERschema = new schema({
   googleId:{
      type: String
   },
+  profilePicture:{
+    type:Object
+  },
   surname:{
     type:String,
     require:true

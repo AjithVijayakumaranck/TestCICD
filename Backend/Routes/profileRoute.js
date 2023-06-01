@@ -1,5 +1,6 @@
 const profile_controller = require('../Controllers/profile_controller')
 const { authoriseJwt } = require('../utilities/authorisation')
+const upload = require('../utilities/multer')
 
 const router = require('express').Router()
 
@@ -10,10 +11,11 @@ const router = require('express').Router()
 router.get('/get_profile/:userId',authoriseJwt,profile_controller.getProfile)
 
 //update profile
-router.put('/update_profile',authoriseJwt,profile_controller.updateProfile)
+router.put('/update_profile',authoriseJwt,upload.single("file"),profile_controller.updateProfile)
 
 //update email
 router.post('/update_email',authoriseJwt,profile_controller.updateEmail)
+
 //verify email
 router.put('/verify_email',authoriseJwt,profile_controller.updateEmailVerification)
 

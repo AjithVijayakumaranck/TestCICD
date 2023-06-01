@@ -48,14 +48,15 @@ module.exports = {
     //add new category
     addCategory: async (req, res) => {
         try {
-            const { category = "Automobile" } = req.body
+            const { category} = req.body
             const categoryInfo = await CATEGORY.findOne({ categoryName: category })
             if (categoryInfo) {
                 res.status(400).json({ message: "Category already exists" })
             } else {
                 console.log(req.file,"filesss");
                 const File = req.file.path;
-                cloudUpload(File,"Category") .then((result)=>{
+                cloudUpload(File,"Category") .then((result,transformedURL)=>{
+                    console.log(transformedURL,"hellll");
                     const categoryTemplate = new CATEGORY({
                         categoryName: category,
                         icon : result
@@ -143,6 +144,7 @@ module.exports = {
     //add subcategory
      addSubcategory: async (req, res) => {
         try {
+            console.log(req.body,"hello");
             const { categoryId, subCategory, formInputs } = req.body
             const subCatinfo = await SUBCAT.findOne({ subcategory: subCategory })
             if (subCatinfo) {
@@ -150,7 +152,8 @@ module.exports = {
             } else {
                 const subCatTemplate = new SUBCAT({
                     subcategory: subCategory,
-                    formInputs: [...formInputs]
+                    formInputs: [...formInputs],
+                    category:categoryId
                 })
                 subCatTemplate.save().then((response) => {
                     CATEGORY.updateOne({ _id: categoryId }, { $push: { subcategory: response._id } })
@@ -223,10 +226,10 @@ module.exports = {
     //update subcategory
     updateSubcategory: async (req,res)=>{
         try {
-            const {subcategoryId,newInfo,formInputs}=req.query 
+            const {subcategoryId,newInfo,formInputs,categoryId}=req.query 
             const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId}) 
             if(subCategoryInfo){
-              SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInfo,formInputs:formInputs}).then(()=>{
+              SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInfo,formInputs:formInputs,category:categoryId}).then(()=>{
                 res.status(200).json({message:"Successfully updated"})
               }).catch((err)=>{
                 res.status(500).json({message:"Error updating"})

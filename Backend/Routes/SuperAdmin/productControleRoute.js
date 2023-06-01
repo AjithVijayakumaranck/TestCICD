@@ -9,13 +9,16 @@ const upload = require('../../utilities/multer');
 router.post('/addproduct',upload.array("files"),productController.addProduct)
 
 //get single Product
-router.post('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)
+router.get('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)
 
 //get all Product
-router.post('/get_products',authoriseJwt,productController.getProducts)
+router.get('/get_products',authoriseJwt,productController.getProducts)
 
 //block product
-router.put('/get_products/:productId',authoriseJwt,productController.blockProducts)
+router.delete('/delete_product/:productId',authoriseJwt,productController.blockProducts)
+
+//get products of specific user
+router.get('/get_userproducts',authoriseJwt,productController.getUserProduct)
 
 
 module.exports = router;

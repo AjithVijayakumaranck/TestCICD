@@ -17,11 +17,25 @@ cloudinary.config({
 
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
+
+        
+const options = {
+    width: 200,
+    height: 200,
+    crop: 'fill',
+    gravity: 'face',
+    quality: 'auto',
+    format: 'jpg',
+  };
         try{
             console.log(Image,"image ");
              const res = cloudinary.uploader.upload(Image, { folder: folderName})
-             res.then((data) => {
-                 resolve(data)
+             res.then(async (data) => {
+                const transformedURL =await cloudinary.url(data.public_id, options)
+                console.log(transformedURL,"transformedUrl");
+                data.compressedUrl = transformedURL
+                console.log(data,"traaa");
+                resolve(data)
              }).catch((err) => {
                  reject(err)
              });

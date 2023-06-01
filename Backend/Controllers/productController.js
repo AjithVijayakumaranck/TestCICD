@@ -6,7 +6,17 @@ module.exports = {
     addProduct :async (req,res)=>{
         console.log("iam here");
         try {
-            const {title,description,address,contact,subcategory,category,userId} = req.body
+            const {title="Audi x3",description ="bla bla bla",address = {
+                locality:"Thalassery",
+                district:"Kannur",
+                state:"Kerala",
+                country:"India"
+            },otherDetails={
+                Brand:"Audi",
+                Year:"1234",
+                color:"Red",
+                Transmission:"Manual"
+            },subcategory="carrr",category="heee",userId="646ca82602c3b676a3224f24",price="230000"} = req.body
             const Upload =  req.files.map((file)=>{
                 let locaFilePath = file.path;
                 console.log(locaFilePath,"file path");
@@ -16,17 +26,6 @@ module.exports = {
             })
             const results = await Promise.all(Upload);
             if(results){
-                // fs.unlink('/uploads'+file, (err) => {
-                //     if (err) {
-                //       res.status(500).send({
-                //         message: "Could not delete the file. " + err,
-                //       });
-                //     }
-                
-                //     res.status(200).send({
-                //       message: "File is deleted.",
-                //     });
-                //   });
                 console.log(...subcategory,"hellllo");
                 const productTemplate = new PRODUCT({
                     title:title,
@@ -41,11 +40,12 @@ module.exports = {
                     //     type:"Point",
                     //     coordinates:[Number(longitude),Number(latitude)]
                     // },
-                    contact:contact,
                     category:category,
                     SubCategory:subcategory,
+                    otherDetails:{...otherDetails},
                     images:[...results],
-                    userId:userId
+                    userId:userId,
+                    price:price,
                 })
                 const SavedData = await productTemplate.save()
                 if(SavedData){
@@ -83,7 +83,12 @@ module.exports = {
     //get all Product products
     getProducts : async (req,res)=>{
         try {
-            const productDetails = await PRODUCT.find({deleted:false})
+
+            const {page} = req.query
+            console.log(page);
+            const limit = 12
+
+            const productDetails = await PRODUCT.find({deleted:false}).skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -112,6 +117,18 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
         }
     },
+    getUserProduct :async (req,res)=>{
+        try {
+            const {userId} = req.params
+            const userProducts = await PRODUCT.find({ userId:userId})
+            if(userProducts){
+                res.status(200).json(userProducts) 
+            }elseP
+            res.status(404).json({message:"products not found"})
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    }
 
 
 

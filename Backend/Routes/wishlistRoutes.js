@@ -7,7 +7,10 @@ const router = require('express').Router()
 router.post('/add_wishlist',authoriseJwt,wishlistControllers.addWishList)
 
 //remove from wishlist
-router.delete('/remove_wishlist',authoriseJwt,wishlistControllers.remove_product)
+router.delete('/remove_wishlist/:userId/:productId',authoriseJwt,wishlistControllers.remove_product)
+
+//get wishlist
+router.get('/get_wishlist/:userId',authoriseJwt,wishlistControllers.getWishList)
 
 
 

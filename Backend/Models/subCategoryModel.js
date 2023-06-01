@@ -7,6 +7,10 @@ const SubCategoryschema = new schema({
         unique:true,
         require:true
     },
+    category:{
+        type:String,
+        ref:"category"
+    },
     formInputs : [ {
         type:String
     }]
