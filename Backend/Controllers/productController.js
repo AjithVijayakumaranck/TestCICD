@@ -114,8 +114,9 @@ module.exports = {
             const userProducts = await PRODUCT.find({ userId:userId})
             if(userProducts){
                 res.status(200).json(userProducts) 
-            }elseP
-            res.status(404).json({message:"products not found"})
+            }else{
+                res.status(404).json({message:"products not found"})
+            }
         } catch (error) {
             res.status(500).json({message:"something went wrong"})
         }

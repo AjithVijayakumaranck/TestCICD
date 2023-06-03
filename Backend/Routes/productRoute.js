@@ -17,7 +17,7 @@ router.get('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)
 router.get('/get_products',authoriseJwt,productController.getProducts)
 
 //get specific userProduct
-router.get('/get_user_products',authoriseJwt,productController.getUserProduct)
+router.get('/get_user_products/:userId',authoriseJwt,productController.getUserProduct)
 
 
 module.exports = router

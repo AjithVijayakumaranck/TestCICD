@@ -84,8 +84,8 @@ module.exports = {
             const { categoryid } = req.query
             const categoryInfo = await CATEGORY.findOne({ _id: categoryid })
             if (categoryInfo) {
-                CATEGORY.updateOne({ _id: categoryId }, { deleted: true }).then(() => {
-                    PRODUCT.updateMany({ category: categoryId }, { deleted: true }, { upsert: true }).then(() => {
+                CATEGORY.updateOne({ _id: categoryid }, { deleted: true }).then(() => {
+                    PRODUCT.updateMany({ category: categoryid }, { deleted: true }, { upsert: true }).then(() => {
                         res.status(200).json({ message: "successfully deleted" })
                     }).catch((err) => {
                         res.status(500).json({ message: "Something went wrong" })
@@ -102,7 +102,7 @@ module.exports = {
     //updatecategory
     updateCategory: async (req, res) => {
         try {
-            const { categoryId, CategoryDet } = req.query
+            const { categoryId, CategoryDet } = req.params
             const categoryInfo = await CATEGORY.findOne({ _id: categoryId })
             if (categoryInfo) {
                 const File = req.file.path

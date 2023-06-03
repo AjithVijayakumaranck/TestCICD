@@ -49,7 +49,7 @@ const USERschema = new schema({
     type:Boolean,
     default:false
   },
-  deleteed:{
+  deleted:{
     type:Boolean,
     default:false
   }

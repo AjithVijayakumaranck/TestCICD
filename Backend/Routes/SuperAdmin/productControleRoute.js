@@ -18,7 +18,7 @@ router.get('/get_products',authoriseJwt,productController.getProducts)
 router.delete('/delete_product/:productId',authoriseJwt,productController.blockProducts)
 
 //get products of specific user
-router.get('/get_userproducts',authoriseJwt,productController.getUserProduct)
+router.get('/get_userproducts/:userId',authoriseJwt,productController.getUserProduct)
 
 
 module.exports = router;
