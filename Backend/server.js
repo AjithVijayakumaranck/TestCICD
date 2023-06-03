@@ -27,6 +27,7 @@ const product = require('./Routes/productRoute')
 const filter = require('./Routes/filterRoute')
 const profile = require('./Routes/profileRoute')
 const chat = require('./Routes/chatRoutes')
+const notification = require('./Routes/notificationRoutes')
 
 //Super Admin Routes
 const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
@@ -70,6 +71,7 @@ app.use('/api/user/product',product)
 app.use('/api/user/filter',filter)
 app.use('/api/user/profile',profile)
 app.use('/api/user/chat',chat)
+app.use('/api/user/notification',notification)
 
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)

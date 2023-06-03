@@ -17,8 +17,13 @@ let users = []
 //add new user to the online users array
 const addUser = (userId, socketId) => {
     console.log(userId,socketId,"sdasd");
-    !users.some((user) => user.userId === userId) &&
-        users.push({ userId, socketId });
+    if(userId){
+        !users.some((user) => user.userId === userId) &&
+            users.push({ userId, socketId });
+            console.log(users,"looo");
+    }else{
+        return;
+    }
 };
 
 //disconnection function
@@ -27,10 +32,10 @@ const removeUser = (socketId) => {
 };
 
 //function for getting a specific user socket id
-const getUser = (userId) => {
-    console.log(users,"userswwed");
-    return users.find((user) => user.userId === userId);
+const getUser =(userId) => {
+    return users.find((user) => user.userId === userId);   
 };
+
 
 
 //function for getting all online users
@@ -53,10 +58,24 @@ io.on("connection", (socket) => {
 
 
     //capturing message senting event   
-    socket.on("sendMessage", ({ userId, receiverId, text ,offerMade}) => {
-        const user = getUser(receiverId)
-        io.to(user?.socketId).emit('getMessage', {
+    socket.on("sendMessage",async ({ userId, receiverId, text ,offerMade = false}) => {
+        console.log( userId, receiverId, text ,offerMade ,"your message is here 222" );
+        const user =await getUser(receiverId)
+        console.log("before");
+        console.log(user,"hello");
+        io.to(user.socketId).emit('getMessage', {
             userId, text , offerMade
+        })
+        console.log("after");
+    })
+
+    //sent notification alert
+    socket.on("sentAlert",({receiverId})=> {
+    console.log(receiverId,"alert seended");
+        const user = getUser(receiverId)
+        console.log(user,"hello userr");
+        io.to(user?.socketId).emit('notificationAlert',{
+            Alert:true
         })
     })
 

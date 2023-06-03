@@ -11,10 +11,13 @@ const {}= process.env
 router.post('/addproduct',upload.array("files"),productController.addProduct)
 
 //get single Product
-router.post('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)
+router.get('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)
 
 //get all Product
-router.post('/get_products',authoriseJwt,productController.getProducts)
+router.get('/get_products',authoriseJwt,productController.getProducts)
+
+//get specific userProduct
+router.get('/get_user_products',authoriseJwt,productController.getUserProduct)
 
 
 module.exports = router

@@ -8,6 +8,18 @@ module.exports = {
         try{
             const {senderId,recieverId,productId} = req.body
             console.log(productId);
+
+            const existingConversation = await CONVERSATION.findOne({
+                member: { $all: [senderId, recieverId] },
+                product: productId,
+              });
+          
+              if (existingConversation) {
+                return res
+                  .status(400)
+                  .json({ existingConversation, message: "Conversation already exists with the same productId" });
+              }
+
             let newConversation =await new CONVERSATION({
                 member:[senderId,recieverId],
                 product:productId

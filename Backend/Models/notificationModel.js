@@ -15,8 +15,7 @@ notification:{
     type:String
 },
 broadcast:{
-    type:Boolean,
-    default:false
+    type:Boolean    
 },
 read:{
     type:Boolean,

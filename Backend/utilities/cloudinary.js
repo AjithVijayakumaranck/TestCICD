@@ -10,7 +10,7 @@ cloudinary.config({
     cloud_name: "dnzi1ioil",
     api_key: CLOUD_API_KEY,
     api_secret: CLOUD_API_SECRET
-}); 
+});
 
 
 // Upload
@@ -18,36 +18,35 @@ cloudinary.config({
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
 
-        
-const options = {
-    width: 200,
-    height: 200,
-    crop: 'fill',
-    gravity: 'face',
-    quality: 'auto',
-    format: 'jpg',
-  };
-        try{
-            console.log(Image,"image ");
-             const res = cloudinary.uploader.upload(Image, { folder: folderName})
-             res.then(async (data) => {
-                const transformedURL =await cloudinary.url(data.public_id, options)
-                console.log(transformedURL,"transformedUrl");
+
+        const options = {
+            width: 200,
+            height: 200,
+            crop: 'fill',
+            gravity: 'face',
+            quality: 'auto',
+            format: 'jpg',
+        };
+        try {
+            console.log(Image, "image ");
+            const res = cloudinary.uploader.upload(Image, { folder: folderName })
+            res.then(async (data) => {
+                const transformedURL = await cloudinary.url(data.public_id, options)
                 data.compressedUrl = transformedURL
-                console.log(data,"traaa");
+                console.log(data, "traaa");
                 resolve(data)
-             }).catch((err) => {
-                 reject(err)
-             });
-   
-    }catch(err){
-       throw(err)
-    }
+            }).catch((err) => {
+                reject(err)
+            });
+
+        } catch (err) {
+            throw (err)
+        }
     })
 }
 
 
-module.exports = {cloudUpload}
+module.exports = { cloudUpload }
 
 
 // // Generate

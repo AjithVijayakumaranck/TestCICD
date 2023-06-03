@@ -6,17 +6,7 @@ module.exports = {
     addProduct :async (req,res)=>{
         console.log("iam here");
         try {
-            const {title="Audi x3",description ="bla bla bla",address = {
-                locality:"Thalassery",
-                district:"Kannur",
-                state:"Kerala",
-                country:"India"
-            },otherDetails={
-                Brand:"Audi",
-                Year:"1234",
-                color:"Red",
-                Transmission:"Manual"
-            },subcategory="carrr",category="heee",userId="646ca82602c3b676a3224f24",price="230000"} = req.body
+            const {title,description,address,otherDetails,subcategory,category,userId,price} = req.body
             const Upload =  req.files.map((file)=>{
                 let locaFilePath = file.path;
                 console.log(locaFilePath,"file path");
@@ -117,6 +107,7 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
         }
     },
+    //specific products
     getUserProduct :async (req,res)=>{
         try {
             const {userId} = req.params
