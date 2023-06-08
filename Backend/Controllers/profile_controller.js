@@ -84,14 +84,18 @@ module.exports = {
     updateEmail: async (req,res)=>{
         try {
             const {userId,currentEmail,updatingEmail} = req.body
-            const profileDetails = await  USER.findOne({email:currentEmail,googleVerified:false})
+            const profileDetails = await  USER.findOne({_id:userId,googleVerified:false})
             // const profileDetails = await  USER.findOne({_id:userId})
             const emailUsed = await USER.findOne({email:updatingEmail,googleVerified:false})
             if(!profileDetails ){
                 res.status(404).json({message:"user not found"})
             }else{
-                const createdOTP = await sendOTP({ updatingEmail });
-                res.status(200).json({message:"OTP sented "})
+                if(emailUsed){
+                    res.status(500).json({message:"Email already used"})
+                }else{
+                    const createdOTP = await sendOTP({ updatingEmail });
+                    res.status(200).json({message:"OTP sented "})
+                }
             }
         } catch (error) {
             res.status(500).json({messsage:"something went wrong"})
@@ -232,6 +236,28 @@ module.exports = {
                 }
         } catch (error) {
             res.status(500).json({message:"something went Wrong"})
+        }
+    },
+
+    profileRating: async (req,res)=>{
+        try {
+            const {userId,ratingId,rating} = req.body
+
+            const userDetails =await USER.findOne({_id:userId},  { select: ['_id','overallRating','ratings']})
+
+            if(!userDetails){     
+
+                res.status(404).json({message:"user Not found"})
+
+            }else{
+
+                
+                
+            }
+            USER.updateOne({_id:userId})
+
+        } catch (error) {
+            
         }
     }
 }

@@ -3,7 +3,7 @@ const querystring = require('querystring')
 
 const {LOCALITY_API_KEY,LOCALITY_FETCH_API} = process.env
 
-const fetchLocality= (state,district="PALAKKAD",subdistrict="kuzhalmannam",village)=>{
+const fetchLocality= (state,district,subdistrict,village)=>{
     console.log('state',state)
     const baseURL = `${LOCALITY_FETCH_API}?api-key=${LOCALITY_API_KEY}&limit=10&format=json`;
     let url = baseURL;

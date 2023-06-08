@@ -37,6 +37,13 @@ const USERschema = new schema({
     state:{type:String},
     region:{type:String}
   },
+  overallRating:{
+    type:Number,
+    default:0
+  },
+  ratings:[ {
+      type:Object
+    }],    
   emailVerified:{
     type:Boolean,
     default:false

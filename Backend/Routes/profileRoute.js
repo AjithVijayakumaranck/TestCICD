@@ -30,5 +30,8 @@ router.put('/update_password',authoriseJwt,profile_controller.updatePassword)
 //delete password
 router.delete('/delete_account/:Id',authoriseJwt,profile_controller.deleteProfile)
 
+//delete password
+router.post('/profile_routing',authoriseJwt,profile_controller.profileRating)
+
 
 module.exports = router

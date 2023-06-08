@@ -6,7 +6,7 @@ module.exports = {
     addProduct :async (req,res)=>{
         console.log("iam here");
         try {
-            const {title,description,address,otherDetails,subcategory,category,userId,price} = req.body
+            const {title,description,locality,district,state,region,subcategory,category,userId,price,otherDetails} = req.body
             const Upload =  req.files.map((file)=>{
                 let locaFilePath = file.path;
                 console.log(locaFilePath,"file path");
@@ -21,10 +21,10 @@ module.exports = {
                     title:title,
                     description:description,
                     address:{
-                        locality:address.locality,
-                        district:address.district,
-                        state:address.state,
-                        country:address.region
+                        locality:locality,
+                        district:district,
+                        state:state,
+                        country:region
                       },
                     // location:{
                     //     type:"Point",
