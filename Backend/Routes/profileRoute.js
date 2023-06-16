@@ -37,5 +37,8 @@ router.post('/profile_rating',authoriseJwt,profile_controller.profileRating)
 //Rating routes
 router.post('/add_reply',authoriseJwt,profile_controller.ratingReplay)
 
+// get Rating 
+router.get('/get_rating',authoriseJwt,profile_controller.getReviews)
+
  
 module.exports = router

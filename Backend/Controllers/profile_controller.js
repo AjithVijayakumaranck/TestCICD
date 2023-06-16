@@ -352,7 +352,20 @@ module.exports = {
              res.status(500).json({error})
         }
     },
-    getReviews : (req,res)=>{
-        
+    getReviews :async (req,res)=>{
+        try {
+            console.log("iam here");
+            const {userId,page} = req.params
+            const limit = 10
+
+            const rating = await USER.findById(userId).populate('ratings.reply.repliedBy').skip(page).limit(limit)
+            console.log(rating,"hello");
+            res.json(rating)
+
+
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).json({message:"something went wrong"})
+        }
     }
 }
