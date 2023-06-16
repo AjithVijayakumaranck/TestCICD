@@ -60,7 +60,7 @@ module.exports = {
         try {
             const { userId, productId } = req.params
 
-            const wishlistDetails = await WISHLIST.findOne({ $and: [{ userId: userId }, { wishlist: { $in: { productId } } }] })
+            const wishlistDetails = await WISHLIST.findOne({ userId: userId })
 
             if (!wishlistDetails) {
                 res.status(404).json({ message: "Product not found in your wishlist" })

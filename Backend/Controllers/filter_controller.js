@@ -125,14 +125,14 @@ module.exports = {
 
     
                 if(category == ""){
-                    const result = await  PRODUCT.find({$and:[{district:district},{state:state},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    const result = await  PRODUCT.find({ name: { $regex: new RegExp(SearchQuery, 'i') }})
                     if(!result){
                             res.status(400).json({message:"No products found with this criteria"})
                         }else{
                             res.status(200).json(result)
                     }
                 }else{
-                    const result = await  PRODUCT.find({$and:[{district:district},{state:state},{category:category},{ name: { $regex: new RegExp(SearchQuery, 'i') }}]})
+                    const result = await  PRODUCT.find({ name: { $regex: new RegExp(SearchQuery, 'i') }})
                     if(!result){
                         res.status(400).json({message:"No products found with this criteria"})
                     }else{

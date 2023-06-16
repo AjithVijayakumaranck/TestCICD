@@ -18,11 +18,24 @@ const productSchema = new schema({
   //   },
   //   coordinates: [Number]
   // },
-  location:{
-    locality:{type:String},
-    district:{type:String},
-    state:{type:String},
-    country:{type:String}
+  // location:{
+  //   locality:{type:String},
+  //   district:{type:String},
+  //   state:{type:String},
+  //   country:{type:String}
+  // },
+  
+  locality: {
+    type: String,
+  },
+  district: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  country: {
+    type: String,
   },
   description: {
     type: String,

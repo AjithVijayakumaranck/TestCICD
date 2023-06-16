@@ -37,13 +37,23 @@ const USERschema = new schema({
     state:{type:String},
     region:{type:String}
   },
-  overallRating:{
-    type:Number,
-    default:0
+  totalrating: {
+    type: String,
+    default: 0,
   },
-  ratings:[ {
-      type:Object
-    }],    
+  ratings: [
+    {
+      star: Number,
+      comment: String,
+      postedby: { type: schema.Types.ObjectId, ref: "USER" },
+      reply:[{
+        content:String,
+        repliedBy: {type:schema.Types.ObjectId,ref:"USER"},
+        repliedAt:{type:Date,default:Date.now}
+      }],
+      reviewedAt:{type : Date , default: Date.now}
+    },
+  ],    
   emailVerified:{
     type:Boolean,
     default:false

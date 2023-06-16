@@ -21,6 +21,7 @@ router.put('/verify_email',authoriseJwt,profile_controller.updateEmailVerificati
 
 //update phoneNumber
 router.post('/update_phone',authoriseJwt,profile_controller.addPhoneNumber)
+
 //verify phoneNumber
 router.put('/verif_yphone',authoriseJwt,profile_controller.addPhoneNumberVerification)
 
@@ -31,7 +32,10 @@ router.put('/update_password',authoriseJwt,profile_controller.updatePassword)
 router.delete('/delete_account/:Id',authoriseJwt,profile_controller.deleteProfile)
 
 //delete password
-router.post('/profile_routing',authoriseJwt,profile_controller.profileRating)
+router.post('/profile_rating',authoriseJwt,profile_controller.profileRating)
 
+//Rating routes
+router.post('/add_reply',authoriseJwt,profile_controller.ratingReplay)
 
+ 
 module.exports = router

@@ -3,55 +3,56 @@ const path = require("path");
 const PRODUCT = require("../Models/productModal");
 
 module.exports = {
-    addProduct :async (req,res)=>{
-        console.log("iam here");
+    addProduct: async (req, res) => {
         try {
-            const {title,description,locality,district,state,region,subcategory,category,userId,price,otherDetails} = req.body
-            const Upload =  req.files.map((file)=>{
+            const { title, description, otherDetails, subcategory, category, userId, price, listedBy, locality, district, state, region } = req.body
+            console.log(req.body, otherDetails, "add products");
+            const parsedDetails = JSON.parse(otherDetails);
+            console.log(parsedDetails, "parsed details");
+            const Upload = req.files.map((file) => {
                 let locaFilePath = file.path;
-                console.log(locaFilePath,"file path");
-                return(
-                    cloudUpload(locaFilePath,title)
-                )  
+                console.log(locaFilePath, "file path");
+                return (
+                    cloudUpload(locaFilePath, title)
+                )
             })
             const results = await Promise.all(Upload);
-            if(results){
-                console.log(...subcategory,"hellllo");
+            if (results) {
+                console.log(subcategory, "hellllo");
                 const productTemplate = new PRODUCT({
-                    title:title,
-                    description:description,
-                    address:{
-                        locality:locality,
-                        district:district,
-                        state:state,
-                        country:region
-                      },
+                    title: title,
+                    description: description,
+                    locality: locality,
+                    district: district,
+                    state: state,
+                    region: region,
+                    listedBy: listedBy,
                     // location:{
                     //     type:"Point",
                     //     coordinates:[Number(longitude),Number(latitude)]
                     // },
-                    category:category,
-                    SubCategory:subcategory,
-                    otherDetails:{...otherDetails},
-                    images:[...results],
-                    userId:userId,
-                    price:price,
+                    category: category,
+                    SubCategory: subcategory,
+                    otherDetails: { ...parsedDetails },
+                    images: [...results],
+                    userId: userId,
+                    price: price,
                 })
                 const SavedData = await productTemplate.save()
-                if(SavedData){
+                if (SavedData) {
                     console.log("saved");
-                    res.status(200).json({message:'ad posted successfully'})
-                }else{
+                    res.status(200).json({ message: 'ad posted successfully' })
+                } else {
                     console.log("eroorrr");
-                    res.status(200).json({message:'add failed to post'})
+                    res.status(200).json({ message: 'add failed to post' })
                 }
-            }else{
-                res.status(400).json({message:"something error with images"})
+            } else {
+                res.status(400).json({ message: "something error with images" })
             }
         } catch (error) {
             console.log(error);
-            res.status(500).json({message:"something went wrong"})
-        } 
+            res.status(500).json({ message: "something went wrong" })
+        }
     },
 
     //get single products
@@ -90,6 +91,7 @@ module.exports = {
         }
     },
 
+    //block product
     blockProducts  : async (req,res)=>{
         try {
             const {productId} = req.params

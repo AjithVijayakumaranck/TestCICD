@@ -22,6 +22,7 @@ const sentVerificationOtp = (Contact) => {
 
 //verify the sented otp
 const verifyPhoneOtp = (Contact, otp) => {
+  console.log(Contact,otp,"hello");
   return new Promise((resolve, reject) => {
   client.verify.v2.services(TWILIO_AUTHY_SERVICEID)
     .verificationChecks
