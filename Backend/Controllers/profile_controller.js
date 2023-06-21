@@ -67,7 +67,7 @@ module.exports = {
 
             }
         } catch (error) {
-            console.log(error, "errorrrr");
+            console.log(error);
             res.status(500).json({ messgae: "something went wrong" })
         }
     },
@@ -118,7 +118,8 @@ module.exports = {
                     } else {
                         USER.updateOne({ _id: profileDetails._id }, {
                             $set: {
-                                email: updatingEmail
+                                email: updatingEmail,
+                                emailVerified:true
                             }
                         }, { upsert: true }).then(() => {
                             res.status(200).json({ message: "email updated successfully" })
@@ -164,7 +165,7 @@ module.exports = {
             const { phoneNumber, otp, userId } = req.body
             verifyPhoneOtp(phoneNumber, otp).then(async () => {
                 console.log("otp approved", phoneNumber);
-                await USER.updateOne({ $and: [{ _id: userId }, { googleVerified: false }] }, { phoneNumber: phoneNumber }, { upsert: true });
+                await USER.updateOne({ $and: [{ _id: userId }, { googleVerified: false }] }, { phoneNumber: phoneNumber , phoneVerified:true}, { upsert: true });
                 res.status(200).json({ message: "Phonenumber Updated" });
             }).catch((error) => {
                 console.log(error);
@@ -248,6 +249,7 @@ module.exports = {
         try {
             console.log("Iam here");
             const {userId,ratingId,star,comment} = req.body
+
             const userDetails =await USER.findOne({_id:userId})
 
             if(!userDetails){  
@@ -326,19 +328,17 @@ module.exports = {
     //reply rating
     ratingReplay :async (req,res)=>{
         try {
+          //senderId: person who posted the review
+         // reviewer id: account holder id
             const {reviewerId,senderId,reply} = req.body
             const userProfile =await USER.findById(reviewerId)
             if(!userProfile){
-                
                     res.status(404).json({message:"review not found"})
-
             }else{   
 
                 let ratedReview  = await userProfile.ratings.find(
                     (eachRating) => eachRating.postedby.toString() === senderId.toString()
                   )
-
-                  console.log(ratedReview,"fff");
 
                 if(!ratedReview){
                     res.status(404).json({message:"review not found"})
@@ -371,14 +371,16 @@ module.exports = {
         }
     },
 
+
+    //get reviews
     getReviews :async (req,res)=>{
         try {
         
-            const {userId,page} = req.query
+            const {userId,page=0} = req.query
             const limit = 10
-            const rating = await USER.findById(userId).populate('ratings.reply.repliedBy').skip(page).limit(limit)
+            const rating = await USER.findById(userId).populate('ratings.reply.repliedBy').populate('ratings.postedby').skip(page).limit(limit)
             console.log(rating,"hello");
-            res.json(rating)
+            res.status(200).json(rating)
 
 
         } catch (error) {

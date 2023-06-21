@@ -102,7 +102,7 @@ module.exports = {
     //updatecategory
     updateCategory: async (req, res) => {
         try {
-            const { categoryId, CategoryDet } = req.params
+            const { categoryId, CategoryDet } = req.body
             const categoryInfo = await CATEGORY.findOne({ _id: categoryId })
             if (categoryInfo) {
                 const File = req.file.path
