@@ -70,7 +70,7 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
 
         }
-    }
+    },
 
     // delete subscription Plan
 
@@ -81,5 +81,6 @@ module.exports = {
             }catch(error){
                 res.status(500).json({message:"some error have been occurred"})
             }
+        }
 
 }
