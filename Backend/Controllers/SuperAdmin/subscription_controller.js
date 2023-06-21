@@ -78,6 +78,15 @@ module.exports = {
             try {
                 const {subscriptionId} = req.params
                 const subcriptionDetails = await SUBSCRIPTION.findByid(subscriptionId)
+                if(!subcriptionDetails){
+                    res.status(404).json({message:"Plan not exist"})
+                }else{
+                    SUBSCRIPTION.updateOne({_id:subscriptionId},{active_status:false}).then((response)=>{
+                        res.status(200).json({response,message:"Plan deactivated"})
+                    }).catch((err)=>{
+                        res.status(400).json({error,message:"Plan not deactivated"})
+                    })
+                }
             }catch(error){
                 res.status(500).json({message:"some error have been occurred"})
             }
