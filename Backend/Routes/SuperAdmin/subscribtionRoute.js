@@ -11,4 +11,10 @@ router.put('/edit_subscription',subcriptionControllers.updateSubscription)
 //decativate subscription
 router.delete('/delete_subscription',subcriptionControllers.deleteSubscription)
 
+//decativate subscription
+router.get('/get_subscription',subcriptionControllers.getSubscriptions)
+
+//get single subscription
+router.get('/get_subscription/:subscriptionId',subcriptionControllers.getSubscription)
+
 module.exports = router;

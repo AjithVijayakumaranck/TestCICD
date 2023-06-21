@@ -90,6 +90,38 @@ module.exports = {
             }catch(error){
                 res.status(500).json({message:"some error have been occurred"})
             }
+        },
+
+    //get all subscription
+
+    getSubscriptions : async (req, res)=>{
+        try {
+            const subscriptionPlans = await SUBSCRIPTION.find()
+            if(subscriptionPlans){
+                res.status(200).json(subscriptionPlans)
+            }else{
+                res.status(404).json({message:"Plan not found"})
+            }
+        } catch (error) {
+            res.status(500).json({message:"some error have been occurred"})
         }
+    },
+
+    //get single subscription
+    
+    getSubscription : async (req,res)=>{
+        try {
+            const {subscriptionId} = req.params
+            const subscriptionDetails = await SUBSCRIPTION.findByid(subscriptionId)
+            if(!subscriptionDetails){
+                res.status(404).json({message:"No subscription found"})
+            }else{
+                res.status(200).json(subscriptionDetails)
+            }
+         
+        } catch (error) {
+            res.status(500).json({message:"some error have been occurred"})
+        }
+    }
 
 }
