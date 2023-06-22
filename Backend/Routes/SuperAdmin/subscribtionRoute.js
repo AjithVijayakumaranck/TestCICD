@@ -15,6 +15,6 @@ router.delete('/delete_subscription',subcriptionControllers.deleteSubscription)
 router.get('/get_subscription',subcriptionControllers.getSubscriptions)
 
 //get single subscription
-router.get('/get_subscription/:subscriptionId',subcriptionControllers.getSubscription)
+router.get('/get_singlesubscription/:subscriptionId',subcriptionControllers.getSubscription) //change get_singlesubscription
 
 module.exports = router;

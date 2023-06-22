@@ -11,16 +11,13 @@ module.exports = {
 
     getCategories: async (req,res)=>{
         try {
-            console.log("get categories");
             const categories = await CATEGORY.find({deleted:false})
-            console.log(categories);
             if(!categories){
                 res.status(400).json({message:"Category not found"})
             }else{
                 res.status(200).json(categories)
             }
         } catch (error) {
-            console.log(error.message);
             res.status(500).json({message:"something went wrong"})
         }
     },
@@ -30,9 +27,9 @@ module.exports = {
         {
             try {
                 const categoryId = req.query.categoryId
-                console.log(categoryId,"category");
+    
                 const category = await CATEGORY.findOne({_id: categoryId}).populate("subcategory")
-                console.log(category);
+
                 if(category){
                     res.status(200).json(category)
                 }else{
@@ -53,10 +50,10 @@ module.exports = {
             if (categoryInfo) {
                 res.status(400).json({ message: "Category already exists" })
             } else {
-                console.log(req.file,"filesss");
+
                 const File = req.file.path;
                 cloudUpload(File,"Category") .then((result,transformedURL)=>{
-                    console.log(transformedURL,"hellll");
+           
                     const categoryTemplate = new CATEGORY({
                         categoryName: category,
                         icon : result
@@ -64,11 +61,11 @@ module.exports = {
                     categoryTemplate.save().then(() => {
                         res.status(200).json({ message: "Category successfully added" })
                     }).catch((err) => {
-                        console.log(err,"err");
+         
                         res.status(400).json({ message: "Category failed to be added" })
                     })
                 }).catch((error)=>{
-                    console.log(error);
+ 
                     res.status(400).json({message:"cloud upload failed"})
                 })
 
@@ -144,7 +141,7 @@ module.exports = {
     //add subcategory
      addSubcategory: async (req, res) => {
         try {
-            console.log(req.body,"hello");
+
             const { categoryId, subCategory, formInputs } = req.body
             const subCatinfo = await SUBCAT.findOne({ subcategory: subCategory })
             if (subCatinfo) {
@@ -164,13 +161,13 @@ module.exports = {
                             res.status(200).json({ message: "Successfully added" })
                         }
                     }).catch((err) => {
-                        console.log(err);
+      
                         res.status(500).json({ message: "Something went wrong" })
                     })
                 })
             }
         } catch (error) {
-            console.log(error);
+
             res.status(500).json({ message: "Something went wrong" })
         }
 
@@ -179,20 +176,20 @@ module.exports = {
     getSingleSubcategory: async (req,res)=>{
         {
             try {
-                console.log(req.query,"sub cat");
+     
                 const subCategoryId = req.query.subCategoryId
-                console.log(subCategoryId,"idd");
+
                 const subCategory = await SUBCAT.findOne({_id: subCategoryId})
-                console.log(subCategory);
+      
                 if(subCategory){
                     res.status(200).json(subCategory)
                 }else{
-                    console.log("sub cat n");
+             
                     res.status(400).json({message:"subcategory not found"})
                 }
                 
             } catch (error) {
-                console.log(error);
+    
                 res.status(500).json({message:"Something went wrong"})
             }
         }

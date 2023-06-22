@@ -28,12 +28,15 @@ const filter = require('./Routes/filterRoute')
 const profile = require('./Routes/profileRoute')
 const chat = require('./Routes/chatRoutes')
 const notification = require('./Routes/notificationRoutes')
+const subscription = require('./Routes/subscriptionRotue')
+const checkout = require('./Routes/checkoutRoutes')
 
 //Super Admin Routes
 const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
 const categoryRoute = require('./Routes/SuperAdmin/categoryControleRoute')
 const userControllRoute = require('./Routes/SuperAdmin/usersRoute')
 const productControllRoute = require('./Routes/SuperAdmin/productControleRoute')
+const subscriptionControlRoute = require('./Routes/SuperAdmin/subscribtionRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -54,7 +57,6 @@ app.use(passport.session());
 app.use(cors({
     origin: "http://localhost:3000",
     methods: "GET,POST,PUT,DELETE",
-    credentials: true,
 }))
 
 app.use(express.json())
@@ -72,12 +74,15 @@ app.use('/api/user/filter',filter)
 app.use('/api/user/profile',profile)
 app.use('/api/user/chat',chat)
 app.use('/api/user/notification',notification)
+app.use('/api/user/subscription_plans',subscription)
+app.use('/api/user/check_out',checkout)
 
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)
 app.use('/api/super_admin/category',categoryRoute)
 app.use('/api/super_admin/user_control',userControllRoute)
 app.use('/api/super_admin/product_control',productControllRoute)
+app.use('/api/super_admin/subscription_control',subscriptionControlRoute)
 
 //server port
 app.listen(8080,()=>{

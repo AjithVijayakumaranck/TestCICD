@@ -40,20 +40,20 @@ module.exports = {
 
         }
     },
-    getWishList:async (req, res) => {
+    
+    getWishList: async (req, res) => {
         try {
-           const {userId} = req.params
-           const wishlist = await WISHLIST.find({userId:userId}).sort({createdAt:-1})
-           if(wishlist){
-               res.status(200).json(wishlist)
-           }else{
-               res.status(404).json({message:"Cant find your wishlist"})
-           }
+            const { userId } = req.params
+            const wishlist = await WISHLIST.find({ userId: userId }).populate("wishlist").sort({ createdAt: -1 })
+            if (wishlist) {
+                res.status(200).json(wishlist)
+            } else {
+                res.status(404).json({ message: "Cant find your wishlist" })
+            }
         } catch (error) {
-            res.status(500).json({message:"something went wrong"})
-        }
-
-    },
+            res.status(500).json({ message: "something went wrong" })
+        }
+    },
 
     //remove from wishlist
     remove_product: async (req, res) => {
