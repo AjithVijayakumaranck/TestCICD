@@ -72,7 +72,7 @@ const productSchema = new schema({
     type:String,
     required:true
   },
-  SubCategory: [{ type: String, ref: 'subcategory'}]
+  SubCategory: { type: String, ref: 'subcategory'}
 
 }, { timestamps: true })
 

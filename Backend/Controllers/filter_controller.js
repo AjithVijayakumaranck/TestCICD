@@ -63,13 +63,14 @@ module.exports = {
 
     searchProducts: async (req, res) => {
         try {
-            const { SearchQuery = "recharge", district = "", state = "", category="Automobile" } = req.query
+
+            const { SearchQuery = "", district = "", state = "", category="" ,limit = 12 ,page = 0} = req.query
 
             console.log(SearchQuery, "serach qwu");
 
 
             if (!category) {
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]})
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).skip(page).limit(limit)
 
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
@@ -78,7 +79,7 @@ module.exports = {
                 }
             } else {
                 console.log("ELSEEEEE",category,SearchQuery);
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]})
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).skip(page).limit(limit)
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
                 } else {
@@ -97,8 +98,7 @@ module.exports = {
             const convDistrict = district.toUpperCase()
             const locality = await fetchLocality(state, convDistrict, subdistrict, village)
             if (locality) {
-                const newArray =await locality.reduce((result, element) => {
-                    
+                const newArray =await locality.reduce((result, element) => {       
                     const isDuplicate = result.some((item) => item.village_locality_name === element.village_locality_name);
                     
                     if (!isDuplicate) {
@@ -138,13 +138,29 @@ module.exports = {
 
     //product filters
     
+    // filter using location
     filterByLocation : async (req,res)=>{
         try {
 
-            let {state,district,locality,page} = req.query    
+            let {state,district,locality,max,min,page} = req.query    
+            let query = [{deleted:false}]
+            if(state){
+                query.push({state:state})
+            }
+            if(district){
+                query.push({district:district})
+            }
+            if(locality){
+                query.push({locality:locality})
+            }
+            if(min){
+                query.push({price:{$gte:min}})
+            }if(max){
+                query.push({price:{$lte:max}})
+            }
             const limit = 12
 
-            const productDetails = await PRODUCT.find({$and:[{deleted:false},{state:state},{district:district},{locality:locality}]}).skip(page).limit(limit)
+            const productDetails = await PRODUCT.find({$and:query}).skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -155,6 +171,38 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
         }
 
+    },
+
+    //filter product using categories and subcategories
+
+    filterbyCategories : async (req,res)=>{
+        try {
+
+            let {subcategory,category,max,min,page} = req.query    
+            let query = [{deleted:false}]
+            if(category){
+                query.push({category:category})
+            }
+            if(subcategory){
+                query.push({SubCategory:subcategory})
+            }
+            if(min){
+                query.push({price:{$gte:min}})
+            }if(max){
+                query.push({price:{$lte:max}})
+            }
+            const limit = 12
+
+            const productDetails = await PRODUCT.find({$and:query}).skip(page).limit(limit)
+            if(productDetails){
+                res.status(200).json(productDetails)
+            }else{
+                res.status(404).json({messagge:"products not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
     }
 
    

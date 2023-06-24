@@ -223,7 +223,7 @@ module.exports = {
     //update subcategory
     updateSubcategory: async (req,res)=>{
         try {
-            const {subcategoryId,newInfo,formInputs,categoryId}=req.query 
+            const {subcategoryId,newInfo,formInputs,categoryId}=req.body 
             const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId}) 
             if(subCategoryInfo){
               SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInfo,formInputs:formInputs,category:categoryId}).then(()=>{
