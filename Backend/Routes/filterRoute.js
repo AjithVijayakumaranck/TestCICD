@@ -14,7 +14,7 @@ router.get('/filterproducts',filter_controller.getFiltered)
  
 
 //products with in a distance
-router.get('/filter_by_distance',filter_controller.filterDistance)
+// router.get('/filter_by_distance',filter_controller.filterDistance)
 
 
 //search Management Routes
@@ -31,6 +31,10 @@ router.get('/search_products',filter_controller.searchProducts)
 //search Locality
 
 router.get('/search_locality',filter_controller.searchLocality)
+
+//search Locality
+
+router.get('/search_state',filter_controller.searchStatesDistricts)
 
 
 

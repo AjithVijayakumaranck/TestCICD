@@ -1,11 +1,11 @@
 const axios = require("axios");
 const querystring = require('querystring')
 
-const {LOCALITY_API_KEY,LOCALITY_FETCH_API} = process.env
+const {LOCALITY_API_KEY,LOCALITY_FETCH_API,LOCATION_FETCHING_URL} = process.env
 
 const fetchLocality= (state,district,subdistrict,village)=>{
-    console.log('state',state)
-    const baseURL = `${LOCALITY_FETCH_API}?api-key=${LOCALITY_API_KEY}&limit=10&format=json`;
+    console.log('district',state)
+    const baseURL = `${LOCALITY_FETCH_API}?api-key=${LOCALITY_API_KEY}&limit=1000&format=json`;
     let url = baseURL;
     return new Promise ((resolve, reject)=>{
         if (typeof district !== 'undefined') {
@@ -30,7 +30,7 @@ const fetchLocality= (state,district,subdistrict,village)=>{
           };
           axios.request(options).then(function (response) {
             console.log(response.data,"outpuiuu");
-              resolve(response.data)
+              resolve(response.data.records)
           }).catch(function (error) {
               console.error(error);
               reject(error)
@@ -38,6 +38,30 @@ const fetchLocality= (state,district,subdistrict,village)=>{
     })
 }
 
-module.exports = fetchLocality
+
+//fuction fetches the states and districts
+const fetchLocation = (districCode)=>{
+  console.log("hello");
+  return new Promise((resolve, reject) =>{
+    if(!districCode){
+        axios.get(`${LOCATION_FETCHING_URL}/states`).then((response)=>{
+          console.log(response.data.states,"hello states");
+          resolve(response.data)
+        }).catch((err)=>{
+          reject(err)
+        })
+    }else{
+      axios.get(`${LOCATION_FETCHING_URL}/districts/${districCode}`).then((response)=>{
+        console.log(response.data.states,"hello states");
+        resolve(response.data)
+      }).catch((err)=>{
+        reject(err)
+      })
+    }
+  })
+  
+}
+
+module.exports = {fetchLocality,fetchLocation}
 
 

@@ -5,7 +5,7 @@ const PRODUCT = require("../Models/productModal");
 module.exports = {
     addProduct: async (req, res) => {
         try {
-            const { title, description, otherDetails, subcategory, category, userId, price, listedBy, locality, district, state, region } = req.body
+            const { title, description, otherDetails, subcategory,keywords, category, userId, price, listedBy, locality, district, state, region } = req.body
             console.log(req.body, otherDetails, "add products");
             const parsedDetails = JSON.parse(otherDetails);
             console.log(parsedDetails, "parsed details");
@@ -27,6 +27,7 @@ module.exports = {
                     state: state,
                     region: region,
                     listedBy: listedBy,
+                    keywords:keywords,
                     // location:{
                     //     type:"Point",
                     //     coordinates:[Number(longitude),Number(latitude)]

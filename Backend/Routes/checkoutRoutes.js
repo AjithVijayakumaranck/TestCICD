@@ -1,6 +1,6 @@
 const checkoutControllers = require('../Controllers/checkoutControllers')
 
-const router = require('express').Router()
+const  router = require('express').Router()
 
 const express = require('express')
 

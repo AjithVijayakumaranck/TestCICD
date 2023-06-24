@@ -23,7 +23,7 @@ router.put('/verify_email',authoriseJwt,profile_controller.updateEmailVerificati
 router.post('/update_phone',authoriseJwt,profile_controller.addPhoneNumber)
 
 //verify phoneNumber
-router.put('/verif_yphone',authoriseJwt,profile_controller.addPhoneNumberVerification)
+router.put('/verify_phone',authoriseJwt,profile_controller.addPhoneNumberVerification)
 
 //update password
 router.put('/update_password',authoriseJwt,profile_controller.updatePassword)
