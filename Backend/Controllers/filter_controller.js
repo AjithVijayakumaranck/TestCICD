@@ -63,14 +63,13 @@ module.exports = {
 
     searchProducts: async (req, res) => {
         try {
-            const { SearchQuery = "", district = "", state = "", category } = req.query
-
+            const { SearchQuery = "recharge", district = "", state = "", category="Automobile" } = req.query
 
             console.log(SearchQuery, "serach qwu");
 
 
             if (!category) {
-                const result = await PRODUCT.find({ title: { "$regex": SearchQuery, "$options": "i" } })
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]})
 
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
@@ -78,7 +77,8 @@ module.exports = {
                     res.status(200).json(result)
                 }
             } else {
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, { keyword: { $in: [SearchQuery] } }] }, { category: category })
+                console.log("ELSEEEEE",category,SearchQuery);
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]})
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
                 } else {
@@ -93,17 +93,14 @@ module.exports = {
 
     searchLocality: async (req, res) => {
         try {
-            let finalResult = []
-            const { state, district = "palakkad", village, subdistrict } = req.query
+            const { state, district , village, subdistrict } = req.query
             const convDistrict = district.toUpperCase()
             const locality = await fetchLocality(state, convDistrict, subdistrict, village)
             if (locality) {
-                // console.log(locality.record,"hello");
                 const newArray =await locality.reduce((result, element) => {
-                    // Check if the new array already contains an element with the same sub_distname
+                    
                     const isDuplicate = result.some((item) => item.village_locality_name === element.village_locality_name);
                     
-                    // If it's not a duplicate, push the element to the new array
                     if (!isDuplicate) {
                       result.push(element);
                     }
@@ -121,10 +118,11 @@ module.exports = {
         }
 
     },
+    
 
     searchStatesDistricts: async (req, res) => {
         try {
-            const { districtCode } = req.query
+            const { districtCode=17 } = req.query
             const locality = await fetchLocation(districtCode)
             if (locality) {
                 res.status(200).json(locality)
@@ -135,7 +133,31 @@ module.exports = {
             console.log(error);
             res.status(500).json({ message: "something went wrong" })
         }
+    },
+
+
+    //product filters
+    
+    filterByLocation : async (req,res)=>{
+        try {
+
+            let {state,district,locality,page} = req.query    
+            const limit = 12
+
+            const productDetails = await PRODUCT.find({$and:[{deleted:false},{state:state},{district:district},{locality:locality}]}).skip(page).limit(limit)
+            if(productDetails){
+                res.status(200).json(productDetails)
+            }else{
+                res.status(404).json({messagge:"products not found"})
+            }
+
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+
     }
+
+   
 
 
 

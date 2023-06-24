@@ -31,11 +31,15 @@ const productSchema = new schema({
   district: {
     type: String,
   },
+  pin:{
+    type:String
+  },
   state: {
     type: String,
   },
   country: {
     type: String,
+    default:"india"
   },
   description: {
     type: String,

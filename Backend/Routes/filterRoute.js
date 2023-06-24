@@ -18,7 +18,6 @@ router.get('/filterproducts',filter_controller.getFiltered)
 
 
 //search Management Routes
-
 // router.post('/search_products',filter_controller.searchProducts)
 
 
@@ -35,6 +34,14 @@ router.get('/search_locality',filter_controller.searchLocality)
 //search Locality
 
 router.get('/search_state',filter_controller.searchStatesDistricts)
+
+
+
+
+
+//filter products by location
+router.get('/filter_products_location',filter_controller.filterByLocation)
+
 
 
 

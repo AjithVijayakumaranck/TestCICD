@@ -60,7 +60,7 @@ module.exports = {
     getSinlgeProduct : async (req,res)=>{
         try {
             const {productId} = req.query
-            const productDetails = await PRODUCT.findOne({_id:productId,deleted:false})
+            const productDetails = await PRODUCT.findOne({_id:productId,deleted:false}).populate('userId')
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -80,7 +80,7 @@ module.exports = {
             console.log(page);
             const limit = 12
 
-            const productDetails = await PRODUCT.find({deleted:false}).skip(page).limit(limit)
+            const productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -110,6 +110,7 @@ module.exports = {
             res.status(500).json({message:"something went wrong"})
         }
     },
+    
     //specific products
     getUserProduct :async (req,res)=>{
         try {
