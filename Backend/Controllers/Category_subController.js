@@ -226,7 +226,7 @@ module.exports = {
             const {subcategoryId,newInfo,formInputs,categoryId}=req.body 
             const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId}) 
             if(subCategoryInfo){
-              SUBCAT.updateOne({_id:subcategoryId},{subCategory:newInfo,formInputs:formInputs,category:categoryId}).then(()=>{
+              SUBCAT.updateOne({_id:subcategoryId},{subcategory:newInfo,formInputs:formInputs,category:categoryId}).then(()=>{
                 res.status(200).json({message:"Successfully updated"})
               }).catch((err)=>{
                 res.status(500).json({message:"Error updating"})

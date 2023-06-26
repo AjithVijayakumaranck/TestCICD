@@ -10,6 +10,15 @@ const superAdminSchema = new schema({
     type:String,
     require:true
   },
+  roleupgradeBy:{
+      type:String,
+      ref:"SUPERADMIN"
+  },
+  role:{
+      type:String,
+      default:"admin",
+      required:true
+  },
   phoneNumber:{
     type:String
   },
@@ -29,9 +38,9 @@ const superAdminSchema = new schema({
     locality:{type:String},
     district:{type:String},
     state:{type:String},
-    region:{type:String}
+    country:{type:String}
   },
-  deleteed:{
+  deleted:{
     type:Boolean,
     default:false
   }

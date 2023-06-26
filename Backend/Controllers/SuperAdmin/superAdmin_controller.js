@@ -8,7 +8,7 @@ module.exports = {
     superAdminLogin : async (req,res)=>{
         try {
             const {userId,password} = req.body
-            const superAdminDetails =await SUPERADMIN.findOne({email:userId})
+            const superAdminDetails =await SUPERADMIN.findOne({email:userId, deleted:false})
             if(!superAdminDetails){
                 res.status(404).json({message:"User not found"})
             }else{
@@ -91,32 +91,175 @@ module.exports = {
         }
     },
 
-    superSignup: async (req,res)=>{
+    createAdmin: async (req,res)=>{
         try {
-            const {fullName,surName,email,password} = req.body
+            const {fullName,surName,email,password,locality,district,state,region,role} = req.body
+            console.log(req.body);
             const hashedPassword = await hashData(password)
-            const superAdminTemplate = await new SUPERADMIN({
+            SUPERADMIN.create({
                 fullname:fullName,
-                  surname:surName,
-                  email:email,
-                  password:hashedPassword,
-                  address:{
-                    locality:"",
-                    district:"",
-                    state:"",
-                    region:"India"
-                  },
+                surname:surName,
+                email:email,
+                role:role,
+                password:hashedPassword,
+                address:{
+                  locality:locality,
+                  district:district,
+                  state:state,
+                  country:region
+                },
+            }).then((response)=>{
+                res.status(200).json({message:"Admin add successfully"})
+            }).catch((err)=>{
+                console.log(err,"error");
+                res.status(500).json({err,message:"something went wrong"})
             })
-
-        superAdminTemplate.save().then(()=>{
-            console.log("saved");
-            res.status(200).json({message:"Admin add successfully"})
-        }).catch((err)=>{
-            console.log(err,"error");
-            res.status(500).json({err,message:"something went wrong"})
-        })
         } catch (error) {
-            res.status(500).json({ error,message: "something went wrong" })
+            console.log(error);
+            res.status(500).json({ error,message: "something went wrong"})
+        }
+    },
+
+    upgradeRole : async (req,res)=>{
+        try {
+            const{superAdminId,password,adminId,role} = req.body
+            const superAdminDetails = await SUPERADMIN.findById(superAdminId)
+            if(!superAdminDetails || superAdminDetails.role === "admin"){
+                res.status(404).json({message:"verification failed"})
+            }else{
+                const verified = await verifyHashedData(password,superAdminDetails.password)
+                if(!verified){
+                    res.status(401).json({message:"verification failed"})
+                }else{
+                    SUPERADMIN.updateOne({_id:adminId},{role:role , roleupgradeBy: superAdminId}).then(()=>{
+                        res.status(200).json({message:"role updated successfully"})
+                    }).catch((err)=>{
+                        console.log(err,"error");
+                        res.status(500).json({err,message:"something went wrong"})
+                    })
+                }
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})   
+        }
+    },
+
+    getAdmin :async (req,res)=>{
+        try {
+            const adminDetails = await SUPERADMIN.find({deleted:false ,role:"admin"})
+            if(adminDetails){
+                res.status(200).json(adminDetails);
+            }else{
+                res.status(404).json({message:"admins not found"})
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+    getSuperAdmin :async (req,res)=>{
+        try {
+            const superAdminDetails = await SUPERADMIN.find({deleted:false ,role:"superadmin"})
+            if(superAdminDetails){
+                res.status(200).json(superAdminDetails);
+            }else{
+                res.status(404).json({message:"admins not found"})
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+    updateProfile : async (req,res)=>{
+        try {
+            const {profileId , fullname ,surname , username ,email, dob ,locality,district,state,region } = req.body
+            const superAdminDetails = await SUPERADMIN.findById(profileId)
+            if(!superAdminDetails){
+                res.status(404).json({message:"profile not found"})
+            }else{
+                SUPERADMIN.updateOne({_id:profileId},{
+                   $set:{
+                    fullname:fullname,
+                    surname:surname,
+                    username:username,
+                    email:email,
+                    dob:dob,
+                    address:{
+                        locality:locality,
+                        district:district,
+                        state:state,
+                        region:region
+                    }
+                   }
+                },{
+                    new:true
+                }).then(()=>{
+                    res.status(200).json({message:"profile updated successfully"})
+                }).catch((err)=>{
+                    console.log(err,"error");
+                    res.status(500).json({err,message:"something went wrong"})
+                })
+            }
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+    getProfile:(req,res)=>{
+        try {
+            const {adminId} = req.query
+            SUPERADMIN.findById(adminId).then((adminDetails)=>{
+                res.status(200).json(adminDetails)
+            }).catch((error)=>{
+                res.status(400).json(error.message)
+            })
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+    updatePassword: async (req,res)=>{
+      try {
+        const {profileId,currentPassword,newPassword} = req.body
+        const profileDetails = await SUPERADMIN.findById(profileId)
+        if(!profileDetails){
+            res.status(404).json({message:"profile not found"})
+        }else{
+            const verified =await verifyHashedData(currentPassword,profileDetails.password)
+            if(verified){
+                hashedPassword =await hashData(newPassword)
+                SUPERADMIN.updateOne({_id:profileId},{
+                    password:hashedPassword
+                }).then((response)=>{
+                    if(response.matchedCount == 0){
+                        res.status(400).json({message:"password updated failed"})
+                    }else{
+                        res.status(200).json({message:"password updated"})
+                    }
+                }).catch((error)=>{
+                    res.status(500).json({message:error.message})
+                }) 
+            }else{
+                res.status(401).json({message:"current password is incorrect"})
+            }
+        }
+      } catch (error) {
+        res.status(500).json({message:error.message})
+      }
+    },
+
+    uniqueUserName :async (req,res)=>{
+        try {
+            const {userName} = req.query
+            const usernameExist = await SUPERADMIN.findOne({username:/^userName$/i})
+            if(usernameExist){
+                res.status(200).json(false)
+            }else{
+                res.status(200).json(true)
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
         }
     }
 }
