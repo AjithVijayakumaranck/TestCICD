@@ -3,8 +3,8 @@ const querystring = require('querystring')
 
 const {LOCALITY_API_KEY,LOCALITY_FETCH_API,LOCATION_FETCHING_URL} = process.env
 
-const fetchLocality= (state,district,subdistrict,village)=>{
-    console.log('district',state)
+const fetchLocality= (district)=>{
+    console.log('district',district)
     const baseURL = `${LOCALITY_FETCH_API}?api-key=${LOCALITY_API_KEY}&limit=1000&format=json`;
     let url = baseURL;
     return new Promise ((resolve, reject)=>{
@@ -32,7 +32,7 @@ const fetchLocality= (state,district,subdistrict,village)=>{
             console.log(response.data,"outpuiuu");
               resolve(response.data.records)
           }).catch(function (error) {
-              console.error(error);
+              console.error(error.message);
               reject(error)
           });
     })

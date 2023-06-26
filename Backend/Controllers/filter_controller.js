@@ -95,8 +95,10 @@ module.exports = {
     searchLocality: async (req, res) => {
         try {
             const { state, district , village, subdistrict } = req.query
-            const convDistrict = district.toUpperCase()
-            const locality = await fetchLocality(state, convDistrict, subdistrict, village)
+            console.log(district);
+            const convDistrict =await district.toUpperCase()
+            console.log(convDistrict);
+            const locality = await fetchLocality(convDistrict)
             if (locality) {
                 const newArray =await locality.reduce((result, element) => {       
                     const isDuplicate = result.some((item) => item.village_locality_name === element.village_locality_name);
@@ -113,7 +115,7 @@ module.exports = {
                 res.status(400).json({ message: "No products found with this criteria" })
             }
         } catch (error) {
-            console.log(error);
+            console.log(error.messasge);
             res.status(500).json({ message: "something went wrong" })
         }
 
@@ -122,7 +124,7 @@ module.exports = {
 
     searchStatesDistricts: async (req, res) => {
         try {
-            const { districtCode=17 } = req.query
+            const { districtCode } = req.query
             const locality = await fetchLocation(districtCode)
             if (locality) {
                 res.status(200).json(locality)

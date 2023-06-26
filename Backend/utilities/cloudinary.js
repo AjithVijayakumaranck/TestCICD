@@ -27,12 +27,19 @@ const cloudUpload = (Image, folderName) => {
             quality: 'auto',
             format: 'jpg',
         };
+        const options2 = {
+            height:200,
+            quality: 'auto',
+            format: 'jpg',
+        };
         try {
             console.log(Image, "image ");
             const res = cloudinary.uploader.upload(Image, { folder: folderName })
             res.then(async (data) => {
                 const transformedURL = await cloudinary.url(data.public_id, options)
+                const  aspect_ratio = await cloudinary.url(data.public_id, options2)
                 data.compressedUrl = transformedURL
+                data.aspectUrl = aspect_ratio
                 console.log(data, "traaa");
                 resolve(data)
             }).catch((err) => {
@@ -45,8 +52,24 @@ const cloudUpload = (Image, folderName) => {
     })
 }
 
+const cloudDelete = (publicId) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const res = cloudinary.uploader.destroy(publicId)
+            res.then(async (data) => {
+                resolve(data)
+            }).catch((err) => {
+                reject(err)
+            });
 
-module.exports = { cloudUpload }
+        } catch (err) {
+            throw (err)
+        }
+    })
+}
+
+
+module.exports = { cloudUpload ,cloudDelete }
 
 
 // // Generate

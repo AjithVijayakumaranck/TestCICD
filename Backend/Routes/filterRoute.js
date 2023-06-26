@@ -28,11 +28,9 @@ router.get('/search_products',filter_controller.searchProducts)
 
 
 //search Locality
-
 router.get('/search_locality',filter_controller.searchLocality)
 
 //search Locality
-
 router.get('/search_state',filter_controller.searchStatesDistricts)
 
 
