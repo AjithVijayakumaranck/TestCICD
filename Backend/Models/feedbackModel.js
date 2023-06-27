@@ -1,17 +1,23 @@
 const mongoose = require("mongoose")
 const schema = mongoose.Schema;
 
-const feedback_schema = new schema({
+const feedbackschema = new schema({
 
-    senderId:{
+    email:{
         type:String
     },
     read:{
         type:Boolean,
         default:false
+    },
+    message:{
+        type:String,
+    },
+    deleted:{
+        type:Boolean
     }
     },{timestamps:true})
 
-    const FEEDBACK =  mongoose.model("feedback",feedback_schema);
+    const FEEDBACK =  mongoose.model("feedback",feedbackschema);
 
 module.exports = FEEDBACK

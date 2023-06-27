@@ -63,7 +63,7 @@ io.on("connection", (socket) => {
         const user =await getUser(receiverId)
         console.log("before");
         console.log(user,"hello");
-        io.to(user.socketId).emit('getMessage', {
+        io.to(user?.socketId).emit('getMessage', {
             userId, text , offerMade
         })
         console.log("after");

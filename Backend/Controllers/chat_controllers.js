@@ -7,7 +7,7 @@ module.exports = {
     createConversation : async (req,res)=>{
         try{
             const {senderId,recieverId,productId} = req.body
-            console.log(productId);
+            console.log(req.body,"eeee");
 
             const existingConversation = await CONVERSATION.findOne({
                 member: { $all: [senderId, recieverId] },
@@ -15,17 +15,19 @@ module.exports = {
               });
           
               if (existingConversation) {
+                console.log("existtingggg");
                 return res
-                  .status(400)
-                  .json({ existingConversation, message: "Conversation already exists with the same productId" });
+                  .status(200)
+                  .json({ savedConversation:existingConversation, message: "Conversation already exists with the same productId" });
+              }else{
+                  let newConversation =await new CONVERSATION({
+                      member:[senderId,recieverId],
+                      product:productId
+                  })
+                  const savedConversation = await newConversation.save()
+                  res.status(200).json({savedConversation})
               }
 
-            let newConversation =await new CONVERSATION({
-                member:[senderId,recieverId],
-                product:productId
-            })
-            const savedConversation = await newConversation.save()
-            res.status(200).json(savedConversation)
     
         }catch(err){
             res.status(500).json(err)
@@ -43,6 +45,19 @@ module.exports = {
             }}).populate('product')
             res.status(200).json(conversation)
         }catch(err){
+            res.status(500).json(err)
+        }
+    },
+
+    //get specific conversations of a specific user
+    getSpecificConversation: async (req,res)=>{
+        try{
+            const  {conversationId} = req.params
+            const  conversation = await CONVERSATION.findById(conversationId).populate('product')
+            console.log(conversation);
+            res.status(200).json(conversation)
+        }catch(err){
+            console.log(err);
             res.status(500).json(err)
         }
     },
@@ -75,6 +90,7 @@ module.exports = {
             const  allMessagges = await MESSAGE.find({conversationId:conversationId})
             res.status(200).json({allMessagges})
         }catch(err){
+            console.log(err);
             res.status(500).json(err)
         }
     }

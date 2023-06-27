@@ -11,7 +11,7 @@ member:{
 product:{
  type:ObjectId,
  required:true,
- ref:"USER"
+ ref:"products"
 }
 
 },{ timestamps: true })

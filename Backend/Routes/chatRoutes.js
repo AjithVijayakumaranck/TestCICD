@@ -7,6 +7,8 @@ router.post('/createconversation',chatControllers.createConversation)
 
 router.get('/getconversation/:userId',chatControllers.getConversation)
 
+router.get('/getspecific_converstaion/:conversationId',chatControllers.getSpecificConversation)
+
 router.post('/addmessage',chatControllers.addMessage)
 
 router.get('/getmessages/:conversationId',chatControllers.getMessage)

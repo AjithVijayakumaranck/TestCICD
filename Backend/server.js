@@ -30,6 +30,7 @@ const chat = require('./Routes/chatRoutes')
 const notification = require('./Routes/notificationRoutes')
 const subscription = require('./Routes/subscriptionRotue')
 const checkout = require('./Routes/checkoutRoutes')
+const feedback = require('./Routes/feedbackRoute')
 
 //Super Admin Routes
 const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
@@ -38,6 +39,7 @@ const userControllRoute = require('./Routes/SuperAdmin/usersRoute')
 const productControllRoute = require('./Routes/SuperAdmin/productControleRoute')
 const subscriptionControlRoute = require('./Routes/SuperAdmin/subscribtionRoute')
 const carousalRoute = require('./Routes/SuperAdmin/carousalRoute')
+const feedbackRoute = require('./Routes/SuperAdmin/feedbackRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -77,6 +79,7 @@ app.use('/api/user/chat',chat)
 app.use('/api/user/notification',notification)
 app.use('/api/user/subscription_plans',subscription)
 app.use('/api/user/check_out',checkout)
+app.use('/api/user/feedback',feedback)
 
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)
@@ -85,6 +88,7 @@ app.use('/api/super_admin/user_control',userControllRoute)
 app.use('/api/super_admin/product_control',productControllRoute)
 app.use('/api/super_admin/subscription_control',subscriptionControlRoute)
 app.use('/api/super_admin/carousal_control',carousalRoute)
+app.use('/api/super_admin/feedback_control',feedbackRoute)
 
 //server port
 app.listen(8080,()=>{
