@@ -31,6 +31,7 @@ const notification = require('./Routes/notificationRoutes')
 const subscription = require('./Routes/subscriptionRotue')
 const checkout = require('./Routes/checkoutRoutes')
 const feedback = require('./Routes/feedbackRoute')
+const carousal = require('./Routes/carousalRoute')
 
 //Super Admin Routes
 const superAdmin = require('./Routes/SuperAdmin/superAdminRoute')
@@ -80,6 +81,7 @@ app.use('/api/user/notification',notification)
 app.use('/api/user/subscription_plans',subscription)
 app.use('/api/user/check_out',checkout)
 app.use('/api/user/feedback',feedback)
+app.use('/api/user/slide',carousal)
 
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)

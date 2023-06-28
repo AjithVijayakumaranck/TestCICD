@@ -70,7 +70,7 @@ module.exports = {
 
 
             if (!category) {
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).skip(page).limit(limit)
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).populate('userId').skip(page).limit(limit)
 
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
@@ -79,7 +79,7 @@ module.exports = {
                 }
             } else {
                 console.log("ELSEEEEE",category,SearchQuery);
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).skip(page).limit(limit)
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).populate('userId').skip(page).limit(limit)
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
                 } else {
