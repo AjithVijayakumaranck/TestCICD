@@ -67,6 +67,7 @@ module.exports = {
                     })
                  
                 }else{
+                    console.log("res.path" , "not found");
                     USER.updateOne({ _id: profileDetails._id }, {
                         $set: {
                             fullname: userDetails.fullname,
