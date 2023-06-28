@@ -34,7 +34,12 @@ module.exports = {
             if (!profileDetails) {
                 res.status(404).json({ message: "user not found" })
             } else {
-                const File = req.file.path
+                  let File
+                if(req.file){
+                 File = req.file.path
+                }else{
+                  File = 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+                }
                 cloudUpload(File, "Profiles").then((result) => {
                     console.log(result.compressedUrl, "hello");
                     USER.updateOne({ _id: profileDetails._id }, {
