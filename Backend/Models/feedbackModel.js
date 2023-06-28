@@ -13,6 +13,9 @@ const feedbackschema = new schema({
     message:{
         type:String,
     },
+    sender:{
+        type:String
+    },
     deleted:{
         type:Boolean
     }

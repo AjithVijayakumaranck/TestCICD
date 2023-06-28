@@ -3,14 +3,16 @@ const FEEDBACK = require("../Models/feedbackModel")
 module.exports = {
     postFeedback :async (req,res)=>{
         try {
-            const {email,message} = req.body
-            const feedbackExist = await FEEDBACK.findOne({email:email,read:false })
+            console.log(req.body,"hellll");
+            const {Email,Message,Name} = req.body
+            const feedbackExist = await FEEDBACK.findOne({email:Email,read:false })
             if(feedbackExist){
                 return res.status(400).json({messsage:"Feedback already exists"})
             }else{
                 FEEDBACK.create({
-                    email:email,
-                    message:message                 
+                    email:Email,
+                    message:Message,
+                    sender:Name             
                 }).then((response)=>{
                     res.status(200).json({messsage:"Feedback sent successfully"})
                 }).catch((error)=>{
@@ -19,6 +21,7 @@ module.exports = {
             }
             
         } catch (error) {
+            console.log(error);
             res.status(500).json({messsage:"An error occurred"})
         }
     },

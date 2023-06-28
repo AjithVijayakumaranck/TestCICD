@@ -94,8 +94,8 @@ module.exports = {
                     'subscription.plan' :planId,
                     'subscription.subscribedAt' : Date.now(),
                     premiumuser:true,
-                    defaultAdCount:userDetails.defaultAdCount + planDetails.extra_ads,
-                    defaultImageCount:userDetails.defaultImageCount+ planDetails.extra_images
+                    AdCount:+userDetails.AdCount + +planDetails.extra_ads,
+                    ImageCount:+userDetails.ImageCount+ +planDetails.extra_images
                   }
                 }).then((response)=>{
                   console.log(response,"update status");
@@ -106,6 +106,7 @@ module.exports = {
                 })
                }
           }).catch((err)=>{
+            res.status(500).json({message:err.message}).end()
             console.log(err.message,"stripe error");
           })
   

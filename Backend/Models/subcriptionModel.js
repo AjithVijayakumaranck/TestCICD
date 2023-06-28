@@ -12,10 +12,12 @@ const subscriptionSchema = new schema({
         require: true
     },
     extra_ads :{
-        type :String
+        type :String,
+        default:"10"
     },
     extra_images: {
-        type: String
+        type: String,
+        default:"10"
     },
     discount: {
         type: String

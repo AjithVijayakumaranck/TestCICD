@@ -68,6 +68,14 @@ const USERschema = new schema({
     type: Boolean,
     default: false
   },
+  AdCount:{
+    type:String,
+    default:"20"
+  },
+  ImageCount:{
+    type:String,
+    default:"10"
+  },
   emailVerified: {
     type: Boolean,
     default: false
