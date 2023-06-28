@@ -8,7 +8,7 @@ module.exports = {
         try {
 
 
-            const { planName, planDuration, features, discount, monthlyPricing, yearlyPricing } = req.body //change
+            const { planName, planDuration, features, discount, monthlyPricing, yearlyPricing , extraAds , extraImges} = req.body //change
             const existedPlan = await SUBSCRIPTION.findOne({ plan_name: planName })
 
             if (!existedPlan) {
@@ -20,7 +20,9 @@ module.exports = {
                     Features: features,
                     monthly_pricing: monthlyPricing,
                     yearly_pricing: yearlyPricing,
-                    discount: discount
+                    discount: discount,
+                    extra_ads: extraAds,
+                    extra_images: extraImges
                 }).then((response) => {
                     res.status(200).json({ response, message: "plan is active" })
                 }).catch((error) => {

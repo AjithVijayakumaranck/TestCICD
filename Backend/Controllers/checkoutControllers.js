@@ -88,11 +88,14 @@ module.exports = {
                if(!userDetails){
                 res.status(404).json({message:"user not found"})
                }else{
+                const planDetails = await SUBSCRIPTION.findById(planId)
                 USER.updateOne({_id:userId},{
                   $set:{
                     'subscription.plan' :planId,
                     'subscription.subscribedAt' : Date.now(),
-                    premiumuser:true
+                    premiumuser:true,
+                    defaultAdCount:userDetails.defaultAdCount + planDetails.extra_ads,
+                    defaultImageCount:userDetails.defaultImageCount+ planDetails.extra_images
                   }
                 }).then((response)=>{
                   console.log(response,"update status");

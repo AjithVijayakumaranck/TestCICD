@@ -141,16 +141,22 @@ module.exports = {
     //product filters
     
     // filter using location
-    filterByLocation : async (req,res)=>{
+    filterProducts : async (req,res)=>{
         try {
 
-            let {state,district,locality,max,min,page} = req.query    
+            let {state,category,subcategory,district,locality,max,min,page} = req.query    
             let query = [{deleted:false}]
             if(state){
                 query.push({state:state})
             }
             if(district){
                 query.push({district:district})
+            }
+            if(category){
+                query.push({category:category})
+            }
+            if(subcategory){
+                query.push({SubCategory:subcategory})
             }
             if(locality){
                 query.push({locality:locality})

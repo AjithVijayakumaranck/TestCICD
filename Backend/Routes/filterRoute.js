@@ -38,10 +38,10 @@ router.get('/search_state',filter_controller.searchStatesDistricts)
 
 
 //filter products by location
-router.get('/filter_products_location',filter_controller.filterByLocation)
+router.get('/filter_products',filter_controller.filterProducts)
 
 //filter products by location
-router.get('/filter_products_category',filter_controller.filterByLocation)
+router.get('/filter_products_category',filter_controller.filterbyCategories)
 
 
 
