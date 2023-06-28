@@ -36,12 +36,37 @@ module.exports = {
             } else {
                   let File
                 if(req.file){
-                 File = req.file.path
+                    File = req.file.path
+                    cloudUpload(File, "Profiles").then((result) => {
+                        USER.updateOne({ _id: profileDetails._id }, {
+                            $set: {
+                                fullname: userDetails.fullname,
+                                surname: userDetails.surname,
+                                username: userDetails.username,
+                                dob: userDetails.dob,
+                                address: {
+                                    locality: userDetails.address.locality,
+                                    district: userDetails.address.district,
+                                    state: userDetails.address.state,
+                                    region: userDetails.address.region,
+                                },
+                                profilePicture: result,
+                            }
+                        }).then(async (response) => {
+                            const updatedDetails = await USER.findOne({ _id: userDetails._id })
+                            console.log(updatedDetails,"updated details");
+                            if (!updatedDetails) {
+                                res.status(400).json({ message: "error occured after updating" })
+                            } else {
+                                res.status(200).json({ profileDetails: updatedDetails, message: "Successfully updated" })
+                            }
+                        }).catch((error) => {
+                            console.log(error);
+                            res.status(400).json({ message: "Error updating" })
+                        })
+                    })
+                 
                 }else{
-                  File = 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-                }
-                cloudUpload(File, "Profiles").then((result) => {
-                    console.log(result.compressedUrl, "hello");
                     USER.updateOne({ _id: profileDetails._id }, {
                         $set: {
                             fullname: userDetails.fullname,
@@ -53,8 +78,7 @@ module.exports = {
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
                                 region: userDetails.address.region,
-                            },
-                            profilePicture: result,
+                            }
                         }
                     }).then(async (response) => {
                         const updatedDetails = await USER.findOne({ _id: userDetails._id })
@@ -68,7 +92,12 @@ module.exports = {
                         console.log(error);
                         res.status(400).json({ message: "Error updating" })
                     })
-                })
+                }
+               if(userDetails.profilePicture){
+
+               }else{
+               
+               }
 
             }
         } catch (error) {
