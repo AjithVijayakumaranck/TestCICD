@@ -5,7 +5,7 @@ const PRODUCT = require("../Models/productModal");
 module.exports = {
     addProduct: async (req, res) => {
         try {
-            const { title, description, otherDetails, subcategory,keywords, category, userId, price, listedBy, locality, district, state, region } = req.body
+            const { title, description, otherDetails,featured, subcategory,keywords, category, userId, price, listedBy, locality, district, state, region } = req.body
             console.log(req.body, otherDetails, "add products");
             const parsedDetails = JSON.parse(otherDetails);
             console.log(parsedDetails, "parsed details");
@@ -28,6 +28,7 @@ module.exports = {
                     region: region,
                     listedBy: listedBy,
                     keywords:keywords,
+                    featured:featured,
                     // location:{
                     //     type:"Point",
                     //     coordinates:[Number(longitude),Number(latitude)]
@@ -42,7 +43,19 @@ module.exports = {
                 const SavedData = await productTemplate.save()
                 if (SavedData) {
                     console.log("saved");
-                    res.status(200).json({ message: 'ad posted successfully' })
+                    USER.findOne({_id:userId}).then((response)=>{
+                        if(response.AdCount <= 0){
+                            USER.updateOne({_id: userId},{
+                              AdCount: 0
+                            })
+                            res.status(200).json({ message: 'ad posted successfully' })
+                        }else{
+                            USER.updateOne({_id: userId},{
+                                $inc: {AdCount: -1}
+                            })
+                            res.status(200).json({ message: 'ad posted successfully' })
+                        }
+                    })
                 } else {
                     console.log("eroorrr");
                     res.status(200).json({ message: 'add failed to post' })

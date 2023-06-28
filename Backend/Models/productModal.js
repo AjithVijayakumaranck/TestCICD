@@ -50,6 +50,10 @@ const productSchema = new schema({
   contact: {
     type: String
   },
+  featured:{
+    type:Boolean,
+    default:false
+  },
   images: [{
     type: schema.Types.Mixed
   }]
