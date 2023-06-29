@@ -4,7 +4,7 @@ const superAdminControllers = require('../../Controllers/SuperAdmin/superAdmin_c
 
 
 //superadmin Login
-router.post("/admin_create",superAdminControllers.createAdmin)
+router.post("/admin_create",authoriseJwt,superAdminControllers.createAdmin)
 
 //superadmin Login
 router.post("/admin_login",superAdminControllers.superAdminLogin)

@@ -7,7 +7,7 @@ const { authoriseJwt } = require('../../utilities/authorisation');
 
 
 //get notification datas from the database
-router.get('/get_notification/:userId',authoriseJwt,notificationControllers.getNotification)
+router.get('/get_notification',authoriseJwt,notificationControllers.getNotification)
 
 //get notification datas from the database
 router.post('/sent_notification',authoriseJwt,notificationControllers.sentNotification)

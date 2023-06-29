@@ -21,7 +21,7 @@ module.exports = {
     },
     getNotification :async (req,res)=>{
         try {
-            const {userId} = req.params
+            const {userId} = req.query
             if(!userId){
                 const notificationDetails = await NOTIFICATION.find({broadcast:true}).sort({createdAt:-1}).limit(10)
                 if(notificationDetails){
