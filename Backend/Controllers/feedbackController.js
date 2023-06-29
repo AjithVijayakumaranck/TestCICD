@@ -4,14 +4,14 @@ module.exports = {
     postFeedback :async (req,res)=>{
         try {
             console.log(req.body,"hellll");
-            const {Email,Message,Name} = req.body
+            const {Email,Messages,Name} = req.body
             const feedbackExist = await FEEDBACK.findOne({email:Email,read:false })
             if(feedbackExist){
                 return res.status(400).json({messsage:"Feedback already exists"})
             }else{
                 FEEDBACK.create({
                     email:Email,
-                    message:Message,
+                    message:Messages,
                     sender:Name             
                 }).then((response)=>{
                     res.status(200).json({messsage:"Feedback sent successfully"})
@@ -31,6 +31,7 @@ module.exports = {
             FEEDBACK.find({deleted:false,read:false}).then((response)=>{
                 res.status(200).json(response)
             }).catch((error)=>{
+                console.log(error);
                 res.status(500).json({messsage:"An error occurred"})
             })
         } catch (error) {

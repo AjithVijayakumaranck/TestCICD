@@ -41,6 +41,7 @@ const productControllRoute = require('./Routes/SuperAdmin/productControleRoute')
 const subscriptionControlRoute = require('./Routes/SuperAdmin/subscribtionRoute')
 const carousalRoute = require('./Routes/SuperAdmin/carousalRoute')
 const feedbackRoute = require('./Routes/SuperAdmin/feedbackRoute')
+const notificationRoute = require('./Routes/SuperAdmin/notificationRoute')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -90,6 +91,7 @@ app.use('/api/super_admin/user_control',userControllRoute)
 app.use('/api/super_admin/product_control',productControllRoute)
 app.use('/api/super_admin/subscription_control',subscriptionControlRoute)
 app.use('/api/super_admin/carousal_control',carousalRoute)
+app.use('/api/super_admin/notification_control',notificationRoute)
 app.use('/api/super_admin/feedback_control',feedbackRoute)
 
 //server port

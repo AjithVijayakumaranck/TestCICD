@@ -17,7 +17,8 @@ const feedbackschema = new schema({
         type:String
     },
     deleted:{
-        type:Boolean
+        type:Boolean,
+        default:false
     }
     },{timestamps:true})
 
