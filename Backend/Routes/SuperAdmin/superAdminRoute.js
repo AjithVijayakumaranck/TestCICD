@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-const superAdminControllers = require('../../Controllers/SuperAdmin/superAdmin_controller')
+const superAdminControllers = require('../../Controllers/SuperAdmin/superAdmin_controller');
+const { authoriseJwt } = require('../../utilities/authorisation');
 
 
 //superadmin Login
@@ -24,7 +25,7 @@ router.post("/reset_Password",superAdminControllers. resetPassword)
 
 //password update
 //nb: - used for updatePassword from the admin profile it needs current password
-router.put('/update_password',superAdminControllers.updatePassword)
+router.put('/update_password',authoriseJwt,superAdminControllers.updatePassword)
 
 //role upgrade
 router.put('/upgrade_role',superAdminControllers. upgradeRole)

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-const subcriptionControllers = require('../Controllers/SuperAdmin/subscription_controller')
+const subcriptionControllers = require('../Controllers/SuperAdmin/subscription_controller');
+const { authoriseJwt } = require('../utilities/authorisation');
 
 
 //decativate subscription
