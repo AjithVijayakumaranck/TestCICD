@@ -8,11 +8,8 @@ module.exports = {
 
     get_Revlocations: async (req, res) => {
         try {
-            console.log("api here");
             const { longitude, latitude } = req.query
-            console.log(longitude, latitude, "laty and long");
             const locationDetails = await getReverseLocation(longitude, latitude)
-            console.log(locationDetails, "heee");
             res.status(200).json(locationDetails)
         } catch (error) {
             res.status(400).json(error.message)
@@ -22,12 +19,9 @@ module.exports = {
     get_locations: async (req, res) => {
         try {
             const { location } = req.query
-            console.log(location, "hello lopcatopmn");
             const locationDetails = await getLocation(location)
-            console.log(locationDetails);
             res.status(200).json(locationDetails)
         } catch (error) {
-            console.log(error, "error");
             res.status(400).json(error.message)
         }
     },
@@ -66,7 +60,6 @@ module.exports = {
 
             const { SearchQuery = "", district = "", state = "", category="" ,limit = 12 ,page = 0} = req.query
 
-            console.log(SearchQuery, "serach qwu");
 
 
             if (!category) {
@@ -78,7 +71,7 @@ module.exports = {
                     res.status(200).json(result)
                 }
             } else {
-                console.log("ELSEEEEE",category,SearchQuery);
+
                 const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).populate('userId').skip(page).limit(limit)
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
@@ -87,7 +80,6 @@ module.exports = {
                 }
             }
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: "something went wrong" })
         }
     },
@@ -95,9 +87,7 @@ module.exports = {
     searchLocality: async (req, res) => {
         try {
             const { state, district , village, subdistrict } = req.query
-            console.log(district);
             const convDistrict =await district.toUpperCase()
-            console.log(convDistrict);
             const locality = await fetchLocality(convDistrict)
             if (locality) {
                 const newArray =await locality.reduce((result, element) => {       
@@ -109,13 +99,11 @@ module.exports = {
                     
                     return result;
                   }, []);
-                  console.log(newArray,"reduced");
                 res.status(200).json(locality)
             } else {
                 res.status(400).json({ message: "No products found with this criteria" })
             }
         } catch (error) {
-            console.log(error.messasge);
             res.status(500).json({ message: "something went wrong" })
         }
 
@@ -132,7 +120,6 @@ module.exports = {
                 res.status(400).json({ message: "No products found with this criteria" })
             }
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: "something went wrong" })
         }
     },
@@ -143,7 +130,6 @@ module.exports = {
     // filter using location
     filterProducts : async (req,res)=>{
         try {
-            console.log("hello");
             let {state,category,subcategory,district,locality,max,min,page} = req.query    
             let query = [{deleted:false}]
             if(state){
