@@ -12,7 +12,7 @@ const SubCategoryschema = new schema({
         ref: "category"
     },
     formInputs: [{
-        type: String
+        type: schema.Types.Mixed
     }],
     deleted: {
         type: Boolean,

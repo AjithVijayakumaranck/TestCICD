@@ -1,6 +1,7 @@
 const { cloudUpload } = require("../utilities/cloudinary")
 const path = require("path");
 const PRODUCT = require("../Models/productModal");
+const USER = require("../Models/userModel");
 
 module.exports = {
     addProduct: async (req, res) => {
