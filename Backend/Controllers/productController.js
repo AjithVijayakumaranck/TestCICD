@@ -7,19 +7,15 @@ module.exports = {
     addProduct: async (req, res) => {
         try {
             const { title, description, otherDetails,featured, subcategory,keywords, category, userId, price, listedBy, locality, district, state, region } = req.body
-            console.log(req.body, otherDetails, "add products");
             const parsedDetails = JSON.parse(otherDetails);
-            console.log(parsedDetails, "parsed details");
             const Upload = req.files.map((file) => {
                 let locaFilePath = file.path;
-                console.log(locaFilePath, "file path");
                 return (
                     cloudUpload(locaFilePath, title)
                 )
             })
             const results = await Promise.all(Upload);
             if (results) {
-                console.log(subcategory, "hellllo");
                 const productTemplate = new PRODUCT({
                     title: title,
                     description: description,
@@ -43,7 +39,6 @@ module.exports = {
                 })
                 const SavedData = await productTemplate.save()
                 if (SavedData) {
-                    console.log("saved");
                     USER.findOne({_id:userId}).then((response)=>{
                         if(response.AdCount <= 0){
                             USER.updateOne({_id: userId},{
@@ -58,14 +53,12 @@ module.exports = {
                         }
                     })
                 } else {
-                    console.log("eroorrr");
                     res.status(200).json({ message: 'add failed to post' })
                 }
             } else {
                 res.status(400).json({ message: "something error with images" })
             }
         } catch (error) {
-            console.log(error);
             res.status(500).json({ message: "something went wrong" })
         }
     },
@@ -91,7 +84,6 @@ module.exports = {
         try {
 
             const {page} = req.query
-            console.log(page);
             const limit = 12
 
             const productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
