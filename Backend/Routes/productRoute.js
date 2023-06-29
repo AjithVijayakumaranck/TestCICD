@@ -8,7 +8,7 @@ const {}= process.env
 
 
 //add products route
-router.post('/addproduct',upload.array("files"),productController.addProduct)
+router.post('/addproduct',authoriseJwt,upload.array("files"),productController.addProduct)
 
 //get single Product
 router.get('/get_singleproduct',authoriseJwt,productController.getSinlgeProduct)

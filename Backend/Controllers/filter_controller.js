@@ -154,7 +154,7 @@ module.exports = {
             }
             const limit = 12
 
-            const productDetails = await PRODUCT.find({$and:query}).skip(page).limit(limit)
+            const productDetails = await PRODUCT.find({$and:query}).populate('userId').skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
@@ -187,7 +187,7 @@ module.exports = {
             }
             const limit = 12
 
-            const productDetails = await PRODUCT.find({$and:query}).skip(page).limit(limit)
+            const productDetails = await PRODUCT.find({$and:query}).populate('userId').skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
