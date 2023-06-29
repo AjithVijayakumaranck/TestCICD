@@ -27,5 +27,5 @@ router.delete('/delete_subcategory',authoriseJwt,Category_subController.deleteSu
 router.put('/update_subcategory',authoriseJwt,Category_subController.updateSubcategory) //update existing record to subcategory collection
 
 
-s
+
 module.exports = router

@@ -12,16 +12,15 @@ const authorisationMiddleware = (req,res,next)=>{
 
 //Authorisationsation Jwt
 const authoriseJwt =async (req,res,next)=>{
-    const token =await req.headers.authorization.split(' ')[1] 
-    console.log(token)
+    console.log(req.url)
+    const token =await req.headers.authorization.split(' ')[1]
     if (!token) {
         res.send("We need a token, please give it to us next time");
     } else {
-        jwt.verify(token, process.env.JWTPRIVATEKEY, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
             if (err) {
                 res.status(401).json({ auth: false, message: "you are failed to authenticate" });
             } else {
-                 console.log("successfully verifies");
                 next();
             }
         });

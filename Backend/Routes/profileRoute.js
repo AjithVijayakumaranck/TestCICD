@@ -8,7 +8,7 @@ const router = require('express').Router()
 
 
 //get profile route
-router.get('/get_profile/:userId',authoriseJwt,profile_controller.getProfile)
+router.get('/get_profile/:userId',profile_controller.getProfile)
 
 //update profile
 router.put('/update_profile',authoriseJwt,upload.single("file"),profile_controller.updateProfile)
@@ -38,7 +38,7 @@ router.post('/profile_rating',authoriseJwt,profile_controller.profileRating)
 router.post('/add_reply',authoriseJwt,profile_controller.ratingReplay)
 
 // get Rating 
-router.get('/get_rating',authoriseJwt,profile_controller.getReviews)
+router.get('/get_rating',profile_controller.getReviews)
 
  
 module.exports = router

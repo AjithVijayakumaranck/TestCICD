@@ -28,19 +28,19 @@ router.post("/reset_Password",superAdminControllers. resetPassword)
 router.put('/update_password',authoriseJwt,superAdminControllers.updatePassword)
 
 //role upgrade
-router.put('/upgrade_role',superAdminControllers. upgradeRole)
+router.put('/upgrade_role',authoriseJwt,superAdminControllers. upgradeRole)
 
 //get admins
-router.get('/get_admins',superAdminControllers.getAdmin)
+router.get('/get_admins',authoriseJwt,superAdminControllers.getAdmin)
 
 //get superadmins
-router.get('/get_superadmins',superAdminControllers.getSuperAdmin)
+router.get('/get_superadmins',authoriseJwt,superAdminControllers.getSuperAdmin)
 
 //get admin profile
-router.get('get_profile',superAdminControllers.getProfile)
+router.get('/get_profile',authoriseJwt,superAdminControllers.getProfile)
 
 //update admin profile
-router.put('/update_profile',superAdminControllers.updateProfile)
+router.put('/update_profile',authoriseJwt,superAdminControllers.updateProfile)
 
 //check username is unique or not
 router.get('/check_username',superAdminControllers.uniqueUserName)
