@@ -85,5 +85,17 @@ module.exports = {
         } catch (error) {
             res.status(500).json(error.message)
         }
+    },
+
+    getActiveSlides: (req, res) => {
+        try {
+            CAROUSAL.find({deleted:false,active:true}).then((response) => {
+                res.status(200).json(response)
+            }).catch((error) => {
+                res.status(400).json(error.message)
+            })
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
     }
 }
