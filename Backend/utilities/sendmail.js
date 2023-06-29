@@ -8,6 +8,9 @@ let transporter = nodemailer.createTransport({
     auth: {
         user: AUTH_EMAIL,
         pass: AUTH_PASS
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 
 })
@@ -15,7 +18,7 @@ let transporter = nodemailer.createTransport({
 //test transporter
 transporter.verify((error, success) => {
     if (error) {
-        console.log(error,"hello");
+        console.log(error.message,"hello");
        throw error
     } else {
         console.log("transporter working fine");
