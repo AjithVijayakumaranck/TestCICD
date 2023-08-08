@@ -1,0 +1,211 @@
+.contact_wrapper {
+  padding: 3rem 4rem;
+}
+@media (max-width: 550px) {
+  .contact_wrapper {
+    padding: 2rem 1rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .contact_wrapper {
+    padding: 3rem 2rem;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .contact_wrapper {
+    padding: 3rem;
+  }
+}
+.contact_wrapper .container {
+  width: 100%;
+  padding: 0 10px;
+}
+.contact_wrapper .container .row {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 550px) {
+  .contact_wrapper .container .row {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .contact_wrapper .container .row {
+    flex-direction: column;
+  }
+}
+.contact_wrapper .container .row .left,
+.contact_wrapper .container .row .right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 10px;
+}
+.contact_wrapper .container .row .left .title,
+.contact_wrapper .container .row .right .title {
+  margin-bottom: 2rem;
+}
+.contact_wrapper .container .row .left .title h2,
+.contact_wrapper .container .row .right .title h2 {
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.contact_wrapper .container .row .left .title p,
+.contact_wrapper .container .row .right .title p {
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Poppins";
+  letter-spacing: 0;
+  color: #777;
+}
+.contact_wrapper .container .row .left .row,
+.contact_wrapper .container .row .right .row {
+  display: flex;
+  width: 100%;
+}
+.contact_wrapper .container .row .left .row .col,
+.contact_wrapper .container .row .right .row .col {
+  padding: 0 10px;
+  display: flex;
+  flex: 1;
+}
+.contact_wrapper .container .row .left .row .col .cont_info,
+.contact_wrapper .container .row .right .row .col .cont_info {
+  margin-bottom: 2rem;
+  display: block;
+}
+.contact_wrapper .container .row .left .row .col .cont_info h3,
+.contact_wrapper .container .row .right .row .col .cont_info h3 {
+  margin-top: 0.5rem;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  color: #333333;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list {
+  max-width: 250px;
+  list-style: none;
+  margin-right: 1.5rem;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list li,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list li {
+  margin-bottom: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list li i,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list li i {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #046BD2;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list li span,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list li span {
+  font-size: 1rem;
+  font-weight: 300;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list li div,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list li div {
+  display: flex;
+  flex-direction: column;
+}
+.contact_wrapper .container .row .left .row .col .cont_info .cont_list li div span,
+.contact_wrapper .container .row .right .row .col .cont_info .cont_list li div span {
+  font-size: 1rem;
+  font-weight: 300;
+}
+.contact_wrapper .container .row .left .main_row,
+.contact_wrapper .container .row .right .main_row {
+  margin-bottom: 2rem;
+}
+.contact_wrapper .container .row .left .main_row form,
+.contact_wrapper .container .row .right .main_row form {
+  display: block;
+}
+.contact_wrapper .container .row .left .main_row form .row,
+.contact_wrapper .container .row .right .main_row form .row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.contact_wrapper .container .row .left .main_row form .row .col,
+.contact_wrapper .container .row .right .main_row form .row .col {
+  padding: 0;
+  display: flex;
+  flex: 1;
+}
+.contact_wrapper .container .row .left .main_row form .row .col input,
+.contact_wrapper .container .row .right .main_row form .row .col input {
+  width: 100%;
+  height: 40px;
+  padding: 0.2rem 2rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 300;
+  color: #777;
+  background-color: #fafafa;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  transition: all 0.3s;
+  box-shadow: none;
+  outline: none;
+}
+.contact_wrapper .container .row .left .main_row form .row .col input:focus,
+.contact_wrapper .container .row .right .main_row form .row .col input:focus {
+  border: 1px solid #046BD2;
+}
+.contact_wrapper .container .row .left .main_row form .row textarea,
+.contact_wrapper .container .row .right .main_row form .row textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 1rem 2rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #777;
+  background-color: #fafafa;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  transition: all 0.3s;
+  box-shadow: none;
+  outline: none;
+}
+.contact_wrapper .container .row .left .main_row form .row textarea:focus,
+.contact_wrapper .container .row .right .main_row form .row textarea:focus {
+  border: 1px solid #046BD2;
+}
+.contact_wrapper .container .row .left .main_row form .row button,
+.contact_wrapper .container .row .right .main_row form .row button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.2;
+  min-width: 170px;
+  border-radius: 5px;
+  white-space: normal;
+  transition: all 0.3s;
+  color: #046BD2;
+  background-color: #fff;
+  border: 1px solid #046BD2;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+}
+.contact_wrapper .container .row .left .main_row form .row button i,
+.contact_wrapper .container .row .right .main_row form .row button i {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}/*# sourceMappingURL=index.module.css.map */

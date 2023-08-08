@@ -1,0 +1,104 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+.Registration_wrapper {
+    margin-top: 80px;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form_wrapper {
+        box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+        width: 35rem;
+        min-height: 20rem;
+        padding: 20px;
+
+        @include breakpoint(md) {
+            width: 100vw;
+            box-shadow: none;
+        }
+
+        @include mediumScreen {
+            width: 30rem;
+            min-height: 20rem;
+        }
+
+
+
+        .left_section {
+            width: 100%;
+
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-radius: 7px;
+
+            @include breakpoint(md) {}
+
+            .reset_Details {
+                h1 {
+                    padding: 2px;
+                    color: $secondary_color;
+                    font-size: 20px;
+                }
+
+                p {
+                    padding: 10px 0px;
+                    font-size: 12px;
+                }
+
+            }
+
+            form {
+
+                .input_div {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px 0px;
+                    gap: 5px;
+
+                    input {
+                        border: none;
+                        outline: none;
+                        background-color: $base_color3;
+                        padding: 12px 10px;
+                        border-radius: 5px;
+                    }
+
+                    p {
+                        color: red;
+                        font-size: 12px;
+                    }
+
+                    label {
+                        font-size: 12px;
+                    }
+                }
+
+                button {
+                    cursor: pointer;
+                    margin-top: 5px;
+                    background: $gradient_color;
+                    width: 100%;
+                    color: white;
+                    border: none;
+                    padding: 10px 0px;
+                    font-size: 15px;
+                    border-radius: 5px;
+
+                    &:hover {
+                        background-color: $secondary_color;
+                    }
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+}

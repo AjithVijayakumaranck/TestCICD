@@ -1,0 +1,77 @@
+.location_wrapper {
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  top: 2.5rem;
+  z-index: 999;
+  background-color: white;
+  width: 13rem;
+  border-radius: 8px;
+  padding: 5px 0px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+}
+@media (max-width: 550px) {
+  .location_wrapper {
+    top: 1.5rem;
+    right: 10px;
+  }
+}
+.location_wrapper .search {
+  width: 100%;
+}
+.location_wrapper .search input {
+  margin: 0px 5px;
+  border: 2px solid #046BD2;
+  width: 100%;
+  outline: none;
+  height: 2rem;
+  border-radius: 6px;
+  padding: 2px 5px;
+}
+.location_wrapper .currentLocation {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px 10px;
+}
+.location_wrapper .currentLocation div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.location_wrapper .currentLocation div h3 {
+  font-size: 12px;
+}
+.location_wrapper .currentLocation div p {
+  font-size: 10px;
+}
+.location_wrapper .recentLocations {
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  width: 100%;
+}
+.location_wrapper .recentLocations h3 {
+  margin: 0px 5px;
+  font-size: 14px;
+}
+.location_wrapper .recentLocations div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.location_wrapper .recentLocations div .eachLoc:hover {
+  background-color: #f8f8f8;
+}
+.location_wrapper .recentLocations div .eachLoc h4 {
+  margin: 4px 5px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 3;
+}/*# sourceMappingURL=index.module.css.map */

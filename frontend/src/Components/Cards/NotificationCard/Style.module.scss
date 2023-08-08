@@ -1,0 +1,56 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+
+
+/* Notification Card */
+
+
+.alert_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        padding: 1rem 0;
+        margin-bottom: .5rem;
+        border-bottom: 1px solid $base-color;
+        cursor: pointer;
+
+        @include breakpoint(md) {
+            height: 50px;
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #fff;
+            object-fit: contain;
+
+            @include breakpoint(md) {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        h4 {
+            padding: 0 2rem;
+            text-align: start;
+            font-size: 1rem;
+            font-weight: 400;
+
+            @include breakpoint(md) {
+                font-size: 12px;
+            }
+        }
+    }
+
+}
+
+/* End Notification Card */

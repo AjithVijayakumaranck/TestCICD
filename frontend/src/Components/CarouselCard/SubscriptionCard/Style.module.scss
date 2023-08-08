@@ -1,0 +1,230 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+
+    .item_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+
+        @include breakpoint(md) {}
+
+        .wrapper {
+            width: 300px;
+            min-height: 420px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 3px solid $base-color3;
+            margin: 10px;
+            padding: 20px;
+
+            @include breakpoint(md) {
+                padding: 20px;
+            }
+
+            @include mediumScreen {
+                padding: 20px;
+            }
+
+
+        
+            .top {
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                border-bottom: 2px solid $base-color4;
+
+                .row1 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 10px 0;
+
+                    h3 {
+                        font-size: 18px;
+                        font-weight: 600;
+
+                        @include breakpoint(md) {
+                            font-size: 14px;
+                        }
+
+                        @include mediumScreen {}
+                    }
+
+                    h5 {
+                        padding: 5px 10px;
+                        background-color: $primary_color;
+                        border-radius: 25px;
+                        color: #fff;
+                        font-size: 12px;
+                        font-weight: 300;
+
+                        @include breakpoint(md) {
+                            font-size: 10px;
+                        }
+                    }
+                }
+
+                .row2 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    margin: 10px 0;
+                    padding: 0 10px;
+
+                    h1 {
+                        font-size: 38px;
+                        color: $primary_color;
+
+                        @include breakpoint(md) {
+                            font-size: 28px;
+                        }
+                    }
+
+                    span {
+                        font-size: 38px;
+                        font-weight: 900;
+                        margin: 0 5px;
+
+                        @include breakpoint(md) {
+                            font-size: 28px;
+                        }
+                    }
+
+                    h4 {
+                        font-size: 12px;
+                        color: $base-color2;
+
+                        @include breakpoint(md) {
+                            font-size: 10px;
+                        }
+                    }
+
+                }
+
+                .row3 {
+                    padding: 5px 10px;
+
+                    p {
+                        font-size: 14px;
+                        padding: 5px 10px;
+                        border-radius: 25px;
+                        background-color: $base-color3;
+                        width: fit-content;
+                    }
+                }
+
+                .row4 {
+                    margin: 20px 0;
+
+                    button {
+                        width: 100%;
+                        padding: 10px 0;
+                        background-color: $primary_color;
+                        color: #fff;
+                        border: none;
+                        border-radius: 25px;
+                        font-size: 16px;
+                        font-weight: 200;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .bottom {
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+
+
+                .title {
+                    margin: 10px 0;
+
+                    h2 {
+                        font-size: 16px;
+
+                    }
+                }
+
+                .row {
+                    display: flex;
+                    flex-direction: column;
+
+                    .item {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        border-top: 1px solid $base-color4;
+                        padding: 10px;
+
+                        span {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: $primary_color;
+                            border: 2px solid $primary_color;
+                            border-radius: 50%;
+                        }
+
+                        p {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+            }
+
+
+
+        }
+    }
+
+
+/*----- control btn -------*/
+.control_btn {
+
+    .next,
+    .prev {
+        position: absolute;
+        top: 45%;
+        width: 35px;
+        height: 50px;
+        line-height: 60px;
+        background: #ffffff36;
+        border-radius: 5px;
+        border: none;
+        transform: 0.5s;
+        z-index: 5;
+
+
+        i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            transition: 0.5s;
+            color: #111;
+            cursor: pointer;
+
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            i {
+                color: #111;
+            }
+        }
+    }
+
+    .prev {
+        left: -20px;
+    }
+
+    .next {
+        right: -20px;
+    }
+}
+
+/*----- control btn -------*/

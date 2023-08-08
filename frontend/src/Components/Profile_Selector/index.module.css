@@ -1,0 +1,82 @@
+.option_wrapper {
+  position: absolute;
+  top: 2.6rem;
+  right: -5px;
+  margin-top: 25px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+  border-radius: 5px;
+  z-index: 9999;
+}
+.option_wrapper:after {
+  content: " ";
+  position: absolute;
+  right: 5%;
+  top: -7px;
+  border-top: none;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #fff;
+}
+.option_wrapper .navigation {
+  text-decoration: none;
+  color: #111;
+  width: 100%;
+}
+.option_wrapper .box {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  min-width: 12rem;
+  border-radius: 8px;
+  padding: 5px;
+  position: relative;
+}
+.option_wrapper .box div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.option_wrapper .box div .eachopt {
+  border-bottom: 1px solid lightgrey;
+}
+.option_wrapper .box div .eachopt,
+.option_wrapper .box div .logout {
+  padding: 5px 0;
+}
+.option_wrapper .box div .eachopt:hover,
+.option_wrapper .box div .logout:hover {
+  background-color: #f8f8f8;
+}
+.option_wrapper .box div .eachopt h4,
+.option_wrapper .box div .logout h4 {
+  margin: 4px 10px;
+  font-size: 13px;
+  font-weight: 3;
+  cursor: pointer;
+}
+.option_wrapper .box div .User_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid lightgrey;
+}
+.option_wrapper .box div .User_wrapper .profile {
+  aspect-ratio: 1;
+  width: 60px;
+  height: 40px;
+  margin: 0 10px;
+  border-radius: 50%;
+  border: 1px solid #046BD2;
+  overflow: hidden;
+}
+.option_wrapper .box div .User_wrapper .profile img {
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=index.module.css.map */

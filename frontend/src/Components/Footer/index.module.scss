@@ -1,0 +1,147 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.Container {
+    background-color: #111;
+    padding: 40px 60px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    @include breakpoint(md) {
+        padding: 40px 10px;
+    }
+
+    @include mediumScreen {
+        padding: 40px 20px;
+    }
+
+    .navigation {
+        text-decoration: none;
+        color: #111;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 15px;
+        width: 100%;
+        margin-bottom: 1rem;
+
+        @include breakpoint(md) {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+
+        }
+
+        @include mediumScreen {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 15px;
+
+        }
+
+        .box {
+            transition: 0.5s;
+            padding: 0 10px;
+            width: 100%;
+
+            @include breakpoint(md) {
+                width: 100%;
+                padding: 0 10px;
+            }
+
+            @include mediumScreen {
+                width: 100%;
+                padding: 0 10px;
+
+            }
+
+
+
+            h1 {
+                margin-bottom: 30px;
+                color: $primary_color;
+                font-weight: 800;
+                font-style: normal;
+
+                @include breakpoint(md) {
+                    font-weight: 900;
+                    font-size: larger;
+                }
+            }
+
+
+            p {
+                font-size: 14px;
+                font-weight: 300;
+                color: #fff;
+                margin-bottom: 20px;
+
+                @include breakpoint(md) {
+                    font-size: 12px
+                }
+            }
+
+            h2 {
+                margin-bottom: 20px;
+
+                @include breakpoint(md) {
+                    font-weight: 800;
+                    font-size: large;
+                }
+            }
+
+            li {
+                margin-bottom: 10px;
+                color: #fff;
+                list-style: none;
+                cursor: pointer;
+
+                @include breakpoint(md) {
+                    font-size: 12px
+                }
+            }
+        }
+    }
+
+    .bottom {
+        width: 100%;
+        padding-top: 1rem;
+        border-top: .1rem solid #666;
+
+        .bottomleft {
+            p {
+                font-size: 14px;
+
+                @include breakpoint(md) {
+                    font-size: 12px
+                }
+
+                .left {
+                    border-right: .1rem solid #666;
+                }
+
+                span {
+                    margin: .6rem;
+                    text-decoration: underline;
+                    cursor: pointer;
+
+                    i {
+                        margin-right: 0.6rem;
+                        font-style: normal;
+                        font-size: 14px;
+                        text-decoration: none;
+
+                        @include breakpoint(md) {
+                            font-size: 12px
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

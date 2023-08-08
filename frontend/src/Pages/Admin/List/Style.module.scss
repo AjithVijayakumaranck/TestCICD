@@ -1,0 +1,90 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+.list {
+    display: flex;
+    flex: 2;
+
+    .listContainer {
+        flex: 6;
+    }
+
+    .cellAction {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .viewButton {
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+            color: green;
+            border: 1px solid rgba(0, 0, 139, 0.596);
+            cursor: pointer;
+        }
+
+        .editButton {
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+            color: darkblue;
+            border: 1px solid rgba(0, 0, 139, 0.596);
+            cursor: pointer;
+        }
+
+        .deleteButton {
+            padding: 2px 5px;
+            border-radius: 5px;
+            text-align: center;
+            color: crimson;
+            border: 1px solid rgba(220, 20, 60, 0.6);
+            cursor: pointer;
+        }
+
+    }
+
+    .SquareImage {
+        margin: 5px;
+        object-fit: cover;
+    }
+
+    .RoundedImage {
+        border-radius: 100%;
+        margin: 5px;
+        object-fit: cover;
+    }
+
+    .optionsContainer {
+        display: flex;
+        gap: 8px;
+    }
+
+    .viewButton {
+        padding: 5px 5px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: green;
+        border: 1px solid green;
+        cursor: pointer;
+    }
+
+    .editButton {
+        padding: 5px 5px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: darkblue;
+        border: 1px solid rgba(0, 0, 139, 0.596);
+        cursor: pointer;
+    }
+
+    .deleteButton {
+        padding: 5px 5px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        color: crimson;
+        border: 1px solid rgba(220, 20, 60, 0.6);
+        cursor: pointer;
+    }
+}

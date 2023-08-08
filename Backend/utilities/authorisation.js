@@ -26,6 +26,7 @@ const authoriseJwt =async (req,res,next)=>{
         });
     }
 }
+
 // const authoriseJwt =async (req,res,next)=>{
 //     const token =await req.headers.authorization.split(' ')[1] 
 //     if (!token) {

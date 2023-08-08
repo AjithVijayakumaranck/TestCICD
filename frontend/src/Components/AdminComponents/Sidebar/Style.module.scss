@@ -1,0 +1,124 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+.sidebar {
+    flex: 1.5;
+    min-height: 100vh;
+    //background-color: #fff;
+    border-right: 2px solid $base_color3 ;
+
+
+    @include breakpoint(md) {
+        flex: 2.5;
+    }
+
+    @include mediumScreen {
+        flex: 2.5;
+    }
+
+    .navigation {
+        text-decoration: none;
+        color: #111;
+        background-color: #111;
+    }
+
+    .top {
+        height: 70px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: $primary_color;
+        }
+    }
+
+    hr {
+        height: 0;
+        border: 1px solid $base_color3;
+    }
+
+    .center {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+
+            .active {
+                width: 100%;
+                color: #fff;
+                border-radius: 3px;
+                background: #3f83d1f1;
+            }
+
+            li {
+                display: flex;
+                align-items: center;
+                padding: 10px 0;
+                gap: 10px;
+                cursor: pointer;
+
+                &:hover {
+                    width: 100%;
+                    background-color: $base_color3;
+                    color: #111;
+                    border-radius: 3px;
+                }
+
+                .active {
+                    width: 100%;
+                    color: #fff;
+                    border-radius: 3px;
+                    background: #3f83d1f1;
+                }
+
+                .icons {
+                    font-size: 18px;
+                    padding-left: 10px;
+                    // color: $primary_color;
+                }
+
+                span {
+                    font-size: 16px;
+                    font-weight: 500;
+                    // color: $base_color2;
+                    margin-left: 5px;
+
+                }
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        .color_option {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            border: 1px solid $base_color2;
+            cursor: pointer;
+            margin: 5px;
+
+            &:nth-child(1) {
+                background-color: #fff;
+            }
+
+            &:nth-child(2) {
+                background-color: #111;
+            }
+
+        }
+    }
+}

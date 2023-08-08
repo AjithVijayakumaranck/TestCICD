@@ -1,0 +1,54 @@
+.items {
+  margin: 20px 40px;
+}
+@media (max-width: 550px) {
+  .items {
+    margin: 10px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .items {
+    margin: 10px;
+  }
+}
+
+/*----- control btn -------*/
+.control_btn .next,
+.control_btn .prev {
+  position: absolute;
+  top: 45%;
+  width: 35px;
+  height: 50px;
+  line-height: 60px;
+  background: rgba(255, 255, 255, 0.2117647059);
+  border-radius: 5px;
+  border: none;
+  transform: 0.5s;
+  z-index: 5;
+}
+.control_btn .next i,
+.control_btn .prev i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  transition: 0.5s;
+  color: #111;
+  cursor: pointer;
+}
+.control_btn .next:hover,
+.control_btn .prev:hover {
+  cursor: pointer;
+}
+.control_btn .next:hover i,
+.control_btn .prev:hover i {
+  color: #111;
+}
+.control_btn .prev {
+  left: -20px;
+}
+.control_btn .next {
+  right: -20px;
+}
+
+/*----- control btn -------*//*# sourceMappingURL=Style.module.css.map */

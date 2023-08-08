@@ -1,0 +1,70 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.productwrapper {
+    width: 100%;
+    background-color: #f8f8f8;
+
+    .container {
+        margin: 4rem 4rem;
+        display: block;
+        padding: 0 20px;
+
+        @include breakpoint(md) {
+            margin: 0 0;
+            padding: 0 10px;
+        }
+
+        @include mediumScreen {
+            margin: 0 1rem;
+        }
+
+        .heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: .5rem 0;
+            border-bottom: 2px solid #ebebeb;
+
+            .left{
+                h2{
+                    color: $base-color5;
+                    font-weight: 600;
+                }
+            }
+
+            .right{
+                span{
+                    cursor: pointer;
+                    color: $primary_color;
+                }
+            }
+        }
+
+        .cardWrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            place-items: center;
+            place-content: center;
+            gap: 20px;
+
+
+            @include breakpoint(md) {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 20px;
+            }
+
+            @include mediumScreen {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            @include extraMediumScreen{
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+            @include LargeScreen {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    }
+}

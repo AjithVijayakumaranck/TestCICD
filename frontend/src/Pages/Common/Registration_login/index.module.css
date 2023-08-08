@@ -1,0 +1,18 @@
+.Registration_wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Registration_wrapper .form_wrapper {
+  box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+  background-color: aliceblue;
+  width: 55rem;
+  min-height: 30rem;
+}
+@media (max-width: 550px) {
+  .Registration_wrapper .form_wrapper {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}/*# sourceMappingURL=index.module.css.map */

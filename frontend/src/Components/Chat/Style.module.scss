@@ -1,0 +1,922 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.main_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    .container {
+        width: 100%;
+        height: 32rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 5px;
+        overflow-y: hidden;
+
+        @include breakpoint(md) {
+            width: 100%;
+            height: 30rem;
+        }
+
+        @include mediumScreen {
+            width: 100%;
+        }
+
+        @include LargeScreen {}
+
+
+        .chat_container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            border-radius: 5px;
+
+            @include breakpoint(md) {
+                display: none;
+            }
+
+            @include mediumScreen {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            @include LargeScreen {}
+
+
+
+            .Left_container {
+                width: 30%;
+                background-color: #fff;
+                padding: 5px;
+                border-right: 2px solid $base-color3;
+                border-radius: 5px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+                box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+
+
+                @include mediumScreen {
+                    min-width: 30%;
+                }
+
+                @include LargeScreen {}
+
+                .title_wrapper {
+                    width: 100%;
+                    padding: 10px 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    background-color: $primary-color;
+                    color: white;
+
+                    h3 {
+                        padding: 10px 20px;
+                    }
+                }
+
+
+                .clients {
+                    width: 100%;
+                    border-bottom: 2px solid $base-color3;
+                    cursor: pointer;
+
+
+                    .conversation {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 5px 0;
+
+                        &:hover {
+                            background-color: $base-color3;
+                        }
+
+                        .left {
+                            width: 45px;
+                            height: 45px;
+                            padding: 5px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+                        }
+
+                        .right {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+
+                            h4 {
+                                padding: 0 10px;
+                                font-weight: normal;
+                            }
+
+                            h6 {
+                                padding: 0 10px;
+                                font-size: 12px;
+                                text-align: start;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            .Right_container {
+                width: 70%;
+                height: 100%;
+                background-color: #fff;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: row;
+                -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+                box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+
+                @include mediumScreen {
+                    width: 70%;
+                }
+
+                @include LargeScreen {}
+
+                .chat_wrapper {
+                    width: 100%;
+                    //padding: 10px;
+                    position: relative;
+                    overflow: hidden;
+
+                    .empty {
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .header {
+                        background-color: #fff;
+                        height: 60px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 0 20px;
+                        border: 2px solid $base-color3;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+
+                        div {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 20px;
+
+                            img {
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+
+                            h4 {
+                                font-size: 14px;
+
+                            }
+                        }
+                    }
+
+                    .messages {
+                        width: 100%;
+                        max-height: calc(100% - 130px);
+                        height: calc(100% - 120px);
+                        background-color: $base-color4;
+                        overflow: auto;
+
+                        .right {
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-end;
+                            flex-direction: column;
+                            padding: 10px;
+                            overflow: hidden;
+
+                            .rightofferMsg {
+                                background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                                color: $base-color;
+                                min-width: 120px;
+                                height: 80px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;
+
+                                p {
+                                    font-size: 24px;
+                                    font-weight: 900;
+                                }
+                            }
+
+                            .top {
+                                background-color: $base-color;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: flex-end;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+
+                                p {
+                                    display: flex;
+                                    flex-direction: column;
+                                    flex-wrap: wrap;
+                                    font-size: 14px;
+                                }
+                            }
+
+                            .top,
+                            .rightofferMsg {
+                                max-width: 80%;
+                                padding: 10px;
+                                border-radius: 10px 10px 0px 10px;
+                                box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+                            }
+
+                            .bottom {
+                                padding: 3px;
+                                font-size: 10px;
+                            }
+                        }
+
+
+                        .left {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: flex-start;
+                            flex-direction: column;
+                            padding: 10px;
+                            overflow: hidden;
+
+                            .leftofferMsg {
+                                background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                                color: $base-color;
+                                min-width: 120px;
+                                height: 80px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;
+
+                                p {
+                                    font-size: 24px;
+                                    font-weight: 900;
+                                }
+                            }
+
+                            .top {
+                                background-color: $base-color4;
+                                display: flex;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+
+                                p {
+                                    display: flex;
+                                    flex-direction: column;
+                                    flex-wrap: wrap;
+                                    font-size: 14px;
+                                }
+                            }
+
+                            .top,
+                            .leftofferMsg {
+
+                                max-width: 80%;
+                                padding: 10px;
+                                border-radius: 10px 10px 10px 0px;
+                                box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+                            }
+
+                            .bottom {
+                                padding: 3px;
+                                font-size: 10px;
+                            }
+                        }
+                    }
+
+                    .offerbox {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        background-color: #fff;
+                        position: absolute;
+                        bottom: 55px;
+
+                        .left {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            width: 100%;
+                            padding: 0 10px;
+
+                            input {
+                                width: 70%;
+                                height: 2rem;
+                                font-size: 14px;
+                                padding: 5px 0px;
+                                outline: none;
+                                background: transparent;
+                                border: none;
+                                border-bottom: 2px solid $base-color4;
+
+                                &:focus {
+                                    outline: none;
+                                }
+
+                                &:-webkit-autofill {
+                                    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+                                    -webkit-text-fill-color: inherit !important;
+                                }
+
+                            }
+
+                            button {
+                                margin: 8px 0;
+                                width: 50px;
+                                height: 50px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                                color: #fff;
+                                font-size: 1rem;
+                                border: none;
+                                border-radius: 5px;
+                                outline: none;
+                                cursor: pointer;
+                            }
+
+                            .buttonInactive {
+                                margin: 8px 0;
+                                width: 50px;
+                                height: 50px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                background-color: $base-color2;
+                                color: #fff;
+                                font-size: 1rem;
+                                border: none;
+                                border-radius: 10%;
+                                outline: none;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .right {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                            width: 100%;
+
+                            span {
+                                padding: 20px;
+                                font-size: 18px;
+                                cursor: pointer;
+                            }
+                        }
+
+
+
+                    }
+
+                    .typebox {
+                        width: 100%;
+                        min-height: 50px;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        input {
+                            width: 70%;
+                            height: 100%;
+                            font-size: 14px;
+                            padding: 5px 10px;
+                            outline: none;
+                            white-space: nowrap;
+                            background: transparent;
+                            border: none;
+                            border-radius: 5px;
+
+                            &:focus {
+                                outline: none;
+                            }
+
+                            &:-webkit-autofill {
+                                -webkit-box-shadow: 0 0 0 1000px white inset !important;
+                                -webkit-text-fill-color: inherit !important;
+                            }
+
+                        }
+
+                        .offerbtn {
+                            margin: 5px;
+                            width: 120px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                            color: #fff;
+                            font-size: 1rem;
+                            border: none;
+                            border-radius: 5px;
+                            outline: none;
+                            cursor: pointer;
+
+                            span {
+                                font-size: 14px;
+                                text-align: center;
+                            }
+                        }
+
+                        button {
+                            margin: 8px 0;
+                            width: 60px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $primary-color;
+                            color: #fff;
+                            font-size: 2rem;
+                            border: none;
+                            border-radius: 10%;
+                            outline: none;
+                            cursor: pointer;
+
+                        }
+
+                        .buttonInactive {
+                            margin: 8px 0;
+                            width: 60px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $base-color2;
+                            color: #fff;
+                            font-size: 2rem;
+                            border: none;
+                            border-radius: 10%;
+                            outline: none;
+                            cursor: pointer;
+
+                        }
+                    }
+
+                }
+            }
+
+        }
+    }
+
+
+    //---------mobileScreen-----------
+    .mobileScreen {
+        display: none;
+
+        @include breakpoint(md) {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: #fff;
+            width: 100%;
+            height: 580px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        @include mediumScreen {
+            display: none;
+        }
+
+        .Left_container {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 5px;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+
+            .title_wrapper {
+                width: 100%;
+                padding: 10px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                background-color: $primary-color;
+                color: #fff;
+
+                h3 {
+                    padding: 10px 20px;
+                }
+            }
+
+            .clients {
+                width: 100%;
+                border-bottom: 2px solid $base-color3;
+                border-radius: 5px;
+                cursor: pointer;
+
+                .conversation {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    padding: 5px 0;
+
+                    &:hover {
+                        background-color: $base-color3;
+                    }
+
+                    .left {
+                        width: 45px;
+                        height: 45px;
+                        padding: 5px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .right {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+
+                        h4 {
+                            padding: 0 10px;
+                            font-weight: normal;
+                        }
+
+                        h6 {
+                            padding: 0 10px;
+                            font-size: 12px;
+                            text-align: start;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        .Right_container {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 5px 0;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+
+            .chat_wrapper {
+                width: 100%;
+                height: 100%;
+
+                .header {
+                    background-color: #fff;
+                    height: 60px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 20px;
+                    border: 2px solid $base-color3;
+                    border-top-right-radius: 5px;
+                    border-top-left-radius: 5px;
+
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 20px;
+
+                        img {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+
+                        h4 {
+                            font-size: 14px;
+
+                        }
+                    }
+                }
+
+                .messages {
+                    width: 100%;
+                    max-height: calc(100% - 130px);
+                    height: calc(100% - 120px);
+                    background-color: $base-color4;
+                    overflow: auto;
+
+                    .right {
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+                        flex-direction: column;
+                        padding: 10px;
+                        overflow: hidden;
+
+                        .rightofferMsg {
+                            background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                            color: $base-color;
+                            min-width: 100px;
+                            height: 60px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+
+                            p {
+                                font-size: 20px;
+                                font-weight: 700;
+                            }
+                        }
+
+                        .top {
+                            background-color: $base-color;
+                            display: flex;
+                            justify-content: flex-end;
+                            align-items: flex-end;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+
+                            p {
+                                display: flex;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+                                font-size: 14px;
+                            }
+                        }
+
+                        .top,
+                        .rightofferMsg {
+                            max-width: 80%;
+                            padding: 10px;
+                            border-radius: 10px 10px 0px 10px;
+                            box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+                        }
+
+                        .bottom {
+                            padding: 3px;
+                            font-size: 10px;
+                        }
+                    }
+
+
+                    .left {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        flex-direction: column;
+                        padding: 10px;
+                        overflow: hidden;
+
+                        .leftofferMsg {
+                            background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                            color: $base-color;
+                            min-width: 100px;
+                            height: 60px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            text-align: center;
+
+                            p {
+                                font-size: 20px;
+                                font-weight: 700;
+                            }
+
+                        }
+
+                        .top {
+                            background-color: $base-color4;
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: wrap;
+
+                            p {
+                                display: flex;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+                                font-size: 14px;
+                            }
+                        }
+
+                        .top,
+                        .leftofferMsg {
+                            max-width: 80%;
+                            padding: 10px;
+                            border-radius: 10px 10px 10px 0px;
+                            box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+                        }
+
+                        .bottom {
+                            padding: 3px;
+                            font-size: 10px;
+                        }
+                    }
+                }
+
+                //offerbox styling
+                .offerbox {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    background-color: #fff;
+                    position: absolute;
+                    bottom: 50px;
+
+                    .left {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        width: 100%;
+                        padding: 0 10px;
+
+                        input {
+                            width: 70%;
+                            height: 2rem;
+                            font-size: 14px;
+                            padding: 5px 0px;
+                            outline: none;
+                            background: transparent;
+                            border: none;
+                            border-bottom: 2px solid $base-color4;
+
+                            &:focus {
+                                outline: none;
+                            }
+
+                            &:-webkit-autofill {
+                                -webkit-box-shadow: 0 0 0 1000px white inset !important;
+                                -webkit-text-fill-color: inherit !important;
+                            }
+
+                        }
+
+                        button {
+                            margin: 8px 0;
+                            width: 50px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                            color: #fff;
+                            font-size: 1rem;
+                            border: none;
+                            border-radius: 5px;
+                            outline: none;
+                            cursor: pointer;
+                        }
+
+                        .buttonInactive {
+                            margin: 8px 0;
+                            width: 50px;
+                            height: 50px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: $base-color2;
+                            color: #fff;
+                            font-size: 1rem;
+                            border: none;
+                            border-radius: 10%;
+                            outline: none;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .right {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 100%;
+
+                        span {
+                            padding: 20px;
+                            font-size: 18px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                //offerbox styling end
+
+                //Typebox styling
+                .typebox {
+                    width: 100%;
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    input {
+                        width: 60%;
+                        height: 100%;
+                        font-size: 14px;
+                        padding: 5px 10px;
+                        outline: none;
+                        white-space: nowrap;
+                        background: transparent;
+                        border: none;
+                        border-radius: 5px;
+
+                        &:focus {
+                            outline: none;
+                        }
+
+                        &:-webkit-autofill {
+                            -webkit-box-shadow: 0 0 0 1000px white inset !important;
+                            -webkit-text-fill-color: inherit !important;
+                        }
+
+                    }
+
+                    .offerbtn {
+                        margin: 5px;
+                        width: 120px;
+                        height: 40px;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        background: linear-gradient(142deg, rgb(3, 116, 208, 1) 10%, rgb(0, 239, 189, 1) 100%);
+                        color: #fff;
+                        font-size: 1rem;
+                        border: none;
+                        border-radius: 5px;
+                        outline: none;
+                        cursor: pointer;
+
+                        span {
+                            font-size: 12px;
+                            text-align: center;
+                        }
+                    }
+
+                    button {
+                        margin: 8px 0;
+                        width: 50px;
+                        height: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $primary-color;
+                        color: #fff;
+                        font-size: 1rem;
+                        border: none;
+                        border-radius: 10%;
+                        outline: none;
+                        cursor: pointer;
+                    }
+
+                    .buttonInactive {
+                        margin: 8px 0;
+                        width: 50px;
+                        height: 40px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: $base-color2;
+                        color: #fff;
+                        font-size: 1rem;
+                        border: none;
+                        border-radius: 10%;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                }
+
+                //type box end
+
+            }
+        }
+    }
+}

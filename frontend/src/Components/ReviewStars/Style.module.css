@@ -1,0 +1,24 @@
+.Rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+@media (max-width: 550px) {
+  .Rating {
+    font-size: 14px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Rating {
+    font-size: 20px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .Rating {
+    font-size: 16px;
+  }
+}
+.Rating .ratingIcon {
+  color: goldenrod;
+}/*# sourceMappingURL=Style.module.css.map */

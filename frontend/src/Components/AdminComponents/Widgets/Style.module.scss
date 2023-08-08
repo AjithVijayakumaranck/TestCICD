@@ -1,0 +1,61 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+.widgets {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    height: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.57);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.57);
+
+    .left,
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .title {
+            font-size: 14px;
+            font-weight: bold;
+            color: $base_color2;
+        }
+
+        .counter {
+            font-size: 26px;
+            font-weight: 300;
+        }
+
+        .link {
+            width: max-content;
+            font-size: 12px;
+            border-bottom: 1px solid $base_color3;
+        }
+
+        .percentage {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: rgb(0, 199, 0);
+
+
+            &.positive {
+                color: green;
+            }
+
+            &.negative {
+                color: red;
+            }
+        }
+
+        .icon {
+            font-size: 18px;
+            padding: 5px;
+            background-color: $primary_color;
+            border-radius: 3px;
+            align-self: flex-end;
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+.widgets {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  height: 100px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.57);
+}
+.widgets .left,
+.widgets .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.widgets .left .title,
+.widgets .right .title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #373737;
+}
+.widgets .left .counter,
+.widgets .right .counter {
+  font-size: 26px;
+  font-weight: 300;
+}
+.widgets .left .link,
+.widgets .right .link {
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 12px;
+  border-bottom: 1px solid #f8f8f8;
+}
+.widgets .left .percentage,
+.widgets .right .percentage {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(0, 199, 0);
+}
+.widgets .left .percentage.positive,
+.widgets .right .percentage.positive {
+  color: green;
+}
+.widgets .left .percentage.negative,
+.widgets .right .percentage.negative {
+  color: red;
+}
+.widgets .left .icon,
+.widgets .right .icon {
+  font-size: 18px;
+  padding: 5px;
+  background-color: #046BD2;
+  border-radius: 3px;
+  align-self: flex-end;
+  color: #fff;
+}/*# sourceMappingURL=Style.module.css.map */

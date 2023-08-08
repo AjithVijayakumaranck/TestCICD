@@ -1,0 +1,783 @@
+.main_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.main_container .container {
+  width: 100%;
+  height: 32rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+  overflow-y: hidden;
+}
+@media (max-width: 550px) {
+  .main_container .container {
+    width: 100%;
+    height: 30rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .main_container .container {
+    width: 100%;
+  }
+}
+.main_container .container .chat_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+}
+@media (max-width: 550px) {
+  .main_container .container .chat_container {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .main_container .container .chat_container {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+.main_container .container .chat_container .Left_container {
+  width: 30%;
+  background-color: #fff;
+  padding: 5px;
+  border-right: 2px solid #f8f8f8;
+  border-radius: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .main_container .container .chat_container .Left_container {
+    min-width: 30%;
+  }
+}
+.main_container .container .chat_container .Left_container .title_wrapper {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #046BD2;
+  color: white;
+}
+.main_container .container .chat_container .Left_container .title_wrapper h3 {
+  padding: 10px 20px;
+}
+.main_container .container .chat_container .Left_container .clients {
+  width: 100%;
+  border-bottom: 2px solid #f8f8f8;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Left_container .clients .conversation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.main_container .container .chat_container .Left_container .clients .conversation:hover {
+  background-color: #f8f8f8;
+}
+.main_container .container .chat_container .Left_container .clients .conversation .left {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+}
+.main_container .container .chat_container .Left_container .clients .conversation .left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main_container .container .chat_container .Left_container .clients .conversation .right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.main_container .container .chat_container .Left_container .clients .conversation .right h4 {
+  padding: 0 10px;
+  font-weight: normal;
+}
+.main_container .container .chat_container .Left_container .clients .conversation .right h6 {
+  padding: 0 10px;
+  font-size: 12px;
+  text-align: start;
+}
+.main_container .container .chat_container .Right_container {
+  width: 70%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .main_container .container .chat_container .Right_container {
+    width: 70%;
+  }
+}
+.main_container .container .chat_container .Right_container .chat_wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .empty {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .header {
+  background-color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border: 2px solid #f8f8f8;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .header div img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .header div h4 {
+  font-size: 14px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages {
+  width: 100%;
+  max-height: calc(100% - 130px);
+  height: calc(100% - 120px);
+  background-color: lightgrey;
+  overflow: auto;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .rightofferMsg {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #ebebeb;
+  min-width: 120px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .rightofferMsg p {
+  font-size: 24px;
+  font-weight: 900;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .top {
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .top p {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .top,
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .rightofferMsg {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .right .bottom {
+  padding: 3px;
+  font-size: 10px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .leftofferMsg {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #ebebeb;
+  min-width: 120px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .leftofferMsg p {
+  font-size: 24px;
+  font-weight: 900;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .top {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .top p {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .top,
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .leftofferMsg {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .messages .left .bottom {
+  padding: 3px;
+  font-size: 10px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  position: absolute;
+  bottom: 55px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0 10px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left input {
+  width: 70%;
+  height: 2rem;
+  font-size: 14px;
+  padding: 5px 0px;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left input:focus {
+  outline: none;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left button {
+  margin: 8px 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .left .buttonInactive {
+  margin: 8px 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373737;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .offerbox .right span {
+  padding: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox input {
+  width: 70%;
+  height: 100%;
+  font-size: 14px;
+  padding: 5px 10px;
+  outline: none;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox input:focus {
+  outline: none;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox .offerbtn {
+  margin: 5px;
+  width: 120px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox .offerbtn span {
+  font-size: 14px;
+  text-align: center;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox button {
+  margin: 8px 0;
+  width: 60px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #046BD2;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .container .chat_container .Right_container .chat_wrapper .typebox .buttonInactive {
+  margin: 8px 0;
+  width: 60px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373737;
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .mobileScreen {
+  display: none;
+}
+@media (max-width: 550px) {
+  .main_container .mobileScreen {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    height: 580px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .main_container .mobileScreen {
+    display: none;
+  }
+}
+.main_container .mobileScreen .Left_container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 5px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+}
+.main_container .mobileScreen .Left_container .title_wrapper {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  background-color: #046BD2;
+  color: #fff;
+}
+.main_container .mobileScreen .Left_container .title_wrapper h3 {
+  padding: 10px 20px;
+}
+.main_container .mobileScreen .Left_container .clients {
+  width: 100%;
+  border-bottom: 2px solid #f8f8f8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Left_container .clients .conversation {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.main_container .mobileScreen .Left_container .clients .conversation:hover {
+  background-color: #f8f8f8;
+}
+.main_container .mobileScreen .Left_container .clients .conversation .left {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+}
+.main_container .mobileScreen .Left_container .clients .conversation .left img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main_container .mobileScreen .Left_container .clients .conversation .right {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.main_container .mobileScreen .Left_container .clients .conversation .right h4 {
+  padding: 0 10px;
+  font-weight: normal;
+}
+.main_container .mobileScreen .Left_container .clients .conversation .right h6 {
+  padding: 0 10px;
+  font-size: 12px;
+  text-align: start;
+}
+.main_container .mobileScreen .Right_container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px 0;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+}
+.main_container .mobileScreen .Right_container .chat_wrapper {
+  width: 100%;
+  height: 100%;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .header {
+  background-color: #fff;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border: 2px solid #f8f8f8;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .header div img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .header div h4 {
+  font-size: 14px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages {
+  width: 100%;
+  max-height: calc(100% - 130px);
+  height: calc(100% - 120px);
+  background-color: lightgrey;
+  overflow: auto;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .rightofferMsg {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #ebebeb;
+  min-width: 100px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .rightofferMsg p {
+  font-size: 20px;
+  font-weight: 700;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .top {
+  background-color: #ebebeb;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .top p {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .top,
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .rightofferMsg {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px 10px 0px 10px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .right .bottom {
+  padding: 3px;
+  font-size: 10px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .leftofferMsg {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #ebebeb;
+  min-width: 100px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .leftofferMsg p {
+  font-size: 20px;
+  font-weight: 700;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .top {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .top p {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .top,
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .leftofferMsg {
+  max-width: 80%;
+  padding: 10px;
+  border-radius: 10px 10px 10px 0px;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .messages .left .bottom {
+  padding: 3px;
+  font-size: 10px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  position: absolute;
+  bottom: 50px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0 10px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left input {
+  width: 70%;
+  height: 2rem;
+  font-size: 14px;
+  padding: 5px 0px;
+  outline: none;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left input:focus {
+  outline: none;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left button {
+  margin: 8px 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left .buttonInactive {
+  margin: 8px 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373737;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .offerbox .right span {
+  padding: 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox {
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox input {
+  width: 60%;
+  height: 100%;
+  font-size: 14px;
+  padding: 5px 10px;
+  outline: none;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox input:focus {
+  outline: none;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox .offerbtn {
+  margin: 5px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox .offerbtn span {
+  font-size: 12px;
+  text-align: center;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox button {
+  margin: 8px 0;
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #046BD2;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}
+.main_container .mobileScreen .Right_container .chat_wrapper .typebox .buttonInactive {
+  margin: 8px 0;
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #373737;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10%;
+  outline: none;
+  cursor: pointer;
+}/*# sourceMappingURL=Style.module.css.map */

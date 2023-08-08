@@ -1,0 +1,93 @@
+.Container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #fff;
+  top: 3rem;
+  width: 100%;
+  min-height: 3rem;
+  max-height: 16rem;
+  border: 1px solid #f8f8f8;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 999;
+}
+.Container .Search_wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.Container .Search_wrapper .recentSearch {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Container .Search_wrapper .recentSearch .eachItems {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
+}
+.Container .Search_wrapper .recentSearch .eachItems:hover {
+  background-color: #f8f8f8;
+}
+.Container .Search_wrapper .recentSearch .eachItems .left {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.Container .Search_wrapper .recentSearch .eachItems .left img {
+  height: 2.5rem;
+  width: 50px;
+  border-radius: 100%;
+}
+.Container .Search_wrapper .recentSearch .eachItems .left h4 {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0 5px;
+}
+.Container .Search_wrapper .recentSearch .eachItems .right {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.Container .Search_wrapper .recentSearch .eachItems .right span {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 18px;
+  margin: 0 5px;
+  font-weight: 700;
+}
+.Container .Search_wrapper .ShowButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.Container .Search_wrapper .ShowButton button {
+  width: 100%;
+  background-color: #046BD2;
+  color: #fff;
+  padding: 10px 0;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.Container .Search_wrapper .ShowButton button:hover {
+  background-color: #fff;
+  border: 1px solid #046BD2;
+  color: #046BD2;
+}/*# sourceMappingURL=index.module.css.map */

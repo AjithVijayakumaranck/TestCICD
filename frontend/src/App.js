@@ -1,30 +1,23 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './Components/Login/Login';
-import ResetPassword from './Components/ResetPassword/ResetPassword';
-import Explore from './Pages/Explore/Explore';
-import ForgotPassword from './Pages/ForgotPassword/ForgotPassword';
-import Home from './Pages/Home/Home';
-import Registration_login from './Pages/Registration_login/Registration_login';
+import { CategoryProviderProvider } from './Contexts/CategoryContext';
+import { UserContextProvider } from './Contexts/UserContext';
+import Routings from './Routes/Routes';
+
 
 function App() {
+
   return (
-   <div>
-       <ToastContainer position="top-right" autoClose={3000}
-       hideProgressBar={false} newestOnTop={false}
-        closeOnClick rtl={false} pauseOnHover={false}
-        theme="colored"/>
-    <Router>
-      <Routes>
-        <Route exact index element={<Home/>}/>
-        <Route path='/registration_login' element={<Registration_login/>}/>
-        <Route path='/forgotpassword' element={<ForgotPassword/>}/>
-        <Route path='/resetpassword' element={<ResetPassword/>}/>
-        <Route path='/explore/item/:id' element={<Explore/>}/>
-      </Routes>
-    </Router>
-   </div>
+
+    <CategoryProviderProvider>
+      <UserContextProvider>
+        
+        <div>
+          <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnHover={false} theme="colored" />
+          <Routings />
+        </div>
+      </UserContextProvider>
+    </CategoryProviderProvider>
   );
 }
 

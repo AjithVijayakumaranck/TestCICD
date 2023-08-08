@@ -1,0 +1,125 @@
+.home_container {
+  width: 100%;
+  margin-top: 5rem;
+}
+.home_container .Main_container {
+  display: flex;
+  gap: 0.2rem;
+  min-height: 510px;
+  overflow: hidden;
+  padding: 0 60px;
+}
+@media (max-width: 550px) {
+  .home_container .Main_container {
+    min-height: 510px;
+    padding: 0;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .home_container .Main_container {
+    min-height: 510px;
+    padding: 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .home_container .Main_container {
+    padding: 0;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .home_container .Main_container {
+    padding: 0 40px;
+  }
+}
+.home_container .Main_container .Left {
+  background-color: #f8f8f8;
+  width: 23%;
+}
+@media (max-width: 550px) {
+  .home_container .Main_container .Left {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .home_container .Main_container .Left {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .home_container .Main_container .Left {
+    display: none;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .home_container .Main_container .Left {
+    width: 30%;
+  }
+}
+.home_container .Main_container .Right {
+  width: 77%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+@media (max-width: 550px) {
+  .home_container .Main_container .Right {
+    width: 100%;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .home_container .Main_container .Right {
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 900px) {
+  .home_container .Main_container .Right {
+    width: 100%;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .home_container .Main_container .Right {
+    width: 70%;
+  }
+}
+.home_container .Main_container .Right .cardWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  margin-top: 0.2rem;
+  padding: 2rem 0;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 3rem 0 1rem 0;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn button:hover {
+  color: #046BD2;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn button .icon {
+  font-size: 20px;
+  font-weight: 900;
+}/*# sourceMappingURL=index.module.css.map */

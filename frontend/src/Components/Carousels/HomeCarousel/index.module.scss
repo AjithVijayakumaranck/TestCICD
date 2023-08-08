@@ -1,0 +1,44 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+.carouserl_wrap {
+    width: 100%;
+
+    /*----- control btn -------*/
+    .control_btn {
+
+        .next,
+        .prev {
+            position: absolute;
+            top: 40%;
+            width: 50px;
+            height: 50px;
+            line-height: 60px;
+            background-color: #6666665b;
+            border-radius: 50%;
+            border: none;
+            transform: 0.5s;
+            z-index: 5;
+
+
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+                transition: 0.5s;
+                color: #fff;
+            }
+
+        }
+
+        .prev {
+            left: 1%;
+        }
+
+        .next {
+            right: 1%;
+        }
+    }
+}
+
+/*----- control btn -------*/

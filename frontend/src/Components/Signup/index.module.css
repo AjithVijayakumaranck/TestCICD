@@ -1,11 +1,11 @@
 .form_container {
   display: flex;
-  min-height: 100vh;
+  min-height: 30rem;
   overflow: hidden;
 }
 @media (max-width: 550px) {
   .form_container {
-    min-height: 30rem;
+    min-height: 100vh;
     transition: 0.5s ease-in-out;
   }
 }
@@ -16,6 +16,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 .form_container .left_section h1 {
   color: #046BD2;
@@ -47,12 +49,11 @@
 .form_container .left_section form .input_div {
   padding: 2px;
   display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 @media (max-width: 550px) {
   .form_container .left_section form .input_div {
-    flex-direction: row;
+    flex-direction: column;
     transition: 0.3s ease-all;
   }
 }
@@ -80,7 +81,7 @@
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
   padding: 15px 10px;
-  background-color: #F3F3F3;
+  background-color: #ebebeb;
 }
 .form_container .left_section form .input_div div label {
   font-size: 12px;
@@ -148,16 +149,30 @@
   font-size: 15px;
 }
 .form_container .left_section .Google_authentication button:hover {
-  background-color: #F3F3F3;
+  background-color: #ebebeb;
   border-radius: 50px;
 }
 .form_container .right_section {
-  display: none;
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #10E3C2;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 @media (max-width: 550px) {
   .form_container .right_section {
-    width: 45%;
-    display: flex;
+    display: none;
   }
+}
+.form_container .right_section .img_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_container .right_section .img_wrapper img {
+  width: 250px;
+  height: 400px;
 }/*# sourceMappingURL=index.module.css.map */

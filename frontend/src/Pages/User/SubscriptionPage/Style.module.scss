@@ -1,0 +1,99 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+
+.mainContainer {
+    margin-top: 90px;
+    overflow: hidden;
+
+    .Container {
+        display: flex;
+        flex-direction: column;
+        min-height: 610px;
+
+        .top {
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @include breakpoint(md) {
+                padding: 20px;
+                flex-direction: column;
+            }
+
+            @include mediumScreen {
+                padding: 20px;
+                flex-direction: column;
+            }
+
+            .top_row {
+                padding: 20px 60px;
+
+                @include breakpoint(md) {
+                    padding: 20px;
+                }
+
+                @include mediumScreen {
+                    padding: 20px;
+                }
+
+                h1 {
+                    font-size: 28px;
+                    font-weight: 600;
+                }
+            }
+
+            .bottom_row {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 20px 60px;
+                border-radius: 5px;
+                width: fit-content;
+
+                @include breakpoint(md) {
+                    padding: 20px;
+                }
+
+                @include mediumScreen {
+                    padding: 20px;
+                }
+
+
+                .First {
+                    background-color: $primary_color;
+                    color: #fff;
+                }
+
+                .Second {
+                    width: 3rem;
+                    background-color: $base-color4;
+                }
+
+                .First,
+                .Second {
+                    text-align: center;
+                    padding: 10px;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+
+                }
+
+            }
+
+        }
+
+        .bottom {
+            padding: 0 60px;
+
+            @include breakpoint(md) {
+                padding: 20px;
+            }
+        }
+
+
+    }
+
+}

@@ -1,0 +1,76 @@
+.Registration_wrapper {
+  margin-top: 80px;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Registration_wrapper .form_wrapper {
+  box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+  width: 35rem;
+  min-height: 20rem;
+  padding: 20px;
+}
+@media (max-width: 550px) {
+  .Registration_wrapper .form_wrapper {
+    width: 100vw;
+    box-shadow: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Registration_wrapper .form_wrapper {
+    width: 30rem;
+    min-height: 20rem;
+  }
+}
+.Registration_wrapper .form_wrapper .left_section {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 7px;
+}
+.Registration_wrapper .form_wrapper .left_section .reset_Details h1 {
+  padding: 2px;
+  color: #10E3C2;
+  font-size: 20px;
+}
+.Registration_wrapper .form_wrapper .left_section .reset_Details p {
+  padding: 10px 0px;
+  font-size: 12px;
+}
+.Registration_wrapper .form_wrapper .left_section form .input_div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+  gap: 5px;
+}
+.Registration_wrapper .form_wrapper .left_section form .input_div input {
+  border: none;
+  outline: none;
+  background-color: #f8f8f8;
+  padding: 12px 10px;
+  border-radius: 5px;
+}
+.Registration_wrapper .form_wrapper .left_section form .input_div p {
+  color: red;
+  font-size: 12px;
+}
+.Registration_wrapper .form_wrapper .left_section form .input_div label {
+  font-size: 12px;
+}
+.Registration_wrapper .form_wrapper .left_section form button {
+  cursor: pointer;
+  margin-top: 5px;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 10px 0px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+.Registration_wrapper .form_wrapper .left_section form button:hover {
+  background-color: #10E3C2;
+}/*# sourceMappingURL=style.module.css.map */

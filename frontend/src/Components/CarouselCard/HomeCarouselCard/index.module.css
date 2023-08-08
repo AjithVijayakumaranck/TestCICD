@@ -1,0 +1,19 @@
+.box {
+  padding: 0px 0;
+}
+.box .img_Container {
+  width: auto;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box .img_Container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}/*# sourceMappingURL=index.module.css.map */

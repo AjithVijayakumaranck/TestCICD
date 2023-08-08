@@ -1,0 +1,72 @@
+.newsletter {
+  padding: 3rem 4rem;
+  background-color: #046BD2;
+}
+@media (max-width: 550px) {
+  .newsletter {
+    padding: 2rem 1rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .newsletter {
+    padding: 3rem 2rem;
+  }
+}
+.newsletter .container {
+  width: 100%;
+  padding: 0 10px;
+}
+.newsletter .container .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 550px) {
+  .newsletter .container .row {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .newsletter .container .row {
+    flex-direction: column;
+  }
+}
+.newsletter .container .row .left {
+  display: flex;
+  align-items: center;
+  flex: 2;
+  padding: 0 10px;
+}
+@media (max-width: 550px) {
+  .newsletter .container .row .left {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .newsletter .container .row .left {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+}
+.newsletter .container .row .left p {
+  color: #fff;
+}
+.newsletter .container .row .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 0 10px;
+}
+.newsletter .container .row .right button {
+  background-color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  color: #046BD2;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+}/*# sourceMappingURL=index.module.css.map */

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import instance from "../../instance/AxiosInstance";
 import Style from "./index.module.css";
-
 import LoadingSpin from "react-loading-spin";
 import { toast } from "react-toastify";
 
+
+
 const Signup = ({ setLogin }) => {
 
-  const navigate = useNavigate()
+ 
 
   //authentication option
   const [otp, setOtp] = useState(false);
@@ -196,7 +197,7 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  const otp_validation = (e) => {};
+  const otp_validation = (e) => { };
 
   // submit handler and submit validation
 
@@ -209,7 +210,7 @@ const Signup = ({ setLogin }) => {
       setLoading(true);
       if (auth) {
         instance
-          .post("/registerphone", userData)
+          .post("/api/registerphone", userData)
           .then((response) => {
             setLoading(false);
             setOtp(true);
@@ -245,33 +246,33 @@ const Signup = ({ setLogin }) => {
       setLoading(true);
       auth
         ? instance
-            .post("api/verifyphone", otpDetails)
-            .then((response) => {
-              setLoading(false);
-              console.log(response,"helll");
-              setLogin(false)
-              setOtp(false)
-              toast.success("User Regitered")
-            })
-            .catch((error) => {
-              setLoading(false);
-              console.log(error,"helllllll");
-              setOtp(false)
-            })
+          .post("api/verifyphone", otpDetails)
+          .then((response) => {
+            setLoading(false);
+            console.log(response, "helll");
+            setLogin(false)
+            setOtp(false)
+            toast.success("User Regitered")
+          })
+          .catch((error) => {
+            setLoading(false);
+            console.log(error, "helllllll");
+            setOtp(false)
+          })
         : instance
-            .post("api/verifyemail", otpDetails)
-            .then((response) => {
-              setLoading(false);
-              console.log(response,"helloooo");
-              setLogin(false)
-              setOtp(false)
-              toast.success("User Regitered")
-            })
-            .catch((error) => {
-              setLoading(false);
-              console.log(error,"halllllooo");
-              setOtp(false)
-            });
+          .post("api/verifyemail", otpDetails)
+          .then((response) => {
+            setLoading(false);
+            console.log(response, "helloooo");
+            setLogin(false)
+            setOtp(false)
+            toast.success("User Regitered")
+          })
+          .catch((error) => {
+            setLoading(false);
+            console.log(error, "halllllooo");
+            setOtp(false)
+          });
     }
   };
 
@@ -286,7 +287,13 @@ const Signup = ({ setLogin }) => {
 
   return (
     <div className={Style.form_container}>
-      <div className={Style.right_section}></div>
+
+      <div className={Style.right_section}>
+        <div className={Style.img_wrapper}>
+          <img src="/Images/undraw.svg" alt="" />
+        </div>
+      </div>
+
       {otp ? (
         <div className={Style.left_section}>
           <h1>Lets Authenticate</h1>
@@ -294,11 +301,7 @@ const Signup = ({ setLogin }) => {
             We have sent you a One Time Password to your{" "}
             {auth ? "Phonenumber" : "Email"}
           </p>
-          <form
-            onSubmit={(e) => {
-              otpVerifyHandle(e);
-            }}
-          >
+          <form onSubmit={(e) => { otpVerifyHandle(e); }}>
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="OTP">Enter Your Otp here</label>
@@ -314,11 +317,7 @@ const Signup = ({ setLogin }) => {
               </div>
             </div>
             <button>
-              {loading ? (
-                <LoadingSpin size="20px" direction="alternate" width="4px" />
-              ) : (
-                "Signup"
-              )}
+              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Signup")}
             </button>
             <p className={Style.error_para}>{error.otp}</p>
           </form>
@@ -329,11 +328,7 @@ const Signup = ({ setLogin }) => {
             <h1>SIGNUP</h1>
             <p>Please provide your details to register on DealNBuy</p>
           </div>
-          <form
-            onSubmit={(e) => {
-              submitHandler(e);
-            }}
-          >
+          <form onSubmit={(e) => { submitHandler(e); }} >
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="Full_name">Full name</label>
@@ -368,13 +363,7 @@ const Signup = ({ setLogin }) => {
                 <div>
                   <label htmlFor="Phone Number">
                     Phonenumber{" "}
-                    <span
-                      onClick={() => {
-                        setAuth(false);
-                      }}
-                    >
-                      Using my email
-                    </span>
+                    <span onClick={() => { setAuth(false); }} > Using my email </span>
                   </label>
                   <input
                     required
@@ -394,13 +383,7 @@ const Signup = ({ setLogin }) => {
                 <div>
                   <label htmlFor="Email">
                     Email{" "}
-                    <span
-                      onClick={() => {
-                        setAuth(true);
-                      }}
-                    >
-                      Using my Phonenumber
-                    </span>
+                    <span onClick={() => { setAuth(true); }} > Using my Phonenumber </span>
                   </label>
                   <input
                     required
@@ -460,26 +443,12 @@ const Signup = ({ setLogin }) => {
                 <p>{error.confirmPassword}</p>
               </div>
             </div>
-            <button>
-              {loading ? (
-                <LoadingSpin size="20px" direction="alternate" width="4px" />
-              ) : (
-                "Continue"
-              )}
-            </button>
+            <button> {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Continue")} </button>
             <p className={Style.error_para}>{responseError}</p>
           </form>
           <div className={Style.additional_options}>
-            <p>
-              Already Have Account?
-              <Link
-                className={Style.navigation}
-                onClick={() => {
-                  setLogin(false);
-                }}
-              >
-                Login
-              </Link>
+            <p> Already Have Account?
+              <Link className={Style.navigation} onClick={() => { setLogin(false); }} > Login </Link>
             </p>
           </div>
         </div>

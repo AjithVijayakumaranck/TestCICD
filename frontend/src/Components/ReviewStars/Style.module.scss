@@ -1,0 +1,23 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.Rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+
+    @include breakpoint(md) {
+      font-size: 14px;
+    }
+
+    @include mediumScreen {
+       font-size: 20px;
+    }
+    @include LargeScreen {
+        font-size: 16px;
+    }
+
+    .ratingIcon {
+        color: goldenrod;
+    }
+}

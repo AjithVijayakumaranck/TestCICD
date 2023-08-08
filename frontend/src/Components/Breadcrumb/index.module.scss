@@ -1,0 +1,54 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.breadcrumb {
+    //width: 100%;
+    border-bottom: 0.1rem solid rgba(235, 235, 235, 0.55);
+
+    .container {
+        padding: 1.5rem 3rem;
+
+        .breadcrumb_wrap {
+            background-color: transparent;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 1.5;
+                letter-spacing: 0;
+                text-transform: capitalize;
+                margin-right: 5px;
+
+                span {
+                    display: flex;
+                    align-items: center;
+
+                    .navlink {
+                        text-decoration: none;
+                        color: $primary_color;
+                    }
+                }
+
+                .navlink {
+                    text-decoration: none;
+                    color: $primary_color;
+                }
+
+                i {
+                    font-size: 16px;
+                    font-weight: 400;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}

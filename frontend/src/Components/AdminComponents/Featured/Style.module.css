@@ -1,0 +1,28 @@
+.featured {
+  flex: 2;
+  padding: 10px;
+  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.57);
+  border-radius: 5px;
+}
+.featured .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.featured .top .title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.featured .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+.featured .bottom .featuredChart {
+  min-width: 100px;
+  min-height: 100px;
+}/*# sourceMappingURL=Style.module.css.map */

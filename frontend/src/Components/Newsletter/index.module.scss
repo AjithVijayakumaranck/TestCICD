@@ -1,0 +1,76 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.newsletter {
+    padding: 3rem 4rem;
+    background-color: $primary_color;
+
+    @include breakpoint(md) {
+        padding: 2rem 1rem;
+    }
+
+    @include mediumScreen {
+        padding: 3rem 2rem;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 10px;
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            @include breakpoint(md) {
+                flex-direction: column;
+            }
+
+            @include mediumScreen {
+                flex-direction: column;
+            }
+
+            @include LargeScreen {}
+
+            .left {
+                display: flex;
+                align-items: center;
+                flex: 2;
+                padding: 0 10px;
+
+                @include breakpoint(md) {
+                    flex: 1;
+                    margin-bottom: 1rem;
+                }
+
+                @include mediumScreen {
+                    flex: 1;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    color: #fff;
+                }
+            }
+
+            .right {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                padding: 0 10px;
+
+                button {
+                    background-color: #fff;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    padding: 10px 20px;
+                    color: $primary_color;
+                    border: none;
+                    border-radius: 25px;
+                    outline: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,458 @@
+.new {
+  width: 100%;
+  display: flex;
+}
+.new .newContainer {
+  flex: 6;
+}
+.new .newContainer .bottom,
+.new .newContainer .center,
+.new .newContainer .bottomTable {
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+}
+.new .newContainer .bottomTable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.new .newContainer .top,
+.new .newContainer .bottom,
+.new .newContainer .center,
+.new .newContainer .bottomTable {
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  display: flex;
+}
+.new .newContainer .top h1,
+.new .newContainer .bottom h1,
+.new .newContainer .center h1,
+.new .newContainer .bottomTable h1 {
+  color: lightgrey;
+  font-size: 20px;
+}
+.new .newContainer .top .left,
+.new .newContainer .bottom .left,
+.new .newContainer .center .left,
+.new .newContainer .bottomTable .left {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid lightgrey;
+}
+.new .newContainer .top .left img,
+.new .newContainer .bottom .left img,
+.new .newContainer .center .left img,
+.new .newContainer .bottomTable .left img {
+  width: 120px;
+  height: 120px;
+  margin-top: 20px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.new .newContainer .top .right,
+.new .newContainer .bottom .right,
+.new .newContainer .center .right,
+.new .newContainer .bottomTable .right {
+  flex: 2;
+  padding: 10px 20px;
+}
+.new .newContainer .top .right form,
+.new .newContainer .bottom .right form,
+.new .newContainer .center .right form,
+.new .newContainer .bottomTable .right form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+.new .newContainer .top .right form .formImg,
+.new .newContainer .bottom .right form .formImg,
+.new .newContainer .center .right form .formImg,
+.new .newContainer .bottomTable .right form .formImg {
+  width: 100%;
+  padding: 10px;
+}
+.new .newContainer .top .right form .formInput,
+.new .newContainer .bottom .right form .formInput,
+.new .newContainer .center .right form .formInput,
+.new .newContainer .bottomTable .right form .formInput {
+  width: 40%;
+}
+.new .newContainer .top .right form .formInput label,
+.new .newContainer .bottom .right form .formInput label,
+.new .newContainer .center .right form .formInput label,
+.new .newContainer .bottomTable .right form .formInput label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.new .newContainer .top .right form .formInput label span,
+.new .newContainer .bottom .right form .formInput label span,
+.new .newContainer .center .right form .formInput label span,
+.new .newContainer .bottomTable .right form .formInput label span {
+  color: red;
+}
+.new .newContainer .top .right form .formInput label .icon,
+.new .newContainer .bottom .right form .formInput label .icon,
+.new .newContainer .center .right form .formInput label .icon,
+.new .newContainer .bottomTable .right form .formInput label .icon {
+  cursor: pointer;
+}
+.new .newContainer .top .right form .formInput input,
+.new .newContainer .bottom .right form .formInput input,
+.new .newContainer .center .right form .formInput input,
+.new .newContainer .bottomTable .right form .formInput input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form .formInput select,
+.new .newContainer .bottom .right form .formInput select,
+.new .newContainer .center .right form .formInput select,
+.new .newContainer .bottomTable .right form .formInput select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form .featuresForm,
+.new .newContainer .bottom .right form .featuresForm,
+.new .newContainer .center .right form .featuresForm,
+.new .newContainer .bottomTable .right form .featuresForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  gap: 40px;
+}
+.new .newContainer .top .right form .featuresForm .formInput,
+.new .newContainer .bottom .right form .featuresForm .formInput,
+.new .newContainer .center .right form .featuresForm .formInput,
+.new .newContainer .bottomTable .right form .featuresForm .formInput {
+  width: 40%;
+}
+.new .newContainer .top .right form .featuresForm .featurebtn span,
+.new .newContainer .bottom .right form .featuresForm .featurebtn span,
+.new .newContainer .center .right form .featuresForm .featurebtn span,
+.new .newContainer .bottomTable .right form .featuresForm .featurebtn span {
+  padding: 10px 20px;
+  background-color: #046BD2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.new .newContainer .top .right form .formproperty,
+.new .newContainer .bottom .right form .formproperty,
+.new .newContainer .center .right form .formproperty,
+.new .newContainer .bottomTable .right form .formproperty {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 10px;
+}
+.new .newContainer .top .right form .formproperty .formWrapper,
+.new .newContainer .bottom .right form .formproperty .formWrapper,
+.new .newContainer .center .right form .formproperty .formWrapper,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput {
+  width: 30%;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput label,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput label,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput label,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label {
+  margin: 0 5px;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label span {
+  color: red;
+  border: none;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label .icon {
+  cursor: pointer;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .center .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect {
+  width: 15%;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .center .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label {
+  margin: 0 5px;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .center .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label span {
+  color: red;
+  border: none;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .center .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .newform,
+.new .newContainer .bottom .right form .formproperty .formWrapper .newform,
+.new .newContainer .center .right form .formproperty .formWrapper .newform,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  gap: 40px;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .bottom .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .center .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formInput {
+  width: 40%;
+}
+.new .newContainer .top .right form .formproperty .toggleBtn,
+.new .newContainer .bottom .right form .formproperty .toggleBtn,
+.new .newContainer .center .right form .formproperty .toggleBtn,
+.new .newContainer .bottomTable .right form .formproperty .toggleBtn {
+  width: 180px;
+  padding: 10px 20px;
+  border: 1px solid #046BD2;
+  background-color: #fff;
+  border-radius: 5px;
+  color: #046BD2;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.new .newContainer .top .right form .formproperty .propertyBtn,
+.new .newContainer .bottom .right form .formproperty .propertyBtn,
+.new .newContainer .center .right form .formproperty .propertyBtn,
+.new .newContainer .bottomTable .right form .formproperty .propertyBtn {
+  padding: 10px 20px;
+  border: none;
+  background-color: #046BD2;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.new .newContainer .top .right form .formBtn,
+.new .newContainer .bottom .right form .formBtn,
+.new .newContainer .center .right form .formBtn,
+.new .newContainer .bottomTable .right form .formBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.new .newContainer .top .right form .formBtn button,
+.new .newContainer .bottom .right form .formBtn button,
+.new .newContainer .center .right form .formBtn button,
+.new .newContainer .bottomTable .right form .formBtn button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #046BD2;
+  color: white;
+  font-weight: bold;
+  margin: 20px 0;
+  cursor: pointer;
+}
+.new .newContainer .top .title,
+.new .newContainer .bottom .title,
+.new .newContainer .center .title,
+.new .newContainer .bottomTable .title {
+  font-size: 16px;
+  color: lightgrey;
+  margin: 10px 0;
+}
+.new .newContainer .top .details,
+.new .newContainer .bottom .details,
+.new .newContainer .center .details,
+.new .newContainer .bottomTable .details {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 5px;
+  position: relative;
+  border: 1px solid #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+}
+.new .newContainer .top .details .left_wrap,
+.new .newContainer .bottom .details .left_wrap,
+.new .newContainer .center .details .left_wrap,
+.new .newContainer .bottomTable .details .left_wrap {
+  display: flex;
+  flex-direction: column;
+}
+.new .newContainer .top .details .left,
+.new .newContainer .bottom .details .left,
+.new .newContainer .center .details .left,
+.new .newContainer .bottomTable .details .left {
+  display: flex;
+  align-items: center;
+}
+.new .newContainer .top .details .left,
+.new .newContainer .top .details .left_wrap,
+.new .newContainer .bottom .details .left,
+.new .newContainer .bottom .details .left_wrap,
+.new .newContainer .center .details .left,
+.new .newContainer .center .details .left_wrap,
+.new .newContainer .bottomTable .details .left,
+.new .newContainer .bottomTable .details .left_wrap {
+  flex: 6;
+}
+.new .newContainer .top .details .left .detailItem,
+.new .newContainer .top .details .left_wrap .detailItem,
+.new .newContainer .bottom .details .left .detailItem,
+.new .newContainer .bottom .details .left_wrap .detailItem,
+.new .newContainer .center .details .left .detailItem,
+.new .newContainer .center .details .left_wrap .detailItem,
+.new .newContainer .bottomTable .details .left .detailItem,
+.new .newContainer .bottomTable .details .left_wrap .detailItem {
+  margin-bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.new .newContainer .top .details .left .detailItem .itemKey,
+.new .newContainer .top .details .left_wrap .detailItem .itemKey,
+.new .newContainer .bottom .details .left .detailItem .itemKey,
+.new .newContainer .bottom .details .left_wrap .detailItem .itemKey,
+.new .newContainer .center .details .left .detailItem .itemKey,
+.new .newContainer .center .details .left_wrap .detailItem .itemKey,
+.new .newContainer .bottomTable .details .left .detailItem .itemKey,
+.new .newContainer .bottomTable .details .left_wrap .detailItem .itemKey {
+  font-weight: bold;
+  color: gray;
+  margin-right: 5px;
+}
+.new .newContainer .top .details .left .detailItem .itemValue,
+.new .newContainer .top .details .left_wrap .detailItem .itemValue,
+.new .newContainer .bottom .details .left .detailItem .itemValue,
+.new .newContainer .bottom .details .left_wrap .detailItem .itemValue,
+.new .newContainer .center .details .left .detailItem .itemValue,
+.new .newContainer .center .details .left_wrap .detailItem .itemValue,
+.new .newContainer .bottomTable .details .left .detailItem .itemValue,
+.new .newContainer .bottomTable .details .left_wrap .detailItem .itemValue {
+  font-weight: 300;
+}
+.new .newContainer .top .details .left .option_wrap,
+.new .newContainer .top .details .left_wrap .option_wrap,
+.new .newContainer .bottom .details .left .option_wrap,
+.new .newContainer .bottom .details .left_wrap .option_wrap,
+.new .newContainer .center .details .left .option_wrap,
+.new .newContainer .center .details .left_wrap .option_wrap,
+.new .newContainer .bottomTable .details .left .option_wrap,
+.new .newContainer .bottomTable .details .left_wrap .option_wrap {
+  margin-bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+.new .newContainer .top .details .left .option_wrap .option_title,
+.new .newContainer .top .details .left_wrap .option_wrap .option_title,
+.new .newContainer .bottom .details .left .option_wrap .option_title,
+.new .newContainer .bottom .details .left_wrap .option_wrap .option_title,
+.new .newContainer .center .details .left .option_wrap .option_title,
+.new .newContainer .center .details .left_wrap .option_wrap .option_title,
+.new .newContainer .bottomTable .details .left .option_wrap .option_title,
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .option_title {
+  font-size: 16px;
+  margin: 10px 0;
+}
+.new .newContainer .top .details .left .option_wrap .Items,
+.new .newContainer .top .details .left_wrap .option_wrap .Items,
+.new .newContainer .bottom .details .left .option_wrap .Items,
+.new .newContainer .bottom .details .left_wrap .option_wrap .Items,
+.new .newContainer .center .details .left .option_wrap .Items,
+.new .newContainer .center .details .left_wrap .option_wrap .Items,
+.new .newContainer .bottomTable .details .left .option_wrap .Items,
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.new .newContainer .top .details .left .option_wrap .Items .Item,
+.new .newContainer .top .details .left_wrap .option_wrap .Items .Item,
+.new .newContainer .bottom .details .left .option_wrap .Items .Item,
+.new .newContainer .bottom .details .left_wrap .option_wrap .Items .Item,
+.new .newContainer .center .details .left .option_wrap .Items .Item,
+.new .newContainer .center .details .left_wrap .option_wrap .Items .Item,
+.new .newContainer .bottomTable .details .left .option_wrap .Items .Item,
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items .Item {
+  display: flex;
+  gap: 2px;
+}
+.new .newContainer .top .details .right,
+.new .newContainer .bottom .details .right,
+.new .newContainer .center .details .right,
+.new .newContainer .bottomTable .details .right {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.new .newContainer .top .details .right button,
+.new .newContainer .bottom .details .right button,
+.new .newContainer .center .details .right button,
+.new .newContainer .bottomTable .details .right button {
+  background-color: #fff;
+  color: red;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.new .newContainer .top .details .right .rembtn,
+.new .newContainer .bottom .details .right .rembtn,
+.new .newContainer .center .details .right .rembtn,
+.new .newContainer .bottomTable .details .right .rembtn {
+  padding: 10px;
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  margin: 10px 0;
+  cursor: pointer;
+}/*# sourceMappingURL=Style.module.css.map */

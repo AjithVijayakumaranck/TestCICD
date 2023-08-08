@@ -1,10 +1,10 @@
 .form_container {
   display: flex;
-  min-height: 100vh;
+  height: 30rem;
 }
 @media (max-width: 550px) {
   .form_container {
-    min-height: 30rem;
+    min-height: 100vh;
     transition: 0.5s ease-in-out;
   }
 }
@@ -15,6 +15,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 .form_container .left_section .login_Details h1 {
   padding: 2px;
@@ -36,7 +38,7 @@
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
   padding: 15px 10px;
-  background-color: #F3F3F3;
+  background-color: #ebebeb;
 }
 .form_container .left_section form .input_div label {
   font-size: 12px;
@@ -57,14 +59,13 @@
 .form_container .left_section .additional_options {
   padding-top: 10px;
   display: flex;
-  flex-direction: column;
   gap: 5px;
-  align-items: center;
+  justify-content: space-between;
 }
 @media (max-width: 550px) {
   .form_container .left_section .additional_options {
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
   }
 }
 .form_container .left_section .additional_options p {
@@ -105,7 +106,7 @@
   background-color: white;
 }
 .form_container .left_section .Google_authentication a:hover {
-  background-color: #F3F3F3;
+  background-color: #ebebeb;
   border-radius: 50px;
 }
 .form_container .left_section .Google_authentication a button {
@@ -116,13 +117,27 @@
   background-color: transparent;
 }
 .form_container .right_section {
-  display: none;
   background-color: #046BD2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 @media (max-width: 550px) {
   .form_container .right_section {
-    display: flex;
-    width: 45%;
+    display: none;
     transition: 0.3s ease-all;
   }
+}
+.form_container .right_section .img_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_container .right_section .img_wrapper img {
+  width: 250px;
+  height: 400px;
 }/*# sourceMappingURL=style.module.css.map */

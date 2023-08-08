@@ -1,0 +1,78 @@
+.list {
+  display: flex;
+  flex: 2;
+}
+.list .listContainer {
+  flex: 6;
+}
+.list .cellAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.list .cellAction .viewButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: green;
+  border: 1px solid rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.list .cellAction .editButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: darkblue;
+  border: 1px solid rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.list .cellAction .deleteButton {
+  padding: 2px 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: crimson;
+  border: 1px solid rgba(220, 20, 60, 0.6);
+  cursor: pointer;
+}
+.list .SquareImage {
+  margin: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.list .RoundedImage {
+  border-radius: 100%;
+  margin: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.list .optionsContainer {
+  display: flex;
+  gap: 8px;
+}
+.list .viewButton {
+  padding: 5px 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
+  color: green;
+  border: 1px solid green;
+  cursor: pointer;
+}
+.list .editButton {
+  padding: 5px 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
+  color: darkblue;
+  border: 1px solid rgba(0, 0, 139, 0.596);
+  cursor: pointer;
+}
+.list .deleteButton {
+  padding: 5px 5px;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fff;
+  color: crimson;
+  border: 1px solid rgba(220, 20, 60, 0.6);
+  cursor: pointer;
+}/*# sourceMappingURL=Style.module.css.map */

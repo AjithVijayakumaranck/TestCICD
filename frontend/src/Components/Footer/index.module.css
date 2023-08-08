@@ -1,0 +1,137 @@
+.Container {
+  background-color: #111;
+  padding: 40px 60px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+@media (max-width: 550px) {
+  .Container {
+    padding: 40px 10px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Container {
+    padding: 40px 20px;
+  }
+}
+.Container .navigation {
+  text-decoration: none;
+  color: #111;
+}
+.Container .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+@media (max-width: 550px) {
+  .Container .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Container .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+  }
+}
+.Container .grid .box {
+  transition: 0.5s;
+  padding: 0 10px;
+  width: 100%;
+}
+@media (max-width: 550px) {
+  .Container .grid .box {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Container .grid .box {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+.Container .grid .box h1 {
+  margin-bottom: 30px;
+  color: #046BD2;
+  font-weight: 800;
+  font-style: normal;
+}
+@media (max-width: 550px) {
+  .Container .grid .box h1 {
+    font-weight: 900;
+    font-size: larger;
+  }
+}
+.Container .grid .box p {
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 20px;
+}
+@media (max-width: 550px) {
+  .Container .grid .box p {
+    font-size: 12px;
+  }
+}
+.Container .grid .box h2 {
+  margin-bottom: 20px;
+}
+@media (max-width: 550px) {
+  .Container .grid .box h2 {
+    font-weight: 800;
+    font-size: large;
+  }
+}
+.Container .grid .box li {
+  margin-bottom: 10px;
+  color: #fff;
+  list-style: none;
+  cursor: pointer;
+}
+@media (max-width: 550px) {
+  .Container .grid .box li {
+    font-size: 12px;
+  }
+}
+.Container .bottom {
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 0.1rem solid #666;
+}
+.Container .bottom .bottomleft p {
+  font-size: 14px;
+}
+@media (max-width: 550px) {
+  .Container .bottom .bottomleft p {
+    font-size: 12px;
+  }
+}
+.Container .bottom .bottomleft p .left {
+  border-right: 0.1rem solid #666;
+}
+.Container .bottom .bottomleft p span {
+  margin: 0.6rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.Container .bottom .bottomleft p span i {
+  margin-right: 0.6rem;
+  font-style: normal;
+  font-size: 14px;
+  text-decoration: none;
+}
+@media (max-width: 550px) {
+  .Container .bottom .bottomleft p span i {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=index.module.css.map */
