@@ -13,12 +13,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v3
-        with:
-          version: 'v1.28.0' # default is latest stable
-        id: install
   
       - name: Path Filter
         uses: dorny/paths-filter@v2
@@ -49,6 +43,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0' # default is latest stable
+        id: install
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
         with:
@@ -70,7 +70,8 @@ jobs:
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -f Backend/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
+          cd Backend/
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config
@@ -98,6 +99,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.0' # default is latest stable
+        id: install
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
         with:
@@ -120,7 +127,8 @@ jobs:
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest-ui . -f frontend/Dockerfile
+          cd frontend/
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest-ui .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config
