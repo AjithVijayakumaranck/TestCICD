@@ -11,8 +11,6 @@ jobs:
   common-steps:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
@@ -45,6 +43,9 @@ jobs:
       - name: Debug Output
         run: |
           echo "Backend Filter Value: ${{ needs.common-steps.outputs.backend }}"
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
         with:
@@ -66,7 +67,7 @@ jobs:
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest . -f Backend/Dockerfile
+          docker build -f Backend/Dockerfile -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config
@@ -91,6 +92,9 @@ jobs:
       - name: Debug Output
         run: |
           echo "Frontend Filter Value: ${{ needs.common-steps.outputs.frontend }}"
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
         with:
