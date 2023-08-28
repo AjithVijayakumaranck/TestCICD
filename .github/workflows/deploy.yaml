@@ -50,8 +50,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Debug Output
-        run: echo "Backend Filter Value: ${{ needs.common-steps.outputs.filter.backend }}"
-      
+        run: |
+          echo "Backend Filter Value: ${{ needs.common-steps.outputs.filter.backend }}"
+      # - name: Load secrets and save to .env
+      #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
+
+      # - name: Build, tag, and push docker image to Amazon ECR
+      #   env:
+      #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     REPOSITORY: intutivesoft
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
+      #     docker push -a $REGISTRY/$REPOSITORY
+
+      # - name: Update kube config
+      #   run: aws eks update-kubeconfig --name intutive-prod --region ap-south-1 
+
+      # - name: Deploy image to Amazon EKS
+      #   run: |
+      #     kubectl apply -f ../eks/aws-auth.yaml
+      #     kubectl apply -f ../eks/deployment.yaml --selector=app=dnb-api
+      #     kubectl apply -f ../eks/service.yaml --selector=app=dnb-api
+      #     kubectl apply -f ../eks/issuer.yaml
+      #     kubectl apply -f ../eks/ingress.yaml
 
   ui-deploy:
     needs: common-steps
@@ -62,6 +84,28 @@ jobs:
 
     steps:
       - name: Debug Output
-        run: echo "Frontend Filter Value: ${{ needs.common-steps.outputs.filter.frontend }}"
+        run: |
+          echo "Frontend Filter Value: ${{ needs.common-steps.outputs.filter.frontend }}"
 
-      
+      # - name: Load secrets and save to .env
+      #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
+
+      # - name: Build, tag, and push docker image to Amazon ECR
+      #   env:
+      #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     REPOSITORY: intutivesoft
+      #     IMAGE_TAG: ${{ github.sha }}
+      #   run: |
+      #     docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest-ui .
+      #     docker push -a $REGISTRY/$REPOSITORY
+
+      # - name: Update kube config
+      #   run: aws eks update-kubeconfig --name intutive-prod --region ap-south-1 
+
+      # - name: Deploy image to Amazon EKS
+      #   run: |
+      #     kubectl apply -f ../eks/aws-auth.yaml
+      #     kubectl apply -f ../eks/deployment.yaml --selector=app=dnb-ui
+      #     kubectl apply -f ../eks/service.yaml --selector=app=dnb-ui
+      #     kubectl apply -f ../eks/issuer.yaml
+      #     kubectl apply -f ../eks/ingress.yaml
