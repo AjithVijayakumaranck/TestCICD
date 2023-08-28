@@ -49,7 +49,7 @@ jobs:
 
   api-deploy:
     needs: common-steps
-    if: "${{ steps.backend-check.outputs.backend-changes }}" == "true"
+    if: ${{ github.event_name == 'push' && contains(github.event.paths, 'Backend/') }}
     name: Build and Deploy API
     runs-on: ubuntu-latest
     steps:
