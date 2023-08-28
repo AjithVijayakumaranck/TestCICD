@@ -11,6 +11,9 @@ jobs:
   common-steps:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
         with:
@@ -94,7 +97,7 @@ jobs:
           echo "Frontend Filter Value: ${{ needs.common-steps.outputs.frontend }}"
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2 # More information on this action can be found below in the 'AWS Credentials' section
         with:
