@@ -45,7 +45,7 @@ jobs:
   api-deploy:
     needs: common-steps
     name: Build and Deploy API
-    if: steps.filter.backend == 'true'
+    if: needs.common-steps.steps.filter.backend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Load secrets and save to .env
@@ -74,7 +74,7 @@ jobs:
     needs: common-steps
     
     name: Build and Deploy Frontend
-    if: steps.filter.frontend == 'true'
+    if: needs.common-steps.steps.filter.frontend == 'true'
     runs-on: ubuntu-latest
 
     steps:
