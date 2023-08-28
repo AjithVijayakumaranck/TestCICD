@@ -29,17 +29,23 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
-      - name: Debug
-        run: |
-          echo ${{ github.event.paths }}
-          echo test
+      - name: Path Filter
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            backend:
+              - 'Backend/**'
+            frontend:
+              - 'frontend/**'
+
 
 
 
   api-deploy:
     needs: common-steps
     name: Build and Deploy API
-    if: ${{ github.event_name == 'push' && contains(github.event.paths, 'Backend/') }}
+    if: ${{ steps.filter.backend == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Load secrets and save to .env
@@ -68,7 +74,7 @@ jobs:
     needs: common-steps
     
     name: Build and Deploy Frontend
-    if: ${{ github.event_name == 'push' && contains(github.event.paths, 'frontend/') }}
+    if: ${{ steps.filter.frontend == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
