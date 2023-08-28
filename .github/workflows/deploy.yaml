@@ -39,6 +39,10 @@ jobs:
               - 'Backend/**'
             frontend:
               - 'frontend/**'
+      - name: Debug
+        run: |
+          echo "Backend Filter Value: ${{ steps.outputs.backend }}"
+          echo "Frontend Filter Value: ${{ steps.filter.outputs.frontend }}"
       
 
 
