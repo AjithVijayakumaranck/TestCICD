@@ -31,7 +31,7 @@ jobs:
   api-deploy:
     needs: common-steps
     if: ${{ github.event_name == 'push' && contains(github.event.paths, 'Backend/') }}
-    name: Build image
+    name: Build and Deploy API
     runs-on: ubuntu-latest
 
     steps:
@@ -59,7 +59,7 @@ jobs:
           kubectl apply -f ../eks/ingress.yaml
   ui-deploy:
     needs: common-steps
-    name: Build image
+    name: Build and Deploy Frontend
     if: ${{ github.event_name == 'push' && contains(github.event.paths, 'frontend/') }}
     runs-on: ubuntu-latest
 
