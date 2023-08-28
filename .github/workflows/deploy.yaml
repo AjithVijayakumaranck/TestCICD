@@ -39,14 +39,10 @@ jobs:
               - 'Backend/**'
             frontend:
               - 'frontend/**'
-      outputs:
-        backend: ${{ steps.filter.outputs.backend }}
-        frontend: ${{ steps.filter.outputs.frontend }}
-        registry: ${{ steps.login-ecr.outputs.registry }}
-      - name: Debug
-        run: |
-          echo "Backend Filter Value: ${{ steps.outputs.backend }}"
-          echo "Frontend Filter Value: ${{ steps.filter.outputs.frontend }}"
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      registry: ${{ steps.login-ecr.outputs.registry }}
       
 
 
