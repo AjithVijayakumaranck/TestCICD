@@ -42,7 +42,6 @@ jobs:
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
       frontend: ${{ steps.filter.outputs.frontend }}
-      registry: ${{ steps.login-ecr.outputs.registry }}
       
 
 
@@ -56,12 +55,18 @@ jobs:
       - name: Debug Output
         run: |
           echo "Backend Filter Value: ${{ needs.common-steps.outputs.backend }}"
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          mask-password: 'true'
+
       - name: Load secrets and save to .env
         run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:
-          REGISTRY: ${{ needs.common-steps.outputs.registry }}
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
@@ -91,12 +96,18 @@ jobs:
         run: |
           echo "Frontend Filter Value: ${{ needs.common-steps.outputs.frontend }}"
 
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          mask-password: 'true'
+      
       - name: Load secrets and save to .env
         run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:
-          REGISTRY: ${{ needs.common-steps.outputs.registry }}
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
