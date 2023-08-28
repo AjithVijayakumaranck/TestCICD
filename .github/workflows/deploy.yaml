@@ -31,25 +31,25 @@ jobs:
         run: |
           if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^Backend/'; then
             echo "Changes detected in Backend folder"
-            echo "::set-output name=backend-changes::true"
+            echo "BACKEND_CHANGES=true" >> $GITHUB_ENV
           else
             echo "No changes detected in Backend folder"
-            echo "::set-output name=backend-changes::false"
+            echo "BACKEND_CHANGES=false" >> $GITHUB_ENV
           fi
 
           if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^frontend/'; then
             echo "Changes detected in Frontend folder"
-            echo "::set-output name=frontend-changes::true"
+            echo "FRONTEND_CHANGES=true" >> $GITHUB_ENV
           else
             echo "No changes detected in Frontend folder"
-            echo "::set-output name=frontend-changes::false"
+            echo "FRONTEND_CHANGES=false" >> $GITHUB_ENV
           fi
 
 
 
   api-deploy:
     needs: common-steps
-    if: ${{ github.event_name == 'push' && contains(github.event.paths, 'Backend/') }}
+    if: $BACKEND_CHANGES == 'true'
     name: Build and Deploy API
     runs-on: ubuntu-latest
     steps:
@@ -77,6 +77,7 @@ jobs:
           kubectl apply -f ../eks/ingress.yaml
   ui-deploy:
     needs: common-steps
+    if: $FRONTEND_CHANGES == 'true'
     name: Build and Deploy Frontend
     if: ${{ github.event_name == 'push' && contains(github.event.paths, 'frontend/') }}
     runs-on: ubuntu-latest
