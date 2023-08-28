@@ -60,6 +60,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
+          aws-region: ap-south-1
 
       - name: Load secrets and save to .env
         run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
@@ -101,7 +102,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
-      
+
       - name: Load secrets and save to .env
         run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
