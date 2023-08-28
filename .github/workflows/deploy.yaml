@@ -28,8 +28,8 @@ jobs:
           mask-password: 'true'
       - name: Debug
         run: |
-          echo github.event_name
-          echo github.event.paths
+          echo ${{github.event_name}}
+          echo ${{github.event.paths}}
 
 
 
