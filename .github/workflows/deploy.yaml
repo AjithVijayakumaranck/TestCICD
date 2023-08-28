@@ -39,6 +39,10 @@ jobs:
               - 'Backend/**'
             frontend:
               - 'frontend/**'
+      outputs:
+        backend: ${{ steps.filter.outputs.backend }}
+        frontend: ${{ steps.filter.outputs.frontend }}
+        registry: ${{ steps.login-ecr.outputs.registry }}
       - name: Debug
         run: |
           echo "Backend Filter Value: ${{ steps.outputs.backend }}"
@@ -55,7 +59,7 @@ jobs:
     steps:
       - name: Debug Output
         run: |
-          echo "Backend Filter Value: ${{ needs.common-steps.filter.outputs.backend }}"
+          echo "Backend Filter Value: ${{ needs.common-steps.outputs.backend }}"
       # - name: Load secrets and save to .env
       #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
@@ -89,7 +93,7 @@ jobs:
     steps:
       - name: Debug Output
         run: |
-          echo "Frontend Filter Value: ${{ needs.common-steps.steps.filter.outputs.frontend }}"
+          echo "Frontend Filter Value: ${{ needs.common-steps.outputs.frontend }}"
 
       # - name: Load secrets and save to .env
       #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
