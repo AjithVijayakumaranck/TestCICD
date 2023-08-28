@@ -31,7 +31,8 @@ jobs:
           mask-password: 'true'
       - name: Debug
         run: |
-          echo 
+          echo ${{ github.event.paths }}
+          echo test
 
 
 
