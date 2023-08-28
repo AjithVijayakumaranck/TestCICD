@@ -61,12 +61,6 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
-      - name: CD to Backend folder
-        run: |
-          cd Backend/
-
-      - name: Load secrets and save to .env
-        run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
       - name: Build, tag, and push docker image to Amazon ECR
         env:
@@ -74,6 +68,8 @@ jobs:
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          cd Backend/
+          aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
           docker push -a $REGISTRY/$REPOSITORY
 
@@ -121,19 +117,14 @@ jobs:
         with:
           mask-password: 'true'
 
-      - name: CD to Frontend folder
-        run: |
-          cd frontend/
-
-      - name: Load secrets and save to .env
-        run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
-
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: intutivesoft
           IMAGE_TAG: ${{ github.sha }}
         run: |
+          cd frontend/
+          aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest-ui .
           docker push -a $REGISTRY/$REPOSITORY
 
