@@ -49,8 +49,8 @@ jobs:
 
   api-deploy:
     needs: common-steps
-    if: $BACKEND_CHANGES == 'true'
     name: Build and Deploy API
+    if: $BACKEND_CHANGES == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Load secrets and save to .env
@@ -77,9 +77,8 @@ jobs:
           kubectl apply -f ../eks/ingress.yaml
   ui-deploy:
     needs: common-steps
-    if: $FRONTEND_CHANGES == 'true'
     name: Build and Deploy Frontend
-    if: ${{ github.event_name == 'push' && contains(github.event.paths, 'frontend/') }}
+    if: $FRONTEND_CHANGES == 'true'
     runs-on: ubuntu-latest
 
     steps:
