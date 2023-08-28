@@ -51,7 +51,7 @@ jobs:
     steps:
       - name: Debug Output
         run: |
-          echo "Backend Filter Value: ${{ needs.common-steps.outputs.filter.backend }}"
+          echo "Backend Filter Value: ${{ common-steps.outputs.filter.backend }}"
       # - name: Load secrets and save to .env
       #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
 
@@ -85,7 +85,7 @@ jobs:
     steps:
       - name: Debug Output
         run: |
-          echo "Frontend Filter Value: ${{ needs.common-steps.outputs.filter.frontend }}"
+          echo "Frontend Filter Value: ${{ common-steps.outputs.filter.frontend }}"
 
       # - name: Load secrets and save to .env
       #   run: aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
