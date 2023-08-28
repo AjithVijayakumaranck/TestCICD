@@ -26,17 +26,18 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
         with:
           mask-password: 'true'
+      - name: Debug
+        run: |
+          echo github.event_name
+          echo github.event.paths
+
 
 
   api-deploy:
     needs: common-steps
-    run: |
-      echo github.event_name
-      echo github.event.paths
     if: ${{ github.event_name == 'push' && contains(github.event.paths, 'Backend/') }}
     name: Build and Deploy API
     runs-on: ubuntu-latest
-
     steps:
       - name: Load secrets and save to .env
         run: aws secretsmanager get-secret-value --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > $GITHUB_WORKSPACE/.env
