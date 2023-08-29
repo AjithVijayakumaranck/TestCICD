@@ -19,5 +19,7 @@ RUN npm run build
 # Expose the port that your React app will run on
 EXPOSE 8085
 
+run npm install -g serve
+
 # Start the React app on port 8085.
-CMD ["npm", "start", "--", "--port", "8085"]
+CMD ["serve", "-p", "8085", "build"]
