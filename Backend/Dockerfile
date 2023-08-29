@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 8080
 
 # Command to run your backend application.
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
