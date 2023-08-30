@@ -60,7 +60,7 @@ app.use(passport.session());
 
 //cors
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "http://a9690a8c1f2a04eabbe77f5820bc3965-2110437998.ap-south-1.elb.amazonaws.com",
     methods: "GET,POST,PUT,DELETE",
 }))
 
