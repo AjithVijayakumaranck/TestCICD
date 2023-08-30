@@ -9,7 +9,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8085
-  type: ClusterIP
+  type: LoadBalancer
 
 ---
 
@@ -24,4 +24,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-  type: ClusterIP
+  type: LoadBalancer

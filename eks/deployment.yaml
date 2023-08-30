@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: dnb-api
-        image: 110271623369.dkr.ecr.ap-south-1.amazonaws.com/intutivesoft:latest
+        image: 110271623369.dkr.ecr.ap-south-1.amazonaws.com/intutivesoft:latest-api
         imagePullPolicy: Always
         ports:
         - containerPort: 8080

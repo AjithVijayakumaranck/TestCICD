@@ -70,7 +70,7 @@ jobs:
         run: |
           cd Backend/
           aws secretsmanager get-secret-value --region ap-south-1 --secret-id secret-dnb-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\"\(.value)\"")|.[]' > $GITHUB_WORKSPACE/Backend/.env
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG-api -t $REGISTRY/$REPOSITORY:latest-api .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config
@@ -81,8 +81,8 @@ jobs:
           kubectl apply -f eks/aws-auth.yaml
           kubectl apply -f eks/deployment.yaml --selector=app=dnb-api
           kubectl apply -f eks/service.yaml
-          kubectl apply -f eks/issuer.yaml
-          kubectl apply -f eks/ingress.yaml
+          # kubectl apply -f eks/issuer.yaml
+          # kubectl apply -f eks/ingress.yaml
 
   ui-deploy:
     needs: common-steps
@@ -125,7 +125,7 @@ jobs:
         run: |
           cd frontend/
           aws secretsmanager get-secret-value --secret-id secret-dnb-ui-prod --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\"\(.value)\"")|.[]' > $GITHUB_WORKSPACE/frontend/.env
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG -t $REGISTRY/$REPOSITORY:latest-ui .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG-ui -t $REGISTRY/$REPOSITORY:latest-ui .
           docker push -a $REGISTRY/$REPOSITORY
 
       - name: Update kube config
@@ -136,5 +136,5 @@ jobs:
           kubectl apply -f eks/aws-auth.yaml
           kubectl apply -f eks/deployment.yaml --selector=app=dnb-ui
           kubectl apply -f eks/service.yaml
-          kubectl apply -f eks/issuer.yaml
-          kubectl apply -f eks/ingress.yaml
+          # kubectl apply -f eks/issuer.yaml
+          # kubectl apply -f eks/ingress.yaml
