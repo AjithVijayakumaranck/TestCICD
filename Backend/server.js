@@ -60,7 +60,7 @@ app.use(passport.session());
 
 //cors
 app.use(cors({
-    origin: "http://www.dealnbuy.in",
+    origin: "https://www.dealnbuy.in",
     methods: "GET,POST,PUT,DELETE",
 }))
 

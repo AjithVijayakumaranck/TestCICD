@@ -37,5 +37,7 @@ spec:
   tls:
   - hosts:
     - api.dealnbuy.in
-    - www.dealnbuy.in
     secretName: dnb-api-cert
+  - hosts:
+    - www.dealnbuy.in
+    secretName: dnb-ui-cert
