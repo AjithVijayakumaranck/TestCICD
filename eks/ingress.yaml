@@ -24,7 +24,7 @@ spec:
             name: dnb-api-service
             port:
               number: 80
-  - host: "dealnbuy.in"
+  - host: "www.dealnbuy.in"
     http:
       paths:
       - pathType: Prefix
@@ -37,5 +37,5 @@ spec:
   tls:
   - hosts:
     - api.dealnbuy.in
-    - dealnbuy.in
+    - www.dealnbuy.in
     secretName: dnb-api-cert
