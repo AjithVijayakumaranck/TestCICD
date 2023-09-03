@@ -23,6 +23,10 @@ jobs:
           filters: |
             backend:
               - 'Backend/**'
+            frontend:
+              - 'fackend/**'
+            socket:
+              - 'Socket/**'
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
       frontend: ${{ steps.filter.outputs.frontend }}
@@ -31,7 +35,7 @@ jobs:
   api-deploy:
     needs: common-steps
     name: Build and Deploy API
-    if: ${{ needs.common-steps.outputs.backend }} == 'true'
+    if: ${{ needs.common-steps.outputs.backend  == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Debug Output
@@ -85,7 +89,7 @@ jobs:
     needs: common-steps
     
     name: Build and Deploy Frontend
-    if: ${{ needs.common-steps.outputs.frontend }}  == 'true'
+    if: ${{ needs.common-steps.outputs.frontend   == 'true' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -139,7 +143,7 @@ jobs:
   socket-deploy:
     needs: common-steps
     name: Build and Deploy Socket
-    if: ${{ needs.common-steps.outputs.socket }} == 'true'
+    if: ${{ needs.common-steps.outputs.socket == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Debug Output
