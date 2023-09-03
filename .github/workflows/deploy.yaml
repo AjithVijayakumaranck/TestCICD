@@ -80,7 +80,7 @@ jobs:
       - name: Deploy image to Amazon EKS
         run: |
           kubectl apply -f eks/aws-auth.yaml
-          kubectl apply -f eks/deployment.yaml --selector=app=dnb-api --force
+          kubectl replace -f eks/deployment.yaml --selector=app=dnb-api
           kubectl apply -f eks/service.yaml
           kubectl apply -f eks/issuer.yaml
           kubectl apply -f eks/ingress.yaml
@@ -135,7 +135,7 @@ jobs:
       - name: Deploy image to Amazon EKS
         run: |
           kubectl apply -f eks/aws-auth.yaml
-          kubectl apply -f eks/deployment.yaml --selector=app=dnb-ui --force
+          kubectl replace -f eks/deployment.yaml --selector=app=dnb-ui
           kubectl apply -f eks/service.yaml
           kubectl apply -f eks/issuer.yaml
           kubectl apply -f eks/ingress.yaml
@@ -187,7 +187,7 @@ jobs:
       - name: Deploy image to Amazon EKS
         run: |
           kubectl apply -f eks/aws-auth.yaml
-          kubectl apply -f eks/deployment.yaml --selector=app=dnb-socket --force
+          kubectl replace -f eks/deployment.yaml --selector=app=dnb-socket
           kubectl apply -f eks/service.yaml
           kubectl apply -f eks/issuer.yaml
           kubectl apply -f eks/ingress.yaml
