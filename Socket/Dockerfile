@@ -17,5 +17,5 @@ COPY . .
 # Expose the port your backend application will run on
 EXPOSE 8900
 
-# Command to run your backend application.
+# Command to run your backend application
 CMD ["npm", "start"]
