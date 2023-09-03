@@ -5,7 +5,7 @@ metadata:
   labels:
     app: dnb-api
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dnb-api
@@ -31,7 +31,7 @@ metadata:
   labels:
     app: dnb-ui
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: dnb-ui
@@ -47,3 +47,29 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8085
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dnb-socket-deployment
+  labels:
+    app: dnb-socket
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dnb-socket
+  template:
+    metadata:
+      labels:
+        app: dnb-socket
+
+    spec:
+      containers:
+      - name: dnb-socket
+        image: 110271623369.dkr.ecr.ap-south-1.amazonaws.com/intutivesoft:latest-socket
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8900

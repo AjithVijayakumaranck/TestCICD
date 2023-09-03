@@ -12,7 +12,7 @@ export const SocketProvider = ({ children }) => {
     const { User, SetUser } = LoggedInUser
     // Initialize the socket instance
 
-    const socket = socketIOClient.connect("http://localhost:8900", { path: "/socket/socket.io", withCredentials: true });
+    const socket = socketIOClient.connect("https://socket.dealnbuy.in", { path: "/socket/socket.io", withCredentials: true });
 
     socket.emit("addUser", {
         userId: User._id,
