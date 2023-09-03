@@ -23,22 +23,6 @@ jobs:
           filters: |
             backend:
               - 'Backend/**'
-      - name: Front end Filter
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          base: ${{ github.ref }}
-          filters: |
-            frontend:
-              - 'frontend/**'
-      - name: Socket Filter
-        uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          base: ${{ github.ref }}
-          filters: |
-            socket:
-              - 'Socket/**'
     outputs:
       backend: ${{ steps.filter.outputs.backend }}
       frontend: ${{ steps.filter.outputs.frontend }}
