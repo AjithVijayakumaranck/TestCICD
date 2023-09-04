@@ -34,6 +34,16 @@ spec:
             name: dnb-ui-service
             port:
               number: 80
+  - host: "dealnbuy.in"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dnb-ui-service
+            port:
+              number: 80
   - host: "socket.dealnbuy.in"
     http:
       paths:
@@ -54,3 +64,6 @@ spec:
   - hosts:
     - socket.dealnbuy.in
     secretName: dnb-socket-cert
+  - hosts:
+    - dealnbuy.in
+    secretName: dnb-apex-cert
