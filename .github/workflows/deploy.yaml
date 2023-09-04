@@ -86,7 +86,8 @@ jobs:
         run: |
           kubectl apply -f eks/aws-auth.yaml
           kubectl annotate deployment.apps/dnb-api-deployment kubernetes.io/change-cause=$IMAGE_TAG-${{ needs.common-steps.outputs.releasedate }}
-          kubectl apply -f eks/deployment.yaml --selector=app=dnb-api
+          #kubectl apply -f eks/deployment.yaml --selector=app=dnb-api
+          kubectl rollout restart deployment.apps/dnb-api-deployment
           kubectl apply -f eks/service.yaml
           kubectl apply -f eks/issuer.yaml
           kubectl apply -f eks/ingress.yaml
