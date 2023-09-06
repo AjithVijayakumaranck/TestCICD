@@ -24,18 +24,18 @@ module.exports = {
                 {
                     $or: [
                         { phoneVerified: true },
-                        { emailVerified: true }
+                        { emailVerified: true },
+                        {role:"admin"},
+                        {role:"superadmin"}
                     ]
                 },
                 { googleVerified: false }
                 ]
             });
-            console.log(userInfo, "userdata");
             const verified = await verifyHashedData(password, userInfo.password)
-            console.log(verified, "verification sTATUIS");
             if (verified) {
                 console.log(userInfo, "helll");
-                const token = await jwt.sign({ ...userInfo }, process.env.JWT_SECRET_KEY)
+                const token = await jwt.sign({ ...userInfo}, process.env.JWT_SECRET_KEY)
                 res.status(200).json({ token: token, user: userInfo })
             } else {
                 res.status(401).json({ message: "email or password is wrong" })
