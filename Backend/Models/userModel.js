@@ -71,7 +71,7 @@ const USERschema = new schema({
   role:{
     type: String,
     enum:["admin","superadmin","user"],
-    default:user
+    default:"user"
   },
   roleupgradeBy:{
     type:String,
