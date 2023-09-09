@@ -30,7 +30,6 @@ const SamplePrevArrow = (props) => {
 
 const HomeCarousel = ({ items }) => {
 
-  console.log(items, "banners");
 
   const settings = {
     infinite: true,

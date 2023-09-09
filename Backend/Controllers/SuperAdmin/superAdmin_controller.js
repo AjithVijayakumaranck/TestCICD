@@ -3,44 +3,46 @@ const SUPERADMIN = require("../../Models/superadminProfileModel")
 const { verifyHashedData, hashData } = require("../../utilities/hashData")
 const jwt = require('jsonwebtoken')
 const { sendOTP } = require("../otp/otp")
+const USER = require("../../Models/userModel")
 
 module.exports = {
-    superAdminLogin : async (req,res)=>{
-        try {
-            const {userId,password} = req.body
-            const superAdminDetails =await SUPERADMIN.findOne({email:userId, deleted:false})
-            if(!superAdminDetails){
-                res.status(404).json({message:"User not found"})
-            }else{
-                const verified = await verifyHashedData(password,superAdminDetails.password)
-                if(!verified){
-                    res.status(401).json({message:"UserId or Password is wrong"})
-                }else{
-                    const token = await jwt.sign({ ...superAdminDetails }, process.env.JWT_SECRET_KEY)
-                    res.status(200).json({superAdminDetails,message:"Welcome Administrator",token})
-                }
-            }
-        } catch (error) {
-            res.status(500).json({message:"Something went wrong"})
-        }
-    },
-    forgotPassword:async (req,res)=>{
-        try {
-            const {email} = req.body
-            const adminInfo = await SUPERADMIN.findOne({ email: email })
-            if (adminInfo) {
-                const createdOTP = await sendOTP({ email });
-                console.log(createdOTP);
-                res.status(200).json({ message: "otp Sented", adminInfo: adminInfo })
-            } else {
-                res.status(400).json({ message: "User not found" })
-            }
-        } catch (error) {
-            res.status(500).json({message:"Something went wrong"})
-        }
-    },
+    // superAdminLogin : async (req,res)=>{
+    //     try {
+    //         const {userId,password} = req.body
+    //         const superAdminDetails =await SUPERADMIN.findOne({email:userId, deleted:false})
+    //         if(!superAdminDetails){
+    //             res.status(404).json({message:"User not found"})
+    //         }else{
+    //             const verified = await verifyHashedData(password,superAdminDetails.password)
+    //             if(!verified){
+    //                 res.status(401).json({message:"UserId or Password is wrong"})
+    //             }else{
+    //                 const token = await jwt.sign({ ...superAdminDetails }, process.env.JWT_SECRET_KEY)
+    //                 res.status(200).json({superAdminDetails,message:"Welcome Administrator",token})
+    //             }
+    //         }
+    //     } catch (error) {
+    //         res.status(500).json({message:"Something went wrong"})
+    //     }
+    // },
 
-    
+    // forgotPassword:async (req,res)=>{
+    //     try {
+    //         const {email} = req.body
+    //         const adminInfo = await SUPERADMIN.findOne({ email: email })
+    //         if (adminInfo) {
+    //             const createdOTP = await sendOTP({ email });
+    //             console.log(createdOTP);
+    //             res.status(200).json({ message: "otp Sented", adminInfo: adminInfo })
+    //         } else {
+    //             res.status(400).json({ message: "User not found" })
+    //         }
+    //     } catch (error) {
+    //         res.status(500).json({message:"Something went wrong"})
+    //     }
+    // },
+
+     
     verifyOtp: async (req, res) => {
 
         try {
@@ -73,7 +75,7 @@ module.exports = {
             const hashedPassword = await hashData(password);
             const adminInfo = await USER.findOne({email:data})
             if (adminInfo) {
-                SUPERADMIN.updateOne({email:data}, { password: hashedPassword }).then((response) => {
+                USER.updateOne({email:data}, { password: hashedPassword }).then((response) => {
                     console.log("password Updated");
                     res.status(200).json({ message: "passwords updated successfully" })
                 }).catch((error) => {
@@ -96,7 +98,7 @@ module.exports = {
             const {fullName,surName,email,password,locality,district,state,region,role} = req.body
             console.log(req.body);
             const hashedPassword = await hashData(password)
-            SUPERADMIN.create({
+            USER.create({
                 fullname:fullName,
                 surname:surName,
                 email:email,
@@ -106,7 +108,7 @@ module.exports = {
                   locality:locality,
                   district:district,
                   state:state,
-                  country:region
+                  region:region
                 },
             }).then((response)=>{
                 res.status(200).json({message:"Admin add successfully"})
@@ -123,7 +125,7 @@ module.exports = {
     upgradeRole : async (req,res)=>{
         try {
             const{superAdminId,password,adminId,role} = req.body
-            const superAdminDetails = await SUPERADMIN.findById(superAdminId)
+            const superAdminDetails = await USER.findById(superAdminId)
             if(!superAdminDetails || superAdminDetails.role === "admin"){
                 res.status(404).json({message:"verification failed"})
             }else{
@@ -131,7 +133,7 @@ module.exports = {
                 if(!verified){
                     res.status(401).json({message:"verification failed"})
                 }else{
-                    SUPERADMIN.updateOne({_id:adminId},{role:role , roleupgradeBy: superAdminId}).then(()=>{
+                    USER.updateOne({_id:adminId},{role:role , roleupgradeBy: superAdminId}).then(()=>{
                         res.status(200).json({message:"role updated successfully"})
                     }).catch((err)=>{
                         console.log(err,"error");
@@ -146,7 +148,7 @@ module.exports = {
 
     getAdmin :async (req,res)=>{
         try {
-            const adminDetails = await SUPERADMIN.find({deleted:false ,role:"admin"})
+            const adminDetails = await USER.find({deleted:false ,role:"admin"})
             if(adminDetails){
                 res.status(200).json(adminDetails);
             }else{
@@ -159,7 +161,7 @@ module.exports = {
 
     getSuperAdmin :async (req,res)=>{
         try {
-            const superAdminDetails = await SUPERADMIN.find({deleted:false ,role:"superadmin"})
+            const superAdminDetails = await USER.find({deleted:false ,role:"superadmin"})
             if(superAdminDetails){
                 res.status(200).json(superAdminDetails);
             }else{
@@ -173,11 +175,11 @@ module.exports = {
     updateProfile : async (req,res)=>{
         try {
             const {profileId , fullname ,surname , username ,email, dob ,locality,district,state,region } = req.body
-            const superAdminDetails = await SUPERADMIN.findById(profileId)
+            const superAdminDetails = await USER.findById(profileId)
             if(!superAdminDetails){
                 res.status(404).json({message:"profile not found"})
             }else{
-                SUPERADMIN.updateOne({_id:profileId},{
+                USER.updateOne({_id:profileId},{
                    $set:{
                     fullname:fullname,
                     surname:surname,
@@ -209,7 +211,7 @@ module.exports = {
     getProfile:(req,res)=>{
         try {
             const {adminId} = req.query
-            SUPERADMIN.findById(adminId).then((adminDetails)=>{
+            USER.findById(adminId).then((adminDetails)=>{
                 res.status(200).json(adminDetails)
             }).catch((error)=>{
                 res.status(400).json(error.message)
@@ -222,14 +224,14 @@ module.exports = {
     updatePassword: async (req,res)=>{
       try {
         const {profileId,currentPassword,newPassword} = req.body
-        const profileDetails = await SUPERADMIN.findById(profileId)
+        const profileDetails = await USER.findById(profileId)
         if(!profileDetails){
             res.status(404).json({message:"profile not found"})
         }else{
             const verified =await verifyHashedData(currentPassword,profileDetails.password)
             if(verified){
                 hashedPassword =await hashData(newPassword)
-                SUPERADMIN.updateOne({_id:profileId},{
+                USER.updateOne({_id:profileId},{
                     password:hashedPassword
                 }).then((response)=>{
                     if(response.matchedCount == 0){
@@ -252,7 +254,7 @@ module.exports = {
     uniqueUserName :async (req,res)=>{
         try {
             const {userName} = req.query
-            const usernameExist = await SUPERADMIN.findOne({username:/^userName$/i})
+            const usernameExist = await USER.findOne({username:/^userName$/i})
             if(usernameExist){
                 res.status(200).json(false)
             }else{

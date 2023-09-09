@@ -10,6 +10,10 @@
         transition: 0.5s ease-in-out;
     }
 
+    .navigation {
+        text-decoration: none;
+    }
+
     .left_section {
         width: 100%;
         padding: 20px;
@@ -21,9 +25,16 @@
         border-bottom-left-radius: 7px;
 
         .login_Details {
+
             h1 {
+                padding-top: 10px;
+                color: $primary_color;
+                font-size: 26px;
+            }
+
+            h2 {
                 padding: 2px;
-                color: $secondary_color;
+                color: $primary_color;
                 font-size: 20px;
             }
 
@@ -44,6 +55,7 @@
 
                 input {
                     border-width: .3px;
+                    border-radius: 5px;
                     border-color: rgb(149 149 149 / 52%);
                     outline: none;
                     padding: 15px 10px;
@@ -62,11 +74,12 @@
                 width: 100%;
                 color: white;
                 border: none;
+                border-radius: 5px;
                 padding: 15px 0px;
                 font-size: 15px;
 
                 &:hover {
-                    background-color: $secondary_color;
+                    background: $gradient_color;
                 }
             }
 
@@ -86,10 +99,11 @@
 
             p {
                 font-size: 13px;
-            }
 
-            .navigation {
-                text-decoration: none;
+                .navigation {
+                    text-decoration: none;
+                    color: $primary_color;
+                }
             }
         }
 
@@ -117,34 +131,33 @@
                 height: 20px;
                 display: flex;
                 justify-content: center;
-            }
 
-            a {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                text-decoration: none;
-                border: none;
-                padding: 2rem 3rem;
-                font-size: 15px;
-                background-color: white;
 
-                &:hover {
-                    background-color: $base_color;
-                    border-radius: 50px;
-                }
-
-                button {
+                a {
                     display: flex;
                     align-items: center;
                     gap: 5px;
+                    text-decoration: none;
                     border: none;
-                    background-color: transparent;
+                    font-size: 15px;
+                    background-color: white;
 
+                    button {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        border: none;
+                        background-color: transparent;
+                        padding: .5rem 1.5rem;
+                        cursor: pointer;
 
+                        &:hover {
+                            background-color: $base_color;
+                            border-radius: 50px;
+                        }
+                    }
                 }
             }
-
         }
     }
 
@@ -167,7 +180,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-          
+
             img {
 
                 width: 250px;
