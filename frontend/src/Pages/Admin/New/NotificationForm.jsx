@@ -54,7 +54,7 @@ const NotificationForm = ({ title }) => {
                         <form onSubmit={(e) => HandleSubmit(e)}>
 
                             <div className={Style.formInput}>
-                                <label>First Name <span>*</span> </label>
+                                <label>Message <span>*</span> </label>
                                 <input type="textbox"
                                     placeholder="name"
                                     id='planName'

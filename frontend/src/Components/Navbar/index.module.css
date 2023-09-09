@@ -166,8 +166,8 @@
   background-color: #046BD2;
   height: 100%;
   width: 60px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .header_container .Container .Options {
   display: flex;
@@ -245,7 +245,7 @@
   color: white;
   background-color: #046BD2;
   padding: 10px 20px;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -271,7 +271,7 @@
   color: white;
   background-color: #046BD2;
   padding: 10px 20px;
-  border-radius: 25px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -295,6 +295,7 @@
   background-color: rgba(255, 255, 255, 0.5);
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
+  width: 275px;
   height: 100%;
   left: 0;
   bottom: 0;
@@ -343,16 +344,19 @@
   color: #046BD2;
 }
 .header_container .Container .Mobile_screen .ProfileContainer {
-  padding: 30px 20px;
+  width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   border-bottom: 2px solid lightgrey;
   border-top: 2px solid lightgrey;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
+  padding: 30px 20px;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap .profile {
   aspect-ratio: 1;
@@ -367,6 +371,15 @@
   border-radius: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.header_container .Container .Mobile_screen .ProfileContainer .profile_wrap button {
+  font-size: 18px;
+  font-weight: 900;
+  color: #046BD2;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap div {
   display: flex;
@@ -390,8 +403,12 @@
 .header_container .Container .Mobile_screen .menuContainer .menutitle {
   padding: 10px;
 }
+.header_container .Container .Mobile_screen .menuContainer .menutitle h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap {
-  padding: 10px 30px;
+  padding: 10px 20px;
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul {
   list-style: none;
@@ -418,7 +435,7 @@
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li span {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   margin-left: 5px;
 }
 .header_container .Container .Mobile_screen .categoryContainer {
@@ -456,6 +473,9 @@
   transition: all 0.5s cubic-bezier(1, 0, 1, 0);
   text-align: center;
 }
+.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show::-webkit-scrollbar {
+  display: none;
+}
 .header_container .Container .Mobile_screen .categoryContainer .accordion .item .show .row {
   display: flex;
   flex-direction: column;
@@ -471,7 +491,7 @@
   border-radius: 5px;
 }
 .header_container .Container .Mobile_screen .categoryContainer .accordion .item .show .row h3 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
 }
 

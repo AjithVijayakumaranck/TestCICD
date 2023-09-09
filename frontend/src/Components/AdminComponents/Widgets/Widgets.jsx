@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Style from './Style.module.css'
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import adminInstance from '../../../instance/AdminInstance';
+import { AdminContext } from '../../../Contexts/AdminContext';
 
 
 const Widgets = ({ type }) => {
+
+    const LoggedInAdmin = useContext(AdminContext);
+    const { Admin, SetAdmin } = LoggedInAdmin
 
     const [Products, SetProducts] = useState([]);
     const [categories, setCategories] = useState([]);
@@ -62,7 +66,7 @@ const Widgets = ({ type }) => {
         loadUsers();
         loadcategory();
         loadProducts();
-    }, []);
+    }, [Admin]);
 
 
 

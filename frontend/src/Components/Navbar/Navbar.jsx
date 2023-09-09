@@ -87,7 +87,7 @@ const Navbar = ({ location, setLocation }) => {
     try {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
         SetUserData({ ...Response.data })
-        SetUserImage(Response.data.profilePicture.url)
+        SetUserImage(Response.data.profilePicture?.url)
       }).catch((err) => {
         console.log(err)
       });
@@ -186,24 +186,29 @@ const Navbar = ({ location, setLocation }) => {
             </div>
 
             <div className={Style.ProfileContainer}>
+              {User._id ?
+                <div className={Style.profile_wrap}>
+                  <div className={Style.profile}>
+                    <img
+                      src={UserImage ?
+                        UserImage
+                        : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                      }
+                      alt="nav profile pricture "
+                    />
 
-              <div className={Style.profile_wrap}>
-                <div className={Style.profile}>
-                  <img
-                    src={UserImage ?
-                      UserImage
-                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                    }
-                    alt="nav profile pricture "
-                  />
-
+                  </div>
+                  <div>
+                    <h6>"Hello"</h6>
+                    <h4>{UserData.fullname} {UserData.surname}</h4>
+                    <Link to='/profile' className={Style.navigation} ><h5>View and edit Profile</h5> </Link>
+                  </div>
                 </div>
-                <div>
-                  <h6>"Hello"</h6>
-                  <h4>{UserData.fullname} {UserData.surname}</h4>
-                  <Link to='/profile' className={Style.navigation} ><h5>View and edit Profile</h5> </Link>
+                :
+                <div className={Style.profile_wrap}>
+                  <Link to='/registration_login' className={Style.navigation} > <button>Login / SignUp</button></Link>
                 </div>
-              </div>
+              }
             </div>
 
             <div className={Style.categoryContainer}>
@@ -272,11 +277,13 @@ const Navbar = ({ location, setLocation }) => {
                       <span>Wishlist</span>
                     </li>
                   </Link>
-
-                  <li>
-                    <BiLogOut className={Style.icons} />
-                    <span>Logout</span>
-                  </li>
+                  {User._id ?
+                    <li>
+                      <BiLogOut className={Style.icons} />
+                      <span>Logout</span>
+                    </li>
+                    : null
+                  }
 
                 </ul>
 

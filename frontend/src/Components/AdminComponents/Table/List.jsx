@@ -22,21 +22,20 @@ const List = ({ rows }) => {
             <TableCell className={Style.tableCell}>Product</TableCell>
             <TableCell className={Style.tableCell}>Amount</TableCell>
             <TableCell className={Style.tableCell}>Date</TableCell>
-            {/* <TableCell className={Style.tableCell}>Customer</TableCell>
-            <TableCell className={Style.tableCell}>Status</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
+          {rows.length > 0 && rows.map((row, index) => (
             <TableRow key={index}>
               <TableCell className={Style.tableCell}>{row._id}</TableCell>
               <TableCell className={Style.tableCell}>
                 <div className={Style.cellWrapper}>
                   <img
                     src={
-                      row.images[0].url
-                        ? row.images[0].url
+                      row.images &&  row.images[0].url
+                        ? row?.images[0].url
                         : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                       
                     }
                     className={Style.image}
                     alt=""
@@ -46,10 +45,6 @@ const List = ({ rows }) => {
               </TableCell>
               <TableCell className={Style.tableCell}>{row.price}</TableCell>
               <TableCell className={Style.tableCell}>{row.createdAt}</TableCell>
-              {/* <TableCell className={Style.tableCell}>{row.amount}</TableCell>
-              <TableCell className={Style.tableCell}>
-                <span className={Style.status} >{row.status}</span>
-              </TableCell> */}
             </TableRow>
           ))}
         </TableBody>

@@ -203,8 +203,8 @@
           background-color: $primary_color;
           height: 100%;
           width: 60px;
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
         }
       }
     }
@@ -285,7 +285,7 @@
           color: white;
           background-color: $primary_color;
           padding: 10px 20px;
-          border-radius: 25px;
+          border-radius: 5px;
           font-size: 16px;
           font-weight: 700;
           cursor: pointer;
@@ -305,10 +305,6 @@
           display: none;
         }
 
-        // @include extraMediumScreen {
-        //   width: 100%;
-        // }
-
       }
 
       .ButtonContainer {
@@ -318,7 +314,7 @@
           color: white;
           background-color: $primary_color;
           padding: 10px 20px;
-          border-radius: 25px;
+          border-radius: 5px;
           font-size: 16px;
           font-weight: 700;
           cursor: pointer;
@@ -347,6 +343,7 @@
     .Mobile_screen {
       background-color: rgba($color: #ffffff, $alpha: .5);
       backdrop-filter: blur(10px);
+      width: 275px;
       height: 100%;
       left: 0;
       bottom: 0;
@@ -406,17 +403,20 @@
       }
 
       .ProfileContainer {
-        padding: 30px 20px;
+        width: 100%;
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         border-bottom: 2px solid $base_color4;
         border-top: 2px solid $base_color4;
 
 
         .profile_wrap {
+          width: 100%;
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 20px;
+          padding: 30px 20px;
 
           .profile {
             aspect-ratio: 1;
@@ -431,6 +431,16 @@
               border-radius: 100%;
               object-fit: cover
             }
+          }
+
+          button {
+            font-size: 18px;
+            font-weight: 900;
+            color: $primary_color;
+            background-color: transparent;
+            outline: none;
+            border: none;
+            cursor: pointer;
           }
 
           div {
@@ -451,7 +461,6 @@
       }
 
       .menuContainer {
-        //padding: 30px 0;
         display: flex;
         flex-direction: column;
         place-content: center;
@@ -459,10 +468,15 @@
 
         .menutitle {
           padding: 10px;
+
+          h4 {
+            font-size: 18px;
+            font-weight: 500;
+          }
         }
 
         .menu_wrap {
-          padding: 10px 30px;
+          padding: 10px 20px;
 
           ul {
             list-style: none;
@@ -487,13 +501,11 @@
               .icons {
                 font-size: 18px;
                 padding-left: 10px;
-                // color: $primary_color;
               }
 
               span {
                 font-size: 16px;
-                font-weight: 500;
-                // color: $base_color2;
+                font-weight: 400;
                 margin-left: 5px;
 
               }
@@ -542,6 +554,11 @@
               transition: all 0.5s cubic-bezier(1, 0, 1, 0);
               text-align: center;
 
+              &::-webkit-scrollbar {
+                display: none;
+              }
+
+
               .row {
                 display: flex;
                 flex-direction: column;
@@ -558,7 +575,7 @@
                 }
 
                 h3 {
-                  font-size: 18px;
+                  font-size: 16px;
                   font-weight: 300;
                 }
 
