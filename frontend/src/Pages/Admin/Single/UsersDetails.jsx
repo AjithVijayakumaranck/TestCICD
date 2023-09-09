@@ -9,7 +9,6 @@ import adminInstance from '../../../instance/AdminInstance'
 const UsersDetails = () => {
 
   const { userId } = useParams();
-  console.log(userId, "userdetail id");
 
   const [UserData, SetUserData] = useState("");
   const [UserAddress, SetUserAddress] = useState({});
@@ -19,10 +18,10 @@ const UsersDetails = () => {
   const loadUsers = () => {
     try {
       adminInstance.get(`/api/super_admin/user_control/get_profile/${userId}`).then((response) => {
-        console.log(response.data, "userdetail res");
+        //console.log(response.data, "userdetail res");
         SetUserData(response.data);
         SetUserAddress(response.data.address);
-        SetUserImage(response.data.profilePicture);
+        SetUserImage(response.data?.profilePicture);
       }).catch((error) => {
         console.log(error);
       });
@@ -34,7 +33,7 @@ const UsersDetails = () => {
   const loadUserProducts = () => {
     try {
       adminInstance.get(`/api/super_admin/product_control/get_userproducts/${userId}`).then((response) => {
-        console.log(response.data, "user products res");
+        //console.log(response.data, "user products res");
         SetUserProducts(response.data);
       }).catch((error) => {
         console.log(error);
@@ -44,7 +43,6 @@ const UsersDetails = () => {
     }
   };
 
-  console.log(UserAddress, "region");
 
   //LoadCategory functions
   useEffect(() => {
@@ -70,8 +68,8 @@ const UsersDetails = () => {
               <div className={Style.itemImg}>
                 <img
                   src={
-                    UserImage.url
-                      ? UserImage.url
+                    UserImage?.url
+                      ? UserImage?.url
                       : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                   }
                   alt=""
@@ -79,34 +77,37 @@ const UsersDetails = () => {
               </div>
 
               <div className={Style.details}>
-                <h1 className={Style.itemTitle}>{UserData.fullname || ''} {UserData.surname || ''}</h1>
+                <h1 className={Style.itemTitle}>{UserData?.fullname || ''} {UserData?.surname || ''}</h1>
                 <div className={Style.detailItem}>
                   <span className={Style.itemKey}>Email:</span>
-                  <span className={Style.itemValue}> {UserData.email} </span>
+                  <span className={Style.itemValue}> {UserData?.email} </span>
                 </div>
                 <div className={Style.detailItem}>
                   <span className={Style.itemKey}>Phone:</span>
-                  <span className={Style.itemValue}>{UserData.phoneNumber}</span>
+                  <span className={Style.itemValue}>{UserData?.phoneNumber}</span>
                 </div>
                 <div className={Style.detailItem}>
                   <span className={Style.itemKey}>Address:</span>
                   <span className={Style.itemValue}>
-                    {UserAddress.locality || ''} {UserAddress.district || ''} {UserAddress.state || ''}
+                    {UserAddress.locality || ''} {UserAddress?.district || ''} {UserAddress?.state || ''}
                   </span>
                 </div>
                 <div className={Style.detailItem}>
                   <span className={Style.itemKey}>Country:</span>
-                  <span className={Style.itemValue}>{UserAddress.region}</span>
+                  <span className={Style.itemValue}>{UserAddress?.region}</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className={Style.bottom}>
-          <h1 className={Style.title}>Last Transactions</h1>
-          <List rows={UserProducts} />
-        </div>
+        {UserProducts ?
+          <div className={Style.bottom}>
+            <h1 className={Style.title}>Last Transactions</h1>
+            <List rows={UserProducts} />
+          </div>
+          : null
+        }
 
       </div>
     </div>

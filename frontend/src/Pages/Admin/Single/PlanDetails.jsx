@@ -45,23 +45,23 @@ const PlanDetails = () => {
                             <div className={Style.details}>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>Plan Name:</span>
-                                    <span className={Style.itemValue}> {CurrentInput.plan_name} </span>
+                                    <span className={Style.itemValue}> {CurrentInput?.plan_name} </span>
                                 </div>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>Plan Duration:</span>
-                                    <span className={Style.itemValue}> {CurrentInput.plan_name} </span>
+                                    <span className={Style.itemValue}> {CurrentInput?.plan_name} </span>
                                 </div>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>Discount:</span>
-                                    <span className={Style.itemValue}> {CurrentInput.discount} </span>
+                                    <span className={Style.itemValue}> {CurrentInput?.discount} </span>
                                 </div>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>Monthly Pricing:</span>
-                                    <span className={Style.itemValue}> {CurrentInput.monthly_pricing} </span>
+                                    <span className={Style.itemValue}> {CurrentInput?.monthly_pricing} </span>
                                 </div>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>yearly_pricing:</span>
-                                    <span className={Style.itemValue}>{CurrentInput.yearly_pricing}</span>
+                                    <span className={Style.itemValue}>{CurrentInput?.yearly_pricing}</span>
                                 </div>
                                 <div className={Style.detailItem}>
                                     <span className={Style.itemKey}>Features:</span>

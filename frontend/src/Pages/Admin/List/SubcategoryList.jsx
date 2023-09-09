@@ -31,7 +31,7 @@ const SubcategoryList = () => {
       name: 'Options',
       cell: (row) => (
         <div className={Style.optionsContainer}>
-          <button className={Style.viewButton} onClick={() => navigate(`/admin/subcategory/singles/${row._id}`)} >View</button>
+          {/* <button className={Style.viewButton} onClick={() => navigate(`/admin/subcategory/singles/${row._id}`)} >View</button> */}
           <button className={Style.editButton} onClick={() => navigate(`/admin/subcategory/edit/${row._id}`)} >Edit</button>
           <button className={Style.deleteButton} onClick={() => handleDelete(row._id, row.category)} > Block </button>
         </div>

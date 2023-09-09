@@ -1,5 +1,6 @@
 .productwrapper {
   width: 100%;
+  min-height: 300px;
   background-color: #f8f8f8;
 }
 .productwrapper .container {

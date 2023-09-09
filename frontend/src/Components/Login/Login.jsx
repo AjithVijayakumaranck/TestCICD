@@ -4,15 +4,19 @@ import { toast } from "react-toastify";
 import instance from "../../instance/AxiosInstance";
 import Style from "./style.module.css";
 import { UserContext } from '../../Contexts/UserContext'
+import { AdminContext } from "../../Contexts/AdminContext";
 
 const Login = ({ setLogin }) => {
-  
+
   const navigate = useNavigate();
-  const loggedInUser = useContext(UserContext);    
+  const loggedInUser = useContext(UserContext);
   const { User, SetUser } = loggedInUser
 
-  const {REACT_APP_BACKEND_URL} = process.env
-  
+  const loggedInAdmin = useContext(AdminContext);
+  const { Admin, SetAdmin } = loggedInAdmin || {}
+
+  const { REACT_APP_BACKEND_URL } = process.env
+
 
   const GoogleAuthentication = () => {
     instance.get('api/auth/google')
@@ -24,21 +28,27 @@ const Login = ({ setLogin }) => {
   })
 
   const loginHandler = (e) => {
-    console.log("hello9 login");
+
     e.preventDefault();
     instance.post('/api/login', userData).then((response) => {
-      //console.log(response.data);
-      localStorage.setItem("logged",true)
-      localStorage.setItem("token",response.data.token)
-      SetUser(response.data.user)
-      navigate('/')
-
+      console.log(response.data.user.role);
+      if (response.data.user.role === "superadmin" || response.data.user.role === "admin") {
+        localStorage.setItem("AdminLogged", true)
+        localStorage.setItem("AdminToken", response.data.token)
+        SetAdmin(response.data.user)
+        navigate("/admin")
+      } else {
+        localStorage.setItem("logged", true)
+        localStorage.setItem("token", response.data.token)
+        SetUser(response.data.user)
+        navigate('/')
+      }
     }).catch((error) => {
       console.log(error);
       toast.error("Credentials are invalid")
       navigate('/registration_login')
     })
-   
+
   }
 
 
@@ -46,17 +56,18 @@ const Login = ({ setLogin }) => {
     <div className={Style.form_container}>
       <div className={Style.left_section}>
         <div className={Style.login_Details}>
-          <h1>LOGIN</h1>
+          <Link className={Style.navigation} to='/'> <h1>DealNBuy</h1> </Link>
+          {/* <h2>LOGIN</h2> */}
           <p>Please provide your Mobile Number or Email to Login on DealNBuy</p>
         </div>
         <form onSubmit={(e) => { loginHandler(e) }}>
           <div className={Style.input_div}>
-            <label htmlFor="email/phonenumber" >Email / Phonenumber</label>
-            <input type="text" placeholder="email / phonenumber" required id="email/phonenumber" value={userData.data} onChange={(e) => { setUserData({ ...userData, data: e.target.value }) }} />
+            <label htmlFor="email/phone Number" >Email / Phone Number</label>
+            <input type="text" placeholder="Email / Phone Number" required id="email/phone Number" value={userData.data} onChange={(e) => { setUserData({ ...userData, data: e.target.value }) }} />
           </div>
           <div className={Style.input_div}>
-            <label htmlFor="password" >password</label>
-            <input type="password" placeholder="password" required id="password" value={userData.password} onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} />
+            <label htmlFor="password" >Password</label>
+            <input type="password" placeholder="Password" required id="password" value={userData.password} onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} />
           </div>
           <button>
             Login
@@ -64,7 +75,7 @@ const Login = ({ setLogin }) => {
         </form>
         <div className={Style.additional_options}>
           <p><Link className={Style.navigation} to='/forgotpassword'>Forgot Password?</Link></p>
-          <p>Dont have an account?<Link className={Style.navigation} onClick={() => { setLogin(true) }}>Signup</Link></p>
+          <p>Dont have an account? <Link className={Style.navigation} onClick={() => { setLogin(true) }}>Signup</Link></p>
         </div>
         <div className={Style.Google_authentication}>
           <div className={Style.break}>

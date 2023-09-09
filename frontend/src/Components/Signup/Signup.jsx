@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const Signup = ({ setLogin }) => {
 
- 
+
 
   //authentication option
   const [otp, setOtp] = useState(false);
@@ -331,7 +331,7 @@ const Signup = ({ setLogin }) => {
           <form onSubmit={(e) => { submitHandler(e); }} >
             <div className={Style.input_div}>
               <div>
-                <label htmlFor="Full_name">Full name</label>
+                <label htmlFor="Full_name">Full Name</label>
                 <input
                   type="text"
                   placeholder="Fullname"
@@ -345,10 +345,10 @@ const Signup = ({ setLogin }) => {
               </div>
 
               <div>
-                <label htmlFor="lastname">Sur name</label>
+                <label htmlFor="lastname">Sur Name</label>
                 <input
                   type="text"
-                  placeholder="lastname"
+                  placeholder="Lastname"
                   id="lastname"
                   required
                   onChange={(e) => {
@@ -362,13 +362,13 @@ const Signup = ({ setLogin }) => {
               <div className={Style.input_div}>
                 <div>
                   <label htmlFor="Phone Number">
-                    Phonenumber{" "}
+                    Phone Number{" "}
                     <span onClick={() => { setAuth(false); }} > Using my email </span>
                   </label>
                   <input
                     required
                     type="number"
-                    placeholder="Phonenumber"
+                    placeholder="Phone Number"
                     id="phonenumber"
                     maxLength="10"
                     onChange={(e) => {
@@ -383,7 +383,7 @@ const Signup = ({ setLogin }) => {
                 <div>
                   <label htmlFor="Email">
                     Email{" "}
-                    <span onClick={() => { setAuth(true); }} > Using my Phonenumber </span>
+                    <span onClick={() => { setAuth(true); }} > Using my Phone Number </span>
                   </label>
                   <input
                     required

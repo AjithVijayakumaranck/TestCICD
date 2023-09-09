@@ -15,8 +15,6 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>About Us</h2>
                     <ul>
-                        <li>Careers</li>
-                        <li>Our Stores</li>
                         <li>Help Center</li>
                         <li>Terms & Conditions</li>
                         <li>Privacy Policy</li>
@@ -25,11 +23,7 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>Locations</h2>
                     <ul>
-                        <li> Banglore </li>
-                        <li> Kerala </li>
-                        <li> Kochi </li>
-                        <li> France </li>
-
+                        <li> India </li>
                     </ul>
                 </div>
                 <div className={Style.box}>
@@ -43,7 +37,7 @@ const Footer = () => {
             </div>
             <div className={Style.bottom}>
                 <div className={Style.bottomleft}>
-                    <p>Copyright © 2023 DealNBuy store. All Rights Reserved.
+                    <p>Copyright © 2023 DealNBuy. All Rights Reserved.
                         <span className={Style.left}><i>Terms Of Use</i></span>
                         <span><i>Privacy Policy</i></span>
                     </p>

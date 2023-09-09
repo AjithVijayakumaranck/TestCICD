@@ -31,7 +31,7 @@ const Sidebar = () => {
     SetAdmin("");
 
     // Redirect to the login page
-    navigate('/admin');
+    navigate('/registration_login');
   }
 
   return (
@@ -43,8 +43,8 @@ const Sidebar = () => {
       <hr />
       <div className={Style.center}>
         <ul>
-          <Link to="/admin/home" className={`${Style.navigation} `} >
-            <li className={` ${window.location.pathname === '/admin/home' ? Style.active : null}`}>
+          <Link to="/admin" className={`${Style.navigation} `} >
+            <li className={` ${window.location.pathname === '/admin' ? Style.active : null}`}>
               <SpaceDashboardIcon className={Style.icons} />
               <span>Dashboard</span>
             </li>

@@ -91,7 +91,7 @@ const Home = () => {
       return 0;
     });
     SetSortedProducts(sortedProducts)
-    console.log(SortedProducts, "sorted products");
+    //console.log(SortedProducts.length, "sorted products length");
   }
 
   useEffect(() => {
@@ -103,7 +103,7 @@ const Home = () => {
     <div className={Style.home_container}>
       <ScrollToTopOnMount />
       <Navbar setLocation={setLocation} location={location} />
-      <HomeCarousel items={SliderImage}/>
+      <HomeCarousel items={SliderImage} />
       < div className={Style.Main_container}>
         <div className={Style.Left}>
           <LeftCategory />
@@ -112,10 +112,13 @@ const Home = () => {
           <RightCategory />
           <div className={Style.cardWrapper}>
             <HomeProduct sortedproducts={SortedProducts} />
-            <div className={Style.loadbtn}>
-              <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-              <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
-            </div>
+            {SortedProducts.length !== 0 ?
+              <div className={Style.loadbtn}>
+                <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
+                <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+              </div>
+              : null
+            }
           </div>
         </div>
       </div>
