@@ -75,7 +75,7 @@ module.exports = {
             const hashedPassword = await hashData(password);
             const adminInfo = await USER.findOne({email:data})
             if (adminInfo) {
-                SUPERADMIN.updateOne({email:data}, { password: hashedPassword }).then((response) => {
+                USER.updateOne({email:data}, { password: hashedPassword }).then((response) => {
                     console.log("password Updated");
                     res.status(200).json({ message: "passwords updated successfully" })
                 }).catch((error) => {
@@ -98,7 +98,7 @@ module.exports = {
             const {fullName,surName,email,password,locality,district,state,region,role} = req.body
             console.log(req.body);
             const hashedPassword = await hashData(password)
-            SUPERADMIN.create({
+            USER.create({
                 fullname:fullName,
                 surname:surName,
                 email:email,
@@ -108,7 +108,7 @@ module.exports = {
                   locality:locality,
                   district:district,
                   state:state,
-                  country:region
+                  region:region
                 },
             }).then((response)=>{
                 res.status(200).json({message:"Admin add successfully"})
