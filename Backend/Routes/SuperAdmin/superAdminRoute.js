@@ -8,10 +8,10 @@ const { authoriseJwt } = require('../../utilities/authorisation');
 router.post("/admin_create",authoriseJwt,superAdminControllers.createAdmin)
 
 //superadmin Login
-router.post("/admin_login",superAdminControllers.superAdminLogin)
+// router.post("/admin_login",superAdminControllers.superAdminLogin)
 
 //forgot Password
-router.post("/forgot_password",superAdminControllers.forgotPassword)
+// router.post("/forgot_password",superAdminControllers.forgotPassword)
 
 //verifyOtp
 router.post("/verify_Otp",superAdminControllers. verifyOtp)
