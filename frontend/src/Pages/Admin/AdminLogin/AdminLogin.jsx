@@ -21,7 +21,6 @@ const AdminLogin = () => {
    
     const LoginHandler = (e) => {
         e.preventDefault();
-        console.log(AdminData, "Admindata");
         try {
             instance.post('/api/super_admin/admin_login', AdminData).then((res) => {
                 //console.log(res.data);
