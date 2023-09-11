@@ -57,10 +57,14 @@ app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }))
 app.use(passport.initialize());
 app.use(passport.session());
 
+const allowedOrigins = [
+    "https://www.dealnbuy.in",
+    "https://dealnbuy.in",
+];
 
 //cors
 app.use(cors({
-    origin: "https://www.dealnbuy.in",
+    origin: allowedOrigins,
     methods: "GET,POST,PUT,DELETE",
 }))
 
