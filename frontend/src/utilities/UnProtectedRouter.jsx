@@ -6,6 +6,10 @@ const UnProtectedRouter = () => {
     const isUserAuthenticated = !!localStorage.getItem('token');
     const isAdminAuthenticated = !!localStorage.getItem('AdminToken');
 
+    console.log(isUserAuthenticated, "user routing checking");
+    console.log(isAdminAuthenticated, "admin routing checking");
+
+
     return (
         isUserAuthenticated ? <Navigate to="/" />
             : isAdminAuthenticated ? <Navigate to="/admin" />

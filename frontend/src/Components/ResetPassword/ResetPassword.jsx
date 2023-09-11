@@ -71,7 +71,7 @@ const ResetPassword = ({ userData }) => {
     }
 
     return (
-        <div className={Style.container}>
+        <div className={Style.containerwrap}>
             <div className={Style.form_container}>
                 <h1>Is that you</h1>
                 <p>We have sent an OTP to your email</p>

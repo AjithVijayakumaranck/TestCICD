@@ -5,28 +5,39 @@ import instance from "../../instance/AxiosInstance";
 import Style from "./style.module.css";
 import { UserContext } from '../../Contexts/UserContext'
 import { AdminContext } from "../../Contexts/AdminContext";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 const Login = ({ setLogin }) => {
 
   const navigate = useNavigate();
+
   const loggedInUser = useContext(UserContext);
   const { User, SetUser } = loggedInUser
 
   const loggedInAdmin = useContext(AdminContext);
   const { Admin, SetAdmin } = loggedInAdmin || {}
 
-  const { REACT_APP_BACKEND_URL } = process.env
+  //const { REACT_APP_BACKEND_URL } = process.env
 
+  const [ShowPassword, SetShowPassword] = useState(false);
 
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    SetShowPassword(!ShowPassword);
+  };
+
+  //Function for google authentication
   const GoogleAuthentication = () => {
     instance.get('api/auth/google')
   }
 
+  //State for collect form data
   const [userData, setUserData] = useState({
     data: "",
     password: ""
   })
 
+  //Function for login handler
   const loginHandler = (e) => {
 
     e.preventDefault();
@@ -67,7 +78,22 @@ const Login = ({ setLogin }) => {
           </div>
           <div className={Style.input_div}>
             <label htmlFor="password" >Password</label>
-            <input type="password" placeholder="Password" required id="password" value={userData.password} onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }} />
+            {/* <div className={Style.password_input}> */}
+              <input
+                type={ShowPassword ? "text" : "password"}
+                placeholder="Password"
+                required
+                id="password"
+                value={userData.password}
+                onChange={(e) => { setUserData({ ...userData, password: e.target.value }) }}
+              />
+              <span
+                className={Style.eye_icon}
+                onClick={togglePasswordVisibility}
+              >
+                {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+              </span>
+            {/* </div> */}
           </div>
           <button>
             Login

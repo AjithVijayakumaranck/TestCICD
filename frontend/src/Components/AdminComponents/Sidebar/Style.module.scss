@@ -15,7 +15,9 @@
     @include mediumScreen {
         flex: 2.5;
     }
-
+    .logo_navigation {
+        text-decoration: none;
+    }
     .navigation {
         text-decoration: none;
         color: #111;

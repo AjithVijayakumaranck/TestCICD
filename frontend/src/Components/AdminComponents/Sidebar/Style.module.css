@@ -13,6 +13,9 @@
     flex: 2.5;
   }
 }
+.sidebar .logo_navigation {
+  text-decoration: none;
+}
 .sidebar .navigation {
   text-decoration: none;
   color: #111;

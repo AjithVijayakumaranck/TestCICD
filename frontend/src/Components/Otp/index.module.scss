@@ -1,20 +1,31 @@
 @import '../../StyleHelpers/Variables.scss';
 
 .form_container {
-    width: 100%;
-    padding: 0 1rem;
+    width: 40rem;
+    min-height: 20rem;
+    padding: 1rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-    @include breakpoint(md){
-        width: 55rem;
-        padding: 0 5rem;
-        min-height: 30rem;
+    box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+
+    @include breakpoint(md) {
+        width: 20rem;
+        padding: 1rem 2rem;
+        min-height: 20rem;
         transition: 0.5s ease-in-out;
+        box-shadow: none;
     }
-    
-    h1{
+
+    @include mediumScreen {
+        width: 30rem;
+    }
+
+    @include LargeScreen {
+        width: 45rem;
+    }
+
+    h1 {
         color: $primary_color;
     }
 
@@ -24,47 +35,53 @@
     }
 
     form {
-    
-        div{
+
+        div {
             display: flex;
             flex-direction: column;
 
             p {
-                color:red;
+                color: red;
                 text-align: start;
                 font-size: 12px;
-                
+
             }
 
             label {
                 font-size: .8rem;
             }
+
             input {
                 border-width: .3px;
-                border-color:rgb(149 149 149 / 52%);
+                border-color: rgb(149 149 149 / 52%);
                 outline: none;
-                padding: 15px 10px;  
+                padding: 15px 10px;
                 background-color: $base_color;
+                border-radius: 5px;
             }
         }
+
         button {
             cursor: pointer;
             margin-top: 5px;
             background-color: $primary_color;
             width: 100%;
-            color:white;
-            border:none;
+            color: white;
+            border: none;
+            border-radius: 5px;
             padding: 15px 0px;
             font-size: 15px;
-            &:hover{
-                background-color: $secondary_color;
+
+            &:hover {
+                background-color: $gradient_color;
             }
         }
+
         p {
             font-size: .8rem;
             text-align: center;
             padding-top: .5rem;
             cursor: pointer;
         }
-    } 
+    }
 }

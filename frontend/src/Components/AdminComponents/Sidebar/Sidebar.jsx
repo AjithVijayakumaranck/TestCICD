@@ -1,4 +1,4 @@
-import React, { useContext }from 'react'
+import React, { useContext } from 'react'
 import Style from './Style.module.css'
 import { Link, useNavigate } from "react-router-dom"
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
@@ -38,7 +38,9 @@ const Sidebar = () => {
     <div className={Style.sidebar}>
 
       <div className={Style.top}>
-        <span className={Style.logo}>Deal N Buy</span>
+        <Link to="/" className={Style.logo_navigation} >
+          <span className={Style.logo}>Deal N Buy</span>
+        </Link>
       </div>
       <hr />
       <div className={Style.center}>
