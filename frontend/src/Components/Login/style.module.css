@@ -40,6 +40,7 @@
   flex-direction: column;
   padding: 10px 0px;
   gap: 4px;
+  position: relative;
 }
 .form_container .left_section form .input_div input {
   border-width: 0.3px;
@@ -48,6 +49,17 @@
   outline: none;
   padding: 15px 10px;
   background-color: #ebebeb;
+}
+.form_container .left_section form .input_div .eye_icon {
+  position: absolute;
+  right: 15px;
+  top: 65%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+.form_container .left_section form .input_div .eye_icon:hover {
+  color: #046BD2;
 }
 .form_container .left_section form .input_div label {
   font-size: 12px;

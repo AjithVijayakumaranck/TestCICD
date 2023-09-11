@@ -77,11 +77,27 @@
   color: #10E3C2;
 }
 .form_container .left_section form .input_div div input {
-  border-width: 0.3px;
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
+  border-width: 0.3px;
+  border-radius: 5px;
   padding: 15px 10px;
   background-color: #ebebeb;
+}
+.form_container .left_section form .input_div div .input_Wrap {
+  position: relative;
+}
+.form_container .left_section form .input_div div .input_Wrap .eye_icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  font-size: 16px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+.form_container .left_section form .input_div div .input_Wrap .eye_icon:hover {
+  color: #046BD2;
 }
 .form_container .left_section form .input_div div label {
   font-size: 12px;
@@ -93,6 +109,7 @@
   width: 100%;
   color: white;
   border: none;
+  border-radius: 5px;
   padding: 15px 0px;
   font-size: 15px;
 }

@@ -69,7 +69,6 @@
             .input_div {
                 padding: 2px;
                 display: flex;
-                // flex-direction: ;
                 gap: 10px;
 
                 @include breakpoint(md) {
@@ -100,11 +99,31 @@
                     }
 
                     input {
-                        border-width: .3px;
                         border-color: rgb(149 149 149 / 52%);
                         outline: none;
+                        border-width: .3px;
+                        border-radius: 5px;
                         padding: 15px 10px;
                         background-color: $base_color;
+
+                    }
+
+                    .input_Wrap {
+                        position: relative;
+
+                        .eye_icon {
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            font-size: 16px;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            color: #999;
+
+                            &:hover {
+                                color: $primary_color;
+                            }
+                        }
                     }
 
                     label {
@@ -121,6 +140,7 @@
                 width: 100%;
                 color: white;
                 border: none;
+                border-radius: 5px;
                 padding: 15px 0px;
                 font-size: 15px;
 

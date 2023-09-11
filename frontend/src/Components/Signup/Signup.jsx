@@ -4,6 +4,7 @@ import instance from "../../instance/AxiosInstance";
 import Style from "./index.module.css";
 import LoadingSpin from "react-loading-spin";
 import { toast } from "react-toastify";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 
 
@@ -21,6 +22,19 @@ const Signup = ({ setLogin }) => {
   const [loading, setLoading] = useState(false);
 
   const [responseError, setResponseError] = useState("");
+
+  const [ShowPassword, SetShowPassword] = useState(false);
+  const [ShowConfirmPassword, SetShowConfirmPassword] = useState(false);
+
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    SetShowPassword(!ShowPassword);
+  };
+
+  // Function to toggle confirm password visibility
+  const toggleConfirmPasswordVisibility = () => {
+    SetShowConfirmPassword(!ShowConfirmPassword);
+  };
 
   const [otpDetails, setOtpDetails] = useState({
     email: "",
@@ -325,16 +339,16 @@ const Signup = ({ setLogin }) => {
       ) : (
         <div className={Style.left_section}>
           <div className={Style.login_Details}>
-            <h1>SIGNUP</h1>
+            <h1>SIGN UP</h1>
             <p>Please provide your details to register on DealNBuy</p>
           </div>
           <form onSubmit={(e) => { submitHandler(e); }} >
             <div className={Style.input_div}>
               <div>
-                <label htmlFor="Full_name">Full Name</label>
+                <label htmlFor="Full_name">First Name</label>
                 <input
                   type="text"
-                  placeholder="Fullname"
+                  placeholder="First Name"
                   onChange={(e) => {
                     fullname_validation(e);
                   }}
@@ -345,10 +359,10 @@ const Signup = ({ setLogin }) => {
               </div>
 
               <div>
-                <label htmlFor="lastname">Sur Name</label>
+                <label htmlFor="Last Name">Sur Name</label>
                 <input
                   type="text"
-                  placeholder="Lastname"
+                  placeholder="Last Name"
                   id="lastname"
                   required
                   onChange={(e) => {
@@ -382,13 +396,13 @@ const Signup = ({ setLogin }) => {
               <div className={Style.input_div}>
                 <div>
                   <label htmlFor="Email">
-                    Email{" "}
+                    E-mail{" "}
                     <span onClick={() => { setAuth(true); }} > Using my Phone Number </span>
                   </label>
                   <input
                     required
                     type="email"
-                    placeholder="Email"
+                    placeholder="E-mail"
                     id="Email"
                     onChange={(e) => {
                       email_validation(e);
@@ -418,28 +432,44 @@ const Signup = ({ setLogin }) => {
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  required
-                  placeholder="Password"
-                  id="password"
-                  onChange={(e) => {
-                    password_validation(e);
-                  }}
-                />
+                <div className={Style.input_Wrap}>
+                  <input
+                    type={ShowPassword ? "text" : "password"}
+                    placeholder="Password"
+                    required
+                    id="password"
+                    onChange={(e) => {
+                      password_validation(e);
+                    }}
+                  />
+                  <span
+                    className={Style.eye_icon}
+                    onClick={togglePasswordVisibility}
+                  >
+                    {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                  </span>
+                </div>
                 <p>{error.password}</p>
               </div>
               <div>
                 <label htmlFor="Confrim_Password">Confirm Password</label>
-                <input
-                  type="password"
-                  required
-                  placeholder="Confirm Password"
-                  id="Confirm_Password"
-                  onChange={(e) => {
-                    confirmPassword_validation(e);
-                  }}
-                />
+                <div className={Style.input_Wrap}>
+                  <input
+                    type={ShowConfirmPassword ? "text" : "password"}
+                    required
+                    placeholder="Confirm Password"
+                    id="Confirm_Password"
+                    onChange={(e) => {
+                      confirmPassword_validation(e);
+                    }}
+                  />
+                  <span
+                    className={Style.eye_icon}
+                    onClick={toggleConfirmPasswordVisibility}
+                  >
+                    {ShowConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                  </span>
+                </div>
                 <p>{error.confirmPassword}</p>
               </div>
             </div>
