@@ -6,7 +6,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import 'animate.css';
 import { CategoryContext } from '../../Contexts/CategoryContext';
 import Options from '../Profile_Selector/Options'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { RiAdvertisementLine } from "react-icons/ri";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { BiPurchaseTag, BiLogOut } from "react-icons/bi";
@@ -24,6 +24,8 @@ const Navbar = ({ location, setLocation }) => {
 
   const LoggedInUser = useContext(UserContext);
   const { User, SetUser } = LoggedInUser        //LoggedInUser Id
+
+  const navigate = useNavigate();
 
   const categories = useContext(CategoryContext)
   const socket = useContext(SocketContext);
