@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Style from "./Style.module.css";
+import Style from "./index.module.css";
 import { BsChevronRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import instance from "../../../instance/AxiosInstance";
@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { UserContext } from "../../../Contexts/UserContext";
 
 
-const MobileTile = () => {
+const MediumPage = () => {
 
     const Navigate = useNavigate()
     const USER = useContext(UserContext)
@@ -100,4 +100,4 @@ const MobileTile = () => {
 }
 
 
-export default MobileTile
+export default MediumPage
