@@ -45,7 +45,6 @@ const Navbar = ({ location, setLocation }) => {
   const HandleSearch = () => {
     try {
       instance.get(`/api/user/filter/search_products?SearchQuery=${SearchQuery}&&limit=${5}`).then((response) => {
-        // console.log(response.data, "search result");
         SetSearchResult(response.data)
       }).catch((err) => {
         console.log(err);
@@ -75,7 +74,6 @@ const Navbar = ({ location, setLocation }) => {
   useEffect(() => {
     if (socket) {
       socket.on('notificationAlert', (data) => {
-        //console.log(data, "helllo00");
         SetNewMessages(data.Alert)
       })
     }
@@ -97,14 +95,14 @@ const Navbar = ({ location, setLocation }) => {
   }, [User._id]);
 
 
-
-  // const options = []
-
-  // useEffect(() => {
-  //   Categories.map((category) => {
-  //     options.push({ value: category.categoryName, label: category.categoryName })
-  //   })
-  // }, [options])
+  const handleLogout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem('logged');
+    localStorage.removeItem('token');
+    SetUser("");
+    // Redirect to the login page
+    navigate('/');
+  }
 
 
 
@@ -278,7 +276,7 @@ const Navbar = ({ location, setLocation }) => {
                     </li>
                   </Link>
                   {User._id ?
-                    <li>
+                    <li onClick={(e) => { handleLogout(e) }} >
                       <BiLogOut className={Style.icons} />
                       <span>Logout</span>
                     </li>
