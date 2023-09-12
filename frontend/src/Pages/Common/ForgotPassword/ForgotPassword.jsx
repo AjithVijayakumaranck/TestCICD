@@ -94,8 +94,8 @@ const ForgotPassword = () => {
                 "Continue"
               )}</button>
               {
-                toggle ? <p>My Email not registed  <span onClick={() => setToggle(false)}> Use Phonenumber instead </span></p> :
-                  <p>My phone Number not registed  <span onClick={() => setToggle(true)}> Use Email instead </span></p>
+                toggle ? <p>My Email not registed  <span onClick={() => setToggle(false)}> Use Phone Number instead </span></p> :
+                  <p>My Phone Number not registed  <span onClick={() => setToggle(true)}> Use Email instead </span></p>
               }
 
             </form>
