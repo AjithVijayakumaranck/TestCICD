@@ -83,7 +83,7 @@ const Otp = ({ userData, toggle, reset }) => {
         </form>
       </div>
       <div className={Style.right}>
-        <img src="/Images/otp.svg" alt="otp_svg" />
+        <img src="/Images/otp.svg" alt="" />
       </div>
     </div>
   )

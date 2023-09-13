@@ -101,7 +101,7 @@ const ForgotPassword = () => {
             </form>
           </div>
           <div className={Style.right}>
-          <img src="/Images/forgot.svg" alt="forgot_svg" />
+          <img src="/Images/forgot.svg" alt="" />
           </div>
         </div>
 

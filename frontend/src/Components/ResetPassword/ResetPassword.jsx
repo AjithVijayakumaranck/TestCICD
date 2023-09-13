@@ -97,7 +97,7 @@ const ResetPassword = ({ userData }) => {
                     </form>
                 </div>
                 <div className={Style.right}>
-                <img src="/Images/reset.svg" alt="reset_svg" />
+                <img src="/Images/reset.svg" alt="" />
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@
 
     .container_wrapper {
         height: 100%;
-        min-height: 480px;
+        min-height: 540px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,6 +69,7 @@
                 padding: 10px;
                 border-radius: 5px;
                 background-color: #fff;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 
                 @include mediumScreen {
                     min-width: 250px;
@@ -130,6 +131,7 @@
                 border-radius: 5px;
                 padding: 10px;
                 background-color: #fff;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 
                 @include mediumScreen {
                     min-width: 250px;

@@ -99,4 +99,10 @@
   .containerwrap .right {
     display: none;
   }
+}
+.containerwrap .right img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=index.module.css.map */

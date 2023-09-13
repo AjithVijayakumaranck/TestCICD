@@ -66,9 +66,10 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         e.preventDefault();
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
-                //console.log(Response, 'favorite');
                 SetIsClicked(true);
+                toast.success("Product Added to Cart")
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
@@ -95,9 +96,8 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        console.log(User._id);
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            // console.log('deleted', Response)
+            toast.success("Product Removed from Cart")
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
@@ -109,7 +109,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         try {
             if (User?._id !== ClientData?._id) {
                 authInstance.post('/api/user/chat/createconversation', { senderId: User._id, recieverId: ClientData._id, productId: ProductDet._id }).then((response) => {
-                    console.log("response", response);
                     Navigate(`/chat/${response.data.savedConversation._id}`)
                 }).catch((err) => {
                     console.log(err, "erooooor");

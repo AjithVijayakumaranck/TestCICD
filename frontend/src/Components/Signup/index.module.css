@@ -114,7 +114,7 @@
   font-size: 15px;
 }
 .form_container .left_section form button:hover {
-  background-color: #10E3C2;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
 .form_container .left_section .additional_options {
   padding-top: 10px;
@@ -174,7 +174,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #10E3C2;
+  background-color: #046BD2;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }

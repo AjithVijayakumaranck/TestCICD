@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../../Contexts/UserContext';
 import authInstance from '../../../instance/AuthInstance';
 import Star from '../../ReviewStars/Star';
+import { toast } from 'react-toastify';
 
 const ProductCard = ({ product }) => {
 
@@ -19,8 +20,9 @@ const ProductCard = ({ product }) => {
         e.preventDefault();
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User, productId: product._id }).then((Response) => {
-                //console.log(Response, 'favorite');
+                toast.success("Product Added to Cart")
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {

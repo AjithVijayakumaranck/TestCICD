@@ -24,7 +24,7 @@ const NotificationCard = () => {
             {Alert.map((alert, index) => {
                 return (
                     <div key={index}>
-                        <img src="/imgs/logo.png" alt="" />
+                        <img src="/imgs/logo.jpg" alt="logo" />
                         <h4>{alert.notification}</h4>
                     </div>
                 )

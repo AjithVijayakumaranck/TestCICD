@@ -108,4 +108,10 @@
   .container .form_container .right {
     display: none;
   }
+}
+.container .form_container .right img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=Index.module.css.map */

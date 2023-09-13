@@ -49,7 +49,6 @@ const SinglePage = () => {
     useEffect(() => {
         try {
             instance.get(`/api/user/filter/filter_products?category=${ProductData?.category}`).then((response) => {
-                console.log(response.data);
                 SetCategoryProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -71,14 +70,13 @@ const SinglePage = () => {
                 return 0;
             });
             SetSortedProducts(sortedProducts)
-            console.log(SortedProducts, "sorted products");
         } catch (error) {
             console.log(error);
         }
     }, [CategoryProducts]);
 
     const ExcludeProducts = SortedProducts.filter((product) => product._id !== productId);
-    console.log(ExcludeProducts, "sorted ")
+  
 
     //Scroll to Top function
     function ScrollToTopOnMount() {
@@ -100,7 +98,10 @@ const SinglePage = () => {
             <div className={Style.main}>
                 <Breadcrumb customName="Details" pathSegments={pathSegment} />
                 <ProductDetail ProductDet={ProductDetails} ProductImages={ProductImg} OtherDet={OtherDetails} ClientData={ClientDetails} ClientImage={ClientImg} Reviews={ReviewsData} />
-                <PageProduct title="You May Also Like" sortedproducts={ExcludeProducts} categoryId={ProductData?.category} />
+                {ExcludeProducts.length > 0 ?
+                    <PageProduct title="You May Also Like" sortedproducts={ExcludeProducts} categoryId={ProductData?.category} />
+                    : null
+                }
                 <Newsletter />
                 <Footer />
             </div>
