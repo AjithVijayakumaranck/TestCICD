@@ -14,6 +14,10 @@ router.post('/sent_notification',notificationControllers.sentNotification)
 //get notification count from the database
 router.get('/notification_count',notificationControllers.getNotificationCount)
 
+//mark the notification as read
+router.post('/mark',notificationControllers.MarkRead)
+
+
 
 
 

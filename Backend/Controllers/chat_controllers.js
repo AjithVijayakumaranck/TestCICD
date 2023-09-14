@@ -72,11 +72,12 @@ module.exports = {
                sender:sender,
                text:text,
                offerMade:offerMade,
-               read:[sender]
               }
             )
           const savedMessage = await newMessage.save()
-         CONVERSATION.updateOne({_id:conversationId},{read:read}).then(()=>{
+         CONVERSATION.updateOne({_id:conversationId},{$push:{
+            read:sender
+         }}).then(()=>{
              res.status(200).json(savedMessage)
          }).catch((error)=>{
             error.status(400).json(error.message)
