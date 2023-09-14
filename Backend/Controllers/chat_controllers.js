@@ -91,7 +91,7 @@ module.exports = {
     //get all the messasges of a specific converstion
     getMessage : async (req,res)=>{
         try{
-            const {conversationId} = req.query
+            const {conversationId} = req.params
             const  allMessagges = await MESSAGE.find({conversationId:conversationId})
             res.status(200).json({allMessagges})
         }catch(err){
