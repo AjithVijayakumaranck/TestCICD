@@ -36,7 +36,6 @@ const Otp = ({ userData, toggle, reset }) => {
           toast.error(error.response.data.message)
         }) :
         instance.post("api/verifyotp_mobile", { userData, otp }).then((response) => {
-          console.log(response);
           setLoading(false)
           reset(true)
         }).catch((error) => {

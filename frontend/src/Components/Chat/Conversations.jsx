@@ -10,18 +10,13 @@ const Conversations = ({ conversations, currentUser }) => {
     // load members details
     useEffect(() => {
 
-        console.log(conversations, "COnever.Id");
-        console.log(currentUser, "Currentuser");
-
         const friendId = conversations.member.find((m) => m !== currentUser)
-        console.log(friendId, "friendId");
 
         const getUser = () => {
             try {
                 instance.get(`/api/user/profile/get_profile/${friendId}`).then((res) => {
-                    console.log(res.data, "friend data");
                     SetFriends(res.data)
-                    SetFriendImage(res.data.profilePicture.url);
+                    SetFriendImage(res.data?.profilePicture?.url);
                 }).catch((error) => {
                     console.log(error);
                 })
@@ -47,8 +42,8 @@ const Conversations = ({ conversations, currentUser }) => {
                     />
                 </div>
                 <div className={Style.right} >
-                    <h4>{Friends.fullname}{" "}{Friends.surname}</h4>
-                    <h6>{conversations.product ? conversations.product.title : null}</h6>
+                    <h4>{Friends?.fullname}{" "}{Friends?.surname}</h4>
+                    <h6>{conversations.product ? conversations.product?.title : null}</h6>
                 </div>
             </div>
         </React.Fragment>

@@ -50,7 +50,6 @@ const PostAdsPage = () => {
             .get(`/api/category/get_singlecategory?categoryId=${categoryId}`)
             .then((response) => {
                 setSubCategories([...response.data.subcategory]);
-                //console.log(response.data.subcategory, "data");
                 setToggle(true);
             }).catch((err) => {
                 toast.error(err.response.data.message)

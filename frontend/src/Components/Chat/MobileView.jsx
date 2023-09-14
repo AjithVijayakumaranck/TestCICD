@@ -70,7 +70,6 @@ const MobileView = () => {
     };
     useEffect(() => {
         if (!conversationId || conversationId !== null) {
-            console.log("not undefined", conversationId);
             fetchCurrentReceiver(conversationId)
         }
     }, [])
@@ -97,9 +96,7 @@ const MobileView = () => {
             // take event from client (get message from client)
 
             socket.on("getMessage", (data) => {
-                console.log(data, "current dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 const decryptText = decrypt(data.text)
-                console.log(decryptText, "decryooot.", data.offerMade);
                 SetArrivalMessage({
                     ...ArrivalMessage,
                     sender: data.userId,
@@ -130,7 +127,7 @@ const MobileView = () => {
     useEffect(() => {
         const getConersations = () => {
             try {
-                authInstance.get(`/api/user/chat/getconversation/${User._id}`).then((res) => {
+                authInstance.get(`/api/user/chat/getconversation/${User?._id}`).then((res) => {
                     SetConversation(res.data)
                 }).catch((err) => {
                     console.log(err)
@@ -146,14 +143,10 @@ const MobileView = () => {
     // fetch current receiver profile details
     const fetchCurrentReceiver = async (conversationId) => {
         try {
-            //console.log(conversationId, "coooooooooooooooooo");
             const converstionDetails = await authInstance.get(`/api/user/chat/getspecific_converstaion/${conversationId}`)
             const conversations = converstionDetails.data
-            //console.log(conversations, "hellllo");
             const friendId = conversations.member.find((m) => m !== User._id)
-            //console.log(friendId, "friiebd iddd");
             instance.get(`/api/user/profile/get_profile/${friendId}`).then((res) => {
-                console.log(res.data, "friend data 2");
                 SetCurrentProfile(res.data)
                 SetCurrentProfileImage(res.data.profilePicture.url)
                 setCurrentChat(conversations)
@@ -170,9 +163,9 @@ const MobileView = () => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await authInstance.get(`/api/user/chat/getmessages/${currentChat._id}`);
-                decryptData(res.data.allMessagges)
-                SetMessage(res.data.allMessagges)
+                const res = await authInstance.get(`/api/user/chat/getmessages/${currentChat?._id}`);
+                decryptData(res.data?.allMessagges)
+                SetMessage(res.data?.allMessagges)
             } catch (err) {
                 console.log(err);
             }
@@ -185,21 +178,21 @@ const MobileView = () => {
         e.preventDefault()
         SetMessage([...Message, Text]);
         const NewMessage = {
-            sender: User._id,
+            sender: User?._id,
             text: encryptData(),
-            conversationId: currentChat._id,
-            offerMade: Text.offerMade
+            conversationId: currentChat?._id,
+            offerMade: Text?.offerMade
         }
 
-        const receiverId = CurrentProfile._id
+        const receiverId = CurrentProfile?._id
 
-        if (NewMessage.offerMade === true) {
+        if (NewMessage?.offerMade === true) {
             socket.emit("sentAlert", { receiverId });
         }
 
         // send event to server (send message to server)
         socket.emit("sendMessage", {
-            userId: User._id,  // change userId
+            userId: User?._id,  // change userId
             receiverId,
             text: encryptData(),
             offerMade: Text.offerMade
@@ -220,7 +213,6 @@ const MobileView = () => {
     };
 
     const handleKeyPress = (event) => {
-        console.log(event.key, "asdasd");
         if (event.key === 'Enter') {
             event.preventDefault();
         }
@@ -246,7 +238,7 @@ const MobileView = () => {
                                     }
                                     alt=""
                                 />
-                                <h4>{CurrentProfile.fullname}{" "}{CurrentProfile.surname}</h4>
+                                <h4>{CurrentProfile?.fullname}{" "}{CurrentProfile?.surname}</h4>
                             </div>
                             <div className={Style.closebtn}> <span><RxCross2 /></span></div>
                         </div>
@@ -255,7 +247,7 @@ const MobileView = () => {
                             {Message.map((m, index) => {
                                 return (
                                     <div ref={ScrollRef} key={index} >
-                                        <Messages msg={m} own={m.sender === User._id} offermade={m.offerMade === true} />
+                                        <Messages msg={m} own={m?.sender === User?._id} offermade={m?.offerMade === true} />
                                     </div>
                                 )
                             })}
@@ -271,7 +263,7 @@ const MobileView = () => {
                                         onChange={(e) => SetText({
                                             text: e.target.value,
                                             createdAt: new Date(),
-                                            sender: User._id,
+                                            sender: User?._id,
                                             offerMade: true
                                         })}
                                         value={Text.text}
@@ -299,7 +291,7 @@ const MobileView = () => {
                                         onChange={(e) => SetText({
                                             text: e.target.value,
                                             createdAt: new Date(),
-                                            sender: User._id
+                                            sender: User?._id
                                         })}
                                         value={Text.text}
                                     />

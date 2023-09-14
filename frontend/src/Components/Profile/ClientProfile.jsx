@@ -22,24 +22,24 @@ const ClientProfile = ({ profile, profileaddress, image }) => {
             alt=""
           />
           <div className={Style.details}>
-            <h1 className={Style.itemTitle}> {profile.fullname} {profile.surname}</h1>
+            <h1 className={Style.itemTitle}> {profile?.fullname} {profile?.surname}</h1>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Email:</span>
-              <span className={Style.itemValue}>{profile.email}</span>
+              <span className={Style.itemValue}>{profile?.email}</span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Phone:</span>
-              <span className={Style.itemValue}> {profile.phoneNumber}</span>
+              <span className={Style.itemValue}> {profile?.phoneNumber}</span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Address:</span>
               <span className={Style.itemValue}>
-                {profileaddress.locality || ''} {profileaddress.district || ''} {profileaddress.state || ''}
+                {profileaddress?.locality || ''} {profileaddress?.district || ''} {profileaddress?.state || ''}
               </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Country:</span>
-              <span className={Style.itemValue}>{profileaddress.region}</span>
+              <span className={Style.itemValue}>{profileaddress?.region}</span>
             </div>
           </div>
         </div>

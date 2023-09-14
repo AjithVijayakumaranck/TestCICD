@@ -36,9 +36,9 @@ const LeftCategory = () => {
                 </div>
                 {Categories.map((category, index) => {
                     return (
-                        <div className={Style.box} key={index} onClick={() => navigate(`/category/${category._id}`)} >
+                        <div className={Style.box} key={index} onClick={() => navigate(`/category/${category?._id}`)} >
                             {/* <img src={category.icon.url} alt='' /> */}
-                            <span>{category.categoryName}</span>
+                            <span>{category?.categoryName}</span>
                         </div>
                     )
                 })}

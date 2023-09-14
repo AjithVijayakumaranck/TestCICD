@@ -12,10 +12,8 @@ const OwnCard = ({ products, reload, userId }) => {
     const Navigate = useNavigate()
 
     const handleDelete = (itemId) => {
-        console.log(itemId);
         try {
             authInstance.delete(`/api/user/${itemId}`).then((Response) => {
-                console.log('deleted', Response)
                 toast.success("Removed")
                 reload(true)
             }).catch((err) => {
@@ -38,7 +36,7 @@ const OwnCard = ({ products, reload, userId }) => {
                                 : null
                             }
                             <Link>
-                                <img src={product.images[0].url} alt="productImage" className={Style.productImage} />
+                                <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
                             </Link>
                             <div className={Style.productAction}>
                                 {product?.userId === userId ?
@@ -51,13 +49,13 @@ const OwnCard = ({ products, reload, userId }) => {
                         </div>
                         <div className={Style.productbody}>
                             <div className={Style.product_cat}>
-                                <span> {product.state} </span>
+                                <span> {product?.state} </span>
                             </div>
                             <div className={Style.product_title}>
-                                <h3> {product.title} </h3>
+                                <h3> {product?.title} </h3>
                             </div>
                             <div className={Style.product_price}>
-                                $ {product.price}
+                                $ {product?.price}
                             </div>
                             <div className={Style.rating_container}>
                                 <div className={Style.rating}>

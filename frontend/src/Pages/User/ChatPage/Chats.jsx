@@ -1,20 +1,27 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import Style from "./index.module.css"
 import Navbar from '../../../Components/Navbar/Navbar'
 import Footer from '../../../Components/Footer/Footer'
 import Chat from '../../../Components/Chat/Chat'
 import { useLocation, useParams } from 'react-router-dom';
 import Breadcrumb from '../../../Components/Breadcrumb/Breadcrumb'
+import { UserContext } from '../../../Contexts/UserContext'
+import authInstance from '../../../instance/AuthInstance'
 
 
 
 const Chats = () => {
 
+
+    const LoggedInUser = useContext(UserContext);
+    const { User, SetUser } = LoggedInUser        //LoggedInUser Id
+
     const [ConversationId, SetExistingConversation] = useState(null)
     let { conversationId } = useParams();
 
+    const [Reload, SetReload] = useState(false);
+
     useLayoutEffect(() => {
-        console.log(conversationId, "conversationId");
         if (!conversationId) {
             SetExistingConversation(ConversationId)
         }
@@ -32,11 +39,17 @@ const Chats = () => {
         ScrollToTopOnMount();
     }, []);
 
+    const handleRead = (conversationId) => {
+        authInstance.post(`/api/user/chat/mark_read?userId=${User?._id}&conversationId=${conversationId}`).then((response) => {
+            SetReload(true)
+        })
+    };
+
 
     return (
         <div className={Style.page_wrapper}>
             <ScrollToTopOnMount />
-            <Navbar />
+            <Navbar reload={Reload} />
             <div className={Style.main}>
                 <Breadcrumb pathSegments={pathSegment} />
                 <div className={Style.productwrapper}>
@@ -50,7 +63,7 @@ const Chats = () => {
                             </div>
                         </div>
                         <div className={Style.cardWrapper}>
-                            <Chat existingConverstaionId={ConversationId} />
+                            <Chat existingConverstaionId={ConversationId} HandleRead={handleRead} />
                         </div>
                     </div>
                 </div>

@@ -4,9 +4,9 @@
   display: flex;
   flex-direction: column;
 }
-.alert_wrapper div {
+.alert_wrapper .Item {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   width: 100%;
@@ -16,34 +16,58 @@
   cursor: pointer;
 }
 @media (max-width: 550px) {
-  .alert_wrapper div {
+  .alert_wrapper .Item {
     height: 50px;
   }
 }
-.alert_wrapper div img {
-  width: 80px;
-  height: 80px;
+.alert_wrapper .Item .left {
+  display: flex;
+  flex: 2;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+.alert_wrapper .Item .left img {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: #fff;
   -o-object-fit: contain;
      object-fit: contain;
 }
 @media (max-width: 550px) {
-  .alert_wrapper div img {
-    width: 80px;
-    height: 80px;
+  .alert_wrapper .Item .left img {
+    width: 50px;
+    height: 50px;
   }
 }
-.alert_wrapper div h4 {
+.alert_wrapper .Item .left h4 {
   padding: 0 2rem;
   text-align: start;
   font-size: 1rem;
   font-weight: 400;
 }
 @media (max-width: 550px) {
-  .alert_wrapper div h4 {
+  .alert_wrapper .Item .left h4 {
     font-size: 12px;
   }
+}
+.alert_wrapper .Item .right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+.alert_wrapper .Item .right span {
+  font-size: 12px;
+}
+.alert_wrapper .Item .right .activeItem {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: red;
+  border-radius: 100%;
+  margin: 0 10px;
 }
 
 /* End Notification Card *//*# sourceMappingURL=Style.module.css.map */

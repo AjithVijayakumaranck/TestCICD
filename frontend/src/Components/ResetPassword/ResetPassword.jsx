@@ -53,12 +53,10 @@ const ResetPassword = ({ userData }) => {
     const submitHandler = (e) => {
         e.preventDefault()
         if (formData.password === "" || formData.confirmPassword === "") {
-            console.log(formData);
             setError({ ...error, confirmPassword: "This field cannot be empty", password: "this field cannot be empty" })
         } else {
             setLoading(true)
             const data = { data: userData, password: formData.password }
-            console.log(data);
             instance.post("api/resetpassword", { data: userData, password: formData.password }).then((response) => {
                 setLoading(false)
                 toast.success("Password updated")
@@ -97,7 +95,7 @@ const ResetPassword = ({ userData }) => {
                     </form>
                 </div>
                 <div className={Style.right}>
-                <img src="/Images/reset.svg" alt="" />
+                    <img src="/Images/reset.svg" alt="" />
                 </div>
             </div>
         </div>

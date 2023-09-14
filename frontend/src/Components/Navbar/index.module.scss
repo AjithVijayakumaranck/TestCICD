@@ -106,24 +106,6 @@
         }
 
       }
-
-      // .location {
-      //   display: flex;
-      //   position: relative;
-      //   align-items: center;
-      //   gap: 5px;
-      //   padding: 0 10px;
-      //   font-size: 16px;
-      //   letter-spacing: 1px;
-      //   color: rgb(95, 95, 95);
-      //   font-weight: 100px;
-      //   cursor: pointer;
-
-      //   @include LargeScreen {
-      //     font-size: 14px;
-      //   }
-      // }
-
     }
 
     .Search {
@@ -236,20 +218,51 @@
         margin-left: 0px;
       }
 
-      .icon {
-        color: black;
-        aspect-ratio: 1;
-        font-size: 20px;
+      .OptionsWrapper {
+        position: relative;
 
-        @include breakpoint(md) {
-          display: none;
+        .icon {
+          color: black;
+          aspect-ratio: 1;
+          font-size: 20px;
+
+          @include breakpoint(md) {
+            display: none;
+          }
+
+          @include mediumScreen {
+            display: none;
+          }
+
         }
 
-        @include mediumScreen {
-          display: none;
-        }
+        .count {
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 1rem;
+          height: 1rem;
+          padding: 1px;
+          font-size: 0.6rem;
+          color: #fff;
+          background-color: $primary_color;
+          border-radius: 50%;
 
+          @include breakpoint(md) {
+            display: none;
+          }
+
+          @include mediumScreen {
+            display: none;
+          }
+
+        }
       }
+
 
       .profile {
         aspect-ratio: 1;
@@ -484,15 +497,19 @@
             padding: 0;
             width: 100%;
 
-            li {
+            .list_items {
               display: flex;
               align-items: center;
+            }
+
+            li,
+            .list_items {
+              width: 100%;
               padding: 10px 0;
               gap: 10px;
               cursor: pointer;
 
               &:hover {
-                width: 100%;
                 background-color: $primary_color;
                 color: #fff;
                 border-radius: 3px;
@@ -509,9 +526,39 @@
                 margin-left: 5px;
 
               }
+
+              .Options {
+                display: flex;
+                justify-content: space-between;
+
+                .OptionsWrapper {
+                  display: flex;
+                  align-items: center;
+
+                  .icons {
+                    font-size: 18px;
+                    padding-left: 10px;
+                  }
+                }
+
+                .counter {
+                  text-align: center;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 10px;
+                  padding: 2px;
+                  width: 1rem;
+                  height: 1rem;
+                  font-size: 0.6rem;
+                  color: #fff;
+                  background-color: $primary_color;
+                  border-radius: 50%;
+                }
+
+              }
             }
           }
-
         }
       }
 

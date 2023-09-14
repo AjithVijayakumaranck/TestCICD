@@ -42,7 +42,6 @@ const Login = ({ setLogin }) => {
 
     e.preventDefault();
     instance.post('/api/login', userData).then((response) => {
-      console.log(response.data.user.role);
       if (response.data.user.role === "superadmin" || response.data.user.role === "admin") {
         localStorage.setItem("AdminLogged", true)
         localStorage.setItem("AdminToken", response.data.token)

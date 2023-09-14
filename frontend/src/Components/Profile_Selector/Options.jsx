@@ -6,7 +6,7 @@ import { useContext } from 'react';
 
 
 
-const Options = ({ data, Image }) => {
+const Options = ({ data, Image, WishlistCount }) => {
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Options = ({ data, Image }) => {
 
     <div enter="bounceIn" className={Style.option_wrapper}>
       <div className={Style.box}>
-        <div>
+        <div className={Style.boxWrapper}>
 
           <div className={Style.User_wrapper}>
             <div className={Style.profile}>
@@ -58,6 +58,7 @@ const Options = ({ data, Image }) => {
           <Link to='/wishlist' className={Style.navigation} >
             <div className={Style.eachopt}>
               <h4>My Wishlist</h4>
+              <span className={Style.count}> {WishlistCount} </span>
             </div>
           </Link>
 

@@ -26,7 +26,6 @@ const Home = () => {
   const loadProducts = () => {
     try {
       instance.get(`/api/user/product/get_products?page=${CurrentPage}`).then((response) => {
-        //console.log(response.data);
         SetProducts(response.data);
       }).catch((error) => {
         console.log(error);
@@ -53,14 +52,12 @@ const Home = () => {
 
 
   const handlePreviousPage = () => {
-    console.log("hello prev");
     if (CurrentPage > 1) {
       SetCurrentPage(CurrentPage - 12);
     }
   };
 
   const handleNextPage = () => {
-    console.log("hello next");
     SetCurrentPage(CurrentPage + 12);
   };
 
@@ -69,7 +66,6 @@ const Home = () => {
   useEffect(() => {
     try {
       instance.get("/api/user/slide/slides_view").then((response) => {
-        //console.log(response.data);
         SetSliderImage([...response.data]);
       }).catch((error) => {
         console.log(error);
@@ -91,7 +87,6 @@ const Home = () => {
       return 0;
     });
     SetSortedProducts(sortedProducts)
-    //console.log(SortedProducts.length, "sorted products length");
   }
 
   useEffect(() => {

@@ -198,18 +198,47 @@
     margin-left: 0px;
   }
 }
-.header_container .Container .Options .icon {
+.header_container .Container .Options .OptionsWrapper {
+  position: relative;
+}
+.header_container .Container .Options .OptionsWrapper .icon {
   color: black;
   aspect-ratio: 1;
   font-size: 20px;
 }
 @media (max-width: 550px) {
-  .header_container .Container .Options .icon {
+  .header_container .Container .Options .OptionsWrapper .icon {
     display: none;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
-  .header_container .Container .Options .icon {
+  .header_container .Container .Options .OptionsWrapper .icon {
+    display: none;
+  }
+}
+.header_container .Container .Options .OptionsWrapper .count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  padding: 1px;
+  font-size: 0.6rem;
+  color: #fff;
+  background-color: #046BD2;
+  border-radius: 50%;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Options .OptionsWrapper .count {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Options .OptionsWrapper .count {
     display: none;
   }
 }
@@ -416,27 +445,63 @@
   padding: 0;
   width: 100%;
 }
-.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li {
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items {
   display: flex;
   align-items: center;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items {
+  width: 100%;
   padding: 10px 0;
   gap: 10px;
   cursor: pointer;
 }
-.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li:hover {
-  width: 100%;
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li:hover,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items:hover {
   background-color: #046BD2;
   color: #fff;
   border-radius: 3px;
 }
-.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .icons {
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .icons,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .icons {
   font-size: 18px;
   padding-left: 10px;
 }
-.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li span {
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li span,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items span {
   font-size: 16px;
   font-weight: 400;
   margin-left: 5px;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options {
+  display: flex;
+  justify-content: space-between;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .OptionsWrapper,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .OptionsWrapper {
+  display: flex;
+  align-items: center;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .OptionsWrapper .icons,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .OptionsWrapper .icons {
+  font-size: 18px;
+  padding-left: 10px;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .counter,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .counter {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  padding: 2px;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+  color: #fff;
+  background-color: #046BD2;
+  border-radius: 50%;
 }
 .header_container .Container .Mobile_screen .categoryContainer {
   display: flex;
