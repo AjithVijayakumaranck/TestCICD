@@ -106,9 +106,9 @@ module.exports = {
             CONVERSATION.find({
                 member:{$in:[userId]},
                 read:{$nin:[userId]}}).count().then((response)=>{
-                    res.status(200).json(response).catch((error)=>{
-                        res.status(400).json(error.message)
-                    })
+                    res.status(200).json(response)
+                }).catch((error)=>{
+                    res.status(400).json(error.message)
                 })
         } catch (error) {
             res.status(500).json(error.message)
