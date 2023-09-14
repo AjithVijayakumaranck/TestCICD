@@ -17,10 +17,9 @@ notification:{
 broadcast:{
     type:Boolean    
 },
-read:{
-    type:Boolean,
-    default:false
-}
+read:[{
+    type:String
+}]
 
 },{ timestamps: true })
 

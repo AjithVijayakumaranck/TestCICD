@@ -81,5 +81,17 @@ module.exports = {
             res.status(500).json({ message: "something went wrong" })
 
         }
+    },
+    getWishlistCount:(req,res)=>{
+        try {
+            const {userId} = req.params
+            WISHLIST.find({userId:userId}).count().then((response)=>{
+                res.status(200).json(response)
+            }).catch((error) => {
+                res.status(400).json({messahe:error.message})
+            })
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
     }
 }
