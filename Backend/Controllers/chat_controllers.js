@@ -91,7 +91,7 @@ module.exports = {
     //get all the messasges of a specific converstion
     getMessage : async (req,res)=>{
         try{
-            const {conversationId} = req.params
+            const {conversationId} = req.query
             const  allMessagges = await MESSAGE.find({conversationId:conversationId})
             res.status(200).json({allMessagges})
         }catch(err){
@@ -102,7 +102,7 @@ module.exports = {
 
     getUnreadConverstaionCount: (req,res)=>{
         try {
-            const {userId} = req.params
+            const {userId} = req.query
             CONVERSATION.find({
                 member:{$in:[userId]},
                 read:{$nin:[userId]}}).count().then((response)=>{
@@ -117,7 +117,7 @@ module.exports = {
 
     markRead:async (req,res)=>{
         try {
-            const {userId,conversationId} = req.params
+            const {userId,conversationId} = req.query
             const conversation =await CONVERSATION.findById(conversationId)
             if(conversation){
                     CONVERSATION.updateOne({_id:conversationId},{

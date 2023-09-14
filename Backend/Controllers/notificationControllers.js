@@ -46,7 +46,7 @@ module.exports = {
 
     getNotificationCount: async (req,res)=>{
         try {
-            const {userId} = req.params
+            const {userId} = req.query
             NOTIFICATION.find({$or : [{reciverId:userId},{broadcast:true}], read: { $nin: [userId ] }}).count().then((response)=>{
                 res.status(200).json(response)
             }).catch((error)=>{
@@ -60,7 +60,7 @@ module.exports = {
 
     MarkRead:(req,res)=>{
         try {
-            const {notificationId,userId} = req.params
+            const {notificationId,userId} = req.query
             NOTIFICATION.findById(notificationId).then(()=>{
                 NOTIFICATION.updateOne({_id:notificationId},{
                     $push:{
