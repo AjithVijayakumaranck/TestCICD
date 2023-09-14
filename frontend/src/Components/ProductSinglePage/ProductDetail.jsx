@@ -67,7 +67,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
                 SetIsClicked(true);
-                toast.success("Product Added to Cart")
             }).catch((err) => {
                 Navigate('/registration_login')
                 console.log(err);
@@ -97,7 +96,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            toast.success("Product Removed from Cart")
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
