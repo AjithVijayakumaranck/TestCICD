@@ -14,4 +14,6 @@ router.post('/addmessage',authoriseJwt,chatControllers.addMessage)
 
 router.get('/getmessages/:conversationId',authoriseJwt,chatControllers.getMessage)
 
+router.get('/conversation_count',authoriseJwt,chatControllers.getUnreadConverstaionCount)
+
 module.exports = router

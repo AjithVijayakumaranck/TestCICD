@@ -65,17 +65,22 @@ module.exports = {
    //add  a new record to chat collecton
     addMessage: async (req,res)=>{
         try{
-            const {sender,text,conversationId,offerMade} = req.body
+            const {sender,text,conversationId,offerMade,} = req.body
             const newMessage =await new MESSAGE(
               {
                conversationId:conversationId,
                sender:sender,
                text:text,
-               offerMade:offerMade
+               offerMade:offerMade,
+               read:[sender]
               }
             )
           const savedMessage = await newMessage.save()
-          res.status(200).json(savedMessage)
+         CONVERSATION.updateOne({_id:conversationId},{read:read}).then(()=>{
+             res.status(200).json(savedMessage)
+         }).catch((error)=>{
+            error.status(400).json(error.message)
+         })
         }catch(err){
             res.status(500).json(err)
         }
@@ -84,7 +89,6 @@ module.exports = {
 
     //get all the messasges of a specific converstion
     getMessage : async (req,res)=>{
-        console.log(req.params.conversationId,"hello");
         try{
             const {conversationId} = req.params
             const  allMessagges = await MESSAGE.find({conversationId:conversationId})
@@ -92,6 +96,43 @@ module.exports = {
         }catch(err){
             console.log(err);
             res.status(500).json(err)
+        }
+    },
+
+    getUnreadConverstaionCount: (req,res)=>{
+        try {
+            const {userId} = req.params
+            CONVERSATION.find({
+                member:{$in:[userId]},
+                read:{$nin:[userId]}}).count().then((response)=>{
+                    res.status(200).json(response).catch((error)=>{
+                        res.status(400).json(error.message)
+                    })
+                })
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    },
+
+    markRead:async (req,res)=>{
+        try {
+            const {userId,conversationId} = req.params
+            const conversation =await CONVERSATION.findById(conversationId)
+            if(conversation){
+                    CONVERSATION.updateOne({_id:conversationId},{
+                        $push:{
+                            read:userId
+                        }
+                    }).then(()=>{
+                        res.status(200).json({message:"marked as read"})
+                    }).catch(error=>{
+                        res.status(500).json(error.message)
+                    })
+            }else{
+                res.status(400).json({message:"converstain not found"})
+            }
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

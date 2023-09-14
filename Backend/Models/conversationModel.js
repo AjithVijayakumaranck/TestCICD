@@ -8,6 +8,13 @@ const CONVERSATION_SCHEMA =  new mongoose.Schema({
 member:{
     type:Array,
 },
+// read:{
+//     type:Boolean,
+//     default:false,
+// },
+read:[{
+    type:String
+}],
 product:{
  type:ObjectId,
  required:true,
