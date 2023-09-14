@@ -12,6 +12,7 @@ member:{
 //     type:Boolean,
 //     default:false,
 // },
+
 read:[{
     type:String
 }],

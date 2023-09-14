@@ -43,6 +43,7 @@ module.exports = {
             res.status(500).json({message:"something went wrong "})
         }
     },
+    
     getNotificationCount: async (req,res)=>{
         try {
             const {userId} = req.params
