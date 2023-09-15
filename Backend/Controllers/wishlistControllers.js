@@ -82,14 +82,15 @@ module.exports = {
 
         }
     },
-    getWishlistCount:(req,res)=>{
+    getWishlistCount:async(req,res)=>{
         try {
             const {userId} = req.params
-            WISHLIST.find({userId:userId}).count().then((response)=>{
-                res.status(200).json(response)
-            }).catch((error) => {
-                res.status(400).json({message:error.message})
-            })
+           const wishlist = await WISHLIST.find({userId:userId})
+           if(wishlist){
+                res.status(200).json({count:wishlist.wishlist.length})
+           }else{
+            res.status(404).json({message:"wishlist not found"})
+           }
         } catch (error) {
             res.status(500).json(error.message)
         }
