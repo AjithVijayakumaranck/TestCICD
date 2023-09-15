@@ -54,7 +54,6 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
     useEffect(() => {
         try {
             instance.get(`/api/user/filter/search_state?districtCode=${StateId}`).then((response) => {
-                //console.log(response.data);
                 SetDistrict(response.data.districts)
             }).catch((err) => {
                 console.log(err);

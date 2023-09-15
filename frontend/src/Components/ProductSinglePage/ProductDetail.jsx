@@ -6,7 +6,6 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useNavigate, useParams } from 'react-router-dom';
-import instance from '../../instance/AxiosInstance';
 import { AiFillHeart } from 'react-icons/ai';
 import { UserContext } from '../../Contexts/UserContext';
 import authInstance from '../../instance/AuthInstance';
@@ -52,7 +51,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     const loadWishlistData = () => {
         authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
-            //console.log(Response.data);
             SetWishlistData(Response.data)
         }).catch((err) => {
             console.log(err);
@@ -67,7 +65,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
                 SetIsClicked(true);
-                toast.success("Product Added to Cart")
             }).catch((err) => {
                 Navigate('/registration_login')
                 console.log(err);
@@ -97,7 +94,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            toast.success("Product Removed from Cart")
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
@@ -165,7 +161,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                     return (
                                         <div className={Style.box}>
                                             <div className={Style.img_Container}>
-                                                <img src={images.url} alt='' />
+                                                <img src={images?.url} alt='' />
                                                 <span
                                                     onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
                                                     style={{ color: IsClicked ? 'red' : 'grey' }}

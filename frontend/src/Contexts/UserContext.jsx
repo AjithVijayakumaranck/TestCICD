@@ -12,9 +12,7 @@ export const UserContextProvider = ({ children }) => {
             const token = localStorage.getItem('token');
             if (token) {
                 const decodedToken = jwt_decode(token);
-                //console.log(decodedToken._doc, "userToken decode");
                 SetUser(decodedToken._doc);
-                //console.log(User, "usertoken");
             }
 
         };

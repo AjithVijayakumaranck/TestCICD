@@ -30,7 +30,6 @@ const SearchProductsPage = () => {
     const loadProducts = () => {
         try {
             instance.get(`/api/user/product/get_products?page=${CurrentPage}`).then((response) => {
-                //console.log(response.data);
                 SetProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -65,14 +64,12 @@ const SearchProductsPage = () => {
 
 
     const handlePreviousPage = () => {
-        console.log("hello prev");
         if (CurrentPage > 1) {
             SetCurrentPage(CurrentPage - 12);
         }
     };
 
     const handleNextPage = () => {
-        console.log("hello next");
         SetCurrentPage(CurrentPage + 12);
     };
 

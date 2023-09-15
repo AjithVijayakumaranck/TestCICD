@@ -11,7 +11,7 @@ import authInstance from "../../../instance/AuthInstance";
 const ChangePassword = () => {
 
     const { userId } = useParams()
-    console.log(userId, "changepasword");
+
     const navigate = useNavigate();
 
     const [Loading, SetLoading] = useState(false)
@@ -65,7 +65,6 @@ const ChangePassword = () => {
 
         SetLoading(true)
         authInstance.put("/api/user/profile/update_password", { currentPassword: CurrentPassword, newPassword: ConfirmNewPassword, userId: userId }).then((response) => {
-            console.log(response.data);
             SetLoading(false)
             toast.success("Password updated")
             navigate('/profile')

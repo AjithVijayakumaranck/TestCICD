@@ -18,8 +18,6 @@ export const SocketProvider = ({ children }) => {
         userId: User._id,
     });
 
-    //console.log(socket, "sockerttt");
-
     // Clean up the socket connection on component unmount
     useEffect(() => {
         return () => {

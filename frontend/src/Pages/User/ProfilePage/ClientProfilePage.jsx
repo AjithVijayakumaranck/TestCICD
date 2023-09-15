@@ -80,7 +80,6 @@ const ClientProfilePage = () => {
     const loadReview = () => {
         try {
             instance.get(`/api/user/profile/get_rating?userId=${clientId}&&page=${CurrentPage}`).then((response) => {
-                //console.log(response.data, "getting review");
                 SetReviews(response.data.ratings)
                 SetTotalRating(response.data.totalrating)
             })
@@ -107,7 +106,6 @@ const ClientProfilePage = () => {
         }).then((result) => {
             if (!result.dismiss && result.value) {
                 const text = result.value;
-                console.log(text, "text in reply");
                 // Make API request here
                 try {
                     authInstance.post("/api/user/profile/add_reply", { reviewerId: User._id, senderId: reviewId._id, reply: text }).then((response) => {

@@ -1,31 +1,29 @@
 import React from 'react'
 import Style from './Style.module.css'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import authInstance from '../../../instance/AuthInstance'
+import TimeAgo from 'react-timeago';
+import { IoMailOpenSharp } from "react-icons/io5";
+import { IoMdMail } from "react-icons/io";
 
-const NotificationCard = () => {
 
-    const [Alert, SetAlert] = useState([])
 
-    useEffect(() => {
-        try {
-            authInstance.get('/api/user/notification/get_notification').then((response) => {
-                console.log(response.data);
-                SetAlert(response.data)
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    })
+const NotificationCard = ({ HandleRead, Alert, User }) => {
+
 
     return (
         <div className={Style.alert_wrapper}>
             {Alert.map((alert, index) => {
+                const isRead = alert?.read.includes(User?._id);
+
                 return (
-                    <div key={index}>
-                        <img src="/imgs/logo.jpg" alt="logo" />
-                        <h4>{alert.notification}</h4>
+                    <div className={Style.Item} key={index} onClick={() => HandleRead(alert?._id)}>
+                        <div className={Style.left} >
+                            <img src="/imgs/logo.jpg" alt="" />
+                            <h4>{alert?.notification}</h4>
+                        </div>
+                        <div className={Style.right}>
+                            <span className={Style.activeItem}>{isRead ? <IoMailOpenSharp /> : <IoMdMail />}</span>
+                            <span> <TimeAgo date={alert?.createdAt} minPeriod={60} /> </span>
+                        </div>
                     </div>
                 )
             })}

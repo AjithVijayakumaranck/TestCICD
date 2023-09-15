@@ -27,7 +27,6 @@ const UserProfile = () => {
     localStorage.removeItem('logged');
     localStorage.removeItem('token');
     SetUser("");
-
     // Redirect to the login page
     navigate('/');
   }
@@ -35,7 +34,6 @@ const UserProfile = () => {
   useEffect(() => {
     try {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
-        //console.log(Response.data);
         SetUserData({ ...Response.data })
         SetUserAddress(Response.data.address)
         SetUserImage(Response.data.profilePicture.url)
@@ -63,9 +61,9 @@ const UserProfile = () => {
               alt="profilepicture"
             />
             <div className={Style.items}>
-              <h3>{UserData.fullname} {UserData.surname}</h3>
-              <h4>{UserData.email}</h4>
-              <h4> {UserData.phoneNumber}</h4>
+              <h3>{UserData?.fullname} {UserData?.surname}</h3>
+              <h4>{UserData?.email}</h4>
+              <h4> {UserData?.phoneNumber}</h4>
             </div>
           </div>
 
@@ -90,36 +88,36 @@ const UserProfile = () => {
           <button onClick={() => navigate(`/updateprofile`)} ><FaEdit /> Edit </button>
 
           <div className={Style.details}>
-            <h1 className={Style.itemTitle}>{UserData.fullname} {UserData.surname}</h1>
+            <h1 className={Style.itemTitle}>{UserData?.fullname} {UserData?.surname}</h1>
 
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Date of Birth:</span>
-              <span className={Style.itemValue}>{UserData.dob}</span>
+              <span className={Style.itemValue}>{UserData?.dob}</span>
             </div>
 
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Locality:</span>
-              <span className={Style.itemValue}> {UserAddress.locality} </span>
+              <span className={Style.itemValue}> {UserAddress?.locality} </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>District:</span>
-              <span className={Style.itemValue}> {UserAddress.district} </span>
+              <span className={Style.itemValue}> {UserAddress?.district} </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Region:</span>
-              <span className={Style.itemValue}> {UserAddress.state} </span>
+              <span className={Style.itemValue}> {UserAddress?.state} </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Country:</span>
-              <span className={Style.itemValue}>{UserAddress.region}</span>
+              <span className={Style.itemValue}>{UserAddress?.region}</span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Email:</span>
-              <span className={Style.itemValue}> {UserData.email} </span>
+              <span className={Style.itemValue}> {UserData?.email} </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Phone:</span>
-              <span className={Style.itemValue}> {UserData.phoneNumber} </span>
+              <span className={Style.itemValue}> {UserData?.phoneNumber} </span>
             </div>
           </div>
 
