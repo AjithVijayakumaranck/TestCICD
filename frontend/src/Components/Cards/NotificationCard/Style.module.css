@@ -63,9 +63,10 @@
   font-size: 12px;
 }
 .alert_wrapper .Item .right .activeItem {
-  width: 0.5rem;
-  height: 0.5rem;
-  background-color: red;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #046BD2;
   border-radius: 100%;
   margin: 0 10px;
 }

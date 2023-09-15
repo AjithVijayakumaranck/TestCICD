@@ -70,9 +70,10 @@
             }
 
             .activeItem {
-                width: .5rem;
-                height: .5rem;
-                background-color: red;
+                display: flex;
+                align-items: center;
+                font-size: 18px;
+                color: $primary_color;
                 border-radius: 100%;
                 margin: 0 10px;
             }

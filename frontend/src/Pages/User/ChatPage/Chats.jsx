@@ -39,8 +39,8 @@ const Chats = () => {
         ScrollToTopOnMount();
     }, []);
 
-    const handleRead = (conversationId) => {
-        authInstance.post(`/api/user/chat/mark_read?userId=${User?._id}&conversationId=${conversationId}`).then((response) => {
+    const handleRead = (ConversationId) => {
+        authInstance.post(`/api/user/chat/mark_read`, { userId: User?._id, conversationId: ConversationId }).then((response) => {
             SetReload(true)
         })
     };

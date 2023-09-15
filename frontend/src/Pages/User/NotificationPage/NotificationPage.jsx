@@ -15,6 +15,7 @@ const NotificationPage = () => {
     const { User, SetUser } = LoggedInUser
 
     const [Reload, SetReload] = useState(false);
+    const [Alert, SetAlert] = useState([]);
 
     const location = useLocation();
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
@@ -28,14 +29,29 @@ const NotificationPage = () => {
         ScrollToTopOnMount();
     }, []);
 
+
+
+    //Function to get Notification
+    useEffect(() => {
+        try {
+            authInstance.get(`/api/user/notification/get_notification?userId=${User?._id}`).then((response) => {
+                SetAlert(response.data)
+                SetReload(false)
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }, [User?._id, Reload])
+
     //Function to Mark Notification Readed
     const handleRead = (notificationId) => {
-        authInstance.post(`/api/user/notification/mark?userId=${User?._id}&notificationId=${notificationId}`).then((response) => {
+        authInstance.post(`/api/user/notification/mark`, { userId: User?._id, notificationId: notificationId }).then((response) => {
             SetReload(true)
         }).catch((err) => {
             console.log(err);
         })
     };
+
 
     return (
         <div className={Style.page_wrapper}>
@@ -54,7 +70,7 @@ const NotificationPage = () => {
                             </div>
                         </div>
                         <div className={Style.cardWrapper}>
-                            <NotificationCard HandleRead={handleRead} />
+                            <NotificationCard HandleRead={handleRead} Alert={Alert} User={User} />
                         </div>
                     </div>
                 </div>

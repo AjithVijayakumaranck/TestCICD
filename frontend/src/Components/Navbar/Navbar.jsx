@@ -339,7 +339,10 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <MdOutlineFavoriteBorder className={Style.icons} />
                           <span>Wishlist</span>
                         </div>
-                        <div className={Style.counter} > {WishlistCount} </div>
+                        {WishlistCount !== 0 ?
+                          <div className={Style.counter} > {WishlistCount} </div>
+                          : null
+                        }
                       </div>
                     </li>
                   </Link>
