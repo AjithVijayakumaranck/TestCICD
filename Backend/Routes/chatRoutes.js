@@ -18,4 +18,5 @@ router.get('/conversation_count',authoriseJwt,chatControllers.getUnreadConversta
 
 router.post('/mark_read',authoriseJwt,chatControllers.markRead)
 
+
 module.exports = router

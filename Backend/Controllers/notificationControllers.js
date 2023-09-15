@@ -60,17 +60,21 @@ module.exports = {
 
     MarkRead:(req,res)=>{
         try {
-            const {notificationId,userId} = req.query
-            NOTIFICATION.findById(notificationId).then(()=>{
-                NOTIFICATION.updateOne({_id:notificationId},{
-                    $push:{
-                        read:userId
-                    }
-                }).then((response)=>{
-                    res.status(200).json(response)
-                }).catcj((error)=>{
-                    res.status(400).json(error.message)
-                })
+            const {notificationId,userId} = req.body
+            NOTIFICATION.findById(notificationId).then((response)=>{
+                if(response.read.includes(userId)){
+                    res.status(200).json({message:"its a read message"})
+                }else{
+                    NOTIFICATION.updateOne({_id:notificationId},{
+                        $push:{
+                            read:userId
+                        }
+                    }).then((response)=>{
+                        res.status(200).json(response)
+                    }).catch((error)=>{
+                        res.status(400).json(error.message)
+                    })
+                }
             }).catch((error)=>{
                 res.status(400).json(error.message)
             })
