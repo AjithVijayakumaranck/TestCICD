@@ -60,7 +60,7 @@ module.exports = {
 
     MarkRead:(req,res)=>{
         try {
-            const {notificationId,userId} = req.query
+            const {notificationId,userId} = req.body
             NOTIFICATION.findById(notificationId).then((response)=>{
                 if(response.read.includes(userId)){
                     res.status(200).json({message:"its a read message"})
