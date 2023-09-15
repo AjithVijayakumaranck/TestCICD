@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom'
 import authInstance from '../../instance/AuthInstance'
 
 
-const Chat = ({ existingConverstaionId }) => {
+const Chat = ({ existingConverstaionId, HandleRead }) => {
 
     let { conversationId } = useParams();
 
