@@ -59,6 +59,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             gap: 5px;
 
             .left_container {
@@ -131,7 +133,7 @@
                 border-radius: 5px;
                 padding: 10px;
                 background-color: #fff;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 
                 @include mediumScreen {
                     min-width: 250px;

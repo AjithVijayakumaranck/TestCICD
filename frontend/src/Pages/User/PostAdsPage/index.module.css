@@ -56,6 +56,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   gap: 5px;
 }
 .page_wrapper .container_wrapper .container .left_container {
@@ -121,7 +123,6 @@
   border-radius: 5px;
   padding: 10px;
   background-color: #fff;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .container_wrapper .container .right_container {
