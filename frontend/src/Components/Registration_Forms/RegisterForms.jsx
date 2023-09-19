@@ -56,7 +56,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     { value: 'India', label: 'India' },
     { value: 'France', label: 'France' },
   ];
-  //console.log(options, "states options");
 
 
   //Location Fetching 
@@ -81,7 +80,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   useEffect(() => {
     try {
       instance.get(`/api/user/filter/search_state?districtCode=${StateId}`).then((response) => {
-        //console.log(response.data);
         SetDistrict(response.data.districts)
       }).catch((err) => {
         console.log(err);
@@ -100,7 +98,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   useEffect(() => {
     try {
       instance.get(`/api/user/filter/search_locality?district=${DistrictId}`).then((response) => {
-        console.log(response.data);
         SetLocality(response.data)
       }).catch((err) => {
         console.log(err);
@@ -154,8 +151,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     SetFile(files);
   }
 
-  //console.log(File, "images in registerad");
-
 
   // -------------validation---------------
 
@@ -174,9 +169,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     if (ProductData.listedBy === '') {
       newErrors.listedBy = 'listedByis required';
     }
-    // if (ProductData.locality === '') {
-    //   newErrors.location = 'location is required';
-    // }
+  
     if (ProductData.district === '') {
       newErrors.district = 'district is required';
     }
@@ -188,10 +181,8 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     }
 
     if (User.premiumuser === true) {
-      console.log("true checking");
       SetFeatured(true)
     } else {
-      console.log("false checking");
       SetFeatured(false)
     }
 
@@ -204,13 +195,8 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   //Handle Submit function 
   const HandleSubmit = (e) => {
     e.preventDefault()
-    console.log(ProductData, "register form prodata datas on upload");
-    console.log(OtherDet, "register form otherdet datas on upload");
-    
-    console.log(User.premiumuser, "user premium");
     
     if (validateForm()) {
-      console.log(Featured, "featured");
       
       let data = new FormData()
 
@@ -234,12 +220,9 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       data.append("region", ProductData.region)
       data.append("featured", Featured)
 
-      console.log(data, "category data upload");
-
       authInstance.post('api/user/product/addproduct', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       }).then((response) => {
-        console.log(response.data);
         toast.success("Product Added Sucessfully")
         Navigate('/postadd')
 

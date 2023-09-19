@@ -63,7 +63,6 @@ const CategoryProductPage = () => {
             return 0;
         });
         SetSortedProducts(sortedProducts)
-        console.log(SortedProducts, "sorted products");
     }
 
     useEffect(() => {
@@ -78,14 +77,12 @@ const CategoryProductPage = () => {
 
 
     const handlePreviousPage = () => {
-        console.log("hello prev");
         if (CurrentPage > 1) {
             SetCurrentPage(CurrentPage - 12);
         }
     };
 
     const handleNextPage = () => {
-        console.log("hello next");
         SetCurrentPage(CurrentPage + 12);
     };
 

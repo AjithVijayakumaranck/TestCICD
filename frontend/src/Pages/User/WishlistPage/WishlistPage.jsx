@@ -24,7 +24,6 @@ const WishlistPage = () => {
   const loadData = () => {
     try {
       authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
-        console.log(Response.data);
         SetWishlistData([...Response.data])
         SetReload(false)
       }).catch((err) => {
@@ -66,7 +65,7 @@ const WishlistPage = () => {
             </div>
             <div className={Style.cardWrapper}>
               {
-                WishlistData.map((wishlistData) => {
+                WishlistData.map((wishlistData, index) => {
                   return (
                     <WishlistCard wishlist={wishlistData.wishlist} user={User} reload={SetReload} />
                   )

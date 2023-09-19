@@ -6,7 +6,6 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useNavigate, useParams } from 'react-router-dom';
-import instance from '../../instance/AxiosInstance';
 import { AiFillHeart } from 'react-icons/ai';
 import { UserContext } from '../../Contexts/UserContext';
 import authInstance from '../../instance/AuthInstance';
@@ -52,7 +51,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     const loadWishlistData = () => {
         authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
-            //console.log(Response.data);
             SetWishlistData(Response.data)
         }).catch((err) => {
             console.log(err);
@@ -66,9 +64,9 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         e.preventDefault();
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
-                //console.log(Response, 'favorite');
                 SetIsClicked(true);
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
@@ -95,9 +93,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        console.log(User._id);
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            // console.log('deleted', Response)
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
@@ -109,7 +105,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         try {
             if (User?._id !== ClientData?._id) {
                 authInstance.post('/api/user/chat/createconversation', { senderId: User._id, recieverId: ClientData._id, productId: ProductDet._id }).then((response) => {
-                    console.log("response", response);
                     Navigate(`/chat/${response.data.savedConversation._id}`)
                 }).catch((err) => {
                     console.log(err, "erooooor");
@@ -166,7 +161,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                     return (
                                         <div className={Style.box}>
                                             <div className={Style.img_Container}>
-                                                <img src={images.url} alt='' />
+                                                <img src={images?.url} alt='' />
                                                 <span
                                                     onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
                                                     style={{ color: IsClicked ? 'red' : 'grey' }}

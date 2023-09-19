@@ -34,7 +34,7 @@ const ClientProfilePage = () => {
     const [Rating, SetRating] = useState(0);
     const [Reviews, SetReviews] = useState([]);
     const [Reload, SetReload] = useState(false);
-   
+
 
 
 
@@ -48,8 +48,7 @@ const ClientProfilePage = () => {
 
     const loadClient = () => {
         try {
-            instance.get(`/api/user/profile/get_profile/${clientId}`).then((Response) => {
-                //console.log(Response.data, "client details");
+            authInstance.get(`/api/user/profile/get_profile/${clientId}`).then((Response) => {
                 SetClientData({ ...Response.data })
                 SetClientAddress({ ...Response.data.address });
                 SetClientImage(Response.data.profilePicture.url);
@@ -63,8 +62,7 @@ const ClientProfilePage = () => {
 
     const loadClientProducts = () => {
         try {
-            adminInstance.get(`/api/super_admin/product_control/get_userproducts/${clientId}`).then((response) => {
-                //console.log(response.data, "user products res");
+            authInstance.get(`/api/super_admin/product_control/get_userproducts/${clientId}`).then((response) => {
                 SetClientProducts(response.data);
             }).catch((error) => {
                 console.log(error);
@@ -75,7 +73,6 @@ const ClientProfilePage = () => {
     };
 
     const handleShowmore = () => {
-        console.log("hello next");
         SetCurrentPage(CurrentPage + 12);
     }
 
@@ -83,7 +80,6 @@ const ClientProfilePage = () => {
     const loadReview = () => {
         try {
             instance.get(`/api/user/profile/get_rating?userId=${clientId}&&page=${CurrentPage}`).then((response) => {
-                //console.log(response.data, "getting review");
                 SetReviews(response.data.ratings)
                 SetTotalRating(response.data.totalrating)
             })
@@ -97,7 +93,6 @@ const ClientProfilePage = () => {
 
     //Handle Reply
     const handleReply = (reviewId) => {
-        console.log(reviewId._id,"userId:", User._id, "review id");
         const { value: text } = Swal.fire({
             input: 'textarea',
             inputLabel: 'Message',
@@ -111,11 +106,9 @@ const ClientProfilePage = () => {
         }).then((result) => {
             if (!result.dismiss && result.value) {
                 const text = result.value;
-                console.log(text,  "text in reply");
                 // Make API request here
                 try {
                     authInstance.post("/api/user/profile/add_reply", { reviewerId: User._id, senderId: reviewId._id, reply: text }).then((response) => {
-                        //console.log(response.data);
                         SetReload(true)
                         Swal.fire("Replied Sucessfully");
 
@@ -132,10 +125,8 @@ const ClientProfilePage = () => {
     // ---- Rating components ------
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("userId:", User._id, "RevewierId:", clientId, Rating, Comments, "rating and comments");
         try {
             authInstance.post("/api/user/profile/profile_rating", { userId: clientId, ratingId: User._id, star: Rating, comment: Comments }).then((response) => {
-                console.log(response.data);
                 SetRating(0);
                 SetComments("")
                 SetToggle(false)
@@ -204,9 +195,13 @@ const ClientProfilePage = () => {
 
                     <ClientProfiles profile={ClientData} profileaddress={ClientAddress} image={ClientImage} />
 
-                    <div className={Style.ad_container} >
-                        <OwnCard products={ClientProducts} UserId={User._id} />
-                    </div>
+
+                    {ClientProducts.length > 0 ?
+                        <div className={Style.ad_container} >
+                            <OwnCard products={ClientProducts} UserId={User?._id} />
+                        </div>
+                        : null
+                    }
 
                     <div className={Style.review_container} >
 
@@ -220,7 +215,7 @@ const ClientProfilePage = () => {
                                         <div className={Style.ratingIcon}>
                                             <Star stars={TotalRating} />
                                         </div>
-                                        <p>({Reviews.length} Reviews)</p>
+                                        <p>({Reviews?.length} Reviews)</p>
                                     </div>
                                 </div>
                             </div>
@@ -241,14 +236,13 @@ const ClientProfilePage = () => {
                             <div className={Style.bottom} >
 
                                 {Reviews.map((reviews, index) => {
-                                    console.log(reviews, "return reviews");
                                     return (
                                         <div className={Style.reviews_wrap} >
                                             <div className={Style.Image_wrap} >
                                                 <img
                                                     src={
                                                         reviews
-                                                            ? reviews.postedby.profilePicture.url
+                                                            ? reviews?.postedby?.profilePicture.url
                                                             : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                                                     }
                                                     alt=""
@@ -256,19 +250,18 @@ const ClientProfilePage = () => {
                                             </div>
                                             <div className={Style.Det_wrap} >
                                                 <div className={Style.Id}>
-                                                    <label>{reviews.postedby.fullname}</label>
+                                                    <label>{reviews?.postedby?.fullname}</label>
                                                     <span onClick={() => { handleReply(reviews.postedby) }}><BsFillReplyFill /> Reply </span>
                                                 </div>
                                                 <div className={Style.Message} >
                                                     <div className={Style.Send}>
-                                                        <p>{reviews.comment}</p>
+                                                        <p>{reviews?.comment}</p>
                                                     </div>
 
                                                     {reviews.reply.map((replys, index) => {
-                                                        // console.log(replys, "return replys");
                                                         return (
                                                             <div className={Style.Reply}>
-                                                                <p> <span>Reply : </span> {replys.content} </p>
+                                                                <p> <span>Reply : </span> {replys?.content} </p>
                                                             </div>
                                                         )
                                                     })}

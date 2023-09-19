@@ -19,6 +19,10 @@ file:{
 offerMade:{
     type:Boolean,
     default:false
+},
+read:{
+    type:Boolean,
+    default:false
 }
 
 },{ timestamps: true })

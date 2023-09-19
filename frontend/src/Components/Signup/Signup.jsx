@@ -114,7 +114,6 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      console.log("not validated");
       setError({ ...error, email: "Invalid email" });
       setTimeout(() => {
         setError({ ...error, email: "" });
@@ -124,7 +123,6 @@ const Signup = ({ setLogin }) => {
   };
 
   const phone_validation = (e) => {
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setFormError(false);
       if (e.target.value.toString().length < 10) {
@@ -138,7 +136,6 @@ const Signup = ({ setLogin }) => {
       }
     } else {
       setFormError(true);
-      console.log("not validated");
       setError({ ...error, phonenumber: "This field cannot be empty" });
       setTimeout(() => {
         setError({ ...error, phonenumber: "" });
@@ -155,7 +152,6 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      console.log(e.target.value, "not validated");
       setError({ ...error, dateOfbirth: "Field can't be empty" });
       setTimeout(() => {
         setError({ ...error, dateOfbirth: "" });
@@ -165,10 +161,8 @@ const Signup = ({ setLogin }) => {
   };
 
   const password_validation = (e) => {
-    console.log("im ahere");
     if (e.target.value !== "") {
       setFormError(true);
-      console.log(e.target.value.length);
       if (e.target.value.replace(/ /g, "").length <= 8) {
         setError({ ...error, password: "Minimum 8 character needed" });
         return false;
@@ -191,7 +185,6 @@ const Signup = ({ setLogin }) => {
   const confirmPassword_validation = (e) => {
     if (e.target.value !== "") {
       setFormError(true);
-      console.log(e.target.value.length);
       if (e.target.value.replace(/ /g, "") !== userData.password) {
         setError({ ...error, confirmPassword: "Enter Correct password" });
         return false;
@@ -214,7 +207,6 @@ const Signup = ({ setLogin }) => {
   const otp_validation = (e) => { };
 
   // submit handler and submit validation
-
   const submitHandler = (e) => {
     setResponseError("");
     e.preventDefault();
@@ -228,7 +220,6 @@ const Signup = ({ setLogin }) => {
           .then((response) => {
             setLoading(false);
             setOtp(true);
-            console.log(response, "hello phgone");
           })
           .catch((Error) => {
             setLoading(false);
@@ -240,12 +231,11 @@ const Signup = ({ setLogin }) => {
           .then((response) => {
             setLoading(false);
             setOtp(true);
-            console.log(response, "hello email");
           })
           .catch((Error) => {
             setLoading(false);
             setResponseError(Error.response.data.message);
-            console.log(Error, "heee");
+            console.log(Error);
           });
       }
     }
@@ -263,28 +253,26 @@ const Signup = ({ setLogin }) => {
           .post("api/verifyphone", otpDetails)
           .then((response) => {
             setLoading(false);
-            console.log(response, "helll");
             setLogin(false)
             setOtp(false)
             toast.success("User Regitered")
           })
           .catch((error) => {
+            console.log(error);
             setLoading(false);
-            console.log(error, "helllllll");
             setOtp(false)
           })
         : instance
           .post("api/verifyemail", otpDetails)
           .then((response) => {
             setLoading(false);
-            console.log(response, "helloooo");
             setLogin(false)
             setOtp(false)
             toast.success("User Regitered")
           })
           .catch((error) => {
             setLoading(false);
-            console.log(error, "halllllooo");
+            console.log(error);
             setOtp(false)
           });
     }

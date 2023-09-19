@@ -1,10 +1,8 @@
 .form_container {
-  width: 40rem;
-  min-height: 20rem;
-  padding: 1rem 3rem;
+  width: 45rem;
+  min-height: 25rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  border-radius: 5px;
   box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
 }
 @media (max-width: 550px) {
@@ -26,26 +24,33 @@
     width: 45rem;
   }
 }
-.form_container h1 {
+.form_container .left {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+.form_container .left h1 {
   color: #046BD2;
 }
-.form_container p {
+.form_container .left p {
   font-size: 0.8rem;
   padding: 1rem 0;
 }
-.form_container form div {
+.form_container .left form div {
   display: flex;
   flex-direction: column;
 }
-.form_container form div p {
+.form_container .left form div p {
   color: red;
   text-align: start;
   font-size: 12px;
 }
-.form_container form div label {
+.form_container .left form div label {
   font-size: 0.8rem;
 }
-.form_container form div input {
+.form_container .left form div input {
   border-width: 0.3px;
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
@@ -53,7 +58,7 @@
   background-color: #ebebeb;
   border-radius: 5px;
 }
-.form_container form button {
+.form_container .left form button {
   cursor: pointer;
   margin-top: 5px;
   background-color: #046BD2;
@@ -64,12 +69,33 @@
   padding: 15px 0px;
   font-size: 15px;
 }
-.form_container form button:hover {
-  background-color: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+.form_container .left form button:hover {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
-.form_container form p {
+.form_container .left form p {
   font-size: 0.8rem;
   text-align: center;
   padding-top: 0.5rem;
   cursor: pointer;
+}
+.form_container .right {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #046BD2;
+}
+@media (max-width: 550px) {
+  .form_container .right {
+    display: none;
+  }
+}
+.form_container .right img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=index.module.css.map */

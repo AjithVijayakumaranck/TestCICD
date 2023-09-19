@@ -8,7 +8,7 @@ import RegistrationLogin from '../Pages/Common/Registration_login/Registration_l
 import SinglePage from '../Pages/User/SinglePage/SinglePage'
 import UserProfile from '../Pages/User/ProfilePage/UserProfile'
 import WishlistPage from '../Pages/User/WishlistPage/WishlistPage'
-import PostAdd from '../Pages/User/PostAdPage/PostAdd'
+import PostAdsPage from '../Pages/User/PostAdsPage/PostAdsPage'
 import Chats from '../Pages/User/ChatPage/Chats'
 import ClientProfile from '../Pages/User/ProfilePage/ClientProfilePage'
 import ChangePassword from '../Pages/Common/ChangePassword/ChangePassword'
@@ -60,6 +60,7 @@ import UnProtectedRouter from '../utilities/UnProtectedRouter'
 
 
 
+
 //-------- Admin End---------
 
 
@@ -82,7 +83,7 @@ const Routings = () => {
               <Route path='/registration_login' element={<RegistrationLogin />} />
             </Route >
 
-            <Route path='/forgotpassword' element={<ForgotPassword />} />
+            <Route path='/forgetpassword' element={<ForgotPassword />} />
             <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/contact' element={<ContactPage />} />
             <Route path='/product/:productId' element={<SinglePage />} />
@@ -90,7 +91,7 @@ const Routings = () => {
             <Route path='/search/:query' element={< SearchProductsPage />} />
 
             <Route element={<ProtectedRoutes />}>
-              <Route path='/postadd' element={<PostAdd />} />
+              <Route path='/postadd' element={<PostAdsPage />} />
               <Route path='/myads' element={< OwnProductPage />} />
               <Route path='/notification' element={< NotificationPage />} />
               <Route path='/registerad/:subCategoryId' element={<RegisterAd />} />

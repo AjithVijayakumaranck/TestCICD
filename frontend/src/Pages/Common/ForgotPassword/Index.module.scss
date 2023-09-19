@@ -8,12 +8,13 @@
     overflow: hidden;
 
     .form_container {
-        width: 40rem;
-        min-height: 20rem;
-        padding: 1rem 3rem;
+        width: 45rem;
+        min-height: 25rem;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        // padding: 1rem;
+        //flex-direction: column;
+        //justify-content: center;
+        border-radius: 5px;
         box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
 
         @include breakpoint(md) {
@@ -32,71 +33,100 @@
             width: 45rem;
         }
 
-        h1 {
-            color: $primary_color;
-            font-size: 24px;
+        .left {
+            display: flex;
+            flex: 2;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem 2rem;
 
-            @include breakpoint(md) {
-                font-size: 20px;
-            }
-        }
+            h1 {
+                color: $primary_color;
+                font-size: 24px;
 
-        p {
-            font-size: .8rem;
-            padding: 1rem 0;
-        }
-
-        form {
-
-            div {
-                display: flex;
-                flex-direction: column;
-
-                p {
-                    color: red;
-                    font-size: 12px;
-                    text-align: start;
-                }
-
-                label {
-                    font-size: .8rem;
-                }
-
-                input {
-                    border-width: .3px;
-                    border-radius: 5px;
-                    border-color: rgb(149 149 149 / 52%);
-                    outline: none;
-                    padding: 15px 10px;
-                    background-color: $base_color;
-                }
-            }
-
-            button {
-                cursor: pointer;
-                margin-top: 5px;
-                background-color: $primary_color;
-                width: 100%;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 15px 0px;
-                font-size: 15px;
-
-                &:hover {
-                    background-color: $gradient_color;
+                @include breakpoint(md) {
+                    font-size: 20px;
                 }
             }
 
             p {
                 font-size: .8rem;
-                text-align: center;
-                padding-top: .5rem;
+                padding: 1rem 0;
             }
 
-            span {
-                color: $primary_color;
-                cursor: pointer;
+            form {
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        color: red;
+                        font-size: 12px;
+                        text-align: start;
+                    }
+
+                    label {
+                        font-size: .8rem;
+                    }
+
+                    input {
+                        border-width: .3px;
+                        border-radius: 5px;
+                        border-color: rgb(149 149 149 / 52%);
+                        outline: none;
+                        padding: 15px 10px;
+                        background-color: $base_color;
+                    }
+                }
+
+                button {
+                    cursor: pointer;
+                    margin-top: 5px;
+                    background-color: $primary_color;
+                    width: 100%;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 15px 0px;
+                    font-size: 15px;
+
+                    &:hover {
+                        background: $gradient_color;
+                    }
+                }
+
+                p {
+                    font-size: .8rem;
+                    text-align: center;
+                    padding-top: .5rem;
+                }
+
+                span {
+                    color: $primary_color;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .right{
+            width: 100%;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background-color: $primary_color;
+
+            @include breakpoint(md) {
+                display: none;
+            }
+
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
             }
         }
     }

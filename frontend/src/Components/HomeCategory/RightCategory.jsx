@@ -41,11 +41,11 @@ const RightCategory = () => {
                 <div className={Style.box_wrapper}>
                     {Categories.slice(0, DisplayLimit).map((category, index) => {
                         return (
-                            <div className={Style.item}>
-                                <div className={Style.box} key={index} onClick={() => navigate(`/category/${category._id}`)} >
-                                    <img src={category.icon.url} alt='' />
+                            <div className={Style.item} key={index}>
+                                <div className={Style.box} onClick={() => navigate(`/category/${category?._id}`)} >
+                                    <img src={category?.icon?.url} alt='' />
                                 </div>
-                                <h6>{category.categoryName}</h6>
+                                <h6>{category?.categoryName}</h6>
                             </div>
                         )
                     })}

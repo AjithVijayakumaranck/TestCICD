@@ -53,12 +53,10 @@ const ResetPassword = ({ userData }) => {
     const submitHandler = (e) => {
         e.preventDefault()
         if (formData.password === "" || formData.confirmPassword === "") {
-            console.log(formData);
             setError({ ...error, confirmPassword: "This field cannot be empty", password: "this field cannot be empty" })
         } else {
             setLoading(true)
             const data = { data: userData, password: formData.password }
-            console.log(data);
             instance.post("api/resetpassword", { data: userData, password: formData.password }).then((response) => {
                 setLoading(false)
                 toast.success("Password updated")
@@ -73,27 +71,32 @@ const ResetPassword = ({ userData }) => {
     return (
         <div className={Style.containerwrap}>
             <div className={Style.form_container}>
-                <h1>Is that you</h1>
-                <p>We have sent an OTP to your email</p>
-                < form action="" onSubmit={(e) => {
-                    submitHandler(e)
-                }}>
-                    <div>
-                        <label htmlFor="password">New Password</label>
-                        <input type="Password" id='password' onChange={(e) => passwordValidation(e)} placeholder='New password' />
-                        <p>{error.password}</p>
-                    </div>
-                    <div>
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input type="Password" id='confirmPassword' placeholder='Confirm password' onChange={(e) => confirmValidation(e)} />
-                        <p>{error.confirmPassword}</p>
-                    </div>
-                    <button>{loading ? (
-                        <LoadingSpin size="20px" direction="alternate" width="4px" />
-                    ) : (
-                        "Continue"
-                    )}</button>
-                </form>
+                <div className={Style.left}>
+                    <h1>Is that you</h1>
+                    <p>We have sent an OTP to your email</p>
+                    < form action="" onSubmit={(e) => {
+                        submitHandler(e)
+                    }}>
+                        <div>
+                            <label htmlFor="password">New Password</label>
+                            <input type="Password" id='password' onChange={(e) => passwordValidation(e)} placeholder='New password' />
+                            <p>{error.password}</p>
+                        </div>
+                        <div>
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input type="Password" id='confirmPassword' placeholder='Confirm password' onChange={(e) => confirmValidation(e)} />
+                            <p>{error.confirmPassword}</p>
+                        </div>
+                        <button>{loading ? (
+                            <LoadingSpin size="20px" direction="alternate" width="4px" />
+                        ) : (
+                            "Continue"
+                        )}</button>
+                    </form>
+                </div>
+                <div className={Style.right}>
+                    <img src="/Images/reset.svg" alt="" />
+                </div>
             </div>
         </div>
     )

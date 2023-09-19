@@ -12,6 +12,9 @@ router.delete('/remove_wishlist/:userId/:productId',authoriseJwt,wishlistControl
 //get wishlist
 router.get('/get_wishlist/:userId',authoriseJwt,wishlistControllers.getWishList)
 
+//get wishlist
+router.get('/get_wishlist_count/:userId',authoriseJwt,wishlistControllers.getWishlistCount)
+
 
 
 

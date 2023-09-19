@@ -42,7 +42,6 @@ const Login = ({ setLogin }) => {
 
     e.preventDefault();
     instance.post('/api/login', userData).then((response) => {
-      console.log(response.data.user.role);
       if (response.data.user.role === "superadmin" || response.data.user.role === "admin") {
         localStorage.setItem("AdminLogged", true)
         localStorage.setItem("AdminToken", response.data.token)
@@ -100,7 +99,7 @@ const Login = ({ setLogin }) => {
           </button>
         </form>
         <div className={Style.additional_options}>
-          <p><Link className={Style.navigation} to='/forgotpassword'>Forgot Password?</Link></p>
+          <p><Link className={Style.navigation} to='/forgetpassword'>Forgot Password?</Link></p>
           <p>Dont have an account? <Link className={Style.navigation} onClick={() => { setLogin(true) }}>Signup</Link></p>
         </div>
         <div className={Style.Google_authentication}>

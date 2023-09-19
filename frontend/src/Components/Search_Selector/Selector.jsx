@@ -14,7 +14,6 @@ const Selector = ({ result, query }) => {
   const CurrentCards = result.slice(0, DisplayLimit);
 
   const Length = result ? result.length : "0"
-  // console.log(Length);
 
   return (
     <div enter="bounceIn" className={Style.Container}>

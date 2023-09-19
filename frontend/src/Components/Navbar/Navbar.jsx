@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Style from "./index.module.css"
-import { BsBell, BsBellFill, BsChat, BsSearch } from "react-icons/bs";
+import { BsBell, BsBellFill, BsCartPlus, BsChat, BsSearch } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseOutline } from "react-icons/io5";
 import 'animate.css';
 import { CategoryContext } from '../../Contexts/CategoryContext';
 import Options from '../Profile_Selector/Options'
-import { Link } from "react-router-dom"
-import { RiAdvertisementLine } from "react-icons/ri";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom"
+import { MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
 import { BiPurchaseTag, BiLogOut } from "react-icons/bi";
 import { SlArrowUp } from "react-icons/sl";
 import { SlArrowDown } from "react-icons/sl";
@@ -16,14 +15,17 @@ import { UserContext } from '../../Contexts/UserContext';
 import { SocketContext } from '../../Contexts/socketContext';
 import instance from '../../instance/AxiosInstance';
 import Selector from '../Search_Selector/Selector';
+import authInstance from '../../instance/AuthInstance';
 
 
 
-const Navbar = ({ location, setLocation }) => {
+const Navbar = ({ location, setLocation, reload }) => {
 
 
   const LoggedInUser = useContext(UserContext);
   const { User, SetUser } = LoggedInUser        //LoggedInUser Id
+
+  const navigate = useNavigate();
 
   const categories = useContext(CategoryContext)
   const socket = useContext(SocketContext);
@@ -31,7 +33,6 @@ const Navbar = ({ location, setLocation }) => {
   const { Categories, SetCategories } = categories
   const [Toggle, setToggle] = useState(false)
   const [ToggleSelector, SetToggleSelector] = useState(false)
-  //const [isVisible, setIsVisible] = useState(false)
   const [ToggleOpt, setOpt] = useState(false)
   const [Selected, SetSelected] = useState(false)
   const [NewMessages, SetNewMessages] = useState(false)
@@ -40,12 +41,15 @@ const Navbar = ({ location, setLocation }) => {
   const [SearchQuery, SetSearchQuery] = useState('')
   const [SearchResult, SetSearchResult] = useState([])
 
+  const [WishlistCount, SetWishlistCount] = useState(0);
+  const [NotificationCount, SetNotificationCount] = useState(0);
+  const [ConversationCount, SetConversationCount] = useState(0);
+
 
 
   const HandleSearch = () => {
     try {
       instance.get(`/api/user/filter/search_products?SearchQuery=${SearchQuery}&&limit=${5}`).then((response) => {
-        // console.log(response.data, "search result");
         SetSearchResult(response.data)
       }).catch((err) => {
         console.log(err);
@@ -75,7 +79,6 @@ const Navbar = ({ location, setLocation }) => {
   useEffect(() => {
     if (socket) {
       socket.on('notificationAlert', (data) => {
-        //console.log(data, "helllo00");
         SetNewMessages(data.Alert)
       })
     }
@@ -96,17 +99,54 @@ const Navbar = ({ location, setLocation }) => {
     }
   }, [User._id]);
 
+  const handleLogout = (e) => {
+    e.preventDefault()
+    localStorage.removeItem('logged');
+    localStorage.removeItem('token');
+    SetUser("");
+    // Redirect to the login page
+    navigate('/');
+  }
+
+  //Function to get Wishlist count
+  useEffect(() => {
+    try {
+      authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((response) => {
+        SetWishlistCount(response.data[0]?.wishlist.length)
+      }).catch((err) => {
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, [User?._id])
+
+  //Function to get Notification count
+  useEffect(() => {
+    try {
+      authInstance.get(`/api/user/notification/notification_count?userId=${User?._id}`).then((response) => {
+        SetNotificationCount(response.data)
+      }).catch((err) => {
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, [User?._id, reload])
 
 
-  // const options = []
-
-  // useEffect(() => {
-  //   Categories.map((category) => {
-  //     options.push({ value: category.categoryName, label: category.categoryName })
-  //   })
-  // }, [options])
-
-
+  //Function to get Chat Conversation count
+  useEffect(() => {
+    try {
+      authInstance.get(`/api/user/chat/conversation_count?userId=${User?._id}`).then((response) => {
+        SetConversationCount(response.data)
+      }).catch((err) => {
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, [User?._id, reload])
 
 
   return (
@@ -117,17 +157,9 @@ const Navbar = ({ location, setLocation }) => {
           <div>
             <button onClick={() => {
               setToggle(true)
-              // setIsVisible(true)
             }} className={`${Style.Toggle}`}><GiHamburgerMenu /></button>
             <Link to='/' className={Style.navigation} > <h1>DealNBuy</h1> </Link>
           </div>
-
-          {/* <div className={Style.location} onClick={() => { setLoc(!ToggleLoc) }}>
-            {ToggleLoc && <Location location={location} setLocation={setLocation} />}
-            <IoLocation />
-            <h5>Palakkad</h5>
-          </div> */}
-
         </div>
 
         <div className={Style.Search}>
@@ -149,8 +181,21 @@ const Navbar = ({ location, setLocation }) => {
         </div>
 
         <div className={Style.Options}>
-          <Link to='/chat' className={Style.navigation} > <BsChat className={Style.icon} /> </Link>
-          <Link to='/notification' className={Style.navigation} >{NewMessages ? <BsBellFill className={Style.icon} /> : <BsBell className={Style.icon} />} </Link>
+          <div className={Style.OptionsWrapper}>
+            <Link to='/chat' className={Style.navigation} > <BsChat className={Style.icon} /> </Link>
+            {ConversationCount !== 0 ?
+              <span className={Style.count}>{ConversationCount}</span>
+              : null
+            }
+          </div>
+          <div className={Style.OptionsWrapper}>
+            <Link to='/notification' className={Style.navigation} >{NewMessages ? <BsBellFill className={Style.icon} /> : <BsBell className={Style.icon} />} </Link>
+            {NotificationCount !== 0 ?
+              <span className={Style.count}>{NotificationCount}</span>
+              : null
+            }
+          </div>
+
 
           {User._id ?
             <div className={Style.profile} onClick={() => { setOpt(!ToggleOpt) }} >
@@ -161,7 +206,7 @@ const Navbar = ({ location, setLocation }) => {
                 }
                 alt="profile pricture "
               />
-              {ToggleOpt && <Options data={UserData} Image={UserImage} />}
+              {ToggleOpt && <Options data={UserData} Image={UserImage} WishlistCount={WishlistCount} />}
             </div>
             :
             <div className={Style.RegButtonContainer}>
@@ -240,32 +285,48 @@ const Navbar = ({ location, setLocation }) => {
 
                 <ul>
                   <Link to="/postadd" className={Style.navigation} >
-                    <li>
-                      <BsChat className={Style.icons} />
+                    <li className={Style.list_items} >
+                      <MdPostAdd className={Style.icons} />
                       <span>PostAd</span>
                     </li>
                   </Link>
                   <Link to="/chat" className={Style.navigation} >
                     <li>
-                      <BsChat className={Style.icons} />
-                      <span>Chats</span>
+                      <div className={Style.Options} >
+                        <div className={Style.OptionsWrapper} >
+                          <BsChat className={Style.icons} />
+                          <span>Chats</span>
+                        </div>
+                        {ConversationCount !== 0 ?
+                          <div className={Style.counter} > {ConversationCount} </div>
+                          : null
+                        }
+                      </div>
                     </li>
                   </Link>
                   <Link to="/notification" className={Style.navigation} >
                     <li>
-                      <BsBell className={Style.icons} />
-                      <span>Alerts</span>
+                      <div className={Style.Options} >
+                        <div className={Style.OptionsWrapper} >
+                          <BsBell className={Style.icons} />
+                          <span>Alerts</span>
+                        </div>
+                        {NotificationCount !== 0 ?
+                          <div className={Style.counter} > {NotificationCount} </div>
+                          : null
+                        }
+                      </div>
                     </li>
                   </Link>
                   <Link to="/myads" className={Style.navigation} >
-                    <li>
-                      <RiAdvertisementLine className={Style.icons} />
+                    <li className={Style.list_items} >
+                      <BsCartPlus className={Style.icons} />
                       <span>My Ads</span>
                     </li>
                   </Link>
 
                   <Link to="/subscribe" className={Style.navigation} >
-                    <li>
+                    <li className={Style.list_items} >
                       <BiPurchaseTag className={Style.icons} />
                       <span>Purchase Ads</span>
                     </li>
@@ -273,12 +334,20 @@ const Navbar = ({ location, setLocation }) => {
 
                   <Link to="/wishlist" className={Style.navigation} >
                     <li>
-                      <MdOutlineFavoriteBorder className={Style.icons} />
-                      <span>Wishlist</span>
+                      <div className={Style.Options} >
+                        <div className={Style.OptionsWrapper} >
+                          <MdOutlineFavoriteBorder className={Style.icons} />
+                          <span>Wishlist</span>
+                        </div>
+                        {WishlistCount !== 0 ?
+                          <div className={Style.counter} > {WishlistCount} </div>
+                          : null
+                        }
+                      </div>
                     </li>
                   </Link>
                   {User._id ?
-                    <li>
+                    <li className={Style.list_items} onClick={(e) => { handleLogout(e) }}>
                       <BiLogOut className={Style.icons} />
                       <span>Logout</span>
                     </li>

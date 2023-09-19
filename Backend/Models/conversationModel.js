@@ -8,6 +8,9 @@ const CONVERSATION_SCHEMA =  new mongoose.Schema({
 member:{
     type:Array,
 },
+read:[{
+    type:String
+}],
 product:{
  type:ObjectId,
  required:true,
