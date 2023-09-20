@@ -140,7 +140,7 @@
                 }
             }
 
-            .selectitems{
+            .selectitems {
                 width: 100%;
                 height: 30vh;
                 display: flex;
@@ -148,7 +148,7 @@
                 flex-direction: column;
                 margin: 20px 0;
 
-                .select_wrap{
+                .select_wrap {
                     width: 100%;
                     height: 100%;
                 }
@@ -163,6 +163,8 @@
             }
 
             .show {
+                display: flex;
+                align-items: center;
                 height: 20vh;
 
                 @include breakpoint(md) {
@@ -177,37 +179,42 @@
                     align-items: center;
                 }
 
+                
+
                 .items {
                     width: 100%;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
-                    gap: 10px;
+                    gap: 15px;
 
-                    .Item_wrap{
-                        width: 40%;
-                        flex: 2;
-                    }
-                    .Itembtn_wrap{
-                        width: 30%;
+                    .Item_wrap {
+                        width: 100%;
                         flex: 1;
-                    } 
-                    .Item_wrap,.Itembtn_wrap { 
+                    }
+
+                    .Itembtn_wrap {
+                        flex: 1;
+                    }
+
+                    .Item_wrap,
+                    .Itembtn_wrap {
                         display: flex;
                         flex-direction: column;
-                        overflow: hidden;
-                        
+                        //overflow: hidden;
 
                         input {
-                           padding: 10px 5px;
-                           border-radius: 5px;
-                           outline: none;
-                           border: 2px solid $base-color4;
+                            padding: 10px 5px;
+                            border-radius: 5px;
+                            font-size: 14px;
+                            outline: none;
+                            border: 2px solid $base-color4;
                         }
 
-                        button{
+                        button {
                             background: none;
                             color: $primary_color;
-                            font-size: 16px;
+                            font-size: 14px;
                             border-radius: 5px;
                             outline: none;
                             border: none;

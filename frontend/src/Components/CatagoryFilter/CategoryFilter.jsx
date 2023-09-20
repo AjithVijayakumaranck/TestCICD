@@ -144,11 +144,13 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
                         <span>{CategoryToggle ? <SlArrowUp /> : <SlArrowDown />} </span>
                     </div>
                     <div className={CategoryToggle === true ? Style.show : Style.content} >
-                        <div className={Style.select_wrap} >
-                            <Select
-                                options={subcategoryOptions}
-                                onChange={(e) => { OnSubcategory(e.value) }}
-                            />
+                        <div className={Style.items} >
+                            <div className={Style.Item_wrap} >
+                                <Select
+                                    options={subcategoryOptions}
+                                    onChange={(e) => { OnSubcategory(e.value) }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

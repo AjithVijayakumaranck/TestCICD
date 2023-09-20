@@ -1,0 +1,62 @@
+/*404 styling */
+.pageWrapper {
+  width: 100%;
+  height: 100%;
+}
+.pageWrapper .container {
+  min-height: 510px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pageWrapper .container .Image_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.pageWrapper .container .Image_wrap img {
+  width: 400px;
+  height: 400px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 550px) {
+  .pageWrapper .container .Image_wrap img {
+    width: 250px;
+    height: 250px;
+  }
+}
+.pageWrapper .container .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.pageWrapper .container .content .nav {
+  text-decoration: none;
+  color: #fff;
+}
+.pageWrapper .container .content h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #373737;
+}
+@media (max-width: 550px) {
+  .pageWrapper .container .content h1 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+.pageWrapper .container .content button {
+  background-color: #046BD2;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* End wishlistcard styling *//*# sourceMappingURL=index.module.css.map */

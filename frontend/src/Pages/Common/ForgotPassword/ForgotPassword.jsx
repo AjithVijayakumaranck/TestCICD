@@ -84,7 +84,7 @@ const ForgotPassword = () => {
               ) : (
                 <div>
                   <label htmlFor="forgotPhone">Phone Number</label>
-                  <input type="number" placeholder="Phonenumber" id="forgotPhone" value={formData.phonenumber} onChange={(e) => setFormdata({ ...formData, phonenumber: e.target.value })}/>
+                  <input type="tel" placeholder="Phonenumber" id="forgotPhone" value={formData.phonenumber} onChange={(e) => setFormdata({ ...formData, phonenumber: e.target.value })}/>
                   <p>{error.message}</p>
                 </div>
               )}

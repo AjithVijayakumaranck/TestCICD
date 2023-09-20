@@ -145,6 +145,8 @@
   transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 }
 .filter_wrapper .accordion .item .show {
+  display: flex;
+  align-items: center;
   height: 20vh;
 }
 @media (max-width: 550px) {
@@ -164,32 +166,35 @@
 .filter_wrapper .accordion .item .show .items {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 .filter_wrapper .accordion .item .show .items .Item_wrap {
-  width: 40%;
-  flex: 2;
-}
-.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
-  width: 30%;
+  width: 100%;
   flex: 1;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap, .filter_wrapper .accordion .item .show .items .Itembtn_wrap {
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
+  flex: 1;
+}
+.filter_wrapper .accordion .item .show .items .Item_wrap,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap input, .filter_wrapper .accordion .item .show .items .Itembtn_wrap input {
+.filter_wrapper .accordion .item .show .items .Item_wrap input,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap input {
   padding: 10px 5px;
   border-radius: 5px;
+  font-size: 14px;
   outline: none;
   border: 2px solid lightgrey;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap button, .filter_wrapper .accordion .item .show .items .Itembtn_wrap button {
+.filter_wrapper .accordion .item .show .items .Item_wrap button,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap button {
   background: none;
   color: #046BD2;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
   outline: none;
   border: none;

@@ -56,6 +56,7 @@ import NotificationForm from '../Pages/Admin/New/NotificationForm'
 import NotificationList from '../Pages/Admin/List/NotificationList'
 import MessageList from '../Pages/Admin/List/MessageList'
 import UnProtectedRouter from '../utilities/UnProtectedRouter'
+import NotFound from '../Components/404/NotFound'
 
 
 
@@ -82,7 +83,8 @@ const Routings = () => {
             <Route element={<UnProtectedRouter />}>
               <Route path='/registration_login' element={<RegistrationLogin />} />
             </Route >
-
+            
+            <Route path='*' element={<NotFound />} />
             <Route path='/forgetpassword' element={<ForgotPassword />} />
             <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/contact' element={<ContactPage />} />

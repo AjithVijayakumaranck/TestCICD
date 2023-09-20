@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Style from "./index.module.css"
 import { Link, useNavigate } from 'react-router-dom'
-import { MdFavoriteBorder } from "react-icons/md";
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
 import { useContext } from 'react';
 import { UserContext } from '../../../Contexts/UserContext';
 import authInstance from '../../../instance/AuthInstance';
 import Star from '../../ReviewStars/Star';
 import { toast } from 'react-toastify';
+import { AiFillHeart } from 'react-icons/ai';
 
 const ProductCard = ({ product }) => {
 
@@ -16,20 +16,68 @@ const ProductCard = ({ product }) => {
 
     const Navigate = useNavigate()
 
-    const handleFavorite = (e) => {
-        e.preventDefault();
+    const [IsClicked, SetIsClicked] = useState(false);
+    const [WishlistData, SetWishlistData] = useState([]);
+
+    //LoadCategory functions
+    useEffect(() => {
         try {
-            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User, productId: product?._id }).then((Response) => {
-                toast.success("Product Added to Wishlist")
+            authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
+                SetWishlistData(Response.data)
             }).catch((err) => {
-                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
             console.log(error);
         }
+    }, [User]);
+
+    //check weather these product in wishlist
+    const findItemId = () => {
+        {
+            WishlistData.map((Data) => {
+                const item = Data.wishlist
+                const foundItem = item.find(item => item._id === product._id)
+                if (foundItem) {
+                    SetIsClicked(true)
+                } else {
+                    SetIsClicked(false)
+                }
+            })
+        }
     }
 
+    useEffect(() => {
+        findItemId();
+    }, [WishlistData]);
+
+    const handleFavorite = (e) => {
+        e.preventDefault();
+        try {
+            if (User) {
+                authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: product._id }).then((Response) => {
+                    toast.success("Product Added to Wishlist")
+                }).catch((err) => {
+                    console.log(err);
+                })
+            } else {
+                Navigate('/registration_login');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    //Delete from wishlist
+    const handleFavoriteDelete = (e) => {
+        e.preventDefault()
+        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${product._id}`).then((Response) => {
+            toast.success("Product removed from Cart")
+            SetIsClicked(false)
+        }).catch((err) => {
+            console.log(err);
+        })
+    };
 
     const star = product.userId.totalrating ? product.userId.totalrating : "0"
 
@@ -45,7 +93,9 @@ const ProductCard = ({ product }) => {
                     <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
                 </Link>
                 <div className={Style.productAction}>
-                    <span onClick={(e) => handleFavorite(e)} > <i><MdFavoriteBorder /></i> Favorite </span>
+                    <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
+                        <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
+                    </span>
                     <span onClick={() => Navigate(`/product/${product?._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
                 </div>
             </div>
