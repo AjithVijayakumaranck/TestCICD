@@ -369,7 +369,7 @@ const Signup = ({ setLogin }) => {
                   </label>
                   <input
                     required
-                    type="number"
+                    type="tel"
                     placeholder="Phone Number"
                     id="phonenumber"
                     maxLength="10"

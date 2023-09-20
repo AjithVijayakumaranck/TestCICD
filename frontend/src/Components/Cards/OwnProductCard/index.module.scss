@@ -11,23 +11,20 @@
 
     @include breakpoint(md) {
         grid-template-columns: 1fr 1fr;
-        padding: 10px 0px;
-        gap: 20px;
+        padding: 10px 10px;
+        gap: 10px;
     }
 
     @include mediumScreen {
         grid-template-columns: 1fr 1fr 1fr;
-        //padding: 20px 30px;
     }
 
     @include LargeScreen {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        //padding: 20px 30px;
+        grid-template-columns: 1fr 1fr 1fr 1fr ;
     }
 
     .products {
         width: 100%;
-        //position: relative;
         transition: box-shadow .35s ease;
         background-color: #fff;
         margin-bottom: 0 !important;
