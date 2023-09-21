@@ -57,6 +57,7 @@ const ProductCard = ({ product }) => {
             if (User) {
                 authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: product._id }).then((Response) => {
                     toast.success("Product Added to Wishlist")
+                    SetIsClicked(true)
                 }).catch((err) => {
                     console.log(err);
                 })

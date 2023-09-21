@@ -69,9 +69,15 @@ const NotificationPage = () => {
                                 <span></span>
                             </div>
                         </div>
-                        <div className={Style.cardWrapper}>
-                            <NotificationCard HandleRead={handleRead} Alert={Alert} User={User} />
-                        </div>
+                        {Alert.length !== 0 ?
+                            <div className={Style.cardWrapper}>
+                                <NotificationCard HandleRead={handleRead} Alert={Alert} User={User} />
+                            </div>
+                            :
+                            <div className={Style.imgWrapper}>
+                                <img src="/Images/message.svg" alt="" />
+                            </div>
+                        }
                     </div>
                 </div>
                 <Footer />
