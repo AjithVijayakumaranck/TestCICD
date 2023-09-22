@@ -118,16 +118,15 @@
 .Main_container .container .ad_container,
 .Main_container .container .review_container {
   display: flex;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 10px 20px;
-  border-radius: 7px;
 }
 .Main_container .container .review_container {
   display: flex;
   gap: 10px;
   min-height: 510px;
   padding: 30px 20px;
+  border-top: 1px solid lightgrey;
 }
 @media (max-width: 550px) {
   .Main_container .container .review_container {
