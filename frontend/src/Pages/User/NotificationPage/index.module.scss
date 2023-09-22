@@ -66,6 +66,23 @@
 
                     @include LargeScreen {}
                 }
+
+                .imgWrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 350px;
+                        height: 350px;
+                        object-fit: contain;
+
+                        @include breakpoint(md) {
+                            width: 250px;
+                            height: 250px;
+                        }
+                    }
+                }
             }
         }
 

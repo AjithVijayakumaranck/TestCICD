@@ -142,37 +142,43 @@
         .ad_container,
         .review_container {
             display: flex;
-            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
             padding: 20px;
             margin: 10px 20px;
-            border-radius: 7px;
         }
 
-
-        //----- Review Styling -----
         .review_container {
             display: flex;
-            //align-items: center;
             gap: 10px;
             min-height: 510px;
             padding: 30px 20px;
+            border-top: 1px solid $base-color4;
 
-            @include breakpoint(md) {}
+            @include breakpoint(md) {
+                flex-direction: column;
+            }
 
-            @include mediumScreen {}
-    
+            @include mediumScreen {
+                flex-direction: column;
+            }
+
             @include LargeScreen {}
 
             .left {
                 flex: 2;
                 height: 100%;
                 padding: 20px;
-                //border: 3px solid $base_color3;
-                border-radius: 5px;
+                border-radius: 5px; 
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                @include breakpoint(md) {
+                    flex: 1;
+                }
+
+                @include mediumScreen {
+                    flex: 1;
+                }
 
                 .top {
                     height: 50%;
@@ -255,11 +261,17 @@
 
             .right {
                 flex: 6;
-                //height: 100%;
                 border: 3px solid $base_color3;
                 border-radius: 5px;
                 overflow: hidden;
-                //padding: 5px;
+
+                @include breakpoint(md) {
+                    flex: 1;
+                }
+
+                @include mediumScreen {
+                    flex: 1;
+                }
 
                 .top {
                     text-align: start;

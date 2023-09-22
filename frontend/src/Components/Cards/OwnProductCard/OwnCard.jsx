@@ -55,8 +55,8 @@ const OwnCard = ({ product, reload }) => {
         e.preventDefault();
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: product?._id }).then((Response) => {
-                SetIsClicked(true);
                 toast.success("Product Added to Wishlist")
+                SetIsClicked(true);
             }).catch((err) => {
                 console.log(err);
             })

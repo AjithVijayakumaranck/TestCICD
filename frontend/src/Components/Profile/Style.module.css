@@ -204,13 +204,13 @@
 }
 .top .left {
   flex: 6;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px 40px;
   border-radius: 5px;
+  background-color: #ebebeb;
 }
 .top .left .title {
   font-size: 16px;
-  color: lightgray;
+  color: #666;
   margin-bottom: 20px;
 }
 .top .left .item {

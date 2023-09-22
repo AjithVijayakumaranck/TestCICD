@@ -24,6 +24,7 @@
 }
 .container .products {
   width: 100%;
+  max-width: 220px;
   transition: box-shadow 0.35s ease;
   background-color: #fff;
   margin-bottom: 0 !important;
