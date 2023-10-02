@@ -240,7 +240,7 @@ const MobileView = () => {
                                 />
                                 <h4>{CurrentProfile?.fullname}{" "}{CurrentProfile?.surname}</h4>
                             </div>
-                            <div className={Style.closebtn}> <span><RxCross2 /></span></div>
+                            <div className={Style.closebtn}> <span onClick={() => setCurrentChat(null)} ><RxCross2 /></span></div>
                         </div>
 
                         <div className={Style.messages} >

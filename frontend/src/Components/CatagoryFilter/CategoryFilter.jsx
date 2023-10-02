@@ -14,8 +14,8 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
 
     const [FilterAdd, SetFilterAdd] = useState(true)
     const [CategoryToggle, SetCategoryToggle] = useState(true)
-    const [LocationToggle, SetLocationToggle] = useState(false)
-    const [PriceToggle, SetPriceToggle] = useState(false)
+    const [LocationToggle, SetLocationToggle] = useState(true)
+    const [PriceToggle, SetPriceToggle] = useState(true)
 
     const [FilterCollection, SetFilterCollection] = useState("")
     const [MinValue, SetMinValue] = useState("")
