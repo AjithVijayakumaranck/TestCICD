@@ -72,7 +72,7 @@
         @include breakpoint(md) {
             display: flex;
             overflow-x: auto;
-            flex-direction: row;
+            flex-direction: column;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -82,7 +82,7 @@
         @include mediumScreen {
             display: flex;
             overflow-x: auto;
-            flex-direction: row;
+            flex-direction: column;
 
             &::-webkit-scrollbar {
                 display: none;
@@ -165,21 +165,21 @@
             .show {
                 display: flex;
                 align-items: center;
-                height: 20vh;
+                min-height: 15vh;
 
                 @include breakpoint(md) {
-                    height: 25vh;
+                    min-height: 25vh;
                     display: flex;
                     align-items: center;
                 }
 
                 @include mediumScreen {
-                    height: 20vh;
+                    min-height: 20vh;
                     display: flex;
                     align-items: center;
                 }
 
-                
+
 
                 .items {
                     width: 100%;
@@ -208,13 +208,15 @@
                             border-radius: 5px;
                             font-size: 14px;
                             outline: none;
-                            border: 2px solid $base-color4;
+                            border: 1px solid $base-color4;
                         }
 
                         button {
-                            background: none;
-                            color: $primary_color;
+                            background: $primary_color;
+                            padding: 10px 20px;
+                            color: #fff;
                             font-size: 14px;
+                            font-weight: 600;
                             border-radius: 5px;
                             outline: none;
                             border: none;
@@ -250,27 +252,6 @@
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

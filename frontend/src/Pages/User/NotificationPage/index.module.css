@@ -67,13 +67,13 @@
 }
 .page_wrapper .main .productwrapper .container .imgWrapper img {
   width: 350px;
-  height: 350px;
+  height: 450px;
   -o-object-fit: contain;
      object-fit: contain;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container .imgWrapper img {
     width: 250px;
-    height: 250px;
+    height: 450px;
   }
 }/*# sourceMappingURL=index.module.css.map */

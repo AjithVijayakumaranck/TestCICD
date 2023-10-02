@@ -59,7 +59,7 @@
   .filter_wrapper .accordion {
     display: flex;
     overflow-x: auto;
-    flex-direction: row;
+    flex-direction: column;
   }
   .filter_wrapper .accordion::-webkit-scrollbar {
     display: none;
@@ -69,7 +69,7 @@
   .filter_wrapper .accordion {
     display: flex;
     overflow-x: auto;
-    flex-direction: row;
+    flex-direction: column;
   }
   .filter_wrapper .accordion::-webkit-scrollbar {
     display: none;
@@ -147,18 +147,18 @@
 .filter_wrapper .accordion .item .show {
   display: flex;
   align-items: center;
-  height: 20vh;
+  min-height: 15vh;
 }
 @media (max-width: 550px) {
   .filter_wrapper .accordion .item .show {
-    height: 25vh;
+    min-height: 25vh;
     display: flex;
     align-items: center;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .filter_wrapper .accordion .item .show {
-    height: 20vh;
+    min-height: 20vh;
     display: flex;
     align-items: center;
   }
@@ -188,13 +188,15 @@
   border-radius: 5px;
   font-size: 14px;
   outline: none;
-  border: 2px solid lightgrey;
+  border: 1px solid lightgrey;
 }
 .filter_wrapper .accordion .item .show .items .Item_wrap button,
 .filter_wrapper .accordion .item .show .items .Itembtn_wrap button {
-  background: none;
-  color: #046BD2;
+  background: #046BD2;
+  padding: 10px 20px;
+  color: #fff;
   font-size: 14px;
+  font-weight: 600;
   border-radius: 5px;
   outline: none;
   border: none;

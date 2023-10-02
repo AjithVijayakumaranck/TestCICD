@@ -74,12 +74,12 @@
 
                     img {
                         width: 350px;
-                        height: 350px;
+                        height: 450px;
                         object-fit: contain;
 
                         @include breakpoint(md) {
                             width: 250px;
-                            height: 250px;
+                            height: 450px;
                         }
                     }
                 }

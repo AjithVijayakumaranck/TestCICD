@@ -57,6 +57,16 @@
   display: flex;
   gap: 20px;
 }
+@media (max-width: 550px) {
+  .page_wrapper .main .productwrapper .container .Wrapper {
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .productwrapper .container .Wrapper {
+    flex-direction: column-reverse;
+  }
+}
 .page_wrapper .main .productwrapper .container .Wrapper .Left_container {
   display: flex;
   flex-direction: column;
@@ -110,6 +120,22 @@
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container {
     width: 75%;
   }
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .error_container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .error_container img {
+  width: 350px;
+  height: 350px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .error_container h1 {
+  color: #666;
 }
 .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
   position: relative;

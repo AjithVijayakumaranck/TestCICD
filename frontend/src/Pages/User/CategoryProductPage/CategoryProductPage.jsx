@@ -144,13 +144,22 @@ const CategoryProductPage = () => {
                             </div>
 
                             <div className={Style.Right_container}>
-                                <div className={Style.card_container}>
-                                    {SortedProducts.map((product) => {
-                                        return (
-                                            <ProductCard product={product} />
-                                        )
-                                    })}
-                                </div>
+                                
+                                {SortedProducts.length !== 0 ?
+                                    <div className={Style.card_container}>
+                                        {SortedProducts.map((product) => {
+                                            return (
+                                                <ProductCard product={product} />
+                                            )
+                                        })}
+                                    </div>
+                                    :
+                                    <div className={Style.error_container}>
+                                        <img src="/Images/No-data.svg" alt="" />
+                                        <h1>No Product Found</h1>
+                                    </div>
+                                }
+
                                 {SortedProducts.length !== 0 ?
                                     <div className={Style.loadbtn}>
                                         <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>

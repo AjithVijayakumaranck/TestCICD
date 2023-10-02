@@ -56,9 +56,13 @@
                     display: flex;
                     gap: 20px;
 
-                    @include breakpoint(md) {}
+                    @include breakpoint(md) {
+                        flex-direction: column-reverse;
+                    }
 
-                    @include mediumScreen {}
+                    @include mediumScreen {
+                        flex-direction: column-reverse;
+                    }
 
                     @include extraMediumScreen {}
 
@@ -117,6 +121,25 @@
                         @include LargeScreen {
                             width: 75%;
                         }
+
+                        .error_container {
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+
+                            img {
+                                width: 350px;
+                                height: 350px;
+                                object-fit: contain;
+                            }
+
+                            h1 {
+                                color: $base-color5;
+                            }
+                        }
+
 
                         .card_container {
                             position: relative;

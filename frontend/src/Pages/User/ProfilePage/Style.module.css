@@ -32,6 +32,16 @@
   display: flex;
   align-items: center;
 }
+@media (max-width: 550px) {
+  .Main_container {
+    margin-top: 120px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_container {
+    margin-top: 80px;
+  }
+}
 .Main_container .container {
   width: 100%;
   min-height: 510px;
@@ -195,6 +205,9 @@
   border-top: 1px solid #f8f8f8;
 }
 .Main_container .container .review_container .left .bottom .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin: 10px 0;
   text-align: start;
