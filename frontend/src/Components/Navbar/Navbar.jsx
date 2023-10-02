@@ -267,7 +267,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   <div className={Selected ? Style.show : Style.content} >
                     {Categories.map((data, index) => {
                       return (
-                        <div className={Style.row} key={index} onClick={() => navigate(`/category/${category?._id}`)}>
+                        <div className={Style.row} key={index} onClick={() => navigate(`/category/${data?._id}`)}>
                           <h3>{data?.categoryName}</h3>
                         </div>
                       )

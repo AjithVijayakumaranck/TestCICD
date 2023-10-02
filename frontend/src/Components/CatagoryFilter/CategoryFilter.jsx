@@ -206,7 +206,7 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
                                 <input type="number" placeholder='Max' value={MaxValue} onChange={(e) => SetMaxValue(e.target.value)} />
                             </div>
                             <div className={Style.Itembtn_wrap} >
-                                <button onClick={(e) => { HandlePriceFilter(e) }} >Filter</button>
+                                <button onClick={(e) => { HandlePriceFilter(e) }} >Apply</button>
                             </div>
                         </div>
                     </div>
