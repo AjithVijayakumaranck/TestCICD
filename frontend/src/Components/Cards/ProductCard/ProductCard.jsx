@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${product._id}`).then((Response) => {
-            toast.success("Product removed from Cart")
+            toast.success("Product removed from Wishlist")
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
@@ -91,7 +91,7 @@ const ProductCard = ({ product }) => {
                     : null
                 }
                 <Link>
-                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
+                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} onClick={() => Navigate(`/product/${product?._id}`)} />
                 </Link>
                 <div className={Style.productAction}>
                     <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >

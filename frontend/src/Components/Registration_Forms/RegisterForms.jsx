@@ -303,7 +303,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                         name={Input.label}
                         onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
                       />
-                      <p> Mention the key features of item(eg. Brand, Model,Typeetc.) </p>
+                     
                     </div>
                   </div>
                 );
@@ -336,7 +336,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                           </div>
                         );
                       })}
-                      <p> Mention the key features of item(eg. Brand, MOdel,Type etc.) </p>
+                     
                     </div>
                   </div>
                 );
