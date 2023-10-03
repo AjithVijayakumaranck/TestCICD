@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
         authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${product._id}`).then((Response) => {
-            toast.success("Product removed from Cart")
+            toast.success("Product removed from Wishlist")
             SetIsClicked(false)
         }).catch((err) => {
             console.log(err);
