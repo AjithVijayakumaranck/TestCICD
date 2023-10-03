@@ -91,7 +91,7 @@ const ProductCard = ({ product }) => {
                     : null
                 }
                 <Link>
-                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
+                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} onClick={() => Navigate(`/product/${product?._id}`)} />
                 </Link>
                 <div className={Style.productAction}>
                     <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >

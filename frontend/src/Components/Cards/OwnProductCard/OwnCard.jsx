@@ -101,7 +101,7 @@ const OwnCard = ({ product, reload }) => {
                         : null
                     }
                     <Link>
-                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
+                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage} onClick={() => Navigate(`/product/${product._id}`)} />
                     </Link>
                     <div className={Style.productAction}>
                         {product?.userId === User?._id ?
