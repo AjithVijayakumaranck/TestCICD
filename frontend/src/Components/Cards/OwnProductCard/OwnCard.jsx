@@ -100,8 +100,9 @@ const OwnCard = ({ product, reload }) => {
                         <span className={Style.productlabel}>Featured</span>
                         : null
                     }
-                    <Link onClick={() => Navigate(`/product/${product._id}`)}>
-                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage}  />
+
+                    <Link to={`/product/${product?._id}`} >
+                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
                     </Link>
                     <div className={Style.productAction}>
                         {product?.userId === User?._id ?
