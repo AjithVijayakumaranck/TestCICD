@@ -234,6 +234,7 @@ const Navbar = ({ location, setLocation, reload }) => {
 
             <div className={Style.logoContainer}>
               <div className={Style.logo_wrap}>
+
                 <Link to='/' className={Style.navigation}
                   onClick={() => {
                     if (window.location.pathname === '/') {
@@ -244,6 +245,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   }}>
                   <h1>DealNBuy</h1>
                 </Link>
+                
               </div>
               <div>
                 <button> <IoCloseOutline onClick={() => setToggle(false)} /></button>
