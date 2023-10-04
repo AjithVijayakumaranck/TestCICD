@@ -85,13 +85,13 @@ const ProductCard = ({ product }) => {
 
     return (
         <div className={Style.products}>
-            <div className={Style.productmedia}>
+            <div className={Style.productmedia} onClick={() => Navigate(`/product/${product?._id}`)}>
                 {product?.userId?.premiumuser ?
                     <span className={Style.productlabel}>Featured</span>
                     : null
                 }
                 <Link>
-                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} onClick={() => Navigate(`/product/${product?._id}`)} />
+                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage}  />
                 </Link>
                 <div className={Style.productAction}>
                     <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
