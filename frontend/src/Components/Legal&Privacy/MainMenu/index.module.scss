@@ -1,0 +1,93 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+.content_wrapper {
+    padding: 3rem 1rem;
+
+    @include breakpoint(md) {
+        padding: 2rem 1rem;
+    }
+
+    @include mediumScreen {}
+
+    @include LargeScreen {}
+
+    .container {
+        width: 100%;
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+
+            @include breakpoint(md) {
+                flex-direction: column;
+            }
+
+            @include mediumScreen {
+                flex-direction: column;
+            }
+
+            .top,
+            .bottom {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                padding: 10px;
+
+                .title {
+                    margin-bottom: 2rem;
+
+                    h2 {
+                        margin-bottom: .8rem;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        line-height: 1;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        font-weight: 300;
+                        font-family: 'Poppins';
+                        letter-spacing: 0;
+                        color: #777;
+                    }
+                }
+
+                .subtitle {
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    span {
+                        text-align: center;
+                        margin-right: 0.5rem;
+                    }
+
+                    h3 {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        line-height: 0.8;
+                    }
+                }
+
+                .subdata {
+                    p {
+                        margin-bottom: 1rem;
+                        font-size: 14px;
+                        font-weight: 300;
+
+                        span {
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                .row {
+                    display: flex;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

@@ -78,7 +78,7 @@
 
                         @include breakpoint(md) {
                             grid-template-columns: 1fr 1fr;
-                            gap: 10px 20px;
+                            gap: 5px;
                         }
 
                         @include mediumScreen {

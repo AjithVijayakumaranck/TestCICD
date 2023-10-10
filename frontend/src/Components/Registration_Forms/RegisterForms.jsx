@@ -48,7 +48,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   const [Locality, SetLocality] = useState([])
   const [Featured, SetFeatured] = useState(false)
 
-
+  const [Limit, SetLimit] = useState();
 
 
 
@@ -121,6 +121,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     try {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
         SetUserData(Response.data)
+        SetLimit(Response.data?.ImageCount)
       }).catch((err) => {
         console.log(err)
       });
@@ -148,7 +149,14 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   //Image upload function
   const uploadFile = (e) => {
     const files = Array.from(e.target.files);
-    SetFile(files);
+
+    if (File.length + files.length <= Limit) {
+      SetFile([...File, ...files]);
+      SetError({ ...Error, imgfile: "" })
+    } else {
+      SetError({ ...Error, imgfile: `You can only upload up to ${Limit} images.` });
+      e.target.value = "";
+    }
   }
 
 
@@ -169,7 +177,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     if (ProductData.listedBy === '') {
       newErrors.listedBy = 'listedByis required';
     }
-  
+
     if (ProductData.district === '') {
       newErrors.district = 'district is required';
     }
@@ -178,6 +186,9 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     }
     if (ProductData.region === '') {
       newErrors.region = 'region is required';
+    }
+    if (File.length === 0) {
+      newErrors.imgfile = 'Product image is required';
     }
 
     if (User.premiumuser === true) {
@@ -195,9 +206,9 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   //Handle Submit function 
   const HandleSubmit = (e) => {
     e.preventDefault()
-    
+
     if (validateForm()) {
-      
+
       let data = new FormData()
 
       File.forEach((file) => {
@@ -258,7 +269,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     <>
       <div className={Style.Main_Container}>
         <div className={Style.header_wrapper}>
-          <div className={Style.backarrow} onClick={() => Navigate("/")} >
+          <div className={Style.backarrow} onClick={() => Navigate("/postadd")} >
             <BiArrowBack />
           </div>
         </div>
@@ -280,11 +291,10 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 <input type="text"
                   name="title"
                   value={ProductData.title}
-                  //onChange={(e) => TitleValidation(e)}
                   onChange={(e) => { SetProductData({ ...ProductData, title: e.target.value }) }}
                 />
                 <span>{Error.title}</span>
-                <p> Mention the key features of item(eg. Brand, Model,Typeetc.) </p>
+                <p> Mention the key features of item(eg. Brand, Model,Type etc.) </p>
               </div>
             </div>
 
@@ -299,11 +309,10 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     </label>
                     <div className={Style.items}>
                       <input type={Input.type}
-                        //ref={selectRef1}
                         name={Input.label}
                         onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
                       />
-                     
+
                     </div>
                   </div>
                 );
@@ -328,7 +337,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                               type={Input.type}
                               id={Radios}
                               name={Input.label}
-                              //ref={selectRef2}
                               value={Radios}
                               onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
                             />
@@ -336,7 +344,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                           </div>
                         );
                       })}
-                     
+
                     </div>
                   </div>
                 );
@@ -419,7 +427,11 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 })}
               </div>
               <div>
+                <span style={{ color: 'red', fontSize: '14px' }}>{Error?.imgfile}</span>
+              </div>
+              <div>
                 <p>
+                  You can only upload up to {Limit} images.
                   Choose multiple photos by choosing your best photo first as displayed in front and then add rest of photos with
                   different angles to shows specifications or damages if any.
                 </p>

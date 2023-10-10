@@ -116,6 +116,11 @@ const New = ({ title }) => {
     SetOptions(updatedOptions);
   }
 
+  const HandleCancel = (e) => {
+    e.preventDefault()
+    SetFormInputs([])
+    navigate('/admin/subcategory')
+  }
 
 
   return (
@@ -157,6 +162,7 @@ const New = ({ title }) => {
 
               <div className={Style.formproperty}>
                 <span className={Style.toggleBtn} onClick={() => SetVisible(!Visible)}><BsPlusCircle />  Add Property</span>
+
                 {Visible ?
                   <div className={Style.formWrapper}>
                     <div className={Style.formInput}>
@@ -206,13 +212,12 @@ const New = ({ title }) => {
                         <div className={Style.formbtn}>
                           <span className={Style.propertyBtn} onClick={optionHandler} >Add</span>
                         </div>
-
                       </div>
-
-                      : null}
-
+                      : null
+                    }
                   </div>
-                  : null}
+                  : null
+                }
 
               </div>
 
@@ -220,17 +225,17 @@ const New = ({ title }) => {
                 <Tooltip title="Check before Saving the data">
                   <button>Save</button>
                 </Tooltip>
+                <button onClick={(e) => HandleCancel(e)}>Cancel</button>
               </div>
 
             </form>
           </div>
         </div>
 
-        {Options !== "" ?
+        {Options.length !== 0 ?
           <div className={Style.bottomTable}>
             <h1 className={Style.title}>Options</h1>
             {Options.map((data, index) => {
-              console.log(data, "hwlll");
               return (
                 <div className={Style.details} key={index}>
                   <div className={Style.left}>
@@ -251,9 +256,7 @@ const New = ({ title }) => {
         <div className={Style.bottomTable}>
           <h1 className={Style.title}>Information</h1>
           {FormInputs.map((formInput) => {
-            console.log(formInput, "subcategoryform");
             const FormOptions = formInput.options
-            console.log(FormOptions, "option in subcategory");
             return (
               <div className={Style.details}>
                 <div className={Style.left_wrap}>
@@ -275,7 +278,6 @@ const New = ({ title }) => {
 
                       <div className={Style.Items}>
                         {FormOptions.map((data, index) => {
-                          console.log(data, "forminput options in subcat");
                           return (
                             <div className={Style.Item} key={index}>
                               <span className={Style.itemValue}>{formInput.type === "select" ? data.value : data}, </span>

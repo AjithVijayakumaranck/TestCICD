@@ -57,13 +57,13 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
         })
     };
 
-   
+
 
     //Make favorite
     const handleFavoriteClick = (e) => {
         e.preventDefault();
         try {
-            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
+            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: ProductDet?._id }).then((Response) => {
                 SetIsClicked(true);
             }).catch((err) => {
                 Navigate('/registration_login')
@@ -93,11 +93,15 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            SetIsClicked(false)
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
+                SetIsClicked(false)
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
 

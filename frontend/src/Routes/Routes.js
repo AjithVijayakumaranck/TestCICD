@@ -20,6 +20,10 @@ import OwnProductPage from '../Pages/User/OwnProductPage/OwnProductPage'
 import SearchProductsPage from '../Pages/User/SearchProductsPage/SearchProductsPage'
 import CategoryProductPage from '../Pages/User/CategoryProductPage/CategoryProductPage'
 import UpdateProfilePage from '../Pages/User/UpdateProfilePage/UpdateProfilePage'
+import PrivacyPage from '../Pages/User/Legal&PrivacyPage/PrivacyPage'
+import TermsAndConditionPage from '../Pages/User/Legal&PrivacyPage/TermsAndConditionPage'
+import CookiesPage from '../Pages/User/Legal&PrivacyPage/CookiesPage'
+
 
 
 //-------Admin components--------
@@ -57,6 +61,10 @@ import NotificationList from '../Pages/Admin/List/NotificationList'
 import MessageList from '../Pages/Admin/List/MessageList'
 import UnProtectedRouter from '../utilities/UnProtectedRouter'
 import NotFound from '../Components/404/NotFound'
+import DocumentList from '../Pages/Admin/List/DocumentList'
+import DocumentForm from '../Pages/Admin/New/DocumentForm'
+import EditDocumentForm from '../Pages/Admin/Edit/EditDocumentForm'
+
 
 
 
@@ -78,12 +86,13 @@ const Routings = () => {
         <AdminContextProvider>
           <Routes>
 
-            <Route exact index element={<Home />} />
-            
+            {/* <Route exact index element={<Home />} /> */}
+            <Route path="/" exact Component={Home} />
+
             <Route element={<UnProtectedRouter />}>
               <Route path='/registration_login' element={<RegistrationLogin />} />
             </Route >
-            
+
             <Route path='*' element={<NotFound />} />
             <Route path='/forgetpassword' element={<ForgotPassword />} />
             <Route path='/resetpassword' element={<ResetPassword />} />
@@ -91,6 +100,11 @@ const Routings = () => {
             <Route path='/product/:productId' element={<SinglePage />} />
             <Route path='/category/:categoryId' element={< CategoryProductPage />} />
             <Route path='/search/:query' element={< SearchProductsPage />} />
+            <Route path='/legal-and-privacy' >
+              <Route index element={<PrivacyPage />} />
+              <Route path="terms&condition" element={<TermsAndConditionPage />} />
+              <Route path="cookies" element={<CookiesPage />} />
+            </Route>
 
             <Route element={<ProtectedRoutes />}>
               <Route path='/postadd' element={<PostAdsPage />} />
@@ -123,6 +137,11 @@ const Routings = () => {
               <Route path="/admin/notifications">
                 <Route index element={<NotificationList />} />
                 <Route path="form" element={<NotificationForm title="Add New Notification" />} />
+              </Route>
+              <Route path="/admin/document">
+                <Route index element={<DocumentList />} />
+                <Route path="form" element={<DocumentForm title="Add New Document" />} />
+                <Route path="edit/:documentId" element={<EditDocumentForm title="Edit Document" />} />
               </Route>
               <Route path="/admin/category">
                 <Route index element={<CategoryList />} />
