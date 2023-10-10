@@ -5,11 +5,13 @@ module.exports = {
     // terms add
     addTerms : (req,res)=>{
         try {
-            const {policies} = req.body
+            const {policies,name,description} = req.body
             if(policies){
                 POLICY.updateMany({active:true},{active:false}).then(()=>{
                     POLICY.create({
-                        policy:policies
+                        policy:policies,
+                        name:name,
+                        description:description
                     }).then(()=>{
                         res.status(200).json({message:"new policy is active"})
                     }).catch(()=>{
