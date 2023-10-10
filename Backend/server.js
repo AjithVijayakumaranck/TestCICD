@@ -42,6 +42,7 @@ const subscriptionControlRoute = require('./Routes/SuperAdmin/subscribtionRoute'
 const carousalRoute = require('./Routes/SuperAdmin/carousalRoute')
 const feedbackRoute = require('./Routes/SuperAdmin/feedbackRoute')
 const notificationRoute = require('./Routes/SuperAdmin/notificationRoute')
+const termRoute = require('./Routes/SuperAdmin/termsConditions')
 
 
 if (!fs.existsSync("./uploads")) {
@@ -97,6 +98,7 @@ app.use('/api/super_admin/subscription_control',subscriptionControlRoute)
 app.use('/api/super_admin/carousal_control',carousalRoute)
 app.use('/api/super_admin/notification_control',notificationRoute)
 app.use('/api/super_admin/feedback_control',feedbackRoute)
+app.use('/api/super_admin/terms',termRoute)
 
 //server port
 app.listen(8080,()=>{
