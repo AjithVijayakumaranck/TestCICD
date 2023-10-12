@@ -18,51 +18,33 @@ const DocumentForm = ({ title }) => {
   const navigate = useNavigate()
 
   const [Visible, SetVisible] = useState(false);
-  const [DocumentName, SetDocumentName] = useState('');
-  const [DocumentDescription, SetDocumentDescription] = useState('');
-  const [FormInputs, SetFormInputs] = useState([])
-  const [CurrentInput, SetCurrentInput] = useState({
-    label: "",
-    type: "",
-    options: [],
+  const [DocumentName, SetDocumentName] = useState(''); // For Adding Document Name
+  const [DocumentDescription, SetDocumentDescription] = useState(''); // For Adding Document Description
+  const [FormInputs, SetFormInputs] = useState([]) // For Storing All Form Data 
+  const [DocumentPoints, SetDocumentPoints] = useState(""); //For OptionData
+  const [SubData, SetSubData] = useState([]); //For Options
+  const [DocumentData, SetDocumentData] = useState({   //For  currentInput 
+    subtitle: "",
+    subData: [],
   })
 
-  const [OptionData, SetOptionData] = useState("");
-  const [Options, SetOptions] = useState([]);
-
-  const selectRef1 = useRef(null);
-  const selectRef2 = useRef(null);
-  const selectRef3 = useRef(null);
-
-
-  const optionHandler = (e) => {
-    if (CurrentInput.type === "select") {
-      console.log(OptionData);
-      SetOptions([...Options, { value: OptionData, label: OptionData }])
-      SetOptionData("")
-    } else if (CurrentInput.type === "radio") {
-      SetOptions([...Options, OptionData])
-      SetOptionData("")
-    }
+  //Handle adding all data points 
+  const HandleAddingDataPoints = (e) => {
+    console.log(DocumentPoints, "Document Points");
+    SetSubData([...SubData, DocumentPoints])
+    SetDocumentPoints("")
   }
 
-
   //Handle add all data to formdata
-  const handleAddProperty = () => {
-    console.log(Options, "hello options");
-    CurrentInput.options.push(...Options)
-    SetFormInputs((prevFormInputs) => [...prevFormInputs, CurrentInput]);
-    SetOptions("")
-    SetCurrentInput({
-      label: "",
-      type: "",
-      options: [],
-      name: "",
-      important: false
+  const HandleCreateSubData = () => {
+    console.log(SubData, "sub data options");
+    DocumentData.subData.push(...SubData)
+    SetFormInputs((prevFormInputs) => [...prevFormInputs, DocumentData]);
+    SetSubData("")
+    SetDocumentData({
+      subtitle: "",
+      subData: [],
     })
-
-    selectRef2.current.value = ''
-    selectRef3.current.value = ''
   };
 
 
@@ -70,38 +52,38 @@ const DocumentForm = ({ title }) => {
   //Handle submiting the data to database
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('CurrentInput:', CurrentInput);
+    console.log('Document Data:', DocumentData);
     console.log('FormInputs:', FormInputs);
-    // adminInstance
-    //   .post('/api/super_admin/category/add_subcategory', { categoryId: categoryName, subCategory: SubcategoryName, formInputs: FormInputs })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //     SetSubcategoryName('')
-    //     SetFormInputs([])
-    //     selectRef1.current.value = ''
-    //     toast.success("Sucessfully Created")
-    //     navigate('/admin/subcategory')
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     toast.error("Something Went Wrong")
-    //   });
+    adminInstance
+      .post('/api/super_admin/term/add_terms', { name: DocumentName, description: DocumentDescription, policies: FormInputs })
+      .then((response) => {
+        console.log(response.data, "response");
+        SetDocumentName('')
+        SetDocumentDescription('')
+        SetFormInputs([])
+        toast.success("Sucessfully Created")
+        navigate('/admin/document')
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Something Went Wrong")
+      });
   };
 
 
+  // handle remove sub data from table data
+  const HandleOptionsRemove = (index) => {
+    const updatedOptions = [...SubData];
+    updatedOptions.splice(index, 1);
+    SetSubData(updatedOptions);
+  }
+
   // handle remove from table data
-  const handleRemove = (index) => {
+  const HandleRemove = (index) => {
     const updatedProperties = [...FormInputs];
     updatedProperties.splice(index, 1);
     SetFormInputs(updatedProperties);
   };
-
-  const handleOptionsRemove = (index) => {
-    const updatedOptions = [...Options];
-    updatedOptions.splice(index, 1);
-    SetOptions(updatedOptions);
-  }
-
 
 
   return (
@@ -146,43 +128,33 @@ const DocumentForm = ({ title }) => {
                 {Visible ?
                   <div className={Style.formWrap}>
                     <div className={Style.formInput}>
-                      <label>Sub Data Heading <span>*</span> </label>
+                      <label>Subtitle <span>*</span> </label>
                       <input
                         type="text"
                         placeholder="name"
                         id='proertyname'
-                        value={CurrentInput.label}
-                        onChange={(e) => { SetCurrentInput({ ...CurrentInput, label: e.target.value }) }}
+                        value={DocumentData.subtitle}
+                        onChange={(e) => { SetDocumentData({ ...DocumentData, subtitle: e.target.value }) }}
                       />
                     </div>
 
-                    {/* <div className={Style.formInput}>
-                      <label> Sub Data Description </label>
-                      <textarea
-                        name="description"
-                        placeholder="More Informations"
-                      // value={ProductData.description}
-                      // onChange={(e) => { SetProductData({ ...ProductData, description: e.target.value }) }}
-                      ></textarea>
-                    </div> */}
-
                     <div className={Style.newform} >
                       <div className={Style.formDescrption}>
-                        <label> Options  </label>
+                        <label> Document Points  </label>
                         <textarea
                           name="description"
                           placeholder="More Informations"
-                          value={OptionData}
-                          onChange={(e) => { SetOptionData(e.target.value) }}
+                          value={DocumentPoints}
+                          onChange={(e) => { SetDocumentPoints(e.target.value) }}
                         ></textarea>
                       </div>
                       <div className={Style.formbtn}>
-                        <span className={Style.propertyBtn} onClick={optionHandler} >Add</span>
+                        <span className={Style.propertyBtn} onClick={HandleAddingDataPoints} >Add</span>
                       </div>
                     </div>
 
                     <div className={Style.formButtonWrap} >
-                      <span className={Style.formButton} onClick={handleAddProperty}>Create</span>
+                      <span className={Style.formButton} onClick={HandleCreateSubData}>Create</span>
                     </div>
                   </div>
                   : null
@@ -201,62 +173,56 @@ const DocumentForm = ({ title }) => {
           </div>
         </div>
 
-        {Options.length !== 0 ?
+        {SubData.length !== 0 && (
           <div className={Style.bottomTable}>
-            <h1 className={Style.title}>Options</h1>
-            {Options.map((data, index) => {
+            <h1 className={Style.title}>Sub Points</h1>
+            {SubData.map((data, index) => {
               return (
                 <div className={Style.details} key={index}>
                   <div className={Style.left}>
                     <div className={Style.detailItem}>
-                      <span className={Style.itemValue}>{CurrentInput.type === "select" ? data.value : data}</span>
+                      <span className={Style.itemValue}> {data} </span>
                     </div>
                   </div>
                   <div className={Style.right}>
-                    <button onClick={() => handleOptionsRemove(index)}><Delete /></button>
+                    <button onClick={() => HandleOptionsRemove(index)}> <Delete /> </button>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
-          : null
-        }
+        )}
+
 
         <div className={Style.bottomTable}>
           <h1 className={Style.title}>Information</h1>
           {FormInputs.map((formInput) => {
-            const FormOptions = formInput.options
+            const FormOptions = formInput.subData
             return (
               <div className={Style.details}>
                 <div className={Style.left_wrap}>
                   <div className={Style.detailItem}>
-                    <span className={Style.itemKey}>Document Name:</span>
-                    <span className={Style.itemValue}>{formInput.label}</span>
-                  </div>
-                  <div className={Style.detailItem}>
-                    <span className={Style.itemKey}>Document Description:</span>
-                    <span className={Style.itemValue}>{formInput.type}</span>
+                    <span className={Style.itemKey}>Subtitle Name:</span>
+                    <span className={Style.itemValue}>{formInput.subtitle}</span>
                   </div>
 
-                  {FormOptions !== "" ?
+                  {FormOptions !== "" && (
                     <div className={Style.option_wrap}>
-                      <h3 className={Style.option_title}>Options:</h3>
+                      <h3 className={Style.option_title}>SubData Points:</h3>
                       <div className={Style.Items}>
-                        {FormOptions.map((data, index) => {
-                          return (
-                            <div className={Style.Item} key={index}>
-                              <span className={Style.itemValue}>{formInput.type === "select" ? data.value : data}, </span>
-                            </div>
-                          )
-                        })}
+                        {FormOptions.map((data, index) => (
+                          <div className={Style.DocumentItem} key={index}>
+                            <span className={Style.itemValue}> {data} </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                    : null
-                  }
+                  )}
+
                 </div>
 
                 <div className={Style.right}>
-                  <button className={Style.rembtn} onClick={() => handleRemove()}>Remove</button>
+                  <button className={Style.rembtn} onClick={() => HandleRemove()}>Remove</button>
                 </div>
               </div>
             )

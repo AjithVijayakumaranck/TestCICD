@@ -42,7 +42,6 @@
 @media (max-width: 550px) {
   .productwrapper .container .cardWrapper {
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {

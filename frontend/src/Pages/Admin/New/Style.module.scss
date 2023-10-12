@@ -147,16 +147,15 @@
                             }
                         }
                     }
+
                     //End plan form styling
 
                     .formproperty {
                         width: 100%;
-                        //margin: 20px 0;
                         display: flex;
                         flex-direction: column;
                         gap: 20px;
-                        //padding: 10px;
-
+                        
                         textarea {
                             height: 6rem;
                             width: 100%;
@@ -210,7 +209,7 @@
                                 }
 
                                 textarea {
-                                    height: 10rem;
+                                    height: 8rem;
                                     width: 100%;
                                     padding: 10px 0;
                                     border: none;
@@ -219,11 +218,11 @@
                                 }
                             }
 
-                            //NoticeForm form button wrap
+                            //DocumentForm form button wrap
                             .formButtonWrap {
                                 width: 100%;
                                 display: flex;
-                                justify-content: flex-end;
+                                justify-content: center;
                                 align-items: flex-end;
 
                                 .formButton {
@@ -236,7 +235,7 @@
                                 }
                             }
 
-                            //End noticeForm form button wrap
+                            //End DocumentForm form button wrap
 
                             .formSelect {
                                 width: 15%;
@@ -266,8 +265,18 @@
                                 padding: 20px 0;
                                 gap: 40px;
 
+                                //subcategoryForm styling
                                 .formInput {
                                     width: 40%;
+                                }
+
+                                //DocumentForm styling
+                                .formDescrption {
+                                    width: 80%;
+
+                                    textarea {
+                                        margin-top: 0.5rem;
+                                    }
                                 }
                             }
                         }
@@ -365,6 +374,7 @@
                         }
                     }
 
+                    //Option listing styling
                     .option_wrap {
                         margin-bottom: 10px;
                         font-size: 14px;
@@ -385,6 +395,15 @@
                                 display: flex;
                                 gap: 2px;
                             }
+
+                            //Document form options listing styling
+                            .DocumentItem {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                            }
+
+                            //End document form options listing styling
                         }
                     }
                 }

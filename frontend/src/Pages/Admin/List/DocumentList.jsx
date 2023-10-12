@@ -12,6 +12,8 @@ const DocumentList = () => {
 
   const navigate = useNavigate();
 
+  const [Documents, SetDocuments] = useState([]);
+
   const columns = [
 
 
@@ -23,52 +25,26 @@ const DocumentList = () => {
     },
     {
       name: 'Document Name',
-      selector: (row) => row.categoryName,
+      selector: (row) => row.name,
       sortable: true,
-    },
-    {
-      name: 'Options',
-      cell: (row) => (
-        <div className={Style.optionsContainer}>
-          <button className={Style.viewButton} onClick={() => navigate(`/admin/document/edit/${row._id}`)}> Edit </button>
-          <button className={Style.deleteButton} onClick={() => handleDelete(row._id)}> Block </button>
-        </div>
-      ),
-      width: '140px'
     },
   ];
 
-
-  const handleDelete = (itemId) => {
+  const loadDocuments = () => {
     try {
-      adminInstance.delete(`/api/super_admin/category/delete_category?categoryid=${itemId}`).then((Response) => {
-        loadcategory();
+      adminInstance.get("/api/super_admin/term/get_term").then((response) => {
+        SetDocuments([response.data]);
       }).catch((err) => {
         console.log(err);
-      })
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  const [categories, setCategories] = useState([]);
-
-  const loadcategory = () => {
-    try {
-      adminInstance.get("/api/super_admin/category/get_categories").then((response) => {
-        setCategories([...response.data]);
-      }).catch((error) => {
-        console.log(error);
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  //LoadCategory functions
+  //Load Documents functions
   useEffect(() => {
-    loadcategory();
+    loadDocuments();
   }, []);
 
 
@@ -77,7 +53,7 @@ const DocumentList = () => {
       <Sidebar />
       <div className={Style.listContainer} >
         <Header />
-        <DataTable Row={categories} Columns={columns} ActionColumn="" Title="Documents" Links="Add New Document" Path="document" />
+        <DataTable Row={Documents} Columns={columns} ActionColumn="" Title="Documents" Links="Add New Document" Path="document" />
       </div>
     </div>
   )

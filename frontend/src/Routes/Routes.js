@@ -63,7 +63,6 @@ import UnProtectedRouter from '../utilities/UnProtectedRouter'
 import NotFound from '../Components/404/NotFound'
 import DocumentList from '../Pages/Admin/List/DocumentList'
 import DocumentForm from '../Pages/Admin/New/DocumentForm'
-import EditDocumentForm from '../Pages/Admin/Edit/EditDocumentForm'
 
 
 
@@ -141,7 +140,6 @@ const Routings = () => {
               <Route path="/admin/document">
                 <Route index element={<DocumentList />} />
                 <Route path="form" element={<DocumentForm title="Add New Document" />} />
-                <Route path="edit/:documentId" element={<EditDocumentForm title="Edit Document" />} />
               </Route>
               <Route path="/admin/category">
                 <Route index element={<CategoryList />} />

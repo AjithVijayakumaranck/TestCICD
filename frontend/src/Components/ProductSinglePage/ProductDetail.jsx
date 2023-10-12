@@ -172,6 +172,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                                 >
                                                     <AiFillHeart />
                                                 </span>
+                                                <p className={Style.img_index}>{index + 1} / {ProductImages.length}</p>
                                             </div>
                                         </div>
                                     )
