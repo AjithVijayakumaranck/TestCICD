@@ -88,7 +88,7 @@ app.use('/api/user/subscription_plans',subscription)
 app.use('/api/user/check_out',checkout)
 app.use('/api/user/feedback',feedback)
 app.use('/api/user/slide',carousal)
-
+git 
 //Super Admin Routes
 app.use('/api/super_admin',superAdmin)
 app.use('/api/super_admin/category',categoryRoute)
