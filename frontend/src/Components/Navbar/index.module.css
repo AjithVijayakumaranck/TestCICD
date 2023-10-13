@@ -93,15 +93,20 @@
 }
 .header_container .Container .Branding h1 {
   color: #046BD2;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin: 0.4rem 0;
   cursor: pointer;
 }
 @media (max-width: 550px) {
   .header_container .Container .Branding h1 {
-    font-size: 25px;
+    font-size: 1.6rem;
     padding: 5px 5px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .header_container .Container .Branding h1 {
+    font-size: 1.6rem;
   }
 }
 .header_container .Container .Search {
@@ -125,13 +130,23 @@
 }
 .header_container .Container .Search .Search_container {
   width: 100%;
-  height: 2rem;
+  height: 1.8rem;
   position: relative;
   display: flex;
   align-items: center;
   border-radius: 5px;
   border: 1px solid #046BD2;
   padding: 5px 10px;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Search .Search_container {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .header_container .Container .Search .Search_container {
+    font-size: 1.8rem;
+  }
 }
 .header_container .Container .Search .Search_container input {
   display: flex;
@@ -178,24 +193,17 @@
 }
 @media (max-width: 550px) {
   .header_container .Container .Options {
-    flex: 0;
+    display: none;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .header_container .Container .Options {
-    flex: 0;
+    display: none;
   }
 }
 @media (min-width: 768px) and (max-width: 900px) {
   .header_container .Container .Options {
     display: none;
-  }
-}
-@media (min-width: 900px) and (max-width: 1024px) {
-  .header_container .Container .Options {
-    gap: 10px;
-    flex: 2.5;
-    margin-left: 0px;
   }
 }
 .header_container .Container .Options .OptionsWrapper {
@@ -273,10 +281,10 @@
   background: transparent;
   color: white;
   background-color: #046BD2;
-  padding: 10px 20px;
+  padding: 10px 12px;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 .header_container .Container .Options .RegButtonContainer button:hover {
@@ -299,10 +307,10 @@
   background: transparent;
   color: white;
   background-color: #046BD2;
-  padding: 10px 20px;
+  padding: 10px 12px;
   border-radius: 5px;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 .header_container .Container .Options .ButtonContainer button:hover {

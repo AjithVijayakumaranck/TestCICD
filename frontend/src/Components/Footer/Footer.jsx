@@ -15,9 +15,9 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>About Us</h2>
                     <ul>
-                        <li>Help Center</li>
-                        <li>Terms & Conditions</li>
-                        <li>Privacy Policy</li>
+                        <Link to='/legal-and-privacy' className={Style.navigation} ><li>Help Center</li></Link>
+                        <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><li>Terms & Conditions</li></Link>
+                        <Link to='/legal-and-privacy' className={Style.navigation} ><li>Privacy Policy</li></Link>
                     </ul>
                 </div>
                 <div className={Style.box}>
@@ -38,8 +38,8 @@ const Footer = () => {
             <div className={Style.bottom}>
                 <div className={Style.bottomleft}>
                     <p>Copyright © 2023 DealNBuy. All Rights Reserved.
-                        <span className={Style.left}><i>Terms Of Use</i></span>
-                        <span><i>Privacy Policy</i></span>
+                        <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><span className={Style.left}><i>Terms Of Use</i></span></Link>
+                        <Link to='/legal-and-privacy' className={Style.navigation} ><span><i>Privacy Policy</i></span></Link>
                     </p>
                 </div>
             </div>

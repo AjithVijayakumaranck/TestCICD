@@ -7,7 +7,7 @@ import Footer from '../../../Components/Footer/Footer';
 import ContactForm from '../../../Components/ContactForm/ContactForm';
 
 
-const ContactPage = () => {
+const PrivacyPage = () => {
 
     const location = useLocation();
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
@@ -34,4 +34,4 @@ const ContactPage = () => {
     )
 }
 
-export default ContactPage
+export default PrivacyPage

@@ -121,14 +121,14 @@
 }
 .Container .bottom .bottomleft p span {
   margin: 0.6rem;
-  text-decoration: underline;
   cursor: pointer;
 }
 .Container .bottom .bottomleft p span i {
   margin-right: 0.6rem;
   font-style: normal;
   font-size: 14px;
-  text-decoration: none;
+  text-decoration: underline;
+  color: #fff;
 }
 @media (max-width: 550px) {
   .Container .bottom .bottomleft p span i {

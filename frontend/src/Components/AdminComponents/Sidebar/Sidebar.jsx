@@ -10,6 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import ArticleIcon from '@mui/icons-material/Article';
 import { AdminContext } from '../../../Contexts/AdminContext';
 
 
@@ -39,7 +40,7 @@ const Sidebar = () => {
 
       <div className={Style.top}>
         <Link to="/" className={Style.logo_navigation} >
-          <span className={Style.logo}>Deal N Buy</span>
+          <span className={Style.logo}>DealNBuy</span>
         </Link>
       </div>
       <hr />
@@ -68,6 +69,13 @@ const Sidebar = () => {
             <li className={` ${window.location.pathname === '/admin/notifications' ? Style.active : null}`}>
               <MailIcon className={Style.icons} />
               <span>Notifications</span>
+            </li>
+          </Link>
+
+          <Link to="/admin/document" className={Style.navigation} >
+            <li className={` ${window.location.pathname === '/admin/document' ? Style.active : null}`}>
+              <ArticleIcon className={Style.icons} />
+              <span>Documents</span>
             </li>
           </Link>
 

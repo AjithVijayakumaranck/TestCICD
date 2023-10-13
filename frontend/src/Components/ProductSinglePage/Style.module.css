@@ -108,14 +108,28 @@
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
   cursor: pointer;
 }
+.Container .row .Left_container .image_wrapper .box .img_Container .img_index {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(102, 102, 102, 0.3568627451);
+}
 .Container .row .Left_container .image_wrapper .box .img_Container img {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .Container .row .Left_container h3 {
   display: flex;
@@ -432,8 +446,8 @@
   color: #fff;
 }
 .control_btn .prev {
-  left: 0;
+  left: 10px;
 }
 .control_btn .next {
-  right: 0;
+  right: 10px;
 }/*# sourceMappingURL=Style.module.css.map */

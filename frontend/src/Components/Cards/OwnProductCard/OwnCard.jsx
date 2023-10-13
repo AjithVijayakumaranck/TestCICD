@@ -56,8 +56,9 @@ const OwnCard = ({ product, reload }) => {
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: product?._id }).then((Response) => {
                 toast.success("Product Added to Wishlist")
-                SetIsClicked(true);
+                SetIsClicked(true)
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
@@ -68,12 +69,16 @@ const OwnCard = ({ product, reload }) => {
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
-            toast.success("Product removed from Wishlist")
-            SetIsClicked(false)
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
+                toast.success("Product removed from Wishlist")
+                SetIsClicked(false)
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleDelete = (e) => {

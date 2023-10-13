@@ -487,9 +487,8 @@ const UpdateProfileForm = () => {
                                                 </div>
                                             </div>
                                             {IsEmailEditing && !IsEmailVerified && (
-                                                <div className={Style.col}>
-
-                                                    <button onClick={handleVerifyEmail}>Verify</button>
+                                                <div className={Style.col} onClick={handleVerifyEmail}>
+                                                    <button>Verify</button>
                                                 </div>
                                             )}
                                         </div>
@@ -513,8 +512,8 @@ const UpdateProfileForm = () => {
                                                 </div>
                                             </div>
                                             {IsPhoneEditing && !IsPhoneVerified && (
-                                                <div className={Style.col}>
-                                                    <button onClick={handleVerifyPhoneNumber}>Verify</button>
+                                                <div className={Style.col} onClick={handleVerifyPhoneNumber}>
+                                                    <button>Verify</button>
                                                 </div>
                                             )}
                                         </div>
