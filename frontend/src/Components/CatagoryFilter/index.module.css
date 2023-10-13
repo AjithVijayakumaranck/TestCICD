@@ -59,7 +59,7 @@
   .filter_wrapper .accordion {
     display: flex;
     overflow-x: auto;
-    flex-direction: row;
+    flex-direction: column;
   }
   .filter_wrapper .accordion::-webkit-scrollbar {
     display: none;
@@ -69,7 +69,7 @@
   .filter_wrapper .accordion {
     display: flex;
     overflow-x: auto;
-    flex-direction: row;
+    flex-direction: column;
   }
   .filter_wrapper .accordion::-webkit-scrollbar {
     display: none;
@@ -128,15 +128,14 @@
 }
 .filter_wrapper .accordion .item .selectitems {
   width: 100%;
-  height: 30vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 20px 0;
+  gap: 20px;
+  margin: 10px 0;
 }
 .filter_wrapper .accordion .item .selectitems .select_wrap {
   width: 100%;
-  height: 100%;
 }
 .filter_wrapper .accordion .item .content {
   color: black;
@@ -145,18 +144,18 @@
   transition: all 0.5s cubic-bezier(0, 1, 0, 1);
 }
 .filter_wrapper .accordion .item .show {
-  height: 20vh;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
 }
 @media (max-width: 550px) {
   .filter_wrapper .accordion .item .show {
-    height: 25vh;
     display: flex;
     align-items: center;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .filter_wrapper .accordion .item .show {
-    height: 20vh;
     display: flex;
     align-items: center;
   }
@@ -164,32 +163,37 @@
 .filter_wrapper .accordion .item .show .items {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 .filter_wrapper .accordion .item .show .items .Item_wrap {
-  width: 40%;
-  flex: 2;
-}
-.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
-  width: 30%;
+  width: 100%;
   flex: 1;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap, .filter_wrapper .accordion .item .show .items .Itembtn_wrap {
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
+  flex: 1;
+}
+.filter_wrapper .accordion .item .show .items .Item_wrap,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap input, .filter_wrapper .accordion .item .show .items .Itembtn_wrap input {
+.filter_wrapper .accordion .item .show .items .Item_wrap input,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap input {
   padding: 10px 5px;
   border-radius: 5px;
+  font-size: 14px;
   outline: none;
-  border: 2px solid lightgrey;
+  border: 1px solid lightgrey;
 }
-.filter_wrapper .accordion .item .show .items .Item_wrap button, .filter_wrapper .accordion .item .show .items .Itembtn_wrap button {
-  background: none;
-  color: #046BD2;
-  font-size: 16px;
+.filter_wrapper .accordion .item .show .items .Item_wrap button,
+.filter_wrapper .accordion .item .show .items .Itembtn_wrap button {
+  background: #046BD2;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
   border-radius: 5px;
   outline: none;
   border: none;

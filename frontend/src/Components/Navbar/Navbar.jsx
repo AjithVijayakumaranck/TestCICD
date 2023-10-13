@@ -155,10 +155,21 @@ const Navbar = ({ location, setLocation, reload }) => {
         <div className={Style.Branding}>
 
           <div>
-            <button onClick={() => {
-              setToggle(true)
-            }} className={`${Style.Toggle}`}><GiHamburgerMenu /></button>
-            <Link to='/' className={Style.navigation} > <h1>DealNBuy</h1> </Link>
+            <button onClick={() => { setToggle(true) }} className={`${Style.Toggle}`}>
+              <GiHamburgerMenu />
+            </button>
+
+            <Link to='/' className={Style.navigation}
+              onClick={() => {
+                if (window.location.pathname === '/') {
+                  window.location.reload();
+                } else {
+                  navigate('/');
+                }
+              }}>
+              <h1>DealNBuy</h1>
+            </Link>
+
           </div>
         </div>
 
@@ -223,7 +234,18 @@ const Navbar = ({ location, setLocation, reload }) => {
 
             <div className={Style.logoContainer}>
               <div className={Style.logo_wrap}>
-                <h1>DealNBuy</h1>
+
+                <Link to='/' className={Style.navigation}
+                  onClick={() => {
+                    if (window.location.pathname === '/') {
+                      window.location.reload();
+                    } else {
+                      navigate('/');
+                    }
+                  }}>
+                  <h1>DealNBuy</h1>
+                </Link>
+                
               </div>
               <div>
                 <button> <IoCloseOutline onClick={() => setToggle(false)} /></button>
@@ -267,7 +289,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   <div className={Selected ? Style.show : Style.content} >
                     {Categories.map((data, index) => {
                       return (
-                        <div className={Style.row} key={index}>
+                        <div className={Style.row} key={index} onClick={() => navigate(`/category/${data?._id}`)}>
                           <h3>{data?.categoryName}</h3>
                         </div>
                       )

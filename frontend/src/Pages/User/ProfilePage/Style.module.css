@@ -32,6 +32,16 @@
   display: flex;
   align-items: center;
 }
+@media (max-width: 550px) {
+  .Main_container {
+    margin-top: 120px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_container {
+    margin-top: 80px;
+  }
+}
 .Main_container .container {
   width: 100%;
   min-height: 510px;
@@ -118,16 +128,25 @@
 .Main_container .container .ad_container,
 .Main_container .container .review_container {
   display: flex;
-  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 10px 20px;
-  border-radius: 7px;
 }
 .Main_container .container .review_container {
   display: flex;
   gap: 10px;
   min-height: 510px;
   padding: 30px 20px;
+  border-top: 1px solid lightgrey;
+}
+@media (max-width: 550px) {
+  .Main_container .container .review_container {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_container .container .review_container {
+    flex-direction: column;
+  }
 }
 .Main_container .container .review_container .left {
   flex: 2;
@@ -137,6 +156,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+@media (max-width: 550px) {
+  .Main_container .container .review_container .left {
+    flex: 1;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_container .container .review_container .left {
+    flex: 1;
+  }
 }
 .Main_container .container .review_container .left .top {
   height: 50%;
@@ -176,6 +205,9 @@
   border-top: 1px solid #f8f8f8;
 }
 .Main_container .container .review_container .left .bottom .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin: 10px 0;
   text-align: start;
@@ -205,6 +237,16 @@
   border: 3px solid #f8f8f8;
   border-radius: 5px;
   overflow: hidden;
+}
+@media (max-width: 550px) {
+  .Main_container .container .review_container .right {
+    flex: 1;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_container .container .review_container .right {
+    flex: 1;
+  }
 }
 .Main_container .container .review_container .right .top {
   text-align: start;

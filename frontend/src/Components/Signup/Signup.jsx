@@ -75,14 +75,14 @@ const Signup = ({ setLogin }) => {
   //validations
 
   const fullname_validation = (e) => {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+    if (/^[a-zA-Z\s-]*$/.test(e.target.value)) {
       setFormError(false);
       setError({ ...error, fullname: "" });
       setUserData({ ...userData, fullname: e.target.value });
       return true;
     } else {
       setFormError(true);
-      setError({ ...error, fullname: "Space and Numbers are invalid " });
+      setError({ ...error, fullname: "Only letters, spaces, and hyphens are allowed" });
       setTimeout(() => {
         setError({ ...error, fullname: "" });
       }, 5000);
@@ -91,14 +91,14 @@ const Signup = ({ setLogin }) => {
   };
 
   const lastname_validation = (e) => {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+    if (/^[a-zA-Z\s-]*$/.test(e.target.value)) {
       setFormError(false);
       setError({ ...error, lastname: "" });
       setUserData({ ...userData, lastname: e.target.value });
       return true;
     } else {
       setFormError(true);
-      setError({ ...error, lastname: "Space and Numbers are invalid " });
+      setError({ ...error, lastname: "Only letters, spaces, and hyphens are allowed" });
       setTimeout(() => {
         setError({ ...error, lastname: "" });
       }, 5000);
@@ -369,7 +369,7 @@ const Signup = ({ setLogin }) => {
                   </label>
                   <input
                     required
-                    type="number"
+                    type="tel"
                     placeholder="Phone Number"
                     id="phonenumber"
                     maxLength="10"

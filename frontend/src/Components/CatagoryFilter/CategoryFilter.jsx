@@ -14,8 +14,8 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
 
     const [FilterAdd, SetFilterAdd] = useState(true)
     const [CategoryToggle, SetCategoryToggle] = useState(true)
-    const [LocationToggle, SetLocationToggle] = useState(false)
-    const [PriceToggle, SetPriceToggle] = useState(false)
+    const [LocationToggle, SetLocationToggle] = useState(true)
+    const [PriceToggle, SetPriceToggle] = useState(true)
 
     const [FilterCollection, SetFilterCollection] = useState("")
     const [MinValue, SetMinValue] = useState("")
@@ -144,11 +144,13 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
                         <span>{CategoryToggle ? <SlArrowUp /> : <SlArrowDown />} </span>
                     </div>
                     <div className={CategoryToggle === true ? Style.show : Style.content} >
-                        <div className={Style.select_wrap} >
-                            <Select
-                                options={subcategoryOptions}
-                                onChange={(e) => { OnSubcategory(e.value) }}
-                            />
+                        <div className={Style.items} >
+                            <div className={Style.Item_wrap} >
+                                <Select
+                                    options={subcategoryOptions}
+                                    onChange={(e) => { OnSubcategory(e.value) }}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -204,7 +206,7 @@ const CategoryFilter = ({ Subcategories, OnMin, OnMax, OnSubcategory, OnState, O
                                 <input type="number" placeholder='Max' value={MaxValue} onChange={(e) => SetMaxValue(e.target.value)} />
                             </div>
                             <div className={Style.Itembtn_wrap} >
-                                <button onClick={(e) => { HandlePriceFilter(e) }} >Filter</button>
+                                <button onClick={(e) => { HandlePriceFilter(e) }} >Apply</button>
                             </div>
                         </div>
                     </div>

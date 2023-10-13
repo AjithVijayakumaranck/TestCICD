@@ -198,7 +198,9 @@ const ClientProfilePage = () => {
 
                     {ClientProducts.length > 0 ?
                         <div className={Style.ad_container} >
-                            <OwnCard products={ClientProducts} UserId={User?._id} />
+                            {ClientProducts.map((product, index) => (
+                                <OwnCard product={product} />
+                            ))}
                         </div>
                         : null
                     }

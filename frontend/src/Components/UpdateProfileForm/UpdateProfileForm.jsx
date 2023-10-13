@@ -106,27 +106,6 @@ const UpdateProfileForm = () => {
             newErrors.surname = 'Surname is required';
         }
 
-        if (UpdateProfile.dob === '') {
-            newErrors.dob = 'DoB is required';
-        }
-
-        if (UpdateProfile.address.locality === '') {
-            newErrors.locality = 'Locality is required';
-        }
-
-        if (UpdateProfile.address.state === '') {
-            newErrors.state = 'State is required';
-        }
-
-        if (UpdateProfile.address.district === '') {
-            newErrors.district = 'District is required';
-        }
-
-        if (UpdateProfile.address.region === '') {
-            newErrors.region = 'Region is required';
-        }
-
-
         // Set the new errors state
         SetError(newErrors);
         // Return true if there are no errors
@@ -521,7 +500,7 @@ const UpdateProfileForm = () => {
                                             <div className={Style.flexcol}>
                                                 <div className={Style.formInput}>
                                                     <input
-                                                        type="number"
+                                                        type="tel"
                                                         placeholder='Phone number'
                                                         name="phoneNumber"
                                                         value={UpdateProfile.phoneNumber}
