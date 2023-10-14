@@ -7,7 +7,7 @@
 .Registration_wrapper .form_wrapper {
   box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
   background-color: aliceblue;
-  width: 55rem;
+  width: 50rem;
   min-height: 30rem;
 }
 @media (max-width: 550px) {
