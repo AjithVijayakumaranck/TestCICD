@@ -28,6 +28,17 @@
   min-height: 510px;
   display: flex;
   justify-content: center;
+  padding: 0 3rem;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .container {
+    flex-direction: column;
+  }
 }
 .page_wrapper .main .container .left {
   flex: 2;

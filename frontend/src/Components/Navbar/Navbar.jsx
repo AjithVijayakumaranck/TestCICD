@@ -112,7 +112,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   useEffect(() => {
     try {
       authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((response) => {
-        SetWishlistCount(response.data[0]?.wishlist.length)
+        SetWishlistCount(response.data[0]?.wishlist?.length)
       }).catch((err) => {
         console.log(err);
       })

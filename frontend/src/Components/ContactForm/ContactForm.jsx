@@ -7,7 +7,7 @@ import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import instance from '../../instance/AxiosInstance';
 import { toast } from 'react-toastify';
 
-const PrivacyForm = () => {
+const ContactForm = () => {
 
     const [Name, SetName] = useState('');
     const [Email, SetEmail] = useState('');
@@ -39,10 +39,51 @@ const PrivacyForm = () => {
                 <div className={Style.row}>
                     <div className={Style.left}>
                         <div className={Style.title}>
-                            <h2>Legal & Privacy</h2>
+                            <h2>Contact Information</h2>
+                            <p>Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc
+                                sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
                         </div>
                         <div className={Style.row}>
-
+                            <div className={Style.col}>
+                                <div className={Style.cont_info}>
+                                    <h3>The Office</h3>
+                                    <ul className={Style.cont_list}>
+                                        <li>
+                                            <i><MdOutlineLocationOn /></i>
+                                            <span>70 Washington Square South New York, NY 10012, United States</span>
+                                        </li>
+                                        <li>
+                                            <i><BsTelephone /></i>
+                                            <span>+92 423 567</span>
+                                        </li>
+                                        <li>
+                                            <i><MdOutlineMail /></i>
+                                            <span>dealnbuy@gmail.com</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className={Style.col}>
+                                <div className={Style.cont_info}>
+                                    <h3>The Office</h3>
+                                    <ul className={Style.cont_list}>
+                                        <li >
+                                            <i><FiClock /></i>
+                                            <div>
+                                                <span>Monday-Saturday</span>
+                                                <span>11am-7pm ET</span>
+                                            </div>
+                                        </li>
+                                        <li >
+                                            <i><BsCalendar3 /></i>
+                                            <div>
+                                                <span>Sunday</span>
+                                                <span>11am-6pm ET</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className={Style.right}>
@@ -51,8 +92,45 @@ const PrivacyForm = () => {
                             <p>Use the form below to get in touch with the sales team</p>
                         </div>
                         <div className={Style.main_row}>
-
+                            <form action="" onSubmit={(e) => handleSubmit(e)}>
+                                <div className={Style.row}>
+                                    <div className={Style.col}>
+                                        <input
+                                            type="text"
+                                            placeholder="Name *"
+                                            required
+                                            name='name'
+                                            value={Name}
+                                            onChange={(e) => SetName(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className={Style.col}>
+                                        <input type="email"
+                                            placeholder='Email *'
+                                            id="email"
+                                            name="email"
+                                            value={Email}
+                                            onChange={(e) => SetEmail(e.target.value)}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className={Style.row}>
+                                    <textarea
+                                        cols="30"
+                                        rows="4"
+                                        required
+                                        placeholder="Message *"
+                                        value={Messages}
+                                        onChange={(e) => SetMessages(e.target.value)}
+                                    />
+                                </div>
+                                <div className={Style.row}>
+                                    <button>Submit <i> <HiOutlineArrowNarrowRight /> </i></button>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -60,4 +138,4 @@ const PrivacyForm = () => {
     )
 }
 
-export default PrivacyForm
+export default ContactForm

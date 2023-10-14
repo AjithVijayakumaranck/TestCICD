@@ -36,7 +36,7 @@
 
                 @include breakpoint(md) {
                     margin: 0 0;
-                    padding: 0 10px;
+                    padding: 0 20px;
                 }
 
                 @include mediumScreen {
@@ -53,18 +53,29 @@
                 }
 
                 .cardWrapper {
-                    display: flex;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                     place-items: center;
                     place-content: center;
+                    gap: 20px;
 
 
-                    @include breakpoint(md) {}
+                    @include breakpoint(md) {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 10px 20px;
+                    }
 
-                    @include mediumScreen {}
+                    @include mediumScreen {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
 
-                    @include extraMediumScreen {}
+                    @include extraMediumScreen {
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
+                    }
 
-                    @include LargeScreen {}
+                    @include LargeScreen {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
                 }
             }
         }
