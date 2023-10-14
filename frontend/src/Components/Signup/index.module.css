@@ -21,19 +21,16 @@
 }
 .form_container .left_section h1 {
   color: #046BD2;
-  margin-bottom: 10px;
 }
 .form_container .left_section p {
   font-size: 12px;
-  margin-bottom: 5px;
 }
 .form_container .left_section .login_Details h1 {
-  padding: 2px;
   color: #046BD2;
   font-size: 20px;
 }
 .form_container .left_section .login_Details p {
-  padding: 10px 0px;
+  padding: 5px 0px;
   font-size: 12px;
 }
 .form_container .left_section form .error_para {
@@ -69,9 +66,9 @@
 }
 .form_container .left_section form .input_div div span {
   color: #046BD2;
-  cursor: pointer;
   font-size: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }
 .form_container .left_section form .input_div div span:hover {
   color: #10E3C2;
@@ -81,7 +78,7 @@
   outline: none;
   border-width: 0.3px;
   border-radius: 5px;
-  padding: 15px 10px;
+  padding: 14px 10px;
   background-color: #ebebeb;
 }
 .form_container .left_section form .input_div div .input_Wrap {
@@ -110,7 +107,7 @@
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 15px 0px;
+  padding: 14px 0px;
   font-size: 15px;
 }
 .form_container .left_section form button:hover {
@@ -174,7 +171,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #046BD2;
+  background: #046BD2;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }

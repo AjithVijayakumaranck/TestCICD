@@ -14,17 +14,13 @@ const Signup = ({ setLogin }) => {
 
   //authentication option
   const [otp, setOtp] = useState(false);
-
-  const [auth, setAuth] = useState(false);
-
-  const maxDate = new Date().toISOString().split("T")[0];
-
   const [loading, setLoading] = useState(false);
-
   const [responseError, setResponseError] = useState("");
-
   const [ShowPassword, SetShowPassword] = useState(false);
   const [ShowConfirmPassword, SetShowConfirmPassword] = useState(false);
+  const [isEmailOtpVerified, setIsEmailOtpVerified] = useState(false);
+
+  const maxDate = new Date().toISOString().split("T")[0];
 
   // Function to toggle password visibility
   const togglePasswordVisibility = () => {
@@ -82,7 +78,7 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      setError({ ...error, fullname: "Only letters, spaces, and hyphens are allowed" });
+      setError({ ...error, fullname: "Space and Numbers are invalid " });
       setTimeout(() => {
         setError({ ...error, fullname: "" });
       }, 5000);
@@ -98,7 +94,7 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      setError({ ...error, lastname: "Only letters, spaces, and hyphens are allowed" });
+      setError({ ...error, lastname: "Space and Numbers are invalid " });
       setTimeout(() => {
         setError({ ...error, lastname: "" });
       }, 5000);
@@ -204,8 +200,6 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  const otp_validation = (e) => { };
-
   // submit handler and submit validation
   const submitHandler = (e) => {
     setResponseError("");
@@ -214,30 +208,17 @@ const Signup = ({ setLogin }) => {
       console.log("enter proper details");
     } else {
       setLoading(true);
-      if (auth) {
-        instance
-          .post("/api/registerphone", userData)
-          .then((response) => {
-            setLoading(false);
-            setOtp(true);
-          })
-          .catch((Error) => {
-            setLoading(false);
-            setResponseError(Error.response.data.message);
-          });
-      } else {
-        instance
-          .post("/api/register", userData)
-          .then((response) => {
-            setLoading(false);
-            setOtp(true);
-          })
-          .catch((Error) => {
-            setLoading(false);
-            setResponseError(Error.response.data.message);
-            console.log(Error);
-          });
-      }
+      instance.post("/api/register2n1", userData).then((response) => {
+        setLoading(false);
+        setOtp(true);
+        if (response.data.mobileVerified === false) {
+          setIsEmailOtpVerified(true)
+        }
+      }).catch((Error) => {
+        setLoading(false);
+        toast.error("already used these credentials")
+        setResponseError(Error.response?.data?.message);
+      });
     }
   };
 
@@ -248,33 +229,27 @@ const Signup = ({ setLogin }) => {
       setError({ ...error, otp: "enter the otp" });
     } else {
       setLoading(true);
-      auth
-        ? instance
-          .post("api/verifyphone", otpDetails)
-          .then((response) => {
-            setLoading(false);
-            setLogin(false)
-            setOtp(false)
-            toast.success("User Regitered")
-          })
-          .catch((error) => {
-            console.log(error);
-            setLoading(false);
-            setOtp(false)
-          })
-        : instance
-          .post("api/verifyemail", otpDetails)
-          .then((response) => {
-            setLoading(false);
-            setLogin(false)
-            setOtp(false)
-            toast.success("User Regitered")
-          })
-          .catch((error) => {
-            setLoading(false);
-            console.log(error);
-            setOtp(false)
-          });
+
+      isEmailOtpVerified ?
+        instance.post("api/verifyphone", otpDetails).then((response) => {
+          setLoading(false);
+          setLogin(false)
+          setOtp(false)
+          toast.success("User registration successful")
+        }).catch((error) => {
+          setLoading(false);
+          setOtp(false)
+        })
+        : instance.post("api/verifyemail2n1", otpDetails).then((response) => {
+          setLoading(false);
+          setIsEmailOtpVerified(true)
+          setOtpDetails({ otp: "" })
+          setOtp(true)
+          toast.success("Email has been successfully verified")
+        }).catch((error) => {
+          setLoading(false);
+          setOtp(false)
+        });
     }
   };
 
@@ -299,27 +274,24 @@ const Signup = ({ setLogin }) => {
       {otp ? (
         <div className={Style.left_section}>
           <h1>Lets Authenticate</h1>
-          <p>
-            We have sent you a One Time Password to your{" "}
-            {auth ? "Phonenumber" : "Email"}
-          </p>
+          <p> We have sent you a One Time Password to your {" "} {isEmailOtpVerified ? "Phonenumber" : "Email"} </p>
           <form onSubmit={(e) => { otpVerifyHandle(e); }}>
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="OTP">Enter Your Otp here</label>
                 <input
-                  onChange={(e) => {
-                    otpHandler(e);
-                  }}
-                  type="number"
+                  type="tel"
                   placeholder="One Time Password"
                   id="OTP"
                   value={otpDetails.otp}
+                  onChange={(e) => { otpHandler(e); }}
                 />
               </div>
             </div>
             <button>
-              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Signup")}
+              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) :
+                isEmailOtpVerified ? ("Complete Registration") : ("Continue")
+              }
             </button>
             <p className={Style.error_para}>{error.otp}</p>
           </form>
@@ -327,7 +299,7 @@ const Signup = ({ setLogin }) => {
       ) : (
         <div className={Style.left_section}>
           <div className={Style.login_Details}>
-            <h1>SIGN UP</h1>
+            <h1>Create Account</h1>
             <p>Please provide your details to register on DealNBuy</p>
           </div>
           <form onSubmit={(e) => { submitHandler(e); }} >
@@ -337,9 +309,7 @@ const Signup = ({ setLogin }) => {
                 <input
                   type="text"
                   placeholder="First Name"
-                  onChange={(e) => {
-                    fullname_validation(e);
-                  }}
+                  onChange={(e) => { fullname_validation(e); }}
                   required
                   id="Full_name"
                 />
@@ -353,54 +323,11 @@ const Signup = ({ setLogin }) => {
                   placeholder="Last Name"
                   id="lastname"
                   required
-                  onChange={(e) => {
-                    lastname_validation(e);
-                  }}
+                  onChange={(e) => { lastname_validation(e); }}
                 />
                 <p>{error.lastname}</p>
               </div>
             </div>
-            {auth ? (
-              <div className={Style.input_div}>
-                <div>
-                  <label htmlFor="Phone Number">
-                    Phone Number{" "}
-                    <span onClick={() => { setAuth(false); }} > Using my email </span>
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="Phone Number"
-                    id="phonenumber"
-                    maxLength="10"
-                    onChange={(e) => {
-                      phone_validation(e);
-                    }}
-                  />
-                  <p>{error.phonenumber}</p>
-                </div>
-              </div>
-            ) : (
-              <div className={Style.input_div}>
-                <div>
-                  <label htmlFor="Email">
-                    E-mail{" "}
-                    <span onClick={() => { setAuth(true); }} > Using my Phone Number </span>
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="E-mail"
-                    id="Email"
-                    onChange={(e) => {
-                      email_validation(e);
-                    }}
-                  />
-                  <p>{error.email}</p>
-                </div>
-              </div>
-            )}
-
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="DateofBirth">Date of birth</label>
@@ -410,11 +337,80 @@ const Signup = ({ setLogin }) => {
                   placeholder="Date of birth"
                   id="DateofBirth"
                   max={maxDate}
-                  onChange={(e) => {
-                    dob_validation(e);
-                  }}
+                  onChange={(e) => { dob_validation(e); }}
                 />
                 <p>{error.dateOfbirth}</p>
+              </div>
+
+              <div>
+                <label htmlFor="Phone Number"> Phone Number{" "} </label>
+                <input
+                  required
+                  type="tel"
+                  placeholder="Phone Number"
+                  id="phonenumber"
+                  maxLength="10"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  onChange={(e) => { phone_validation(e); }}
+                />
+                <p>{error.phonenumber}</p>
+              </div>
+            </div>
+            {/* {auth ? (
+            <div className={Style.input_div}>
+              <div>
+                <label htmlFor="Phone Number">
+                  Phone Number{" "}
+                  <span onClick={() => { setAuth(false); }} > Using my email </span>
+                </label>
+                <input
+                  required
+                  type="tel"
+                  placeholder="Phone Number"
+                  id="phonenumber"
+                  maxLength="10"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  onChange={(e) => {
+                    phone_validation(e);
+                  }}
+                />
+                <p>{error.phonenumber}</p>
+              </div>
+            </div>
+             ) : ( 
+            <div className={Style.input_div}>
+              <div>
+                <label htmlFor="Email">
+                  E-mail{" "}
+                  <span onClick={() => { setAuth(true); }} > Using my Phone Number </span>
+                </label>
+                <input
+                  required
+                  type="email"
+                  placeholder="E-mail"
+                  id="Email"
+                  onChange={(e) => {
+                    email_validation(e);
+                  }}
+                />
+                <p>{error.email}</p>
+              </div>
+            </div>
+             )}  */}
+
+            <div className={Style.input_div}>
+              <div>
+                <label htmlFor="Email"> E-mail{" "} </label>
+                <input
+                  required
+                  type="email"
+                  placeholder="E-mail"
+                  id="Email"
+                  onChange={(e) => { email_validation(e); }}
+                />
+                <p>{error.email}</p>
               </div>
             </div>
             <div className={Style.input_div}>
@@ -426,14 +422,9 @@ const Signup = ({ setLogin }) => {
                     placeholder="Password"
                     required
                     id="password"
-                    onChange={(e) => {
-                      password_validation(e);
-                    }}
+                    onChange={(e) => { password_validation(e); }}
                   />
-                  <span
-                    className={Style.eye_icon}
-                    onClick={togglePasswordVisibility}
-                  >
+                  <span className={Style.eye_icon} onClick={togglePasswordVisibility}>
                     {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                   </span>
                 </div>
@@ -447,14 +438,9 @@ const Signup = ({ setLogin }) => {
                     required
                     placeholder="Confirm Password"
                     id="Confirm_Password"
-                    onChange={(e) => {
-                      confirmPassword_validation(e);
-                    }}
+                    onChange={(e) => { confirmPassword_validation(e); }}
                   />
-                  <span
-                    className={Style.eye_icon}
-                    onClick={toggleConfirmPasswordVisibility}
-                  >
+                  <span className={Style.eye_icon} onClick={toggleConfirmPasswordVisibility}>
                     {ShowConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
                   </span>
                 </div>

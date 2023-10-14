@@ -50,7 +50,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
 
     const loadWishlistData = () => {
-        authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
+        authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((Response) => {
             SetWishlistData(Response.data)
         }).catch((err) => {
             console.log(err);
@@ -78,9 +78,8 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     const findItemId = () => {
         {
             WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === productId)
-                //console.log(foundItem);
+                const item = Data?.wishlist
+                const foundItem = item.find(item => item?._id === productId)
                 if (foundItem) {
                     SetIsClicked(true)
                 } else {
@@ -94,7 +93,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
         try {
-            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${productId}`).then((Response) => {
                 SetIsClicked(false)
             }).catch((err) => {
                 console.log(err);
@@ -108,10 +107,10 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     const ConversationHandler = () => {
         try {
             if (User?._id !== ClientData?._id) {
-                authInstance.post('/api/user/chat/createconversation', { senderId: User._id, recieverId: ClientData._id, productId: ProductDet._id }).then((response) => {
-                    Navigate(`/chat/${response.data.savedConversation._id}`)
+                authInstance.post('/api/user/chat/createconversation', { senderId: User?._id, recieverId: ClientData?._id, productId: ProductDet?._id }).then((response) => {
+                    Navigate(`/chat/${response.data?.savedConversation?._id}`)
                 }).catch((err) => {
-                    console.log(err, "erooooor");
+                    console.log(err);
                 })
             } else {
                 toast.error('Oops! You are chatting with yourself!')
@@ -126,7 +125,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     //LoadCategory functions
     useEffect(() => {
-        //loadProducts();
         loadWishlistData();
     }, []);
 
@@ -161,7 +159,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                     <div className={Style.Left_container}>
                         <div className={Style.image_wrapper}>
                             <Slider {...settings}>
-                                {ProductImages.map((images) => {
+                                {ProductImages.map((images, index) => {
                                     return (
                                         <div className={Style.box}>
                                             <div className={Style.img_Container}>
