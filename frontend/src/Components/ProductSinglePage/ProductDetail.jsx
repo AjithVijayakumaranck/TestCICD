@@ -110,6 +110,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                 authInstance.post('/api/user/chat/createconversation', { senderId: User?._id, recieverId: ClientData?._id, productId: ProductDet?._id }).then((response) => {
                     Navigate(`/chat/${response.data?.savedConversation?._id}`)
                 }).catch((err) => {
+                    Navigate('/registration_login')
                     console.log(err);
                 })
             } else {
@@ -166,7 +167,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                                 <img src={images?.url} alt='' />
                                                 <span
                                                     onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
-                                                    style={{ color: IsClicked ? 'red' : 'grey' }}
+                                                    style={{ color: IsClicked ? 'red' : 'darkgray' }}
                                                 >
                                                     <AiFillHeart />
                                                 </span>

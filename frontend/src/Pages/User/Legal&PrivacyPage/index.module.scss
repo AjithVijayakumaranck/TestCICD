@@ -27,11 +27,21 @@
             min-height: 510px;
             display: flex;
             justify-content: center;
+            padding: 0 3rem;
 
-            .left{
+            @include breakpoint(md) {
+                flex-direction: column;
+            }
+
+            @include mediumScreen {
+                flex-direction: column;
+            }
+
+            .left {
                 flex: 2;
             }
-            .right{
+
+            .right {
                 flex: 6;
             }
         }

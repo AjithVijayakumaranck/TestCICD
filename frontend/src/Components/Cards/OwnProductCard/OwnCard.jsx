@@ -85,8 +85,7 @@ const OwnCard = ({ product, reload }) => {
         e.preventDefault()
         try {
             authInstance.delete(`/api/user/${e}`).then((Response) => {
-                //toast.success("Removed")
-                //reload(true)
+                console.log("error");
             }).catch((err) => {
                 console.log(err);
             })
@@ -97,47 +96,43 @@ const OwnCard = ({ product, reload }) => {
 
 
     return (
-        <div className={Style.container}>
+        <div className={Style.products} >
+            <div className={Style.productmedia}>
+                {product?.userId?.premiumuser ?
+                    <span className={Style.productlabel}>Featured</span>
+                    : null
+                }
 
-            <div className={Style.products} >
-                <div className={Style.productmedia}>
-                    {product?.userId?.premiumuser ?
-                        <span className={Style.productlabel}>Featured</span>
-                        : null
+                <Link to={`/product/${product?._id}`} >
+                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
+                </Link>
+                <div className={Style.productAction}>
+                    {product?.userId === User?._id ?
+                        <span onClick={(e) => handleDelete(e)} > <i><AiOutlineDelete /></i> Remove </span>
+                        :
+                        <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
+                            <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
+                        </span>
                     }
-
-                    <Link to={`/product/${product?._id}`} >
-                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
-                    </Link>
-                    <div className={Style.productAction}>
-                        {product?.userId === User?._id ?
-                            <span onClick={(e) => handleDelete(e)} > <i><AiOutlineDelete /></i> Remove </span>
-                            :
-                            <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
-                                <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
-                            </span>
-                        }
-                        <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
-                    </div>
+                    <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
                 </div>
-                <div className={Style.productbody}>
-                    <div className={Style.product_cat}>
-                        <span> {product?.state} </span>
-                    </div>
-                    <div className={Style.product_title}>
-                        <h3> {product?.title} </h3>
-                    </div>
-                    <div className={Style.product_price}>
-                        $ {product?.price}
-                    </div>
-                    <div className={Style.rating_container}>
-                        <div className={Style.rating}>
-                            <Star stars={product?.totalRating} />
-                        </div>
+            </div>
+            <div className={Style.productbody}>
+                <div className={Style.product_cat}>
+                    <span> {product?.state} </span>
+                </div>
+                <div className={Style.product_title}>
+                    <h3> {product?.title} </h3>
+                </div>
+                <div className={Style.product_price}>
+                    $ {product?.price}
+                </div>
+                <div className={Style.rating_container}>
+                    <div className={Style.rating}>
+                        <Star stars={product?.totalRating} />
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
