@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import Style from "./index.module.css"
-import instance from '../../../instance/AxiosInstance';
-import { toast } from 'react-toastify';
 
 const MainMenu = ({ Data }) => {
 

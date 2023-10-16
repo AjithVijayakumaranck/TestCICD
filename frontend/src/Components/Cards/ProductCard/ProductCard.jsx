@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
     //LoadCategory functions
     useEffect(() => {
         try {
-            authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
+            authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((Response) => {
                 SetWishlistData(Response.data)
             }).catch((err) => {
                 console.log(err);
@@ -34,17 +34,15 @@ const ProductCard = ({ product }) => {
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === product._id)
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === product?._id)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     useEffect(() => {

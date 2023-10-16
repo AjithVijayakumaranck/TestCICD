@@ -357,49 +357,6 @@ const Signup = ({ setLogin }) => {
                 <p>{error.phonenumber}</p>
               </div>
             </div>
-            {/* {auth ? (
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="Phone Number">
-                  Phone Number{" "}
-                  <span onClick={() => { setAuth(false); }} > Using my email </span>
-                </label>
-                <input
-                  required
-                  type="tel"
-                  placeholder="Phone Number"
-                  id="phonenumber"
-                  maxLength="10"
-                  inputmode="numeric"
-                  pattern="[0-9]*"
-                  onChange={(e) => {
-                    phone_validation(e);
-                  }}
-                />
-                <p>{error.phonenumber}</p>
-              </div>
-            </div>
-             ) : ( 
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="Email">
-                  E-mail{" "}
-                  <span onClick={() => { setAuth(true); }} > Using my Phone Number </span>
-                </label>
-                <input
-                  required
-                  type="email"
-                  placeholder="E-mail"
-                  id="Email"
-                  onChange={(e) => {
-                    email_validation(e);
-                  }}
-                />
-                <p>{error.email}</p>
-              </div>
-            </div>
-             )}  */}
-
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="Email"> E-mail{" "} </label>
