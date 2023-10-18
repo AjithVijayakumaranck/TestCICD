@@ -81,7 +81,7 @@ const Routings = () => {
   return (
 
     <div>
-      <Router>
+      <Router basename="/app">
         <AdminContextProvider>
           <Routes>
 
