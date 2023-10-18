@@ -86,7 +86,7 @@ const Routings = () => {
           <Routes>
 
             {/* <Route exact index element={<Home />} /> */}
-            <Route path="/" exact Component={Home} />
+            <Route path="/" exact component={Home} />
 
             <Route element={<UnProtectedRouter />}>
               <Route path='/registration_login' element={<RegistrationLogin />} />
