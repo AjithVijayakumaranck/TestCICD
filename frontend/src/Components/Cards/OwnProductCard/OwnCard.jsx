@@ -34,17 +34,15 @@ const OwnCard = ({ product, reload }) => {
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === product._id)
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === product?._id)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     useEffect(() => {

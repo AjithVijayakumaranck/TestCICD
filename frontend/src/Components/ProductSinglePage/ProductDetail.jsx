@@ -76,17 +76,15 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data?.wishlist
-                const foundItem = item.find(item => item?._id === productId)
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === productId)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     //Delete from wishlist
@@ -134,10 +132,6 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
     }, [WishlistData, productId]);
 
 
-
-
-
-
     const settings = {
 
         infinite: true,
@@ -153,127 +147,122 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
 
     return (
-        <>
-            <div className={Style.Container}>
+        <div className={Style.Container}>
 
-                <div className={Style.row}>
-                    <div className={Style.Left_container}>
-                        <div className={Style.image_wrapper}>
-                            <Slider {...settings}>
-                                {ProductImages.map((images, index) => {
-                                    return (
-                                        <div className={Style.box}>
-                                            <div className={Style.img_Container}>
-                                                <img src={images?.url} alt='' />
-                                                <span
-                                                    onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
-                                                    style={{ color: IsClicked ? 'red' : 'darkgray' }}
-                                                >
-                                                    <AiFillHeart />
-                                                </span>
-                                                <p className={Style.img_index}>{index + 1} / {ProductImages.length}</p>
-                                            </div>
+            <div className={Style.row}>
+                <div className={Style.Left_container}>
+                    <div className={Style.image_wrapper}>
+                        <Slider {...settings}>
+                            {ProductImages.map((images, index) => {
+                                return (
+                                    <div className={Style.box}>
+                                        <div className={Style.img_Container}>
+                                            <img src={images?.url} alt='' />
+                                            <span
+                                                onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
+                                                style={{ color: IsClicked ? 'red' : 'darkgray' }}
+                                            >
+                                                <AiFillHeart />
+                                            </span>
+                                            <p className={Style.img_index}>{index + 1} / {ProductImages.length}</p>
                                         </div>
-                                    )
-                                })}
-                            </Slider>
-                        </div>
+                                    </div>
+                                )
+                            })}
+                        </Slider>
                     </div>
+                </div>
 
-                    <div className={Style.Right_container}>
-                        <div className={Style.Details}>
+                <div className={Style.Right_container}>
+                    <div className={Style.Details}>
+                        <div>
+                            <h3> {ProductDet?.title} </h3>
+                            <h1>${ProductDet?.price}</h1>
+                        </div>
+                        <div className={Style.Rating}>
                             <div>
-                                <h3> {ProductDet?.title} </h3>
-                                <h1>${ProductDet?.price}</h1>
+                                <Star stars={ClientData?.totalrating} />
                             </div>
-                            <div className={Style.Rating}>
-                                <div>
-                                    <Star stars={ClientData?.totalrating} />
-                                </div>
-                                <p>({Reviews?.length} Reviews)</p>
+                            <p>({Reviews?.length} Reviews)</p>
+                        </div>
+                        <h5><IoLocationOutline className={Style.icon} /><span>{ProductDet?.locality} / {ProductDet?.state}</span></h5>
+                        <div className={Style.Button_wrapper}>
+                            <div className={Style.chat}>
+                                <button onClick={ConversationHandler} ><BsChat />
+                                    <span>Chat</span>
+                                </button>
                             </div>
-                            <h5><IoLocationOutline className={Style.icon} /><span>{ProductDet?.locality} / {ProductDet?.state}</span></h5>
-                            <div className={Style.Button_wrapper}>
-                                <div className={Style.chat}>
-                                    <button onClick={ConversationHandler} ><BsChat />
-                                        <span>Chat</span>
-                                    </button>
-                                </div>
-                                <div className={Style.call}>
-                                    <button><IoCallOutline /><span>Call</span></button>
-                                </div>
+                            <div className={Style.call}>
+                                <button><IoCallOutline /><span>Call</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={Style.row}>
-                    <div className={Style.Left_container}>
-                        <h3>Ad Details</h3>
-                        <div className={Style.Ad_detail}>
+            </div>
+            <div className={Style.row}>
+                <div className={Style.Left_container}>
+                    <h3>Ad Details</h3>
+                    <div className={Style.Ad_detail}>
 
-                            <ul>
+                        <ul>
+                            {Object.entries(OtherDet).map(([key, value]) => {
+                                return (
+                                    <li key={key}>
+                                        <label>{key} : </label>
+                                        <span>{value}</span>
+                                    </li>
+                                )
+                            })}
+                        </ul>
 
-                                {Object.entries(OtherDet).map(([key, value]) => {
-                                    return (
-                                        <li key={key}>
-                                            <label>{key} : </label>
-                                            <span>{value}</span>
-                                        </li>
-                                    )
-                                })}
-
-                            </ul>
-
-                        </div>
-                        <h3>Description</h3>
-                        <div className={Style.des}>
-                            <p>
-                                {ProductDet?.description}
-                            </p>
-                        </div>
                     </div>
-                    <div className={Style.Right_container}>
-                        <div className={Style.seller}>
-
-                            <div className={Style.map_wrapper}>
-                                <div className={Style.title_div}>
-                                    <label>Posted In</label>
-                                </div>
-                                <div className={Style.map_div}>
-                                    map
-                                </div>
-                            </div>
-
-                            <div className={Style.Id_wrap} >
-                                <label>Ad Id : </label>
-                                <span> {productId} </span>
-                            </div>
-
-                            <div className={Style.seller_wrapper} onClick={() => Navigate(`/clientprofile/${ClientData._id}`)}>
-                                <div>
-                                    <img
-                                        src={
-                                            ClientImage
-                                                ? ClientImage
-                                                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                        }
-                                        className={Style.itemImg}
-                                        alt=""
-                                    />
-                                    <h3>{ClientData?.fullname || ''} {ClientData?.surname || ''}</h3>
-                                </div>
-                                <div>
-                                    <span> <BsChevronRight /> </span>
-                                </div>
-                            </div>
-
-                        </div>
+                    <h3>Description</h3>
+                    <div className={Style.des}>
+                        <p>
+                            {ProductDet?.description}
+                        </p>
                     </div>
                 </div>
+                <div className={Style.Right_container}>
+                    <div className={Style.seller}>
 
+                        <div className={Style.map_wrapper}>
+                            <div className={Style.title_div}>
+                                <label>Posted In</label>
+                            </div>
+                            <div className={Style.map_div}>
+                                map
+                            </div>
+                        </div>
+
+                        <div className={Style.Id_wrap} >
+                            <label>Ad Id : </label>
+                            <span> {productId} </span>
+                        </div>
+
+                        <div className={Style.seller_wrapper} onClick={() => Navigate(`/clientprofile/${ClientData._id}`)}>
+                            <div>
+                                <img
+                                    src={
+                                        ClientImage
+                                            ? ClientImage
+                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                    }
+                                    className={Style.itemImg}
+                                    alt=""
+                                />
+                                <h3>{ClientData?.fullname || ''} {ClientData?.surname || ''}</h3>
+                            </div>
+                            <div>
+                                <span> <BsChevronRight /> </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-        </>
+        </div>
     )
 }
 

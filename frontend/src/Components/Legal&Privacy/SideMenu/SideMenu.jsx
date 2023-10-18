@@ -6,11 +6,6 @@ import { useNavigate } from 'react-router-dom'
 const SideMenu = () => {
 
     const Navigate = useNavigate();
-    const data = [
-        { DocumentName: "Privacy Notice", Description: "privacy documentation" },
-        { DocumentName: "Legal Notice", Description: "privacy documentation" },
-        { DocumentName: "Cookies Notice", Description: "privacy documentation" },
-    ]
 
 
     return (
@@ -29,9 +24,9 @@ const SideMenu = () => {
                         <li className={` ${window.location.pathname === '/legal-and-privacy/terms&condition' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/terms&condition')}>
                             <span>Terms and Conditions</span>
                         </li>
-                        <li className={` ${window.location.pathname === '/legal-and-privacy/cookies' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/cookies')}>
+                        {/* <li className={` ${window.location.pathname === '/legal-and-privacy/cookies' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/cookies')}>
                             <span>Cookies Notice</span>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
