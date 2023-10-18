@@ -81,12 +81,12 @@ const Routings = () => {
   return (
 
     <div>
-      <Router basename="/">
+      <Router>
         <AdminContextProvider>
           <Routes>
 
             {/* <Route exact index element={<Home />} /> */}
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact Component={Home} />
 
             <Route element={<UnProtectedRouter />}>
               <Route path='/registration_login' element={<RegistrationLogin />} />
