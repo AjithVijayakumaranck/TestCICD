@@ -68,7 +68,7 @@ const PostAdsPage = () => {
         <div className={Style.page_wrapper}>
 
             <div className={Style.header_wrapper}>
-                <div className={Style.backarrow} onClick={() => Navigate(-1)} >
+                <div className={Style.backarrow} onClick={() => Navigate('/')} >
                     <BiArrowBack />
                 </div>
             </div>
