@@ -21,6 +21,9 @@ const Options = ({ data, Image, WishlistCount }) => {
 
     // Redirect to the login page
     navigate('/');
+    if (window.location.pathname === '/') {
+      window.location.reload();
+    }
   }
 
   return (

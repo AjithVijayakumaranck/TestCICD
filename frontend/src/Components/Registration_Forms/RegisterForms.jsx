@@ -266,311 +266,309 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
 
   return (
-    <>
-      <div className={Style.Main_Container}>
-        <div className={Style.header_wrapper}>
-          <div className={Style.backarrow} onClick={() => Navigate("/postadd")} >
-            <BiArrowBack />
-          </div>
+
+    <div className={Style.Main_Container}>
+      <div className={Style.header_wrapper}>
+        <div className={Style.backarrow} onClick={() => Navigate("/postadd")} >
+          <BiArrowBack />
+        </div>
+      </div>
+
+      <div className={Style.Container_Wrapper}>
+        <h3>POST YOUR AD DETAILS</h3>
+        <div className={Style.path}>
+          <span> {Categories.categoryName} / {SubCategoryData.subcategory} </span>
+          <Link to="/postadd">Change</Link>
         </div>
 
-        <div className={Style.Container_Wrapper}>
-          <h3>POST YOUR AD DETAILS</h3>
-          <div className={Style.path}>
-            <span> {Categories.categoryName} / {SubCategoryData.subcategory} </span>
-            <Link to="/postadd">Change</Link>
+        <form action="#" onSubmit={(e) => HandleSubmit(e)}>
+
+          <div className={Style.row}>
+            <label> Title
+              <span className="star">*</span>{" "}
+            </label>
+            <div className={Style.items}>
+              <input type="text"
+                name="title"
+                value={ProductData.title}
+                onChange={(e) => { SetProductData({ ...ProductData, title: e.target.value }) }}
+              />
+              <span>{Error.title}</span>
+              <p> Mention the key features of item(eg. Brand, Model,Type etc.) </p>
+            </div>
           </div>
 
-          <form action="#" onSubmit={(e) => HandleSubmit(e)}>
-
-            <div className={Style.row}>
-              <label> Title
-                <span className="star">*</span>{" "}
-              </label>
-              <div className={Style.items}>
-                <input type="text"
-                  name="title"
-                  value={ProductData.title}
-                  onChange={(e) => { SetProductData({ ...ProductData, title: e.target.value }) }}
-                />
-                <span>{Error.title}</span>
-                <p> Mention the key features of item(eg. Brand, Model,Type etc.) </p>
-              </div>
-            </div>
-
-            {/* text input */}
-            {FormInputs.map((Input, index) => {
-              if (Input.type === "text") {
-                return (
-                  <div className={Style.row} key={index}>
-                    <label>
-                      {Input.label}
-                      {Input.important === "true" ? <span className="star">*</span> : null} {" "}
-                    </label>
-                    <div className={Style.items}>
-                      <input type={Input.type}
-                        name={Input.label}
-                        onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
-                      />
-
-                    </div>
-                  </div>
-                );
-              }
-            })}
-
-
-            {/* radioinput */}
-            {FormInputs.map((Input, index) => {
-              if (Input.type === "radio") {
-                return (
-                  <div className={Style.row} key={index}>
-                    <label>{" "}
-                      {Input.label}
-                      {Input.important === "true" ? <span className="star">*</span> : null} {" "}
-                    </label>
-                    <div className={Style.items}>
-                      {Input.options.map((Radios, index) => {
-                        return (
-                          <div className={Style.radio} >
-                            <input
-                              type={Input.type}
-                              id={Radios}
-                              name={Input.label}
-                              value={Radios}
-                              onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
-                            />
-                            <label htmlFor={Radios}>{Radios}</label>
-                          </div>
-                        );
-                      })}
-
-                    </div>
-                  </div>
-                );
-              }
-            })}
-
-
-            {/* selector input */}
-            {FormInputs.map((Input, index) => {
-              if (Input.type === "select") {
-                return (
-                  <div key={index} className={Style.row}>
-                    <label>
-                      {Input.label}
-                      {Input.important === "true" ? <span className="star">*</span> : null} {" "}
-                    </label>
-                    <div className={Style.items}>
-                      <Select
-                        options={Input.options}
-                        className={Style.basic_single}
-                        name={Input.name}
-                        onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.value }) }}
-                      />
-                    </div>
-                  </div>
-                );
-              }
-            })}
-
-
-            {/* Discriptions */}
-            <div className={Style.row}>
-              <label>Description
-                <span className="star">*</span>{" "}
-              </label>
-              <div className={Style.items}>
-                <textarea
-                  name="description"
-                  placeholder="More Informations"
-                  value={ProductData.description}
-                  onChange={(e) => { SetProductData({ ...ProductData, description: e.target.value }) }}
-                  cols="40"
-                  rows="5"
-                ></textarea>
-                <span>{Error.description}</span>
-              </div>
-            </div>
-
-            {/* ImageUpload */}
-            <div className={Style.row}>
-              <label>
-                Images <span className="star">*</span>{" "}
-              </label>
-              <div className={Style.image_wrapper}>
-                <label For="file-input">  {" "}  <MdOutlineAddAPhoto />  </label>
-
-                <input
-                  type="file"
-                  onChange={(e) => uploadFile(e)}
-                  id="file-input"
-                  multiple
-                />
-
-                {/* image viewers */}
-                {File.map((eachImage, index) => {
-                  return (
-                    <div key={index} className={Style.image_sec}>
-                      <img src={eachImage
-                        ? URL.createObjectURL(eachImage)
-                        : null
-                      }
-                        alt={`image ${index}`}
-                      />
-
-                      <div className={Style.clearbtn}>
-                        <button> {" "} <RxCross2 onClick={() => { File.splice(index, 1); }} />{" "} </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div>
-                <span style={{ color: 'red', fontSize: '14px' }}>{Error?.imgfile}</span>
-              </div>
-              <div>
-                <p>
-                  You can only upload up to {Limit} images.
-                  Choose multiple photos by choosing your best photo first as displayed in front and then add rest of photos with
-                  different angles to shows specifications or damages if any.
-                </p>
-              </div>
-            </div>
-
-            <div className={Style.price_section}>
-              <h3> SET PRICE  </h3>
-              <div className={Style.row}>
-                <label>Price
-                  <span className="star">*</span>{" "}
-                </label>
-                <div className={Style.items}>
-                  <input type="number"
-                    placeholder="Price"
-                    value={ProductData.price}
-                    onChange={(e) => { SetProductData({ ...ProductData, price: e.target.value }) }}
-                  />
-                  <span>{Error.price}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className={Style.seller_section}>
-              <h3>Your Details</h3>
-              <div className={Style.row}>
-                <label>Listed by
-                  <span className="star">*</span>{" "}
-                </label>
-                <div className={Style.listeditems}>
-                  <div className={Style.radio} >
-                    <input
-                      type="radio"
-                      id="listed"
-                      name="listed"
-                      value="Dealer"
-                      onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
-                    />
-                    <label htmlFor="">Dealer</label>
-                  </div>
-                  <div className={Style.radio} >
-                    <input
-                      type="radio"
-                      id="listed"
-                      name="listed"
-                      value="Owner"
-                      onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
-                    />
-                    <label htmlFor="">Owner</label>
-                  </div>
-                  <span>{Error.listedBy}</span>
-                </div>
-
-
-                <div className={Style.location_wrap}>
-                  <div className={Style.col}>
-                    <label> State <span className="star">*</span>{" "}  </label>
+          {/* selector input */}
+          {FormInputs.map((Input, index) => {
+            if (Input.type === "select") {
+              return (
+                <div key={index} className={Style.row}>
+                  <label>
+                    {Input.label}
+                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
+                  </label>
+                  <div className={Style.items}>
                     <Select
-                      options={StateOptions}
-                      isSearchable={true}
+                      options={Input.options}
+                      className={Style.basic_single}
+                      name={Input.name}
+                      onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.value }) }}
+                    />
+                  </div>
+                </div>
+              );
+            }
+          })}
+
+          {/* text input */}
+          {FormInputs.map((Input, index) => {
+            if (Input.type === "text") {
+              return (
+                <div className={Style.row} key={index}>
+                  <label>
+                    {Input.label}
+                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
+                  </label>
+                  <div className={Style.items}>
+                    <input type={Input.type}
+                      name={Input.label}
+                      onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
+                    />
+
+                  </div>
+                </div>
+              );
+            }
+          })}
+
+
+          {/* radioinput */}
+          {FormInputs.map((Input, index) => {
+            if (Input.type === "radio") {
+              return (
+                <div className={Style.row} key={index}>
+                  <label>{" "}
+                    {Input.label}
+                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
+                  </label>
+                  <div className={Style.items}>
+                    {Input.options.map((Radios, index) => {
+                      return (
+                        <div className={Style.radio} >
+                          <input
+                            type={Input.type}
+                            id={Radios}
+                            name={Input.label}
+                            value={Radios}
+                            onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
+                          />
+                          <label htmlFor={Radios}>{Radios}</label>
+                        </div>
+                      );
+                    })}
+
+                  </div>
+                </div>
+              );
+            }
+          })}
+
+          {/* Discriptions */}
+          <div className={Style.row}>
+            <label>Description
+              <span className="star">*</span>{" "}
+            </label>
+            <div className={Style.items}>
+              <textarea
+                name="description"
+                placeholder="More Informations"
+                value={ProductData.description}
+                onChange={(e) => { SetProductData({ ...ProductData, description: e.target.value }) }}
+                cols="40"
+                rows="5"
+              ></textarea>
+              <span>{Error.description}</span>
+            </div>
+          </div>
+
+          {/* ImageUpload */}
+          <div className={Style.row}>
+            <label>
+              Images <span className="star">*</span>{" "}
+            </label>
+            <div className={Style.image_wrapper}>
+              <label For="file-input">  {" "}  <MdOutlineAddAPhoto />  </label>
+
+              <input
+                type="file"
+                onChange={(e) => uploadFile(e)}
+                id="file-input"
+                multiple
+              />
+
+              {/* image viewers */}
+              {File.map((eachImage, index) => {
+                return (
+                  <div key={index} className={Style.image_sec}>
+                    <img src={eachImage
+                      ? URL.createObjectURL(eachImage)
+                      : null
+                    }
+                      alt={`image ${index}`}
+                    />
+
+                    <div className={Style.clearbtn}>
+                      <button> {" "} <RxCross2 onClick={() => { File.splice(index, 1); }} />{" "} </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              <span style={{ color: 'red', fontSize: '14px' }}>{Error?.imgfile}</span>
+            </div>
+            <div>
+              <p>
+                You can only upload up to {Limit} images.
+                Choose multiple photos by choosing your best photo first as displayed in front and then add rest of photos with
+                different angles to shows specifications or damages if any.
+              </p>
+            </div>
+          </div>
+
+          <div className={Style.price_section}>
+            <h3> SET PRICE  </h3>
+            <div className={Style.row}>
+              <label>Price
+                <span className="star">*</span>{" "}
+              </label>
+              <div className={Style.items}>
+                <input type="number"
+                  placeholder="Price"
+                  value={ProductData.price}
+                  onChange={(e) => { SetProductData({ ...ProductData, price: e.target.value }) }}
+                />
+                <span>{Error.price}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={Style.seller_section}>
+            <h3>Your Details</h3>
+            <div className={Style.row}>
+              <label>Listed by
+                <span className="star">*</span>{" "}
+              </label>
+              <div className={Style.listeditems}>
+                <div className={Style.radio} >
+                  <input
+                    type="radio"
+                    id="listed"
+                    name="listed"
+                    value="Dealer"
+                    onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
+                  />
+                  <label htmlFor="">Dealer</label>
+                </div>
+                <div className={Style.radio} >
+                  <input
+                    type="radio"
+                    id="listed"
+                    name="listed"
+                    value="Owner"
+                    onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
+                  />
+                  <label htmlFor="">Owner</label>
+                </div>
+                <span>{Error.listedBy}</span>
+              </div>
+
+
+              <div className={Style.location_wrap}>
+                <div className={Style.col}>
+                  <label> State <span className="star">*</span>{" "}  </label>
+                  <Select
+                    options={StateOptions}
+                    isSearchable={true}
+                    onChange={(e) => {
+                      SetProductData({ ...ProductData, state: e.label });
+                      SetStateId(e.value)
+                    }}
+                  />
+                  <span>{Error.locality}</span>
+                </div>
+
+                {District && District.length > 0 && (
+                  <div className={Style.col}>
+                    <label> District <span className="star">*</span>{" "}  </label>
+                    <Select
+                      options={DistrictOptions}
                       onChange={(e) => {
-                        SetProductData({ ...ProductData, state: e.label });
-                        SetStateId(e.value)
+                        SetProductData({ ...ProductData, district: e.label })
+                        SetDistrictId(e.label)
+                        SetIsLocalityDisabled(false)
                       }}
                     />
                     <span>{Error.locality}</span>
                   </div>
+                )}
+              </div>
 
-                  {District && District.length > 0 && (
-                    <div className={Style.col}>
-                      <label> District <span className="star">*</span>{" "}  </label>
-                      <Select
-                        options={DistrictOptions}
-                        onChange={(e) => {
-                          SetProductData({ ...ProductData, district: e.label })
-                          SetDistrictId(e.label)
-                          SetIsLocalityDisabled(false)
-                        }}
-                      />
-                      <span>{Error.locality}</span>
-                    </div>
-                  )}
-                </div>
+              <div className={Style.location_wrap}>
 
-                <div className={Style.location_wrap}>
-
-                  {Locality && Locality.length > 0 && (
-                    <div className={Style.col}>
-                      <label> Locality <span className="star">*</span>{" "}  </label>
-                      <Select
-                        options={LocalityOptions}
-                        isDisabled={IsLocalityDisabled}
-                        onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
-                      />
-                      <span>{Error.locality}</span>
-                    </div>
-                  )}
-
+                {Locality && Locality.length > 0 && (
                   <div className={Style.col}>
-                    <label> Country <span className="star">*</span>{" "}  </label>
+                    <label> Locality <span className="star">*</span>{" "}  </label>
                     <Select
-                      options={options}
-                      onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
+                      options={LocalityOptions}
+                      isDisabled={IsLocalityDisabled}
+                      onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
                     />
                     <span>{Error.locality}</span>
                   </div>
-                </div>
+                )}
 
-
-                <label> Name </label>
-                <div className={Style.items}>
-                  <input type="text"
-                    name="name"
-                    value={UserData.fullname}
+                <div className={Style.col}>
+                  <label> Country <span className="star">*</span>{" "}  </label>
+                  <Select
+                    options={options}
+                    onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
                   />
-                </div>
-                <label>Email Id </label>
-                <div className={Style.items}>
-                  <input type="email"
-                    name="email"
-                    value={UserData.email}
-                  />
-                </div>
-                <label>Phone Number </label>
-                <div className={Style.items}>
-                  <input type="text"
-                    name="phonenumber"
-                    value={UserData.phoneNumber}
-                  />
+                  <span>{Error.locality}</span>
                 </div>
               </div>
+
+
+              <label> Name </label>
+              <div className={Style.items}>
+                <input type="text"
+                  name="name"
+                  value={UserData.fullname}
+                />
+              </div>
+              <label>Email Id </label>
+              <div className={Style.items}>
+                <input type="email"
+                  name="email"
+                  value={UserData.email}
+                />
+              </div>
+              <label>Phone Number </label>
+              <div className={Style.items}>
+                <input type="text"
+                  name="phonenumber"
+                  value={UserData.phoneNumber}
+                />
+              </div>
             </div>
-            <div className={Style.submit_section}>
-              <button>Post Now</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className={Style.submit_section}>
+            <button>Post Now</button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
+
   );
 };
 

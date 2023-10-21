@@ -106,6 +106,9 @@ const Navbar = ({ location, setLocation, reload }) => {
     SetUser("");
     // Redirect to the login page
     navigate('/');
+    if (window.location.pathname === '/') {
+      window.location.reload();
+    }
   }
 
   //Function to get Wishlist count
@@ -124,11 +127,13 @@ const Navbar = ({ location, setLocation, reload }) => {
   //Function to get Notification count
   useEffect(() => {
     try {
-      authInstance.get(`/api/user/notification/notification_count?userId=${User?._id}`).then((response) => {
-        SetNotificationCount(response.data)
-      }).catch((err) => {
-        console.log(err);
-      })
+      if (User?._id) {
+        authInstance.get(`/api/user/notification/notification_count?userId=${User?._id}`).then((response) => {
+          SetNotificationCount(response.data)
+        }).catch((err) => {
+          console.log(err);
+        })
+      }
     } catch (error) {
       console.log(error);
     }
