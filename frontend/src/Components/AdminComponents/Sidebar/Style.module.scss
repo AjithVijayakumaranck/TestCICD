@@ -4,7 +4,6 @@
 .sidebar {
     flex: 1.5;
     min-height: 100vh;
-    //background-color: #fff;
     border-right: 2px solid $base_color3 ;
 
 
@@ -15,9 +14,11 @@
     @include mediumScreen {
         flex: 2.5;
     }
+
     .logo_navigation {
         text-decoration: none;
     }
+
     .navigation {
         text-decoration: none;
         color: #111;
@@ -86,15 +87,12 @@
                 .icons {
                     font-size: 18px;
                     padding-left: 10px;
-                    // color: $primary_color;
                 }
 
                 span {
-                    font-size: 16px;
-                    font-weight: 500;
-                    // color: $base_color2;
+                    font-size: 15px;
+                    font-weight: 400;
                     margin-left: 5px;
-
                 }
             }
         }

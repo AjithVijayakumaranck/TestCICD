@@ -7,6 +7,10 @@
     .container {
         padding: 1.5rem 3rem;
 
+        @include breakpoint(md) {
+            padding: 1.5rem 1rem;
+        }
+
         .breadcrumb_wrap {
             background-color: transparent;
             border-radius: 0;
@@ -34,6 +38,10 @@
                     .navlink {
                         text-decoration: none;
                         color: $primary_color;
+
+                        @include breakpoint(md) {
+                            font-size: 14px;
+                        }
                     }
                 }
 

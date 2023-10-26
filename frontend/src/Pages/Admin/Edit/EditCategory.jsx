@@ -120,6 +120,7 @@ const EditCategory = ({ title }) => {
 
               <div className={Style.formBtn}>
                 <button>Save</button>
+                <button onClick={() => { navigate('/admin/category') }}>Cancel</button>
               </div>
 
             </form>

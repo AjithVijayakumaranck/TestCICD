@@ -36,7 +36,7 @@
 
                 @include breakpoint(md) {
                     margin: 0 0;
-                    padding: 0 10px;
+                    padding: 0 20px;
                 }
 
                 @include mediumScreen {
@@ -150,20 +150,15 @@
                             margin-bottom: 1rem;
 
                             @include breakpoint(md) {
-                                grid-template-columns: 1fr;
-                                padding: 20px 10px;
-                                gap: 10px 0px;
+                                grid-template-columns: 1fr 1fr;
                             }
 
                             @include LargeScreen {
-                                grid-template-columns: 1fr 1fr 1fr;
-                                gap: 20px;
+                                grid-template-columns: 1fr 1fr 1fr 1fr;
                             }
 
                             @include mediumScreen {
                                 grid-template-columns: 1fr 1fr 1fr;
-                                padding: 20px;
-                                gap: 20px 20px;
                             }
                         }
 

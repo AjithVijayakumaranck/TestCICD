@@ -5,11 +5,13 @@ module.exports = {
     // terms add
     addTerms : (req,res)=>{
         try {
-            const {policies} = req.body
+            const {policies,name,description} = req.body
             if(policies){
-                POLICY.updateMany({active:true},{active:false}).then(()=>{
+                POLICY.updateMany({active:true,name:name},{active:false}).then(()=>{
                     POLICY.create({
-                        policy:policies
+                        policy:policies,
+                        name:name,
+                        description:description
                     }).then(()=>{
                         res.status(200).json({message:"new policy is active"})
                     }).catch(()=>{
@@ -39,10 +41,10 @@ module.exports = {
 
 
     //get active term
-
     getTerm:(req,res)=>{
+        const {name} = req.query
         try {
-           POLICY.findOne({active:true}).then((response)=>{
+           POLICY.findOne({active:true,name:name}).then((response)=>{
             res.status(200).json(response)
            }).catch((error)=>{
             res.status(400).json({message:"No active term found"})

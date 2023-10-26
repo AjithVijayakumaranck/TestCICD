@@ -124,6 +124,7 @@
                         }
                     }
 
+                    //Plan form styling
                     .featuresForm {
                         width: 100%;
                         display: flex;
@@ -147,13 +148,21 @@
                         }
                     }
 
+                    //End plan form styling
+
                     .formproperty {
                         width: 100%;
-                        margin: 20px 0;
                         display: flex;
                         flex-direction: column;
-                        gap: 30px;
-                        padding: 10px;
+                        gap: 20px;
+                        
+                        textarea {
+                            height: 6rem;
+                            width: 100%;
+                            border: none;
+                            outline: none;
+                            border-bottom: 1px solid gray;
+                        }
 
                         .formWrapper {
                             display: flex;
@@ -163,12 +172,24 @@
                             gap: 10px;
 
                             .formInput {
-
                                 width: 30%;
+                            }
+                        }
 
+                        .formWrap {
+                            display: flex;
+                            flex-direction: column;
+
+                            .formInput {
+                                width: 100%;
+                                margin: 10px 0;
+                            }
+                        }
+
+                        .formWrapper,
+                        .formWrap {
+                            .formInput {
                                 label {
-                                    margin: 0 5px;
-
                                     span {
                                         color: red;
                                         border: none;
@@ -187,7 +208,34 @@
                                     border-bottom: 1px solid gray;
                                 }
 
+                                textarea {
+                                    height: 8rem;
+                                    width: 100%;
+                                    padding: 10px 0;
+                                    border: none;
+                                    outline: none;
+                                    border-bottom: 1px solid gray;
+                                }
                             }
+
+                            //DocumentForm form button wrap
+                            .formButtonWrap {
+                                width: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-end;
+
+                                .formButton {
+                                    padding: 10px 20px;
+                                    border: none;
+                                    background-color: $primary_color;
+                                    border-radius: 5px;
+                                    color: white;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            //End DocumentForm form button wrap
 
                             .formSelect {
                                 width: 15%;
@@ -217,8 +265,18 @@
                                 padding: 20px 0;
                                 gap: 40px;
 
+                                //subcategoryForm styling
                                 .formInput {
                                     width: 40%;
+                                }
+
+                                //DocumentForm styling
+                                .formDescrption {
+                                    width: 80%;
+
+                                    textarea {
+                                        margin-top: 0.5rem;
+                                    }
                                 }
                             }
                         }
@@ -316,6 +374,7 @@
                         }
                     }
 
+                    //Option listing styling
                     .option_wrap {
                         margin-bottom: 10px;
                         font-size: 14px;
@@ -336,6 +395,15 @@
                                 display: flex;
                                 gap: 2px;
                             }
+
+                            //Document form options listing styling
+                            .DocumentItem {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                            }
+
+                            //End document form options listing styling
                         }
                     }
                 }

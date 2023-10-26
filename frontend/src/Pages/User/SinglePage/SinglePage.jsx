@@ -75,7 +75,7 @@ const SinglePage = () => {
         }
     }, [CategoryProducts]);
 
-    const ExcludeProducts = SortedProducts.filter((product) => product._id !== productId);
+    const ExcludeProducts = SortedProducts.filter((product) => product._id !== productId).slice(0, 4);
   
 
     //Scroll to Top function

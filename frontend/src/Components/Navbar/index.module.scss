@@ -95,14 +95,18 @@
 
       h1 {
         color: $primary_color;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         margin: .4rem 0;
         cursor: pointer;
 
         @include breakpoint(md) {
-          font-size: 25px;
+          font-size: 1.6rem;
           padding: 5px 5px;
+        }
+
+        @include LargeScreen {
+          font-size: 1.6rem;
         }
 
       }
@@ -129,7 +133,7 @@
 
       .Search_container {
         width: 100%;
-        height: 2rem;
+        height: 1.8rem;
         position: relative;
         display: flex;
         align-items: center;
@@ -137,9 +141,13 @@
         border: 1px solid $primary_color;
         padding: 5px 10px;
 
-        @include breakpoint(md) {}
+        @include breakpoint(md) {
+          font-size: 1.6rem;
+        }
 
-        @include LargeScreen {}
+        @include LargeScreen {
+          font-size: 1.8rem;
+        }
 
         input {
           display: flex;
@@ -200,23 +208,17 @@
 
 
       @include breakpoint(md) {
-        flex: 0
+        display: none;
       }
 
       @include mediumScreen {
-        flex: 0
+        display: none;
       }
 
       @include extraMediumScreen {
         display: none;
       }
 
-
-      @include LargeScreen {
-        gap: 10px;
-        flex: 2.5;
-        margin-left: 0px;
-      }
 
       .OptionsWrapper {
         position: relative;
@@ -297,10 +299,10 @@
           background: transparent;
           color: white;
           background-color: $primary_color;
-          padding: 10px 20px;
+          padding: 10px 12px;
           border-radius: 5px;
-          font-size: 16px;
-          font-weight: 700;
+          font-size: 14px;
+          font-weight: 600;
           cursor: pointer;
 
           &:hover {
@@ -326,10 +328,10 @@
           background: transparent;
           color: white;
           background-color: $primary_color;
-          padding: 10px 20px;
+          padding: 10px 12px;
           border-radius: 5px;
-          font-size: 16px;
-          font-weight: 700;
+          font-size: 14px;
+          font-weight: 600;
           cursor: pointer;
 
           &:hover {

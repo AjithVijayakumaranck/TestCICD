@@ -27,9 +27,10 @@
             padding: .5rem 0;
             border-bottom: 2px solid #ebebeb;
 
-            .left{
-                h2{
+            .left {
+                h2 {
                     color: $base-color5;
+                    font-size: 22px;
                     font-weight: 600;
                 }
             }
@@ -45,14 +46,13 @@
 
             @include breakpoint(md) {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
             }
 
             @include mediumScreen {
                 grid-template-columns: 1fr 1fr 1fr;
             }
 
-            @include extraMediumScreen{
+            @include extraMediumScreen {
                 grid-template-columns: 1fr 1fr 1fr 1fr;
             }
 

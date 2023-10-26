@@ -5,6 +5,13 @@ const policySchema = new schema({
     policy: [{
         type: schema.Types.Mixed
     }],
+
+    name:{
+        type:String
+    },
+    description:{
+        type:String
+    },
     deleted: {
         type: Boolean,
         default: false

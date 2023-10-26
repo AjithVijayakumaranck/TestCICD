@@ -78,7 +78,7 @@ const USERschema = new schema({
     enum:["admin","superadmin"],
 },
   AdCount:{
-    type:String,
+    type:Number,
     default:"20"
   },
   ImageCount:{

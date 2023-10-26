@@ -47,6 +47,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.option_wrapper .box .boxWrapper .logout {
+  width: 100%;
+}
 .option_wrapper .box .boxWrapper .eachopt,
 .option_wrapper .box .boxWrapper .logout {
   padding: 5px 0;

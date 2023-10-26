@@ -34,17 +34,15 @@ const OwnCard = ({ product, reload }) => {
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === product._id)
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === product?._id)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     useEffect(() => {
@@ -56,8 +54,9 @@ const OwnCard = ({ product, reload }) => {
         try {
             authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: product?._id }).then((Response) => {
                 toast.success("Product Added to Wishlist")
-                SetIsClicked(true);
+                SetIsClicked(true)
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
@@ -68,20 +67,23 @@ const OwnCard = ({ product, reload }) => {
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
-            toast.success("Product removed from Wishlist")
-            SetIsClicked(false)
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
+                toast.success("Product removed from Wishlist")
+                SetIsClicked(false)
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleDelete = (e) => {
         e.preventDefault()
         try {
             authInstance.delete(`/api/user/${e}`).then((Response) => {
-                //toast.success("Removed")
-                //reload(true)
+                console.log("error");
             }).catch((err) => {
                 console.log(err);
             })
@@ -92,47 +94,43 @@ const OwnCard = ({ product, reload }) => {
 
 
     return (
-        <div className={Style.container}>
+        <div className={Style.products} >
+            <div className={Style.productmedia}>
+                {product?.userId?.premiumuser ?
+                    <span className={Style.productlabel}>Featured</span>
+                    : null
+                }
 
-            <div className={Style.products} >
-                <div className={Style.productmedia}>
-                    {product?.userId?.premiumuser ?
-                        <span className={Style.productlabel}>Featured</span>
-                        : null
+                <Link to={`/product/${product?._id}`} >
+                    <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
+                </Link>
+                <div className={Style.productAction}>
+                    {product?.userId === User?._id ?
+                        <span onClick={(e) => handleDelete(e)} > <i><AiOutlineDelete /></i> Remove </span>
+                        :
+                        <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
+                            <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
+                        </span>
                     }
-
-                    <Link to={`/product/${product?._id}`} >
-                        <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
-                    </Link>
-                    <div className={Style.productAction}>
-                        {product?.userId === User?._id ?
-                            <span onClick={(e) => handleDelete(e)} > <i><AiOutlineDelete /></i> Remove </span>
-                            :
-                            <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
-                                <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
-                            </span>
-                        }
-                        <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
-                    </div>
+                    <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
                 </div>
-                <div className={Style.productbody}>
-                    <div className={Style.product_cat}>
-                        <span> {product?.state} </span>
-                    </div>
-                    <div className={Style.product_title}>
-                        <h3> {product?.title} </h3>
-                    </div>
-                    <div className={Style.product_price}>
-                        $ {product?.price}
-                    </div>
-                    <div className={Style.rating_container}>
-                        <div className={Style.rating}>
-                            <Star stars={product?.totalRating} />
-                        </div>
+            </div>
+            <div className={Style.productbody}>
+                <div className={Style.product_cat}>
+                    <span> {product?.state} </span>
+                </div>
+                <div className={Style.product_title}>
+                    <h3> {product?.title} </h3>
+                </div>
+                <div className={Style.product_price}>
+                    $ {product?.price}
+                </div>
+                <div className={Style.rating_container}>
+                    <div className={Style.rating}>
+                        <Star stars={product?.totalRating} />
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

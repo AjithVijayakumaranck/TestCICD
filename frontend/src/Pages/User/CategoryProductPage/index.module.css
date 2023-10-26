@@ -37,7 +37,7 @@
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container {
     margin: 0 0;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
@@ -147,22 +147,17 @@
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
-    grid-template-columns: 1fr;
-    padding: 20px 10px;
-    gap: 10px 0px;
+    grid-template-columns: 1fr 1fr;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
     grid-template-columns: 1fr 1fr 1fr;
-    padding: 20px;
-    gap: 20px 20px;
   }
 }
 .page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn {

@@ -11,10 +11,7 @@
         transition: 0.5s ease-in-out;
     }
 
-
-
     .left_section {
-
         width: 100%;
         padding: 20px;
         background-color: white;
@@ -24,15 +21,12 @@
         border-top-right-radius: 7px;
         border-bottom-right-radius: 7px;
 
-
         h1 {
             color: $primary_color;
-            margin-bottom: 10px;
         }
 
         p {
             font-size: 12px;
-            margin-bottom: 5px;
         }
 
 
@@ -40,13 +34,12 @@
         .login_Details {
 
             h1 {
-                padding: 2px;
                 color: $primary_color;
                 font-size: 20px;
             }
 
             p {
-                padding: 10px 0px;
+                padding: 5px 0px;
                 font-size: 12px;
             }
         }
@@ -89,9 +82,9 @@
 
                     span {
                         color: $primary_color;
-                        cursor: pointer;
                         font-size: 10px;
                         margin-left: 10px;
+                        cursor: pointer;
 
                         &:hover {
                             color: $secondary_color;
@@ -103,7 +96,7 @@
                         outline: none;
                         border-width: .3px;
                         border-radius: 5px;
-                        padding: 15px 10px;
+                        padding: 14px 10px;
                         background-color: $base_color;
 
                     }
@@ -141,7 +134,7 @@
                 color: white;
                 border: none;
                 border-radius: 5px;
-                padding: 15px 0px;
+                padding: 14px 0px;
                 font-size: 15px;
 
                 &:hover {
@@ -221,7 +214,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $primary_color;
+        background: $primary_color;
         border-top-left-radius: 7px;
         border-bottom-left-radius: 7px;
 
