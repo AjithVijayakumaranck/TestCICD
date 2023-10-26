@@ -49,6 +49,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   const [Featured, SetFeatured] = useState(false)
 
   const [Limit, SetLimit] = useState();
+  const [Limit, SetLimit] = useState();
 
 
 
@@ -122,6 +123,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
         SetUserData(Response.data)
         SetLimit(Response.data?.ImageCount)
+        SetLimit(Response.data?.ImageCount)
       }).catch((err) => {
         console.log(err)
       });
@@ -157,6 +159,14 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       SetError({ ...Error, imgfile: `You can only upload up to ${Limit} images.` });
       e.target.value = "";
     }
+
+    if (File.length + files.length <= Limit) {
+      SetFile([...File, ...files]);
+      SetError({ ...Error, imgfile: "" })
+    } else {
+      SetError({ ...Error, imgfile: `You can only upload up to ${Limit} images.` });
+      e.target.value = "";
+    }
   }
 
 
@@ -178,6 +188,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       newErrors.listedBy = 'listedByis required';
     }
 
+
     if (ProductData.district === '') {
       newErrors.district = 'district is required';
     }
@@ -186,6 +197,9 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     }
     if (ProductData.region === '') {
       newErrors.region = 'region is required';
+    }
+    if (File.length === 0) {
+      newErrors.imgfile = 'Product image is required';
     }
     if (File.length === 0) {
       newErrors.imgfile = 'Product image is required';
@@ -207,7 +221,9 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   const HandleSubmit = (e) => {
     e.preventDefault()
 
+
     if (validateForm()) {
+
 
       let data = new FormData()
 
@@ -274,14 +290,14 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
           </div>
         </div>
 
-        <div className={Style.Container_Wrapper}>
-          <h3>POST YOUR AD DETAILS</h3>
-          <div className={Style.path}>
-            <span> {Categories.categoryName} / {SubCategoryData.subcategory} </span>
-            <Link to="/postadd">Change</Link>
-          </div>
+      <div className={Style.Container_Wrapper}>
+        <h3>POST YOUR AD DETAILS</h3>
+        <div className={Style.path}>
+          <span> {Categories.categoryName} / {SubCategoryData.subcategory} </span>
+          <Link to="/postadd">Change</Link>
+        </div>
 
-          <form action="#" onSubmit={(e) => HandleSubmit(e)}>
+        <form action="#" onSubmit={(e) => HandleSubmit(e)}>
 
             <div className={Style.row}>
               <label> Title
@@ -297,6 +313,29 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 <p> Mention the key features of item(eg. Brand, Model,Type etc.) </p>
               </div>
             </div>
+          </div>
+
+          {/* selector input */}
+          {FormInputs.map((Input, index) => {
+            if (Input.type === "select") {
+              return (
+                <div key={index} className={Style.row}>
+                  <label>
+                    {Input.label}
+                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
+                  </label>
+                  <div className={Style.items}>
+                    <Select
+                      options={Input.options}
+                      className={Style.basic_single}
+                      name={Input.name}
+                      onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.value }) }}
+                    />
+                  </div>
+                </div>
+              );
+            }
+          })}
 
             {/* text input */}
             {FormInputs.map((Input, index) => {
@@ -375,49 +414,49 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
             })}
 
 
-            {/* Discriptions */}
-            <div className={Style.row}>
-              <label>Description
-                <span className="star">*</span>{" "}
-              </label>
-              <div className={Style.items}>
-                <textarea
-                  name="description"
-                  placeholder="More Informations"
-                  value={ProductData.description}
-                  onChange={(e) => { SetProductData({ ...ProductData, description: e.target.value }) }}
-                  cols="40"
-                  rows="5"
-                ></textarea>
-                <span>{Error.description}</span>
-              </div>
+          {/* Discriptions */}
+          <div className={Style.row}>
+            <label>Description
+              <span className="star">*</span>{" "}
+            </label>
+            <div className={Style.items}>
+              <textarea
+                name="description"
+                placeholder="More Informations"
+                value={ProductData.description}
+                onChange={(e) => { SetProductData({ ...ProductData, description: e.target.value }) }}
+                cols="40"
+                rows="5"
+              ></textarea>
+              <span>{Error.description}</span>
             </div>
+          </div>
 
-            {/* ImageUpload */}
-            <div className={Style.row}>
-              <label>
-                Images <span className="star">*</span>{" "}
-              </label>
-              <div className={Style.image_wrapper}>
-                <label For="file-input">  {" "}  <MdOutlineAddAPhoto />  </label>
+          {/* ImageUpload */}
+          <div className={Style.row}>
+            <label>
+              Images <span className="star">*</span>{" "}
+            </label>
+            <div className={Style.image_wrapper}>
+              <label For="file-input">  {" "}  <MdOutlineAddAPhoto />  </label>
 
-                <input
-                  type="file"
-                  onChange={(e) => uploadFile(e)}
-                  id="file-input"
-                  multiple
-                />
+              <input
+                type="file"
+                onChange={(e) => uploadFile(e)}
+                id="file-input"
+                multiple
+              />
 
-                {/* image viewers */}
-                {File.map((eachImage, index) => {
-                  return (
-                    <div key={index} className={Style.image_sec}>
-                      <img src={eachImage
-                        ? URL.createObjectURL(eachImage)
-                        : null
-                      }
-                        alt={`image ${index}`}
-                      />
+              {/* image viewers */}
+              {File.map((eachImage, index) => {
+                return (
+                  <div key={index} className={Style.image_sec}>
+                    <img src={eachImage
+                      ? URL.createObjectURL(eachImage)
+                      : null
+                    }
+                      alt={`image ${index}`}
+                    />
 
                       <div className={Style.clearbtn}>
                         <button> {" "} <RxCross2 onClick={() => { File.splice(index, 1); }} />{" "} </button>
@@ -438,139 +477,139 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
               </div>
             </div>
 
-            <div className={Style.price_section}>
-              <h3> SET PRICE  </h3>
-              <div className={Style.row}>
-                <label>Price
-                  <span className="star">*</span>{" "}
-                </label>
-                <div className={Style.items}>
-                  <input type="number"
-                    placeholder="Price"
-                    value={ProductData.price}
-                    onChange={(e) => { SetProductData({ ...ProductData, price: e.target.value }) }}
-                  />
-                  <span>{Error.price}</span>
-                </div>
+          <div className={Style.price_section}>
+            <h3> SET PRICE  </h3>
+            <div className={Style.row}>
+              <label>Price
+                <span className="star">*</span>{" "}
+              </label>
+              <div className={Style.items}>
+                <input type="number"
+                  placeholder="Price"
+                  value={ProductData.price}
+                  onChange={(e) => { SetProductData({ ...ProductData, price: e.target.value }) }}
+                />
+                <span>{Error.price}</span>
               </div>
             </div>
+          </div>
 
-            <div className={Style.seller_section}>
-              <h3>Your Details</h3>
-              <div className={Style.row}>
-                <label>Listed by
-                  <span className="star">*</span>{" "}
-                </label>
-                <div className={Style.listeditems}>
-                  <div className={Style.radio} >
-                    <input
-                      type="radio"
-                      id="listed"
-                      name="listed"
-                      value="Dealer"
-                      onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
-                    />
-                    <label htmlFor="">Dealer</label>
-                  </div>
-                  <div className={Style.radio} >
-                    <input
-                      type="radio"
-                      id="listed"
-                      name="listed"
-                      value="Owner"
-                      onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
-                    />
-                    <label htmlFor="">Owner</label>
-                  </div>
-                  <span>{Error.listedBy}</span>
+          <div className={Style.seller_section}>
+            <h3>Your Details</h3>
+            <div className={Style.row}>
+              <label>Listed by
+                <span className="star">*</span>{" "}
+              </label>
+              <div className={Style.listeditems}>
+                <div className={Style.radio} >
+                  <input
+                    type="radio"
+                    id="listed"
+                    name="listed"
+                    value="Dealer"
+                    onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
+                  />
+                  <label htmlFor="">Dealer</label>
+                </div>
+                <div className={Style.radio} >
+                  <input
+                    type="radio"
+                    id="listed"
+                    name="listed"
+                    value="Owner"
+                    onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
+                  />
+                  <label htmlFor="">Owner</label>
+                </div>
+                <span>{Error.listedBy}</span>
+              </div>
+
+
+              <div className={Style.location_wrap}>
+                <div className={Style.col}>
+                  <label> State <span className="star">*</span>{" "}  </label>
+                  <Select
+                    options={StateOptions}
+                    isSearchable={true}
+                    onChange={(e) => {
+                      SetProductData({ ...ProductData, state: e.label });
+                      SetStateId(e.value)
+                    }}
+                  />
+                  <span>{Error.locality}</span>
                 </div>
 
-
-                <div className={Style.location_wrap}>
+                {District && District.length > 0 && (
                   <div className={Style.col}>
-                    <label> State <span className="star">*</span>{" "}  </label>
+                    <label> District <span className="star">*</span>{" "}  </label>
                     <Select
-                      options={StateOptions}
-                      isSearchable={true}
+                      options={DistrictOptions}
                       onChange={(e) => {
-                        SetProductData({ ...ProductData, state: e.label });
-                        SetStateId(e.value)
+                        SetProductData({ ...ProductData, district: e.label })
+                        SetDistrictId(e.label)
+                        SetIsLocalityDisabled(false)
                       }}
                     />
                     <span>{Error.locality}</span>
                   </div>
+                )}
+              </div>
 
-                  {District && District.length > 0 && (
-                    <div className={Style.col}>
-                      <label> District <span className="star">*</span>{" "}  </label>
-                      <Select
-                        options={DistrictOptions}
-                        onChange={(e) => {
-                          SetProductData({ ...ProductData, district: e.label })
-                          SetDistrictId(e.label)
-                          SetIsLocalityDisabled(false)
-                        }}
-                      />
-                      <span>{Error.locality}</span>
-                    </div>
-                  )}
-                </div>
+              <div className={Style.location_wrap}>
 
-                <div className={Style.location_wrap}>
-
-                  {Locality && Locality.length > 0 && (
-                    <div className={Style.col}>
-                      <label> Locality <span className="star">*</span>{" "}  </label>
-                      <Select
-                        options={LocalityOptions}
-                        isDisabled={IsLocalityDisabled}
-                        onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
-                      />
-                      <span>{Error.locality}</span>
-                    </div>
-                  )}
-
+                {Locality && Locality.length > 0 && (
                   <div className={Style.col}>
-                    <label> Country <span className="star">*</span>{" "}  </label>
+                    <label> Locality <span className="star">*</span>{" "}  </label>
                     <Select
-                      options={options}
-                      onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
+                      options={LocalityOptions}
+                      isDisabled={IsLocalityDisabled}
+                      onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
                     />
                     <span>{Error.locality}</span>
                   </div>
-                </div>
+                )}
 
-
-                <label> Name </label>
-                <div className={Style.items}>
-                  <input type="text"
-                    name="name"
-                    value={UserData.fullname}
+                <div className={Style.col}>
+                  <label> Country <span className="star">*</span>{" "}  </label>
+                  <Select
+                    options={options}
+                    onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
                   />
-                </div>
-                <label>Email Id </label>
-                <div className={Style.items}>
-                  <input type="email"
-                    name="email"
-                    value={UserData.email}
-                  />
-                </div>
-                <label>Phone Number </label>
-                <div className={Style.items}>
-                  <input type="text"
-                    name="phonenumber"
-                    value={UserData.phoneNumber}
-                  />
+                  <span>{Error.locality}</span>
                 </div>
               </div>
+
+
+              <label> Name </label>
+              <div className={Style.items}>
+                <input type="text"
+                  name="name"
+                  value={UserData.fullname}
+                />
+              </div>
+              <label>Email Id </label>
+              <div className={Style.items}>
+                <input type="email"
+                  name="email"
+                  value={UserData.email}
+                />
+              </div>
+              <label>Phone Number </label>
+              <div className={Style.items}>
+                <input type="text"
+                  name="phonenumber"
+                  value={UserData.phoneNumber}
+                />
+              </div>
             </div>
-            <div className={Style.submit_section}>
-              <button>Post Now</button>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className={Style.submit_section}>
+            <button>Post Now</button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
+
   );
 };
 

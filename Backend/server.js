@@ -43,6 +43,7 @@ const carousalRoute = require('./Routes/SuperAdmin/carousalRoute')
 const feedbackRoute = require('./Routes/SuperAdmin/feedbackRoute')
 const notificationRoute = require('./Routes/SuperAdmin/notificationRoute')
 const termRoute = require('./Routes/SuperAdmin/termsConditions')
+const termRoute = require('./Routes/SuperAdmin/termsConditions')
 
 
 if (!fs.existsSync("./uploads")) {

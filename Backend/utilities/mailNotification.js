@@ -8,11 +8,7 @@ const { AUTH_EMAIL } = process.env
 
 const sendNotification = async ({ email, subject="", message="", duration = 1 }) => {
     try {
-<<<<<<< HEAD
-
-=======
         
->>>>>>> b80ce59fe8b3aa50a9480aca14cf87d4876f018f
         if (!(email)) {
             throw Error("Provide proper email")
         }
