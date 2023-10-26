@@ -10,7 +10,16 @@ const cors = require('cors');
 const bodyParser= require('body-parser');
 
 
+const allowedOrigins = [
+    "https://www.dealnbuy.in",
+    "https://dealnbuy.in",
+];
 
+//cors
+app.use(cors({
+    origin: allowedOrigins,
+    methods: "GET,POST,PUT,DELETE",
+}))
 
 const connect = require('./Connections/db')
 
@@ -59,16 +68,7 @@ app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }))
 app.use(passport.initialize());
 app.use(passport.session());
 
-const allowedOrigins = [
-    "https://www.dealnbuy.in",
-    "https://dealnbuy.in",
-];
 
-//cors
-app.use(cors({
-    origin: allowedOrigins,
-    methods: "GET,POST,PUT,DELETE",
-}))
 
 app.use(express.json())
 
