@@ -10,23 +10,7 @@ const cors = require('cors');
 const bodyParser= require('body-parser');
 
 
-const allowedOrigins = [
-    "https://www.dealnbuy.in",
-    "https://dealnbuy.in",
-];
 
-//cors
-app.use(cors({
-    origin: allowedOrigins,
-    methods: "GET,POST,PUT,DELETE",
-    credentials:true
-}))
-
-const connect = require('./Connections/db')
-
-app.use(bodyParser.urlencoded({
-    extended: true
-  }));
 
 //Routes
 const userRoute = require('./Routes/userRoute');
@@ -64,6 +48,26 @@ if (!fs.existsSync("./uploads")) {
 app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static("uploads"));
 
+
+
+
+//cors
+
+const allowedOrigins = [
+    "https://www.dealnbuy.in",
+    "https://dealnbuy.in",
+];
+
+app.use(cors({
+    origin: allowedOrigins,
+    methods: "GET,POST,PUT,DELETE",
+}))
+
+const connect = require('./Connections/db')
+
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
