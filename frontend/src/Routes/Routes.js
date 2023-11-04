@@ -68,7 +68,6 @@ import NotificationList from '../Pages/Admin/List/NotificationList'
 import MessageList from '../Pages/Admin/List/MessageList'
 import DocumentList from '../Pages/Admin/List/DocumentList'
 import DocumentForm from '../Pages/Admin/New/DocumentForm'
-import EditDocumentForm from '../Pages/Admin/Edit/EditDocumentForm'
 
 
 import ProtectedRoutes from '../utilities/ProtectedRoutes'
@@ -162,7 +161,6 @@ const Routings = () => {
               <Route path="/admin/document">
                 <Route index element={<DocumentList />} />
                 <Route path="form" element={<DocumentForm title="Add New Document" />} />
-                <Route path="edit/:documentId" element={<EditDocumentForm title="Edit Document" />} />
               </Route>
               <Route path="/admin/category">
                 <Route index element={<CategoryList />} />
