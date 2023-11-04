@@ -1,0 +1,229 @@
+.page_wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.page_wrapper .main {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main {
+    margin-top: 120px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main {
+    margin-top: 80px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .page_wrapper .main {
+    margin-top: 80px;
+  }
+}
+.page_wrapper .main .container {
+  position: relative;
+  min-height: 510px;
+  display: flex;
+  justify-content: center;
+  padding: 0 4rem;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container {
+    padding: 0 1rem;
+    flex-direction: column-reverse;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .container {
+    padding: 0 2rem;
+    flex-direction: column-reverse;
+  }
+}
+.page_wrapper .main .container .To_top {
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: #046BD2;
+  border-radius: 5px;
+  color: #fff;
+}
+.page_wrapper .main .container .left {
+  flex: 2;
+}
+.page_wrapper .main .container .right {
+  flex: 6;
+}
+.page_wrapper .main .container .right .content_wrapper {
+  padding: 3rem 1rem;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container .right .content_wrapper {
+    padding: 2rem 1rem;
+  }
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap {
+  width: 100%;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row {
+    flex-direction: column;
+  }
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 10px;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .bold,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .bold {
+  font-weight: 500;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .links,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .links {
+  color: #046BD2;
+  margin-left: 0.5rem;
+  text-decoration: none;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .point,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .point {
+  margin: 0 0.2rem;
+  text-align: center;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .title,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .title {
+  margin-bottom: 2rem;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .title h2,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .title h2 {
+  margin-bottom: 0.8rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .title p,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .title p {
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: "Poppins";
+  letter-spacing: 0;
+  color: #777;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .subtitle,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .subtitle {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .subtitle span,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .subtitle span {
+  text-align: center;
+  margin-right: 0.5rem;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .subtitle h3,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .subtitle h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 0.8rem;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .subdata p,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .subdata p {
+  margin-bottom: 1rem;
+  font-size: 14px;
+  font-weight: 300;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_title,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_title {
+  border-bottom: 1px solid lightgrey;
+  margin: 1rem 0;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_title h5,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_title h5 {
+  font-weight: 500;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper,
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper {
+    flex-direction: column;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper,
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper {
+    flex-direction: column;
+  }
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_content,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_content {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_content p,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_content p {
+  margin-bottom: 1rem;
+  font-size: 14px;
+  font-weight: 300;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_content,
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_content {
+    margin-bottom: 0.5rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_content,
+  .page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_content {
+    margin-bottom: 0.5rem;
+  }
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_img,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_img {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .step .step_wrapper .step_img img,
+.page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .step .step_wrapper .step_img img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=index.module.css.map */
