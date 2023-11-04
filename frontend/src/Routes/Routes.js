@@ -1,18 +1,17 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { AdminContextProvider } from '../Contexts/AdminContext'
+
+import Home from '../Pages/User/Home/Home'
 import ResetPassword from '../Components/ResetPassword/ResetPassword'
 import ForgotPassword from '../Pages/Common/ForgotPassword/ForgotPassword'
-import Home from '../Pages/User/Home/Home'
 import RegisterAd from '../Pages/User/Registration_Ad/Register_Ad'
 import RegistrationLogin from '../Pages/Common/Registration_login/Registration_login'
 import SinglePage from '../Pages/User/SinglePage/SinglePage'
 import UserProfile from '../Pages/User/ProfilePage/UserProfile'
 import WishlistPage from '../Pages/User/WishlistPage/WishlistPage'
-import PostAdsPage from '../Pages/User/PostAdsPage/PostAdsPage'
 import Chats from '../Pages/User/ChatPage/Chats'
-import ClientProfile from '../Pages/User/ProfilePage/ClientProfile'
 import ChangePassword from '../Pages/Common/ChangePassword/ChangePassword'
-import ProtectedRoutes from '../utilities/ProtectedRoutes'
 import ContactPage from '../Pages/User/ContactPage/ContactPage'
 import NotificationPage from '../Pages/User/NotificationPage/NotificationPage'
 import PurchaseAd from '../Pages/User/SubscriptionPage/PurchaseAd'
@@ -20,10 +19,21 @@ import OwnProductPage from '../Pages/User/OwnProductPage/OwnProductPage'
 import SearchProductsPage from '../Pages/User/SearchProductsPage/SearchProductsPage'
 import CategoryProductPage from '../Pages/User/CategoryProductPage/CategoryProductPage'
 import UpdateProfilePage from '../Pages/User/UpdateProfilePage/UpdateProfilePage'
+import PostAdsPage from '../Pages/User/PostAdsPage/PostAdsPage'
 import PrivacyPage from '../Pages/User/Legal&PrivacyPage/PrivacyPage'
 import TermsAndConditionPage from '../Pages/User/Legal&PrivacyPage/TermsAndConditionPage'
 import CookiesPage from '../Pages/User/Legal&PrivacyPage/CookiesPage'
-
+import ClientProfile from '../Pages/User/ProfilePage/ClientProfile'
+import HelpToRegister from '../Pages/User/HelpCenterPage/HelpToRegister'
+import HelpToPostingAd from '../Pages/User/HelpCenterPage/HelpToPostingAd'
+import HelpToAccountInfo from '../Pages/User/HelpCenterPage/HelpToAccountInfo'
+import HelpToSearch from '../Pages/User/HelpCenterPage/HelpToSearch'
+import HelpToReplyToAd from '../Pages/User/HelpCenterPage/HelpToReplyToAd'
+import HelpToSuggestion from '../Pages/User/HelpCenterPage/HelpToSuggestion'
+import HelpToContact from '../Pages/User/HelpCenterPage/HelpToContact'
+import HelpToListingPolicy from '../Pages/User/HelpCenterPage/HelpToListingPolicy'
+import HelpToFraud from '../Pages/User/HelpCenterPage/HelpToFraud'
+import HelpToSafetyTips from '../Pages/User/HelpCenterPage/HelpToSafetyTips'
 
 
 //-------Admin components--------
@@ -40,8 +50,6 @@ import SubcategoryForm from '../Pages/Admin/New/SubcategoryForm'
 import EditForm from '../Pages/Admin/Edit/EditForm'
 import EditCategory from '../Pages/Admin/Edit/EditCategory'
 import EditSubcategory from '../Pages/Admin/Edit/EditSubcategory'
-import { AdminContextProvider } from '../Contexts/AdminContext'
-import AdminProtectedRouter from '../utilities/AdminProtectedRouter'
 import ProductDetails from '../Pages/Admin/Single/ProductDetails'
 import PlansList from '../Pages/Admin/List/PlansList'
 import PlanForm from '../Pages/Admin/New/PlanForm'
@@ -55,16 +63,19 @@ import NewAdminForm from '../Pages/Admin/New/NewAdminForm'
 import ProfileDetails from '../Pages/Admin/Single/ProfileDetails'
 import SuperAdminDetails from '../Pages/Admin/Single/SuperAdminDetails'
 import EditPassword from '../Pages/Admin/Edit/EditPassword'
-import SuperAdminProtectedRouter from '../utilities/SuperAdminProtectedRouter'
 import NotificationForm from '../Pages/Admin/New/NotificationForm'
 import NotificationList from '../Pages/Admin/List/NotificationList'
 import MessageList from '../Pages/Admin/List/MessageList'
-import UnProtectedRouter from '../utilities/UnProtectedRouter'
-import NotFound from '../Components/404/NotFound'
 import DocumentList from '../Pages/Admin/List/DocumentList'
 import DocumentForm from '../Pages/Admin/New/DocumentForm'
+import EditDocumentForm from '../Pages/Admin/Edit/EditDocumentForm'
 
 
+import ProtectedRoutes from '../utilities/ProtectedRoutes'
+import AdminProtectedRouter from '../utilities/AdminProtectedRouter'
+import SuperAdminProtectedRouter from '../utilities/SuperAdminProtectedRouter'
+import UnProtectedRouter from '../utilities/UnProtectedRouter'
+import NotFound from '../Components/404/NotFound'
 
 
 
@@ -85,13 +96,11 @@ const Routings = () => {
         <AdminContextProvider>
           <Routes>
 
-            {/* <Route exact index element={<Home />} /> */}
             <Route path="/" exact Component={Home} />
 
             <Route element={<UnProtectedRouter />}>
               <Route path='/registration_login' element={<RegistrationLogin />} />
             </Route >
-
             <Route path='*' element={<NotFound />} />
             <Route path='/forgetpassword' element={<ForgotPassword />} />
             <Route path='/resetpassword' element={<ResetPassword />} />
@@ -104,6 +113,19 @@ const Routings = () => {
               <Route path="terms&condition" element={<TermsAndConditionPage />} />
               <Route path="cookies" element={<CookiesPage />} />
             </Route>
+            <Route path='/help-center' >
+              <Route index element={<HelpToContact />} />
+              <Route path="register" element={<HelpToRegister />} />
+              <Route path="posting-ad" element={<HelpToPostingAd />} />
+              <Route path="account-help-panel" element={<HelpToAccountInfo />} />
+              <Route path="search-and-browse" element={<HelpToSearch />} />
+              <Route path="reply-help-panel" element={<HelpToReplyToAd />} />
+              <Route path="suggestion" element={<HelpToSuggestion />} />
+              <Route path="listing-policy" element={<HelpToListingPolicy />} />
+              <Route path="safety-tips" element={<HelpToSafetyTips />} />
+              <Route path="fraud-help-panel" element={<HelpToFraud />} />
+            </Route>
+
 
             <Route element={<ProtectedRoutes />}>
               <Route path='/postadd' element={<PostAdsPage />} />
@@ -140,6 +162,7 @@ const Routings = () => {
               <Route path="/admin/document">
                 <Route index element={<DocumentList />} />
                 <Route path="form" element={<DocumentForm title="Add New Document" />} />
+                <Route path="edit/:documentId" element={<EditDocumentForm title="Edit Document" />} />
               </Route>
               <Route path="/admin/category">
                 <Route index element={<CategoryList />} />

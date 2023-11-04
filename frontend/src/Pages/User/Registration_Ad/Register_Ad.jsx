@@ -9,7 +9,6 @@ import RegisterForm from "../../../Components/Registration_Forms/RegisterForms";
 const Register_Ad = () => {
 
   const { subCategoryId } = useParams();
-  console.log(subCategoryId, "registerad subcat Id");
 
   //states
   const [SubCategory, SetSubCategory] = useState("");
@@ -20,7 +19,6 @@ const Register_Ad = () => {
   useEffect(() => {
     try {
       instance.get(`/api/category/get_singlesubcategory?subCategoryId=${subCategoryId}`).then((response) => {
-        console.log(response.data, "single sub category data");
         SetSubCategory(response.data);
         SetFormData(response.data.formInputs)
       }).catch((err) => {
