@@ -18,9 +18,6 @@ const Sidebar = () => {
                 </div>
                 <div className={Style.bottom}>
                     <ul>
-                        <li className={` ${window.location.pathname === '/help-center' ? Style.active : null}`} onClick={() => Navigate('/help-center')}>
-                            <span>Contact Us</span>
-                        </li>
                         <li className={` ${window.location.pathname === '/help-center/register' ? Style.active : null}`} onClick={() => Navigate('/help-center/register')}>
                             <span>Registeration and Login</span>
                         </li>
@@ -38,6 +35,9 @@ const Sidebar = () => {
                         </li>
                         <li className={` ${window.location.pathname === '/help-center/suggestion' ? Style.active : null}`} onClick={() => Navigate('/help-center/suggestion')}>
                             <span>Suggestion</span>
+                        </li>
+                        <li className={` ${window.location.pathname === '/help-center' ? Style.active : null}`} onClick={() => Navigate('/help-center')}>
+                            <span>Contact Us</span>
                         </li>
                         <li className={` ${window.location.pathname === '/help-center/listing-policy' ? Style.active : null}`} onClick={() => Navigate('/help-center/listing-policy')}>
                             <span>Listing Policy</span>

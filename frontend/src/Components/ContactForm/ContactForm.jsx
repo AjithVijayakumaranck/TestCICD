@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Style from "./index.module.css"
 import { MdOutlineLocationOn, MdOutlineMail } from 'react-icons/md';
-import { BsCalendar3, BsTelephone } from 'react-icons/bs';
+import { BsCalendar3 } from 'react-icons/bs';
 import { FiClock } from 'react-icons/fi';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import instance from '../../instance/AxiosInstance';
@@ -40,8 +40,8 @@ const ContactForm = () => {
                     <div className={Style.left}>
                         <div className={Style.title}>
                             <h2>Contact Information</h2>
-                            <p>Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc
-                                sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
+                            <p>Feel free to get in touch with us. We're here to answer any questions or address any concerns you may have.
+                                Your feedback and inquiries are important to us, and we look forward to hearing from you.</p>
                         </div>
                         <div className={Style.row}>
                             <div className={Style.col}>
@@ -50,15 +50,11 @@ const ContactForm = () => {
                                     <ul className={Style.cont_list}>
                                         <li>
                                             <i><MdOutlineLocationOn /></i>
-                                            <span>70 Washington Square South New York, NY 10012, United States</span>
-                                        </li>
-                                        <li>
-                                            <i><BsTelephone /></i>
-                                            <span>+92 423 567</span>
+                                            <span>Intuitive Soft Corporation, Mizone, Kannur , Kerala ,India.</span>
                                         </li>
                                         <li>
                                             <i><MdOutlineMail /></i>
-                                            <span>dealnbuy@gmail.com</span>
+                                            <span>contact.in@dealnbuy.co.in</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -70,14 +66,14 @@ const ContactForm = () => {
                                         <li >
                                             <i><FiClock /></i>
                                             <div>
-                                                <span>Monday-Saturday</span>
+                                                <span>Monday-Friday</span>
                                                 <span>11am-7pm ET</span>
                                             </div>
                                         </li>
                                         <li >
                                             <i><BsCalendar3 /></i>
                                             <div>
-                                                <span>Sunday</span>
+                                                <span>Saturday</span>
                                                 <span>11am-6pm ET</span>
                                             </div>
                                         </li>

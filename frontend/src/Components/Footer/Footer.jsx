@@ -15,7 +15,7 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>About Us</h2>
                     <ul>
-                        <Link to='/legal-and-privacy' className={Style.navigation} ><li>Help Center</li></Link>
+                        <Link to='/help-center' className={Style.navigation} ><li>Help Center</li></Link>
                         <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><li>Terms & Conditions</li></Link>
                         <Link to='/legal-and-privacy' className={Style.navigation} ><li>Privacy Policy</li></Link>
                     </ul>
@@ -29,9 +29,8 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>Contact Us</h2>
                     <ul>
-                        <li>kerala </li>
-                        <li>Email: deal&buy@gmail.com</li>
-                        <li>Phone: +91 123 456 789</li>
+                        <li>Intuitive Soft Corporation, Mizone, Kannur , Kerala ,India. </li>
+                        <li>Email: contact.in@dealnbuy.co.in</li>
                     </ul>
                 </div>
             </div>

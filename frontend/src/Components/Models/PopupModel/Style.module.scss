@@ -1,0 +1,63 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+//------review container styling-------
+
+.popup {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+
+    .content {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.36);
+
+        .Title {
+            margin: 10px 0;
+
+            h3 {
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+       
+
+        .btnBox {
+            display: flex;
+            margin: 10px 0;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                padding: 10px 15px;
+                background-color: #fff;
+                color: $primary-color;
+                border: 1px solid $primary-color ;
+                outline: none;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: 600;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $primary-color;
+                    color: #fff;
+                    border: none;
+                }
+            }
+        }
+    }
+}
