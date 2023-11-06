@@ -66,7 +66,7 @@ const HelpToSuggestion = () => {
                                             <p>
                                                 We're constantly adding new features based upon the feedback provided by community
                                                 members. Please write in your suggestions to us at
-                                                <Link to="mailto:dealnbuy@gmail.com" className={Style.links}>dealnbuy@gmail.com</Link>
+                                                <Link to="mailto:contact.in@dealnbuy.co.in" className={Style.links}>contact.in@dealnbuy.co.in</Link>
                                             </p>
                                         </div>
 

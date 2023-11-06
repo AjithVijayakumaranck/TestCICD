@@ -5,6 +5,7 @@
 
 
 .Main_Container {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-top: 80px;
@@ -42,11 +43,11 @@
         }
     }
 
+   
 
     /*--------Registeration form-------  */
 
     .Container_Wrapper {
-
         background-color: #fff;
         width: 60%;
         min-height: 480px;
