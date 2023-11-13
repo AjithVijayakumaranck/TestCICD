@@ -38,7 +38,7 @@ const AdminHome = () => {
     loadProducts();
   }, [Admin]);
 
- 
+
 
 
   return (
@@ -52,13 +52,15 @@ const AdminHome = () => {
           <Widgets type="category" />
           <Widgets type="earning" />
         </div>
-        <div className={Style.charts}>
-          <Featured />
-          <Charts />
-        </div>
+
         <div className={Style.listContainer}>
           <div className={Style.listTitle}> Latest Products </div>
           <Table rows={LatestProducts} />
+        </div>
+
+        <div className={Style.charts}>
+          <Featured />
+          <Charts />
         </div>
 
       </div>

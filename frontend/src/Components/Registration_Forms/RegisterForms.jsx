@@ -301,6 +301,28 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
             </div>
           </div>
 
+          {/* selector input */}
+          {FormInputs.map((Input, index) => {
+            if (Input.type === "select") {
+              return (
+                <div key={index} className={Style.row}>
+                  <label>
+                    {Input.label}
+                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
+                  </label>
+                  <div className={Style.items}>
+                    <Select
+                      options={Input.options}
+                      className={Style.basic_single}
+                      name={Input.name}
+                      onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.value }) }}
+                    />
+                  </div>
+                </div>
+              );
+            }
+          })}
+
           {/* text input */}
           {FormInputs.map((Input, index) => {
             if (Input.type === "text") {
@@ -357,27 +379,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
           })}
 
 
-          {/* selector input */}
-          {FormInputs.map((Input, index) => {
-            if (Input.type === "select") {
-              return (
-                <div key={index} className={Style.row}>
-                  <label>
-                    {Input.label}
-                    {Input.important === "true" ? <span className="star">*</span> : null} {" "}
-                  </label>
-                  <div className={Style.items}>
-                    <Select
-                      options={Input.options}
-                      className={Style.basic_single}
-                      name={Input.name}
-                      onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.value }) }}
-                    />
-                  </div>
-                </div>
-              );
-            }
-          })}
+
 
 
           {/* Discriptions */}

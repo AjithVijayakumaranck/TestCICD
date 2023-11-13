@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Style from "./index.module.css"
 import { MdOutlineLocationOn, MdOutlineMail } from 'react-icons/md';
-import { BsCalendar3 } from 'react-icons/bs';
 import { FiClock } from 'react-icons/fi';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import instance from '../../instance/AxiosInstance';
@@ -50,7 +49,7 @@ const ContactForm = () => {
                                     <ul className={Style.cont_list}>
                                         <li>
                                             <i><MdOutlineLocationOn /></i>
-                                            <span>Intuitive Soft Corporation, Mizone, Kannur , Kerala ,India.</span>
+                                            <span>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur , Kerala ,India.</span>
                                         </li>
                                         <li>
                                             <i><MdOutlineMail /></i>
@@ -66,15 +65,8 @@ const ContactForm = () => {
                                         <li >
                                             <i><FiClock /></i>
                                             <div>
-                                                <span>Monday-Friday</span>
-                                                <span>11am-7pm ET</span>
-                                            </div>
-                                        </li>
-                                        <li >
-                                            <i><BsCalendar3 /></i>
-                                            <div>
-                                                <span>Saturday</span>
-                                                <span>11am-6pm ET</span>
+                                                <span>Monday-Saturday</span>
+                                                <span>10am-7pm</span>
                                             </div>
                                         </li>
                                     </ul>

@@ -63,7 +63,7 @@ const HelpToContact = () => {
                                             <p>
                                                 To get in touch with us to share a marketing proposal, a partnership idea or want us to be your
                                                 classifieds partner, please contact us at
-                                                <Link to="mailto:contact.in@dealnbuy.co.in" className={Style.links}>contact.in@dealnbuy.co.in</Link>
+                                                <Link to="mailto:contact.in@dealnbuy.co.in" className={Style.links}> contact.in@dealnbuy.co.in </Link>
                                                 or on Contact Us page and provide us with below details in your email.
                                             </p>
                                             <p><span className={Style.point}><TbPointFilled /></span>Your name/name of company</p>
