@@ -158,44 +158,26 @@
                     list-style: none;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                     align-items: center;
                     width: 100%;
-                    padding: 0 40px;
 
                     @include breakpoint(md) {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
                     }
-
 
                     li {
                         display: flex;
                         align-items: center;
-                        text-align: center;
-                        padding: 5px 40px;
+                        justify-content: space-between;
                         width: 100%;
 
                         label {
-                            width: 50%;
                             text-align: start;
-                            margin-left: 100px;
-
-                            @include breakpoint(md) {
-                                margin-left: 30px;
-                            }
                         }
 
                         span {
-                            width: 50%;
-                            margin-left: 100px;
-                            text-align: start;
-
-                            @include breakpoint(md) {
-                                margin-left: 140px;
-                            }
+                            text-align: end;
                         }
                     }
                 }
@@ -485,9 +467,9 @@
             color: #fff;
 
             @include breakpoint(md) {
-               font-size: 22px;
+                font-size: 22px;
             }
-    
+
         }
     }
 

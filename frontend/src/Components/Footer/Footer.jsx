@@ -8,7 +8,6 @@ const Footer = () => {
             <div className={Style.grid} >
                 <div className={Style.box}>
                     <Link to='/' className={Style.navigation} > <h1>DealNBuy</h1> </Link>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et,sollicitudin elit at amet.</p>
 
                 </div>
 
@@ -29,7 +28,7 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>Contact Us</h2>
                     <ul>
-                        <li>Intuitive Soft Corporation, Mizone, Kannur , Kerala ,India. </li>
+                        <li>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur , Kerala ,India. </li>
                         <li>Email: contact.in@dealnbuy.co.in</li>
                     </ul>
                 </div>
