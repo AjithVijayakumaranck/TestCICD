@@ -111,7 +111,6 @@ module.exports = {
     },
 
     //get single subscription
-
     getSubscription: async (req, res) => {
         try {
             const { subscriptionId } = req.params

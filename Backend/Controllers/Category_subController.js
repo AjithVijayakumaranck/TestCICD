@@ -9,35 +9,35 @@ module.exports = {
 
     //getting Categories
 
-    getCategories: async (req,res)=>{
+    getCategories: async (req, res) => {
         try {
-            const categories = await CATEGORY.find({deleted:false})
-            if(!categories){
-                res.status(400).json({message:"Category not found"})
-            }else{
+            const categories = await CATEGORY.find({ deleted: false })
+            if (!categories) {
+                res.status(400).json({ message: "Category not found" })
+            } else {
                 res.status(200).json(categories)
             }
         } catch (error) {
-            res.status(500).json({message:"something went wrong"})
+            res.status(500).json({ message: "something went wrong" })
         }
     },
 
     //get single category 
-    getSingleCategory: async (req,res)=>{
+    getSingleCategory: async (req, res) => {
         {
             try {
                 const categoryId = req.query.categoryId
-    
-                const category = await CATEGORY.findOne({_id: categoryId}).populate("subcategory")
 
-                if(category){
+                const category = await CATEGORY.findOne({ _id: categoryId }).populate("subcategory")
+
+                if (category) {
                     res.status(200).json(category)
-                }else{
-                    res.status(400).json({message:"Category not found"})
+                } else {
+                    res.status(400).json({ message: "Category not found" })
                 }
-                
+
             } catch (error) {
-                res.status(500).json({message:"Something went wrong"})
+                res.status(500).json({ message: "Something went wrong" })
             }
         }
     },
@@ -45,28 +45,28 @@ module.exports = {
     //add new category
     addCategory: async (req, res) => {
         try {
-            const { category} = req.body
+            const { category } = req.body
             const categoryInfo = await CATEGORY.findOne({ categoryName: category })
             if (categoryInfo) {
                 res.status(400).json({ message: "Category already exists" })
             } else {
 
                 const File = req.file.path;
-                cloudUpload(File,"Category") .then((result,transformedURL)=>{
-           
+                cloudUpload(File, "Category").then((result, transformedURL) => {
+
                     const categoryTemplate = new CATEGORY({
                         categoryName: category,
-                        icon : result
+                        icon: result
                     })
                     categoryTemplate.save().then(() => {
                         res.status(200).json({ message: "Category successfully added" })
                     }).catch((err) => {
-         
+
                         res.status(400).json({ message: "Category failed to be added" })
                     })
-                }).catch((error)=>{
- 
-                    res.status(400).json({message:"cloud upload failed"})
+                }).catch((error) => {
+
+                    res.status(400).json({ message: "cloud upload failed" })
                 })
 
             }
@@ -103,13 +103,13 @@ module.exports = {
             const categoryInfo = await CATEGORY.findOne({ _id: categoryId })
             if (categoryInfo) {
                 const File = req.file.path
-                cloudUpload(File,"Catagory").then((result)=>{
-                    CATEGORY.updateOne({ _id: categoryId }, { categoryName: CategoryDet ,icon : result}).then(() => {
+                cloudUpload(File, "Catagory").then((result) => {
+                    CATEGORY.updateOne({ _id: categoryId }, { categoryName: CategoryDet, icon: result }).then(() => {
                         res.status(200).json({ message: "Successfully updated category" })
                     }).catch(() => {
                         res.status(500).json({ message: "something went wrong" })
                     })
-                }).catch((err)=>{
+                }).catch((err) => {
                     res.status(400).json({ message: "Image upload failed" })
                 })
             } else {
@@ -122,24 +122,41 @@ module.exports = {
 
 
 
+    //add filter inputs category
+    addFilters: async (req, res) => {
+        try {
+            const { categoryId, filterInputs } = req.body
+            const categoryExist = CATEGORY.findById(categoryId)
+            if (!categoryExist) {
+                res.status(404).json({ message: 'Category not found' })
+            } else {
+                CATEGORY.updateOne({ _id: categoryId }, { filters: filterInputs })
+            }
+        } catch (error) {
+            res.status(500).json(error.message)
+        }
+    },
+
+
+
 
     //Subcategory Management
 
-    getSubCategories: async (req,res)=>{
+    getSubCategories: async (req, res) => {
         try {
-            const subcategories = await SUBCAT.find({deleted:false})
-            if(subcategories){
+            const subcategories = await SUBCAT.find({ deleted: false })
+            if (subcategories) {
                 res.status(200).json(subcategories)
-            }else{
-                res.status(404).json({messasge:"Empty subcategory"})
+            } else {
+                res.status(404).json({ messasge: "Empty subcategory" })
             }
         } catch (error) {
-            res.status(500).json({messasge:"something went wrong"})
+            res.status(500).json({ messasge: "something went wrong" })
         }
     },
 
     //add subcategory
-     addSubcategory: async (req, res) => {
+    addSubcategory: async (req, res) => {
         try {
 
             const { categoryId, subCategory, formInputs } = req.body
@@ -150,20 +167,20 @@ module.exports = {
                 const subCatTemplate = new SUBCAT({
                     subcategory: subCategory,
                     formInputs: [...formInputs],
-                    category:categoryId
+                    category: categoryId
                 })
                 subCatTemplate.save().then((response) => {
                     CATEGORY.updateOne({ _id: categoryId }, { $push: { subcategory: response._id } })
-                    .then((response) => {
-                        if (response.nMatched === 0) {
-                            res.status(400).json({ message: "Category does not exist" })
-                        } else {
-                            res.status(200).json({ message: "Successfully added" })
-                        }
-                    }).catch((err) => {
-      
-                        res.status(500).json({ message: "Something went wrong" })
-                    })
+                        .then((response) => {
+                            if (response.nMatched === 0) {
+                                res.status(400).json({ message: "Category does not exist" })
+                            } else {
+                                res.status(200).json({ message: "Successfully added" })
+                            }
+                        }).catch((err) => {
+
+                            res.status(500).json({ message: "Something went wrong" })
+                        })
                 })
             }
         } catch (error) {
@@ -173,69 +190,69 @@ module.exports = {
 
     },
 
-    getSingleSubcategory: async (req,res)=>{
+    getSingleSubcategory: async (req, res) => {
         {
             try {
-     
+
                 const subCategoryId = req.query.subCategoryId
 
-                const subCategory = await SUBCAT.findOne({_id: subCategoryId})
-      
-                if(subCategory){
+                const subCategory = await SUBCAT.findOne({ _id: subCategoryId })
+
+                if (subCategory) {
                     res.status(200).json(subCategory)
-                }else{
-             
-                    res.status(400).json({message:"subcategory not found"})
+                } else {
+
+                    res.status(400).json({ message: "subcategory not found" })
                 }
-                
+
             } catch (error) {
-    
-                res.status(500).json({message:"Something went wrong"})
+
+                res.status(500).json({ message: "Something went wrong" })
             }
         }
     },
 
     //delete Subcategory
-    deleteSubCategory :async (req,res)=>{
+    deleteSubCategory: async (req, res) => {
         try {
-            const {categoryId,subcategoryId}= req.query
-            const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId})
-            if(subCategoryInfo){
-                SUBCAT.updateOne({_id:subcategoryId},{deleted:true}).then(()=>{
-                   CATEGORY.updateOne({_id:categoryId},{$pull:{subcategory:subcategoryId }}).then(()=>{
-                    res.status(200).json({message:"successfylly deleted"})
-                   }).catch((err)=>{
-                    res.status(500).json({message:err.message});
-                   })
-                }).catch((err)=>{
-                    res.status(500).json({message:err.message});
-                   })
-            }else{
-                res.status(500).json({message:"Subcategory does not exist"});
+            const { categoryId, subcategoryId } = req.query
+            const subCategoryInfo = await SUBCAT.findOne({ _id: subcategoryId })
+            if (subCategoryInfo) {
+                SUBCAT.updateOne({ _id: subcategoryId }, { deleted: true }).then(() => {
+                    CATEGORY.updateOne({ _id: categoryId }, { $pull: { subcategory: subcategoryId } }).then(() => {
+                        res.status(200).json({ message: "successfylly deleted" })
+                    }).catch((err) => {
+                        res.status(500).json({ message: err.message });
+                    })
+                }).catch((err) => {
+                    res.status(500).json({ message: err.message });
+                })
+            } else {
+                res.status(500).json({ message: "Subcategory does not exist" });
             }
-            
+
         } catch (err) {
-            res.status(500).json({message:err.message});
+            res.status(500).json({ message: err.message });
         }
     },
 
 
     //update subcategory
-    updateSubcategory: async (req,res)=>{
+    updateSubcategory: async (req, res) => {
         try {
-            const {subcategoryId,newInfo,formInputs,categoryId}=req.body 
-            const subCategoryInfo = await SUBCAT.findOne({_id:subcategoryId}) 
-            if(subCategoryInfo){
-              SUBCAT.updateOne({_id:subcategoryId},{subcategory:newInfo,formInputs:formInputs,category:categoryId}).then(()=>{
-                res.status(200).json({message:"Successfully updated"})
-              }).catch((err)=>{
-                res.status(500).json({message:"Error updating"})
-              })
-            }  else{
-                res.status(404).json({message:"subcategory not found"})
+            const { subcategoryId, newInfo, formInputs, categoryId } = req.body
+            const subCategoryInfo = await SUBCAT.findOne({ _id: subcategoryId })
+            if (subCategoryInfo) {
+                SUBCAT.updateOne({ _id: subcategoryId }, { subcategory: newInfo, formInputs: formInputs, category: categoryId }).then(() => {
+                    res.status(200).json({ message: "Successfully updated" })
+                }).catch((err) => {
+                    res.status(500).json({ message: "Error updating" })
+                })
+            } else {
+                res.status(404).json({ message: "subcategory not found" })
             }
         } catch (error) {
-            res.status(500).json({message:"Something went wrong"})
+            res.status(500).json({ message: "Something went wrong" })
 
         }
     },

@@ -55,7 +55,7 @@ const productSchema = new schema({
     default:false
   },
   images: [{
-    type: schema.Types.Mixed
+    type: schema.Types.Mixed 
   }]
   ,
   deleted: {
