@@ -20,7 +20,6 @@ module.exports = {
                     state,
                     region 
                 } = req.body
-            console.log(req.body,"files");
             const parsedDetails = JSON.parse(otherDetails);
             const Upload = req.files.map((file) => {
                 let locaFilePath = file.path;
@@ -67,7 +66,6 @@ module.exports = {
                             USER.updateOne({_id: userId},{
                                 $inc: {AdCount: -1}
                             }).then((response)=>{
-                                console.log(response);
                                 res.status(200).json({ message: 'ad posted successfully' })
                             })
                             .catch((err)=>{
@@ -108,7 +106,6 @@ module.exports = {
 
             const {page} = req.query
             const limit = 12
-
             const productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
