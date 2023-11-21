@@ -130,7 +130,11 @@ module.exports = {
             if (!categoryExist) {
                 res.status(404).json({ message: 'Category not found' })
             } else {
-                CATEGORY.updateOne({ _id: categoryId }, { filters: filterInputs })
+                CATEGORY.updateOne({ _id: categoryId }, { filters: filterInputs }).then(()=>{
+                    res.status(200).json({ message:"Filter added successfully" })
+                }).catch((error) => 
+                { res.status(500).json({ message: "Something went wrong"})}
+                )
             }
         } catch (error) {
             res.status(500).json(error.message)
