@@ -12,8 +12,6 @@ router.get('/get_singlecategory',Category_subController.getSingleCategory) //get
 
 router.post('/add_category',authoriseJwt,upload.single("file"),Category_subController.addCategory) // add new category record
 
-router.post('/add_filter',authoriseJwt,Category_subController.addFilters) // add filter inputs
-
 router.delete('/delete_category',authoriseJwt,Category_subController.deleteCategory) // delete existing category record
 
 router.put('/update_category',authoriseJwt,Category_subController.updateCategory) // update existing category record 
