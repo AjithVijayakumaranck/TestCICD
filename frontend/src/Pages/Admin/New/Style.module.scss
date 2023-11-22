@@ -43,7 +43,6 @@
                     height: 150px;
                     border-radius: 0%;
                     object-fit: scale-down;
-
                 }
             }
 
@@ -96,6 +95,7 @@
                             display: flex;
                             align-items: center;
                             gap: 10px;
+                            margin-bottom: 10px;
 
                             span {
                                 color: red;
@@ -108,19 +108,36 @@
 
                         input {
                             width: 100%;
-                            padding: 10px 0;
-                            border: none;
+                            height: 40px;
                             outline: none;
+                            border-radius: 5px;
+                            font-size: 15px;
                             background: none;
-                            border-bottom: 1px solid gray;
+                            text-align: center;
+                            border: 1px solid #ccc;
+                            --moz-appearance: none;
+                        }
+
+                        input[type="number"] {
+                            -moz-appearance: textfield;
+                            appearance: textfield;
+
+                            &::-webkit-inner-spin-button,
+                            &::-webkit-outer-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
+                            }
                         }
 
                         select {
                             width: 100%;
-                            padding: 10px 0;
-                            border: none;
+                            height: 40px;
                             outline: none;
-                            border-bottom: 1px solid gray;
+                            border-radius: 5px;
+                            font-size: 15px;
+                            background: none;
+                            text-align: center;
+                            border: 1px solid #ccc;
                         }
                     }
 
@@ -155,13 +172,15 @@
                         display: flex;
                         flex-direction: column;
                         gap: 20px;
-                        
+
                         textarea {
-                            height: 6rem;
-                            width: 100%;
-                            border: none;
+                            height: 8rem;
                             outline: none;
-                            border-bottom: 1px solid gray;
+                            border-radius: 5px;
+                            padding: 10px;
+                            font-size: 15px;
+                            background: none;
+                            border: 1px solid #ccc;
                         }
 
                         .formWrapper {
@@ -202,19 +221,36 @@
 
                                 input {
                                     width: 100%;
-                                    padding: 10px 0;
-                                    border: none;
+                                    height: 40px;
                                     outline: none;
-                                    border-bottom: 1px solid gray;
+                                    border-radius: 5px;
+                                    font-size: 15px;
+                                    background: none;
+                                    text-align: center;
+                                    border: 1px solid #ccc;
+                                    --moz-appearance: none;
+                                }
+
+                                input[type="number"] {
+                                    -moz-appearance: textfield;
+                                    appearance: textfield;
+
+                                    &::-webkit-inner-spin-button,
+                                    &::-webkit-outer-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
+                                    }
                                 }
 
                                 textarea {
-                                    height: 8rem;
                                     width: 100%;
-                                    padding: 10px 0;
-                                    border: none;
+                                    height: 8rem;
                                     outline: none;
-                                    border-bottom: 1px solid gray;
+                                    border-radius: 5px;
+                                    padding: 10px 2px;
+                                    font-size: 15px;
+                                    background: none;
+                                    border: 1px solid #ccc;
                                 }
                             }
 
@@ -239,9 +275,11 @@
 
                             .formSelect {
                                 width: 15%;
+                                display: flex;
+                                flex-direction: column;
 
                                 label {
-                                    margin: 0 5px;
+                                    margin-bottom: 10px;
 
                                     span {
                                         color: red;
@@ -251,10 +289,13 @@
 
                                 select {
                                     width: 100%;
-                                    padding: 10px 0;
-                                    border: none;
+                                    height: 40px;
                                     outline: none;
-                                    border-bottom: 1px solid gray;
+                                    border-radius: 5px;
+                                    font-size: 15px;
+                                    background: none;
+                                    text-align: center;
+                                    border: 1px solid #ccc;
                                 }
                             }
 
@@ -272,7 +313,9 @@
 
                                 //DocumentForm styling
                                 .formDescrption {
-                                    width: 80%;
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
 
                                     textarea {
                                         margin-top: 0.5rem;

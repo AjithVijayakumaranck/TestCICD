@@ -5,7 +5,7 @@ import authInstance from '../../../instance/AuthInstance';
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2';
 import { Link, useNavigate } from 'react-router-dom'
 import Star from '../../ReviewStars/Star';
-import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { UserContext } from '../../../Contexts/UserContext';
 
 const OwnCard = ({ product, reload }) => {
@@ -79,19 +79,6 @@ const OwnCard = ({ product, reload }) => {
         }
     };
 
-    const handleDelete = (e) => {
-        e.preventDefault()
-        try {
-            authInstance.delete(`/api/user/${e}`).then((Response) => {
-                console.log("error");
-            }).catch((err) => {
-                console.log(err);
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
 
     return (
         <div className={Style.products} >
@@ -105,13 +92,9 @@ const OwnCard = ({ product, reload }) => {
                     <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
                 </Link>
                 <div className={Style.productAction}>
-                    {product?.userId === User?._id ?
-                        <span onClick={(e) => handleDelete(e)} > <i><AiOutlineDelete /></i> Remove </span>
-                        :
-                        <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
-                            <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
-                        </span>
-                    }
+                    <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
+                        <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
+                    </span>
                     <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
                 </div>
             </div>

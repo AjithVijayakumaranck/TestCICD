@@ -48,32 +48,16 @@ app.use(express.static(__dirname + "/public"));
 app.use("/uploads", express.static("uploads"));
 
 
-
-
-//cors
-
-const allowedOrigins = [
-    "https://www.dealnbuy.in",
-    "https://dealnbuy.in",
-    "http://localhost:3000"
-];
-
-app.use(cors({
-    origin: allowedOrigins,
-    methods: "GET,POST,PUT,DELETE",
-}))
-
-const connect = require('./Connections/db')
-
-app.use(bodyParser.urlencoded({
-    extended: true
-  }));
-
 app.use(session({ secret: 'intutive', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 
+//cors
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: "GET,POST,PUT,DELETE",
+}))
 
 app.use(express.json())
 

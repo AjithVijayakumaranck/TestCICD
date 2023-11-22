@@ -23,22 +23,16 @@ const CategoryList = () => {
       selector: (row) => row.categoryName,
       sortable: true,
     },
-
-    {
-      name: 'ID',
-      selector: (row) => row._id,
-      sortable: true,
-      width: '250px'
-    },
     {
       name: 'Options',
       cell: (row) => (
         <div className={Style.optionsContainer}>
+          <button className={Style.viewButton} onClick={() => navigate(`/admin/category/add-filter/${row._id}`)}> Add Filter </button>
           <button className={Style.viewButton} onClick={() => navigate(`/admin/category/edit/${row._id}`)}> Edit </button>
           <button className={Style.deleteButton} onClick={() => handleDelete(row._id)}> Block </button>
         </div>
       ),
-      width: '140px'
+      width: '300px'
     },
   ];
 
