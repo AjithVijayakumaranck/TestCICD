@@ -126,6 +126,7 @@
   font-size: 1rem;
   line-height: 1.25;
   color: #333333;
+  overflow: hidden;
 }
 .products .productbody .product_price {
   display: flex;

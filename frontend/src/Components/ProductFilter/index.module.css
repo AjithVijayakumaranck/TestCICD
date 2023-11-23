@@ -40,6 +40,27 @@
 }
 .Container .top .selectedFilterDiv {
   margin-bottom: 0.5rem;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1rem;
+}
+.Container .top .selectedFilterDiv .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f8f8f8;
+  min-width: 70px;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 25px;
+  gap: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
+.Container .top .selectedFilterDiv .wrap span {
+  cursor: pointer;
 }
 .Container .bottom .accordion {
   display: flex;

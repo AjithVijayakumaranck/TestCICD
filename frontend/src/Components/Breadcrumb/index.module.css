@@ -2,7 +2,7 @@
   border-bottom: 0.1rem solid rgba(235, 235, 235, 0.55);
 }
 .breadcrumb .container {
-  padding: 1.5rem 3rem;
+  padding: 1rem 3rem;
 }
 @media (max-width: 550px) {
   .breadcrumb .container {

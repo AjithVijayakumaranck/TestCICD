@@ -10,7 +10,6 @@ import Select from "react-select";
 
 const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory, onMin, onMax, onState, onDistrict, otherSelectedFilter }) => {
 
-
     const [CategoryToggle, SetCategoryToggle] = useState(true)
     const [LocationToggle, SetLocationToggle] = useState(true)
 
@@ -115,6 +114,7 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
         load();
     }
 
+
     return (
         <div className={Style.Container}>
 
@@ -140,7 +140,6 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                         })}
                     </div>
                 }
-
             </div>
 
             <div className={Style.bottom}>
@@ -302,6 +301,41 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                                                             }}
                                                         />
                                                         <label htmlFor={Data}>{Data}</label>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+
+                    {FilterOptions.map((FilterData, index) => {
+                        if (FilterData.type === "range") {
+                            return (
+                                <div className={Style.accordion_item} key={index}>
+                                    <div className={Style.titleDiv}>
+                                        <h3>{FilterData.label}</h3>
+                                    </div>
+                                    <div className={Style.inputContent} >
+                                        <div className={Style.radioFields} >
+                                            {FilterData.options.map(([DataLabel, DataOption], index) => {
+                                                return (
+                                                    <div className={Style.radioField_wrapper} key={index}>
+                                                        <input
+                                                            type="radio"
+                                                            id={DataLabel}
+                                                            name={FilterData.label}
+                                                            value={DataLabel}
+                                                            checked={selectedOption[FilterData.label] === DataLabel}
+                                                            onChange={(e) => {
+                                                                setSelectedOption({ ...selectedOption, [FilterData.label]: e.target.value });
+                                                                otherSelectedFilter({ [FilterData.label]: DataOption });
+                                                                setFilterCollection({ ...filterCollection, [FilterData.label]: e.target.value });
+                                                            }}
+                                                        />
+                                                        <label htmlFor={DataLabel}>{DataLabel}</label>
                                                     </div>
                                                 )
                                             })}

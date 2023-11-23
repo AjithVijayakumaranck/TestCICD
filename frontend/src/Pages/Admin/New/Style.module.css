@@ -120,6 +120,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 .new .newContainer .top .right form .formInput label span,
 .new .newContainer .bottom .right form .formInput label span,
@@ -138,21 +139,45 @@
 .new .newContainer .center .right form .formInput input,
 .new .newContainer .bottomTable .right form .formInput input {
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  height: 40px;
   outline: none;
+  border-radius: 5px;
+  font-size: 15px;
   background: none;
-  border-bottom: 1px solid gray;
+  text-align: center;
+  border: 1px solid #ccc;
+  --moz-appearance: none;
+}
+.new .newContainer .top .right form .formInput input[type=number],
+.new .newContainer .bottom .right form .formInput input[type=number],
+.new .newContainer .center .right form .formInput input[type=number],
+.new .newContainer .bottomTable .right form .formInput input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+}
+.new .newContainer .top .right form .formInput input[type=number]::-webkit-inner-spin-button, .new .newContainer .top .right form .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottom .right form .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottom .right form .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .center .right form .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .center .right form .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottomTable .right form .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottomTable .right form .formInput input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new .newContainer .top .right form .formInput select,
 .new .newContainer .bottom .right form .formInput select,
 .new .newContainer .center .right form .formInput select,
 .new .newContainer .bottomTable .right form .formInput select {
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  height: 40px;
   outline: none;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  text-align: center;
+  border: 1px solid #ccc;
 }
 .new .newContainer .top .right form .featuresForm,
 .new .newContainer .bottom .right form .featuresForm,
@@ -194,11 +219,13 @@
 .new .newContainer .bottom .right form .formproperty textarea,
 .new .newContainer .center .right form .formproperty textarea,
 .new .newContainer .bottomTable .right form .formproperty textarea {
-  height: 6rem;
-  width: 100%;
-  border: none;
+  height: 8rem;
   outline: none;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  background: none;
+  border: 1px solid #ccc;
 }
 .new .newContainer .top .right form .formproperty .formWrapper,
 .new .newContainer .bottom .right form .formproperty .formWrapper,
@@ -260,10 +287,44 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input {
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  height: 40px;
   outline: none;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  text-align: center;
+  border: 1px solid #ccc;
+  --moz-appearance: none;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput input[type=number],
+.new .newContainer .top .right form .formproperty .formWrap .formInput input[type=number],
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput input[type=number],
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput input[type=number],
+.new .newContainer .center .right form .formproperty .formWrapper .formInput input[type=number],
+.new .newContainer .center .right form .formproperty .formWrap .formInput input[type=number],
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number],
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+          appearance: textfield;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button, .new .newContainer .top .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .top .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .top .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .center .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .center .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formInput textarea,
 .new .newContainer .top .right form .formproperty .formWrap .formInput textarea,
@@ -273,12 +334,14 @@
 .new .newContainer .center .right form .formproperty .formWrap .formInput textarea,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput textarea,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formInput textarea {
-  height: 8rem;
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  height: 8rem;
   outline: none;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px 2px;
+  font-size: 15px;
+  background: none;
+  border: 1px solid #ccc;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formButtonWrap,
 .new .newContainer .top .right form .formproperty .formWrap .formButtonWrap,
@@ -317,6 +380,8 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect {
   width: 15%;
+  display: flex;
+  flex-direction: column;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect label,
 .new .newContainer .top .right form .formproperty .formWrap .formSelect label,
@@ -326,7 +391,7 @@
 .new .newContainer .center .right form .formproperty .formWrap .formSelect label,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label {
-  margin: 0 5px;
+  margin-bottom: 10px;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect label span,
 .new .newContainer .top .right form .formproperty .formWrap .formSelect label span,
@@ -348,10 +413,13 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect select,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect select {
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  height: 40px;
   outline: none;
-  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  text-align: center;
+  border: 1px solid #ccc;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .newform,
 .new .newContainer .top .right form .formproperty .formWrap .newform,
@@ -385,7 +453,9 @@
 .new .newContainer .center .right form .formproperty .formWrap .newform .formDescrption,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formDescrption,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formDescrption {
-  width: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .newform .formDescrption textarea,
 .new .newContainer .top .right form .formproperty .formWrap .newform .formDescrption textarea,

@@ -23,17 +23,20 @@ const FilterForm = ({ title }) => {
     label: "",
     type: "",
     options: [],
-
   })
 
-
+  const [MinRange, SetMinRange] = useState("");
+  const [MaxRange, SetMaxRange] = useState("");
   const [OptionData, SetOptionData] = useState("");
   const [Options, SetOptions] = useState([]);
 
   const optionHandler = (e) => {
-    if (CurrentInput.type === "select") {
-      SetOptions([...Options, { value: OptionData, label: OptionData }])
-      SetOptionData("")
+    if (CurrentInput.type === "range") {
+      const newOption = [OptionData, { "min": MinRange, "max": MaxRange }];
+      SetOptions([...Options, newOption]);
+      SetOptionData("");
+      SetMinRange("");
+      SetMaxRange("");
     } else if (CurrentInput.type === "radio") {
       SetOptions([...Options, OptionData])
       SetOptionData("")
@@ -50,6 +53,7 @@ const FilterForm = ({ title }) => {
       label: "",
       type: "",
       options: [],
+
     })
     selectRef.current.value = ''
   };
@@ -80,6 +84,7 @@ const FilterForm = ({ title }) => {
     SetFormInputs(updatedProperties);
   };
 
+  // handle remove option from table data
   const handleOptionsRemove = (index) => {
     const updatedOptions = [...Options];
     updatedOptions.splice(index, 1);
@@ -104,14 +109,12 @@ const FilterForm = ({ title }) => {
         </div>
 
         <div className={Style.center}>
-
           <div className={Style.right}>
 
             <form onSubmit={(e) => handleSubmit(e)}>
-
               <div className={Style.formproperty}>
-
                 <div className={Style.formWrapper}>
+
                   <div className={Style.formInput}>
                     <label>Property Name <span>*</span> </label>
                     <input type="text"
@@ -128,6 +131,7 @@ const FilterForm = ({ title }) => {
                       <option value="" selected>Choose here</option>
                       <option value="text" >Text</option>
                       <option value="radio" >Radio</option>
+                      <option value="range" >Range</option>
                     </select>
                   </div>
 
@@ -135,7 +139,7 @@ const FilterForm = ({ title }) => {
                     <span className={Style.propertyBtn} onClick={handleAddProperty}>Create</span>
                   </div>
 
-                  {CurrentInput.type === 'select' || CurrentInput.type === 'radio' ?
+                  {CurrentInput.type === 'radio' ?
                     <div className={Style.newform} >
                       <div className={Style.formInput}>
                         <label>Options <span>*</span> </label>
@@ -152,8 +156,46 @@ const FilterForm = ({ title }) => {
                     </div>
                     : null
                   }
-                </div>
 
+                  {CurrentInput.type === 'range' ?
+                    <div className={Style.newform} >
+                      <div className={Style.formInput}>
+                        <label>Options Name <span>*</span> </label>
+                        <input type="text"
+                          placeholder="Text here"
+                          id='proertyname'
+                          value={OptionData}
+                          onChange={(e) => { SetOptionData(e.target.value) }}
+                        />
+                      </div>
+                      <div className={Style.formInput}>
+                        <label>Min <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="Text here"
+                          id='propertyname'
+                          value={MinRange}
+                          onChange={(e) => { SetMinRange(e.target.value) }}
+                        />
+                      </div>
+                      <div className={Style.formInput}>
+                        <label>Max <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="Text here"
+                          id='propertyname'
+                          value={MaxRange}
+                          onChange={(e) => { SetMaxRange(e.target.value) }}
+                        />
+                      </div>
+                      <div className={Style.formbtn}>
+                        <span className={Style.propertyBtn} onClick={optionHandler} >Add</span>
+                      </div>
+                    </div>
+                    : null
+                  }
+
+                </div>
               </div>
 
               <div className={Style.formBtn}>
@@ -167,7 +209,7 @@ const FilterForm = ({ title }) => {
           </div>
         </div>
 
-        {Options.length !== 0 ?
+        {CurrentInput.type === 'radio' && Options.length !== 0 && (
           <div className={Style.bottomTable}>
             <h1 className={Style.title}>Options</h1>
             {Options.map((data, index) => {
@@ -175,7 +217,7 @@ const FilterForm = ({ title }) => {
                 <div className={Style.details} key={index}>
                   <div className={Style.left}>
                     <div className={Style.detailItem}>
-                      <span className={Style.itemValue}>{CurrentInput.type === "select" ? data.value : data}</span>
+                      <span className={Style.itemValue}>{data}</span>
                     </div>
                   </div>
                   <div className={Style.right}>
@@ -185,8 +227,33 @@ const FilterForm = ({ title }) => {
               )
             })}
           </div>
-          : null
-        }
+        )}
+
+        {CurrentInput.type === 'range' && Options.length !== 0 && (
+          <div className={Style.bottomTable}>
+            <h1 className={Style.title}>Range Options</h1>
+            {Options.map((data, index) => {
+              const [label, options] = data;
+              return (
+                <div className={Style.details} key={index}>
+                  <div className={Style.left}>
+                    <div>
+                      <span>{label} : {" "} </span>
+                      <span>{" "} min - max = </span>
+                      {options && options.min && options.max && (
+                        <span>{" "}{options.min} - {options.max}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className={Style.right}>
+                    <button onClick={() => handleOptionsRemove(index)}><Delete /></button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
 
         <div className={Style.bottomTable}>
           <h1 className={Style.title}>Information</h1>
@@ -204,7 +271,24 @@ const FilterForm = ({ title }) => {
                     <span className={Style.itemValue}>{formInput.type}</span>
                   </div>
 
-                  {FormOptions !== "" ?
+                  {formInput.type === 'range' ?
+                    <div className={Style.option_wrap}>
+                      <h3 className={Style.option_title}>Options:</h3>
+                      <div className={Style.Items}>
+                        {FormOptions.map((data, index) => {
+                          const [label, options] = data;
+                          return (
+                            <div className={Style.Item} key={index}>
+                              <span className={Style.itemValue}> {label} : {" "}</span>
+                              {options && options.min && options.max && (
+                                <span className={Style.itemValue}> {" "} {options.min} - {options.max} {" "} </span>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    :
                     <div className={Style.option_wrap}>
                       <h3 className={Style.option_title}>Options:</h3>
 
@@ -212,16 +296,14 @@ const FilterForm = ({ title }) => {
                         {FormOptions.map((data, index) => {
                           return (
                             <div className={Style.Item} key={index}>
-                              <span className={Style.itemValue}>{formInput.type === "select" ? data.value : data}, </span>
+                              <span className={Style.itemValue}>{data}, </span>
                             </div>
                           )
                         })}
                       </div>
 
                     </div>
-                    : null
                   }
-
                 </div>
 
                 <div className={Style.right}>
