@@ -34,6 +34,18 @@ const CategoryProductPage = () => {
     const [DistrictValue, SetDistrictValue] = useState("");
     const [SortedProducts, SetSortedProducts] = useState([]);
 
+    //Scroll to top
+    function ScrollToTopOnMount() {
+        window.scrollTo(0, 0);
+        return null;
+    }
+
+    //Call Scroll To Top 
+    useEffect(() => {
+        ScrollToTopOnMount();
+    }, []);
+
+    //Get the Category Details
     useEffect(() => {
         instance.get(`/api/category/get_SingleCategory?categoryId=${categoryId}`).then((response) => {
             SetCategories(response.data);
@@ -110,7 +122,7 @@ const CategoryProductPage = () => {
         SetMax(value);
         loadProducts();
     };
-    
+
     const HandleSubcategory = (value) => {
         SetSubValue(value);
         loadProducts();
@@ -131,14 +143,7 @@ const CategoryProductPage = () => {
     };
 
 
-    function ScrollToTopOnMount() {
-        window.scrollTo(0, 0);
-        return null;
-    }
 
-    useEffect(() => {
-        ScrollToTopOnMount();
-    }, []);
 
     return (
         <div className={Style.page_wrapper}>
