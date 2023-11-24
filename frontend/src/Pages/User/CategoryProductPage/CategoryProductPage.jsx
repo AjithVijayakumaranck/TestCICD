@@ -123,7 +123,7 @@ const CategoryProductPage = () => {
         loadProducts();
     };
     const HandleOtherFilter = (value) => {
-        SetOtherSelectedFilter({ ...value })
+        SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
     }
 
 
