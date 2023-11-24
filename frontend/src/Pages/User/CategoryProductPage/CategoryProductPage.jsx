@@ -110,21 +110,25 @@ const CategoryProductPage = () => {
         SetMax(value);
         loadProducts();
     };
+    
     const HandleSubcategory = (value) => {
         SetSubValue(value);
         loadProducts();
     };
+
     const HandleState = (value) => {
         SetStateValue(value);
         loadProducts();
     };
+
+    const HandleOtherFilter = (value) => {
+        SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
+    }
+
     const HandleDistrict = (value) => {
         SetDistrictValue(value);
         loadProducts();
     };
-    const HandleOtherFilter = (value) => {
-        SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
-    }
 
 
     function ScrollToTopOnMount() {
