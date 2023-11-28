@@ -19,6 +19,9 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
     const [selectedOption, setSelectedOption] = useState({});
     const [filterCollection, setFilterCollection] = useState({});
 
+    const [minValue, setMinValue] = useState(null);
+    const [maxValue, setMaxValue] = useState(null);
+
     const [filterBySubcategory, setFilterBySubcategory] = useState(null);
     const [filterByState, setFilterByState] = useState(null);
     const [filterByDistrict, setFilterByDistrict] = useState(null);
@@ -97,9 +100,43 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
     };
 
     const HandleInputSearch = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         otherSelectedFilter(selectedOption)
         setFilterCollection({ ...filterCollection, ...selectedOption });
+    }
+
+    const HandleRangeSearch = (e, label) => {
+        e.preventDefault();
+        const rangeValue = `${minValue} - ${maxValue}`;
+
+        if (filterCollection[label] !== undefined) {
+            // If data exists, set it to null
+            setFilterCollection(prevFilterCollection => ({
+                ...prevFilterCollection,
+                [label]: null
+            }));
+        }
+
+        const filterCollectionData = {
+            [label]: rangeValue
+        };
+
+        const rangeData = {
+            [label]: {
+                min: minValue.toString(),
+                max: maxValue.toString()
+            }
+        };
+
+        otherSelectedFilter(rangeData);
+        setFilterCollection(prevFilterCollection => ({
+            ...prevFilterCollection,
+            ...filterCollectionData
+        }));
+        setSelectedOption(prevSelectedOption => ({
+            ...prevSelectedOption,
+            ...filterCollectionData
+        }));
     }
 
     const HandleClearAll = (e) => {
@@ -111,6 +148,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
         setFilterByState(null);
         setFilterByDistrict(null);
         setFilterCollection({});
+        setMinValue(null);
+        setMaxValue(null);
         load();
     }
 
@@ -129,7 +168,7 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                     </div>
                 </div>
 
-                {filterCollection &&
+                {filterCollection && (
                     <div className={Style.selectedFilterDiv}>
                         {Object.entries(filterCollection).map(([key, value]) => {
                             return (
@@ -139,7 +178,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                             )
                         })}
                     </div>
-                }
+                )}
+
             </div>
 
             <div className={Style.bottom}>
@@ -154,7 +194,7 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                             <div className={Style.items} >
                                 {subcategoryOptions.map((Data, index) => {
                                     return (
-                                        <div className={Style.radioField_wrapper} key={index} >
+                                        <div className={Style.radioField_wrapper} key={index}>
                                             <input
                                                 type="radio"
                                                 name="Category"
@@ -340,11 +380,49 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                                                 )
                                             })}
                                         </div>
+                                        <div className={Style.slider_wrapper} >
+                                            <p>Choose Range From Below</p>
+                                            <div className={Style.slider_label}>
+                                                <span>{minValue !== null ? minValue : FilterData.defaultMinValue}</span>
+                                                <span>{maxValue !== null ? maxValue : FilterData.defaultMaxValue}</span>
+                                            </div>
+                                            <div className={Style.slider} >
+                                                <div className={Style.progress_wrap} >
+                                                    <div className={Style.progress} > </div>
+                                                </div>
+                                                <div className={Style.rangeInput}>
+                                                    <input
+                                                        type="range"
+                                                        className={Style.range_min}
+                                                        min={FilterData.defaultMinValue}
+                                                        max={FilterData.defaultMaxValue}
+                                                        step={FilterData.stepValue}
+                                                        value={minValue !== null ? minValue : parseInt(FilterData.defaultMinValue)}
+                                                        onChange={(e) => setMinValue(parseInt(e.target.value))}
+                                                    />
+                                                    <input
+                                                        type="range"
+                                                        className={Style.range_max}
+                                                        min={FilterData.defaultMinValue}
+                                                        max={FilterData.defaultMaxValue}
+                                                        step={FilterData.stepValue}
+                                                        value={maxValue !== null ? maxValue : parseInt(FilterData.defaultMaxValue)}
+                                                        onChange={(e) => setMaxValue(parseInt(e.target.value))}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className={Style.range_searchBtn}>
+                                                <button onClick={(e) => { HandleRangeSearch(e, FilterData.label) }}> Apply </button>
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             )
                         }
                     })}
+
 
                 </div>
             </div>

@@ -23,6 +23,9 @@ const FilterForm = ({ title }) => {
     label: "",
     type: "",
     options: [],
+    defaultMinValue: "",
+    defaultMaxValue: "",
+    stepValue: ""
   })
 
   const [MinRange, SetMinRange] = useState("");
@@ -108,67 +111,88 @@ const FilterForm = ({ title }) => {
           <h1>{title}</h1>
         </div>
 
-        <div className={Style.center}>
-          <div className={Style.right}>
+        <div className={Style.centerDiv}>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className={Style.input_contents}>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <div className={Style.formproperty}>
-                <div className={Style.formWrapper}>
+              <div className={Style.field_wrapper}>
+                <div className={Style.input_field}>
+                  <label>Property Name <span>*</span> </label>
+                  <input
+                    type="text"
+                    placeholder="name"
+                    id='proertyname'
+                    value={CurrentInput.label}
+                    onChange={(e) => { SetCurrentInput({ ...CurrentInput, label: e.target.value }) }}
+                  />
+                </div>
+                <div className={Style.input_field}>
+                  <label>Property Type <span>*</span> </label>
+                  <select
+                    name="propertytype"
+                    Selected={CurrentInput.label}
+                    ref={selectRef}
+                    defaultValue="select..."
+                    onChange={(e) => { SetCurrentInput({ ...CurrentInput, type: e.target.value }) }}
+                  >
+                    <option value="" selected>Choose here</option>
+                    <option value="text" >Text</option>
+                    <option value="radio" >Radio</option>
+                    <option value="range" >Range</option>
 
-                  <div className={Style.formInput}>
-                    <label>Property Name <span>*</span> </label>
-                    <input type="text"
-                      placeholder="name"
-                      id='proertyname'
-                      value={CurrentInput.label}
-                      onChange={(e) => { SetCurrentInput({ ...CurrentInput, label: e.target.value }) }}
-                    />
-                  </div>
+                  </select>
+                </div>
+              </div>
 
-                  <div className={Style.formInput}>
-                    <label>Property Type <span>*</span> </label>
-                    <select name="propertytype" Selected={CurrentInput.label} ref={selectRef} defaultValue="select..." onChange={(e) => { SetCurrentInput({ ...CurrentInput, type: e.target.value }) }} >
-                      <option value="" selected>Choose here</option>
-                      <option value="text" >Text</option>
-                      <option value="radio" >Radio</option>
-                      <option value="range" >Range</option>
-                    </select>
-                  </div>
+              {CurrentInput.type === 'range' && (
+                <div className={Style.additionalOptions}>
+                  <div className={Style.rangeField_wrapper}>
 
-                  <div >
-                    <span className={Style.propertyBtn} onClick={handleAddProperty}>Create</span>
-                  </div>
-
-                  {CurrentInput.type === 'radio' ?
-                    <div className={Style.newform} >
-                      <div className={Style.formInput}>
-                        <label>Options <span>*</span> </label>
-                        <input type="text"
+                    <div className={Style.field_wrapper}>
+                      <div className={Style.input_field}>
+                        <label> Default MinValue <span>*</span> </label>
+                        <input
+                          type="text"
                           placeholder="Text here"
-                          id='propertyname'
-                          value={OptionData}
-                          onChange={(e) => { SetOptionData(e.target.value) }}
+                          id='defaultminvalue'
+                          value={CurrentInput?.defaultMinValue}
+                          onChange={(e) => { SetCurrentInput({ ...CurrentInput, defaultMinValue: e.target.value }) }}
                         />
                       </div>
-                      <div className={Style.formbtn}>
-                        <span className={Style.propertyBtn} onClick={optionHandler} >Add</span>
+                      <div className={Style.input_field}>
+                        <label> Default MaxValue <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="Text here"
+                          id='defaultmaxvalue'
+                          value={CurrentInput?.defaultMaxValue}
+                          onChange={(e) => { SetCurrentInput({ ...CurrentInput, defaultMaxValue: e.target.value }) }}
+                        />
+                      </div>
+                      <div className={Style.input_field}>
+                        <label> Step Value <span>*</span> </label>
+                        <input
+                          type="text"
+                          placeholder="Text here"
+                          id='stepValue'
+                          value={CurrentInput?.stepValue}
+                          onChange={(e) => { SetCurrentInput({ ...CurrentInput, stepValue: e.target.value }) }}
+                        />
                       </div>
                     </div>
-                    : null
-                  }
 
-                  {CurrentInput.type === 'range' ?
-                    <div className={Style.newform} >
-                      <div className={Style.formInput}>
+                    <div className={Style.field_wrapper}>
+                      <div className={Style.input_field}>
                         <label>Options Name <span>*</span> </label>
-                        <input type="text"
+                        <input
+                          type="text"
                           placeholder="Text here"
                           id='proertyname'
                           value={OptionData}
                           onChange={(e) => { SetOptionData(e.target.value) }}
                         />
                       </div>
-                      <div className={Style.formInput}>
+                      <div className={Style.input_field}>
                         <label>Min <span>*</span> </label>
                         <input
                           type="text"
@@ -178,7 +202,7 @@ const FilterForm = ({ title }) => {
                           onChange={(e) => { SetMinRange(e.target.value) }}
                         />
                       </div>
-                      <div className={Style.formInput}>
+                      <div className={Style.input_field}>
                         <label>Max <span>*</span> </label>
                         <input
                           type="text"
@@ -188,25 +212,52 @@ const FilterForm = ({ title }) => {
                           onChange={(e) => { SetMaxRange(e.target.value) }}
                         />
                       </div>
-                      <div className={Style.formbtn}>
-                        <span className={Style.propertyBtn} onClick={optionHandler} >Add</span>
+                      <div className={Style.additionalOptions_btn}>
+                        <span className={Style.optionButton} onClick={optionHandler} >Add</span>
                       </div>
                     </div>
-                    : null
-                  }
-
+                  </div>
+                  <div className={Style.input_contentBtn}>
+                    <span className={Style.optionButton} onClick={handleAddProperty}>Create</span>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className={Style.formBtn}>
+              {CurrentInput.type === 'radio' && (
+                <div className={Style.additionalOptions}>
+                  <div className={Style.field_wrapper}>
+                    <div className={Style.input_field}>
+                      <label>Options <span>*</span> </label>
+                      <input
+                        type="text"
+                        placeholder="Text here"
+                        id='optionname'
+                        value={OptionData}
+                        onChange={(e) => { SetOptionData(e.target.value) }}
+                      />
+                    </div>
+                    <div className={Style.additionalOptions_btn}>
+                      <span className={Style.optionButton} onClick={optionHandler} >Add</span>
+                    </div>
+                  </div>
+                  <div className={Style.input_contentBtn}>
+                    <span className={Style.optionButton} onClick={handleAddProperty}>Create</span>
+                  </div>
+                </div>
+              )}
+
+            </div>
+
+            <div className={Style.formButtonDiv}>
+              <div className={Style.Button_wrapper}>
                 <Tooltip title="Check before Saving the data">
                   <button>Save</button>
                 </Tooltip>
                 <button onClick={(e) => HandleCancel(e)}>Cancel</button>
               </div>
+            </div>
 
-            </form>
-          </div>
+          </form>
         </div>
 
         {CurrentInput.type === 'radio' && Options.length !== 0 && (
@@ -257,6 +308,7 @@ const FilterForm = ({ title }) => {
 
         <div className={Style.bottomTable}>
           <h1 className={Style.title}>Information</h1>
+
           {FormInputs.map((formInput, index) => {
             const FormOptions = formInput.options
             return (
@@ -270,6 +322,22 @@ const FilterForm = ({ title }) => {
                     <span className={Style.itemKey}>Type:</span>
                     <span className={Style.itemValue}>{formInput.type}</span>
                   </div>
+                  {formInput.type === 'range' && (
+                    <div className={Style.left_wrap}>
+                      <div className={Style.detailItem}>
+                        <span className={Style.itemKey}>Default MinValue: </span>
+                        <span className={Style.itemValue}> {" "}{formInput.defaultMinValue}</span>
+                      </div>
+                      <div className={Style.detailItem}>
+                        <span className={Style.itemKey}>Default MaxValue: </span>
+                        <span className={Style.itemValue}> {" "}{formInput.defaultMaxValue}</span>
+                      </div>
+                      <div className={Style.detailItem}>
+                        <span className={Style.itemKey}>Step Value: </span>
+                        <span className={Style.itemValue}> {" "}{formInput.stepValue}</span>
+                      </div>
+                    </div>
+                  )}
 
                   {formInput.type === 'range' ?
                     <div className={Style.option_wrap}>
@@ -279,9 +347,9 @@ const FilterForm = ({ title }) => {
                           const [label, options] = data;
                           return (
                             <div className={Style.Item} key={index}>
-                              <span className={Style.itemValue}> {label} : {" "}</span>
+                              <span className={Style.itemValue}> {label} :</span>
                               {options && options.min && options.max && (
-                                <span className={Style.itemValue}> {" "} {options.min} - {options.max} {" "} </span>
+                                <span className={Style.itemValue}> {options.min} - {options.max} </span>
                               )}
                             </div>
                           );
@@ -314,6 +382,8 @@ const FilterForm = ({ title }) => {
           })}
 
         </div>
+
+
       </div>
     </div>
   );

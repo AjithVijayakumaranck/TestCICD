@@ -7,10 +7,12 @@
 }
 .new .newContainer .bottom,
 .new .newContainer .center,
-.new .newContainer .bottomTable {
+.new .newContainer .bottomTable,
+.new .newContainer .centerDiv {
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 }
-.new .newContainer .bottomTable {
+.new .newContainer .bottomTable,
+.new .newContainer .centerDiv {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -18,7 +20,8 @@
 .new .newContainer .top,
 .new .newContainer .bottom,
 .new .newContainer .center,
-.new .newContainer .bottomTable {
+.new .newContainer .bottomTable,
+.new .newContainer .centerDiv {
   padding: 20px;
   margin: 20px;
   border-radius: 5px;
@@ -27,21 +30,182 @@
 .new .newContainer .top h1,
 .new .newContainer .bottom h1,
 .new .newContainer .center h1,
-.new .newContainer .bottomTable h1 {
+.new .newContainer .bottomTable h1,
+.new .newContainer .centerDiv h1 {
   color: lightgrey;
   font-size: 20px;
+}
+.new .newContainer .top .input_contents,
+.new .newContainer .bottom .input_contents,
+.new .newContainer .center .input_contents,
+.new .newContainer .bottomTable .input_contents,
+.new .newContainer .centerDiv .input_contents {
+  padding: 0.5rem;
+}
+.new .newContainer .top .input_contents .field_wrapper,
+.new .newContainer .bottom .input_contents .field_wrapper,
+.new .newContainer .center .input_contents .field_wrapper,
+.new .newContainer .bottomTable .input_contents .field_wrapper,
+.new .newContainer .centerDiv .input_contents .field_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field,
+.new .newContainer .center .input_contents .field_wrapper .input_field,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field label,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field label,
+.new .newContainer .center .input_contents .field_wrapper .input_field label,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field label,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 15px;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field label span,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field label span,
+.new .newContainer .center .input_contents .field_wrapper .input_field label span,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field label span,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field label span {
+  color: red;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field label .icon,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field label .icon,
+.new .newContainer .center .input_contents .field_wrapper .input_field label .icon,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field label .icon,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field label .icon {
+  cursor: pointer;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field input,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field input,
+.new .newContainer .center .input_contents .field_wrapper .input_field input,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field input,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field input {
+  height: 30px;
+  padding: 0.5rem;
+  outline: none;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  border: 1px solid #ccc;
+}
+.new .newContainer .top .input_contents .field_wrapper .input_field select,
+.new .newContainer .bottom .input_contents .field_wrapper .input_field select,
+.new .newContainer .center .input_contents .field_wrapper .input_field select,
+.new .newContainer .bottomTable .input_contents .field_wrapper .input_field select,
+.new .newContainer .centerDiv .input_contents .field_wrapper .input_field select {
+  height: 46px;
+  padding: 0 0.5rem;
+  outline: none;
+  border-radius: 5px;
+  font-size: 15px;
+  background: none;
+  border: 1px solid #ccc;
+}
+.new .newContainer .top .input_contents .additionalOptions .field_wrapper .additionalOptions_btn,
+.new .newContainer .bottom .input_contents .additionalOptions .field_wrapper .additionalOptions_btn,
+.new .newContainer .center .input_contents .additionalOptions .field_wrapper .additionalOptions_btn,
+.new .newContainer .bottomTable .input_contents .additionalOptions .field_wrapper .additionalOptions_btn,
+.new .newContainer .centerDiv .input_contents .additionalOptions .field_wrapper .additionalOptions_btn {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new .newContainer .top .input_contents .additionalOptions .field_wrapper .additionalOptions_btn .optionButton,
+.new .newContainer .bottom .input_contents .additionalOptions .field_wrapper .additionalOptions_btn .optionButton,
+.new .newContainer .center .input_contents .additionalOptions .field_wrapper .additionalOptions_btn .optionButton,
+.new .newContainer .bottomTable .input_contents .additionalOptions .field_wrapper .additionalOptions_btn .optionButton,
+.new .newContainer .centerDiv .input_contents .additionalOptions .field_wrapper .additionalOptions_btn .optionButton {
+  padding: 0.5rem 2rem;
+  border: none;
+  text-align: center;
+  background-color: #046BD2;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.new .newContainer .top .input_contents .additionalOptions .input_contentBtn,
+.new .newContainer .bottom .input_contents .additionalOptions .input_contentBtn,
+.new .newContainer .center .input_contents .additionalOptions .input_contentBtn,
+.new .newContainer .bottomTable .input_contents .additionalOptions .input_contentBtn,
+.new .newContainer .centerDiv .input_contents .additionalOptions .input_contentBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.new .newContainer .top .input_contents .additionalOptions .input_contentBtn .optionButton,
+.new .newContainer .bottom .input_contents .additionalOptions .input_contentBtn .optionButton,
+.new .newContainer .center .input_contents .additionalOptions .input_contentBtn .optionButton,
+.new .newContainer .bottomTable .input_contents .additionalOptions .input_contentBtn .optionButton,
+.new .newContainer .centerDiv .input_contents .additionalOptions .input_contentBtn .optionButton {
+  width: 100px;
+  padding: 0.5rem;
+  border: none;
+  text-align: center;
+  background-color: #046BD2;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.new .newContainer .top .formButtonDiv,
+.new .newContainer .bottom .formButtonDiv,
+.new .newContainer .center .formButtonDiv,
+.new .newContainer .bottomTable .formButtonDiv,
+.new .newContainer .centerDiv .formButtonDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.new .newContainer .top .formButtonDiv .Button_wrapper,
+.new .newContainer .bottom .formButtonDiv .Button_wrapper,
+.new .newContainer .center .formButtonDiv .Button_wrapper,
+.new .newContainer .bottomTable .formButtonDiv .Button_wrapper,
+.new .newContainer .centerDiv .formButtonDiv .Button_wrapper {
+  display: flex;
+  gap: 1rem;
+}
+.new .newContainer .top .formButtonDiv .Button_wrapper button,
+.new .newContainer .bottom .formButtonDiv .Button_wrapper button,
+.new .newContainer .center .formButtonDiv .Button_wrapper button,
+.new .newContainer .bottomTable .formButtonDiv .Button_wrapper button,
+.new .newContainer .centerDiv .formButtonDiv .Button_wrapper button {
+  width: 150px;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #046BD2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 .new .newContainer .top .leftItem,
 .new .newContainer .bottom .leftItem,
 .new .newContainer .center .leftItem,
-.new .newContainer .bottomTable .leftItem {
+.new .newContainer .bottomTable .leftItem,
+.new .newContainer .centerDiv .leftItem {
   flex: 1;
   text-align: center;
 }
 .new .newContainer .top .leftItem .SquareImg,
 .new .newContainer .bottom .leftItem .SquareImg,
 .new .newContainer .center .leftItem .SquareImg,
-.new .newContainer .bottomTable .leftItem .SquareImg {
+.new .newContainer .bottomTable .leftItem .SquareImg,
+.new .newContainer .centerDiv .leftItem .SquareImg {
   width: 100%;
   height: 150px;
   border-radius: 0%;
@@ -51,7 +215,8 @@
 .new .newContainer .top .left,
 .new .newContainer .bottom .left,
 .new .newContainer .center .left,
-.new .newContainer .bottomTable .left {
+.new .newContainer .bottomTable .left,
+.new .newContainer .centerDiv .left {
   flex: 1;
   text-align: center;
   border-right: 1px solid lightgrey;
@@ -59,7 +224,8 @@
 .new .newContainer .top .left img,
 .new .newContainer .bottom .left img,
 .new .newContainer .center .left img,
-.new .newContainer .bottomTable .left img {
+.new .newContainer .bottomTable .left img,
+.new .newContainer .centerDiv .left img {
   width: 120px;
   height: 120px;
   margin-top: 20px;
@@ -70,14 +236,16 @@
 .new .newContainer .top .right,
 .new .newContainer .bottom .right,
 .new .newContainer .center .right,
-.new .newContainer .bottomTable .right {
+.new .newContainer .bottomTable .right,
+.new .newContainer .centerDiv .right {
   flex: 2;
   padding: 10px 20px;
 }
 .new .newContainer .top .right form,
 .new .newContainer .bottom .right form,
 .new .newContainer .center .right form,
-.new .newContainer .bottomTable .right form {
+.new .newContainer .bottomTable .right form,
+.new .newContainer .centerDiv .right form {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -87,14 +255,16 @@
 .new .newContainer .top .right form .formImg,
 .new .newContainer .bottom .right form .formImg,
 .new .newContainer .center .right form .formImg,
-.new .newContainer .bottomTable .right form .formImg {
+.new .newContainer .bottomTable .right form .formImg,
+.new .newContainer .centerDiv .right form .formImg {
   width: 100%;
   padding: 10px;
 }
 .new .newContainer .top .right form .formItem,
 .new .newContainer .bottom .right form .formItem,
 .new .newContainer .center .right form .formItem,
-.new .newContainer .bottomTable .right form .formItem {
+.new .newContainer .bottomTable .right form .formItem,
+.new .newContainer .centerDiv .right form .formItem {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -103,20 +273,23 @@
 .new .newContainer .top .right form .formInput,
 .new .newContainer .bottom .right form .formInput,
 .new .newContainer .center .right form .formInput,
-.new .newContainer .bottomTable .right form .formInput {
+.new .newContainer .bottomTable .right form .formInput,
+.new .newContainer .centerDiv .right form .formInput {
   width: 40%;
 }
 .new .newContainer .top .right form .formInput p,
 .new .newContainer .bottom .right form .formInput p,
 .new .newContainer .center .right form .formInput p,
-.new .newContainer .bottomTable .right form .formInput p {
+.new .newContainer .bottomTable .right form .formInput p,
+.new .newContainer .centerDiv .right form .formInput p {
   font-size: 12px;
   color: red;
 }
 .new .newContainer .top .right form .formInput label,
 .new .newContainer .bottom .right form .formInput label,
 .new .newContainer .center .right form .formInput label,
-.new .newContainer .bottomTable .right form .formInput label {
+.new .newContainer .bottomTable .right form .formInput label,
+.new .newContainer .centerDiv .right form .formInput label {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -125,19 +298,22 @@
 .new .newContainer .top .right form .formInput label span,
 .new .newContainer .bottom .right form .formInput label span,
 .new .newContainer .center .right form .formInput label span,
-.new .newContainer .bottomTable .right form .formInput label span {
+.new .newContainer .bottomTable .right form .formInput label span,
+.new .newContainer .centerDiv .right form .formInput label span {
   color: red;
 }
 .new .newContainer .top .right form .formInput label .icon,
 .new .newContainer .bottom .right form .formInput label .icon,
 .new .newContainer .center .right form .formInput label .icon,
-.new .newContainer .bottomTable .right form .formInput label .icon {
+.new .newContainer .bottomTable .right form .formInput label .icon,
+.new .newContainer .centerDiv .right form .formInput label .icon {
   cursor: pointer;
 }
 .new .newContainer .top .right form .formInput input,
 .new .newContainer .bottom .right form .formInput input,
 .new .newContainer .center .right form .formInput input,
-.new .newContainer .bottomTable .right form .formInput input {
+.new .newContainer .bottomTable .right form .formInput input,
+.new .newContainer .centerDiv .right form .formInput input {
   width: 100%;
   height: 40px;
   outline: none;
@@ -151,7 +327,8 @@
 .new .newContainer .top .right form .formInput input[type=number],
 .new .newContainer .bottom .right form .formInput input[type=number],
 .new .newContainer .center .right form .formInput input[type=number],
-.new .newContainer .bottomTable .right form .formInput input[type=number] {
+.new .newContainer .bottomTable .right form .formInput input[type=number],
+.new .newContainer .centerDiv .right form .formInput input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
           appearance: textfield;
@@ -162,14 +339,17 @@
 .new .newContainer .center .right form .formInput input[type=number]::-webkit-inner-spin-button,
 .new .newContainer .center .right form .formInput input[type=number]::-webkit-outer-spin-button,
 .new .newContainer .bottomTable .right form .formInput input[type=number]::-webkit-inner-spin-button,
-.new .newContainer .bottomTable .right form .formInput input[type=number]::-webkit-outer-spin-button {
+.new .newContainer .bottomTable .right form .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .centerDiv .right form .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .centerDiv .right form .formInput input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 .new .newContainer .top .right form .formInput select,
 .new .newContainer .bottom .right form .formInput select,
 .new .newContainer .center .right form .formInput select,
-.new .newContainer .bottomTable .right form .formInput select {
+.new .newContainer .bottomTable .right form .formInput select,
+.new .newContainer .centerDiv .right form .formInput select {
   width: 100%;
   height: 40px;
   outline: none;
@@ -182,7 +362,8 @@
 .new .newContainer .top .right form .featuresForm,
 .new .newContainer .bottom .right form .featuresForm,
 .new .newContainer .center .right form .featuresForm,
-.new .newContainer .bottomTable .right form .featuresForm {
+.new .newContainer .bottomTable .right form .featuresForm,
+.new .newContainer .centerDiv .right form .featuresForm {
   width: 100%;
   display: flex;
   align-items: center;
@@ -192,13 +373,15 @@
 .new .newContainer .top .right form .featuresForm .formInput,
 .new .newContainer .bottom .right form .featuresForm .formInput,
 .new .newContainer .center .right form .featuresForm .formInput,
-.new .newContainer .bottomTable .right form .featuresForm .formInput {
+.new .newContainer .bottomTable .right form .featuresForm .formInput,
+.new .newContainer .centerDiv .right form .featuresForm .formInput {
   width: 40%;
 }
 .new .newContainer .top .right form .featuresForm .featurebtn span,
 .new .newContainer .bottom .right form .featuresForm .featurebtn span,
 .new .newContainer .center .right form .featuresForm .featurebtn span,
-.new .newContainer .bottomTable .right form .featuresForm .featurebtn span {
+.new .newContainer .bottomTable .right form .featuresForm .featurebtn span,
+.new .newContainer .centerDiv .right form .featuresForm .featurebtn span {
   padding: 10px 20px;
   background-color: #046BD2;
   color: #fff;
@@ -209,7 +392,8 @@
 .new .newContainer .top .right form .formproperty,
 .new .newContainer .bottom .right form .formproperty,
 .new .newContainer .center .right form .formproperty,
-.new .newContainer .bottomTable .right form .formproperty {
+.new .newContainer .bottomTable .right form .formproperty,
+.new .newContainer .centerDiv .right form .formproperty {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -218,7 +402,8 @@
 .new .newContainer .top .right form .formproperty textarea,
 .new .newContainer .bottom .right form .formproperty textarea,
 .new .newContainer .center .right form .formproperty textarea,
-.new .newContainer .bottomTable .right form .formproperty textarea {
+.new .newContainer .bottomTable .right form .formproperty textarea,
+.new .newContainer .centerDiv .right form .formproperty textarea {
   height: 8rem;
   outline: none;
   border-radius: 5px;
@@ -230,7 +415,8 @@
 .new .newContainer .top .right form .formproperty .formWrapper,
 .new .newContainer .bottom .right form .formproperty .formWrapper,
 .new .newContainer .center .right form .formproperty .formWrapper,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper {
+.new .newContainer .bottomTable .right form .formproperty .formWrapper,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -240,20 +426,23 @@
 .new .newContainer .top .right form .formproperty .formWrapper .formInput,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formInput,
 .new .newContainer .center .right form .formproperty .formWrapper .formInput,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput {
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput {
   width: 30%;
 }
 .new .newContainer .top .right form .formproperty .formWrap,
 .new .newContainer .bottom .right form .formproperty .formWrap,
 .new .newContainer .center .right form .formproperty .formWrap,
-.new .newContainer .bottomTable .right form .formproperty .formWrap {
+.new .newContainer .bottomTable .right form .formproperty .formWrap,
+.new .newContainer .centerDiv .right form .formproperty .formWrap {
   display: flex;
   flex-direction: column;
 }
 .new .newContainer .top .right form .formproperty .formWrap .formInput,
 .new .newContainer .bottom .right form .formproperty .formWrap .formInput,
 .new .newContainer .center .right form .formproperty .formWrap .formInput,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput {
   width: 100%;
   margin: 10px 0;
 }
@@ -264,7 +453,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formInput label span,
 .new .newContainer .center .right form .formproperty .formWrap .formInput label span,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label span,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label span {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label span,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput label span {
   color: red;
   border: none;
 }
@@ -275,7 +466,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formInput label .icon,
 .new .newContainer .center .right form .formproperty .formWrap .formInput label .icon,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label .icon,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label .icon {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label .icon,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput label .icon {
   cursor: pointer;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formInput input,
@@ -285,7 +478,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formInput input,
 .new .newContainer .center .right form .formproperty .formWrap .formInput input,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput input {
   width: 100%;
   height: 40px;
   outline: none;
@@ -303,7 +498,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formInput input[type=number],
 .new .newContainer .center .right form .formproperty .formWrap .formInput input[type=number],
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number],
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number] {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number],
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput input[type=number],
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput input[type=number] {
   -moz-appearance: textfield;
   -webkit-appearance: textfield;
           appearance: textfield;
@@ -322,7 +519,11 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput input[type=number]::-webkit-outer-spin-button,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput input[type=number]::-webkit-inner-spin-button,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -333,7 +534,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formInput textarea,
 .new .newContainer .center .right form .formproperty .formWrap .formInput textarea,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput textarea,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput textarea {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput textarea,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formInput textarea,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formInput textarea {
   width: 100%;
   height: 8rem;
   outline: none;
@@ -350,7 +553,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formButtonWrap,
 .new .newContainer .center .right form .formproperty .formWrap .formButtonWrap,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formButtonWrap,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formButtonWrap,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formButtonWrap {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -363,7 +568,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formButtonWrap .formButton,
 .new .newContainer .center .right form .formproperty .formWrap .formButtonWrap .formButton,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formButtonWrap .formButton,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap .formButton {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap .formButton,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formButtonWrap .formButton,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formButtonWrap .formButton {
   padding: 10px 20px;
   border: none;
   background-color: #046BD2;
@@ -378,7 +585,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect,
 .new .newContainer .center .right form .formproperty .formWrap .formSelect,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formSelect {
   width: 15%;
   display: flex;
   flex-direction: column;
@@ -390,7 +599,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect label,
 .new .newContainer .center .right form .formproperty .formWrap .formSelect label,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formSelect label {
   margin-bottom: 10px;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect label span,
@@ -400,7 +611,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect label span,
 .new .newContainer .center .right form .formproperty .formWrap .formSelect label span,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label span,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label span {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label span,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formSelect label span {
   color: red;
   border: none;
 }
@@ -411,7 +624,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect select,
 .new .newContainer .center .right form .formproperty .formWrap .formSelect select,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect select,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect select {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect select,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .formSelect select {
   width: 100%;
   height: 40px;
   outline: none;
@@ -428,7 +643,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .newform,
 .new .newContainer .center .right form .formproperty .formWrap .newform,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .newform,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .newform {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .newform,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .newform {
   width: 100%;
   display: flex;
   align-items: center;
@@ -442,7 +659,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .newform .formInput,
 .new .newContainer .center .right form .formproperty .formWrap .newform .formInput,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formInput,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formInput {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formInput,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .newform .formInput {
   width: 40%;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .newform .formDescrption,
@@ -452,7 +671,9 @@
 .new .newContainer .center .right form .formproperty .formWrapper .newform .formDescrption,
 .new .newContainer .center .right form .formproperty .formWrap .newform .formDescrption,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formDescrption,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formDescrption {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formDescrption,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .newform .formDescrption,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .newform .formDescrption {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -464,13 +685,16 @@
 .new .newContainer .center .right form .formproperty .formWrapper .newform .formDescrption textarea,
 .new .newContainer .center .right form .formproperty .formWrap .newform .formDescrption textarea,
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formDescrption textarea,
-.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formDescrption textarea {
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formDescrption textarea,
+.new .newContainer .centerDiv .right form .formproperty .formWrapper .newform .formDescrption textarea,
+.new .newContainer .centerDiv .right form .formproperty .formWrap .newform .formDescrption textarea {
   margin-top: 0.5rem;
 }
 .new .newContainer .top .right form .formproperty .toggleBtn,
 .new .newContainer .bottom .right form .formproperty .toggleBtn,
 .new .newContainer .center .right form .formproperty .toggleBtn,
-.new .newContainer .bottomTable .right form .formproperty .toggleBtn {
+.new .newContainer .bottomTable .right form .formproperty .toggleBtn,
+.new .newContainer .centerDiv .right form .formproperty .toggleBtn {
   width: 180px;
   padding: 10px 20px;
   border: 1px solid #046BD2;
@@ -484,7 +708,8 @@
 .new .newContainer .top .right form .formproperty .propertyBtn,
 .new .newContainer .bottom .right form .formproperty .propertyBtn,
 .new .newContainer .center .right form .formproperty .propertyBtn,
-.new .newContainer .bottomTable .right form .formproperty .propertyBtn {
+.new .newContainer .bottomTable .right form .formproperty .propertyBtn,
+.new .newContainer .centerDiv .right form .formproperty .propertyBtn {
   padding: 10px 20px;
   border: none;
   background-color: #046BD2;
@@ -495,7 +720,8 @@
 .new .newContainer .top .right form .formBtn,
 .new .newContainer .bottom .right form .formBtn,
 .new .newContainer .center .right form .formBtn,
-.new .newContainer .bottomTable .right form .formBtn {
+.new .newContainer .bottomTable .right form .formBtn,
+.new .newContainer .centerDiv .right form .formBtn {
   width: 100%;
   display: flex;
   align-items: center;
@@ -505,7 +731,8 @@
 .new .newContainer .top .right form .formBtn button,
 .new .newContainer .bottom .right form .formBtn button,
 .new .newContainer .center .right form .formBtn button,
-.new .newContainer .bottomTable .right form .formBtn button {
+.new .newContainer .bottomTable .right form .formBtn button,
+.new .newContainer .centerDiv .right form .formBtn button {
   width: 150px;
   padding: 10px;
   border: none;
@@ -519,7 +746,8 @@
 .new .newContainer .top .title,
 .new .newContainer .bottom .title,
 .new .newContainer .center .title,
-.new .newContainer .bottomTable .title {
+.new .newContainer .bottomTable .title,
+.new .newContainer .centerDiv .title {
   font-size: 16px;
   color: lightgrey;
   margin: 10px 0;
@@ -527,7 +755,8 @@
 .new .newContainer .top .details,
 .new .newContainer .bottom .details,
 .new .newContainer .center .details,
-.new .newContainer .bottomTable .details {
+.new .newContainer .bottomTable .details,
+.new .newContainer .centerDiv .details {
   flex: 1;
   padding: 10px 20px;
   border-radius: 5px;
@@ -539,14 +768,16 @@
 .new .newContainer .top .details .left_wrap,
 .new .newContainer .bottom .details .left_wrap,
 .new .newContainer .center .details .left_wrap,
-.new .newContainer .bottomTable .details .left_wrap {
+.new .newContainer .bottomTable .details .left_wrap,
+.new .newContainer .centerDiv .details .left_wrap {
   display: flex;
   flex-direction: column;
 }
 .new .newContainer .top .details .left,
 .new .newContainer .bottom .details .left,
 .new .newContainer .center .details .left,
-.new .newContainer .bottomTable .details .left {
+.new .newContainer .bottomTable .details .left,
+.new .newContainer .centerDiv .details .left {
   display: flex;
   align-items: center;
 }
@@ -557,7 +788,9 @@
 .new .newContainer .center .details .left,
 .new .newContainer .center .details .left_wrap,
 .new .newContainer .bottomTable .details .left,
-.new .newContainer .bottomTable .details .left_wrap {
+.new .newContainer .bottomTable .details .left_wrap,
+.new .newContainer .centerDiv .details .left,
+.new .newContainer .centerDiv .details .left_wrap {
   flex: 6;
 }
 .new .newContainer .top .details .left .detailItem,
@@ -567,7 +800,9 @@
 .new .newContainer .center .details .left .detailItem,
 .new .newContainer .center .details .left_wrap .detailItem,
 .new .newContainer .bottomTable .details .left .detailItem,
-.new .newContainer .bottomTable .details .left_wrap .detailItem {
+.new .newContainer .bottomTable .details .left_wrap .detailItem,
+.new .newContainer .centerDiv .details .left .detailItem,
+.new .newContainer .centerDiv .details .left_wrap .detailItem {
   margin-bottom: 10px;
   font-size: 14px;
   display: flex;
@@ -581,7 +816,9 @@
 .new .newContainer .center .details .left .detailItem .itemKey,
 .new .newContainer .center .details .left_wrap .detailItem .itemKey,
 .new .newContainer .bottomTable .details .left .detailItem .itemKey,
-.new .newContainer .bottomTable .details .left_wrap .detailItem .itemKey {
+.new .newContainer .bottomTable .details .left_wrap .detailItem .itemKey,
+.new .newContainer .centerDiv .details .left .detailItem .itemKey,
+.new .newContainer .centerDiv .details .left_wrap .detailItem .itemKey {
   font-weight: bold;
   color: gray;
   margin-right: 5px;
@@ -593,7 +830,9 @@
 .new .newContainer .center .details .left .detailItem .itemValue,
 .new .newContainer .center .details .left_wrap .detailItem .itemValue,
 .new .newContainer .bottomTable .details .left .detailItem .itemValue,
-.new .newContainer .bottomTable .details .left_wrap .detailItem .itemValue {
+.new .newContainer .bottomTable .details .left_wrap .detailItem .itemValue,
+.new .newContainer .centerDiv .details .left .detailItem .itemValue,
+.new .newContainer .centerDiv .details .left_wrap .detailItem .itemValue {
   font-weight: 300;
 }
 .new .newContainer .top .details .left .option_wrap,
@@ -603,7 +842,9 @@
 .new .newContainer .center .details .left .option_wrap,
 .new .newContainer .center .details .left_wrap .option_wrap,
 .new .newContainer .bottomTable .details .left .option_wrap,
-.new .newContainer .bottomTable .details .left_wrap .option_wrap {
+.new .newContainer .bottomTable .details .left_wrap .option_wrap,
+.new .newContainer .centerDiv .details .left .option_wrap,
+.new .newContainer .centerDiv .details .left_wrap .option_wrap {
   margin-bottom: 10px;
   font-size: 14px;
   display: flex;
@@ -616,7 +857,9 @@
 .new .newContainer .center .details .left .option_wrap .option_title,
 .new .newContainer .center .details .left_wrap .option_wrap .option_title,
 .new .newContainer .bottomTable .details .left .option_wrap .option_title,
-.new .newContainer .bottomTable .details .left_wrap .option_wrap .option_title {
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .option_title,
+.new .newContainer .centerDiv .details .left .option_wrap .option_title,
+.new .newContainer .centerDiv .details .left_wrap .option_wrap .option_title {
   font-size: 16px;
   margin: 10px 0;
 }
@@ -627,7 +870,9 @@
 .new .newContainer .center .details .left .option_wrap .Items,
 .new .newContainer .center .details .left_wrap .option_wrap .Items,
 .new .newContainer .bottomTable .details .left .option_wrap .Items,
-.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items {
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items,
+.new .newContainer .centerDiv .details .left .option_wrap .Items,
+.new .newContainer .centerDiv .details .left_wrap .option_wrap .Items {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -639,7 +884,9 @@
 .new .newContainer .center .details .left .option_wrap .Items .Item,
 .new .newContainer .center .details .left_wrap .option_wrap .Items .Item,
 .new .newContainer .bottomTable .details .left .option_wrap .Items .Item,
-.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items .Item {
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items .Item,
+.new .newContainer .centerDiv .details .left .option_wrap .Items .Item,
+.new .newContainer .centerDiv .details .left_wrap .option_wrap .Items .Item {
   display: flex;
   gap: 2px;
 }
@@ -650,7 +897,9 @@
 .new .newContainer .center .details .left .option_wrap .Items .DocumentItem,
 .new .newContainer .center .details .left_wrap .option_wrap .Items .DocumentItem,
 .new .newContainer .bottomTable .details .left .option_wrap .Items .DocumentItem,
-.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items .DocumentItem {
+.new .newContainer .bottomTable .details .left_wrap .option_wrap .Items .DocumentItem,
+.new .newContainer .centerDiv .details .left .option_wrap .Items .DocumentItem,
+.new .newContainer .centerDiv .details .left_wrap .option_wrap .Items .DocumentItem {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -658,7 +907,8 @@
 .new .newContainer .top .details .right,
 .new .newContainer .bottom .details .right,
 .new .newContainer .center .details .right,
-.new .newContainer .bottomTable .details .right {
+.new .newContainer .bottomTable .details .right,
+.new .newContainer .centerDiv .details .right {
   flex: 2;
   display: flex;
   justify-content: center;
@@ -667,7 +917,8 @@
 .new .newContainer .top .details .right button,
 .new .newContainer .bottom .details .right button,
 .new .newContainer .center .details .right button,
-.new .newContainer .bottomTable .details .right button {
+.new .newContainer .bottomTable .details .right button,
+.new .newContainer .centerDiv .details .right button {
   background-color: #fff;
   color: red;
   border-radius: 5px;
@@ -677,7 +928,8 @@
 .new .newContainer .top .details .right .rembtn,
 .new .newContainer .bottom .details .right .rembtn,
 .new .newContainer .center .details .right .rembtn,
-.new .newContainer .bottomTable .details .right .rembtn {
+.new .newContainer .bottomTable .details .right .rembtn,
+.new .newContainer .centerDiv .details .right .rembtn {
   padding: 10px;
   background-color: red;
   color: #fff;

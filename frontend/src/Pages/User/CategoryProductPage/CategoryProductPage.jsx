@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Style from "./index.module.css"
 import { useLocation } from 'react-router-dom';
 import Breadcrumb from '../../../Components/Breadcrumb/Breadcrumb';
@@ -90,7 +90,7 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, categoryId, CatId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, CatId]);
 
 
     const handlePreviousPage = () => {
@@ -110,37 +110,32 @@ const CategoryProductPage = () => {
         SetSubValue("");
         SetStateValue("");
         SetDistrictValue("");
-        loadProducts();
+        SetOtherSelectedFilter("")
     };
 
     const HandleMin = (value) => {
         SetMin(value);
-        loadProducts();
     };
 
     const HandleMax = (value) => {
         SetMax(value);
-        loadProducts();
     };
 
     const HandleSubcategory = (value) => {
         SetSubValue(value);
-        loadProducts();
     };
 
     const HandleState = (value) => {
         SetStateValue(value);
-        loadProducts();
+    };
+
+    const HandleDistrict = (value) => {
+        SetDistrictValue(value);
     };
 
     const HandleOtherFilter = (value) => {
         SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
     }
-
-    const HandleDistrict = (value) => {
-        SetDistrictValue(value);
-        loadProducts();
-    };
 
 
 
