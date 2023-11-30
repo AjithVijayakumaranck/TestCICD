@@ -1,3 +1,4 @@
+const CATEGORY = require("../Models/categoryModel");
 const PRODUCT = require("../Models/productModal");
 const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding");
 const { fetchLocality, fetchLocation } = require("../utilities/localityFetch");
@@ -58,12 +59,10 @@ module.exports = {
     searchProducts: async (req, res) => {
         try {
 
-            const { SearchQuery = "", district = "", state = "", category="" ,limit = 12 ,page = 0} = req.query
-
-
+            const { SearchQuery = "", district = "", state = "", category = "", limit = 12, page = 0 } = req.query
 
             if (!category) {
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).populate('userId').skip(page).limit(limit)
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, { description: { "$regex": SearchQuery, "$options": "i" } }, { "otherDetails.brand": SearchQuery }] }).populate('userId').skip(page).limit(limit)
 
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
@@ -72,7 +71,7 @@ module.exports = {
                 }
             } else {
 
-                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, {description:{ "$regex": SearchQuery, "$options": "i" } },{"otherDetails.brand":SearchQuery}]}).populate('userId').skip(page).limit(limit)
+                const result = await PRODUCT.find({ $or: [{ title: { "$regex": SearchQuery, "$options": "i" } }, { description: { "$regex": SearchQuery, "$options": "i" } }, { "otherDetails.brand": SearchQuery }] }).populate('userId').skip(page).limit(limit)
                 if (!result) {
                     res.status(400).json({ message: "No products found with this criteria" })
                 } else {
@@ -86,19 +85,19 @@ module.exports = {
 
     searchLocality: async (req, res) => {
         try {
-            const { state, district , village, subdistrict } = req.query
-            const convDistrict =await district.toUpperCase()
+            const { state, district, village, subdistrict } = req.query
+            const convDistrict = await district.toUpperCase()
             const locality = await fetchLocality(convDistrict)
             if (locality) {
-                const newArray =await locality.reduce((result, element) => {       
+                const newArray = await locality.reduce((result, element) => {
                     const isDuplicate = result.some((item) => item.village_locality_name === element.village_locality_name);
-                    
+
                     if (!isDuplicate) {
-                      result.push(element);
+                        result.push(element);
                     }
-                    
+
                     return result;
-                  }, []);
+                }, []);
                 res.status(200).json(locality)
             } else {
                 res.status(400).json({ message: "No products found with this criteria" })
@@ -108,7 +107,7 @@ module.exports = {
         }
 
     },
-    
+
 
     searchStatesDistricts: async (req, res) => {
         try {
@@ -126,80 +125,124 @@ module.exports = {
 
 
     //product filters
-    
+
     // filter using location
-    filterProducts : async (req,res)=>{
+    filterProducts: async (req, res) => {
         try {
-            let {state,category,subcategory,district,locality,max,min,page} = req.query    
-            let query = [{deleted:false}]
-            if(state){
-                query.push({state:{ "$regex": state, "$options": "i" }})
+            let { state, category, subcategory, district, locality, max, min, page, other } = req.query
+            let otherFilters = await JSON.parse(other)
+            let query = [{ deleted: false }]
+            if (state != "") {
+                query.push({
+                    state:
+                        { "$regex": state, "$options": "i" }
+                })
+                if (district != "") {
+                    query.push({
+                        district:
+                            { "$regex": district, "$options": "i" }
+                    })
+                }
             }
-            if(district){
-                query.push({district:{ "$regex": district, "$options": "i" }})
+            if (category != "") {
+                query.push({ category: category })
             }
-            if(category){
-                query.push({category:category})
+            if (subcategory != "") {
+                query.push({ SubCategory: subcategory })
             }
-            if(subcategory){
-                query.push({SubCategory:subcategory})
+            if (min != "") {
+                let minval = parseInt(min)
+                query.push({ price: { $gte: minval } })
+            } if (max != "") {
+                let maxval = parseInt(max)
+                query.push({ price: { $lte: maxval } })
             }
-            if(locality){
-                query.push({locality:locality})
-            }
-            if(min){
-                query.push({price:{$gte:min}})
-            }if(max){
-                query.push({price:{$lte:max}})
+            if (otherFilters) {
+  
+                let currentCategory = await CATEGORY.findById(category)
+
+                currentCategory.filters.forEach(async (value, index, array) => {
+                    if (value.label in otherFilters) {
+                        if (value.type === "text") {
+                            console.log(1);
+                            query.push({ [`otherDetails.${value.label}`]: otherFilters.label })
+                        } else if (value.type === "range") {
+                            console.log(2);
+                            let min = parseInt(otherFilters[value.label].min)
+                            let max = parseInt(otherFilters[value.label].max)
+                            query.push({ [`otherDetails.${value.label}`]: { $gte: min, $lte: max } })
+                        }
+                        else if (value.type === "checkbox") {
+                            console.log(4);
+                            if (otherFilters[value.label].length != 0) {
+                                query.push({ [`otherDetails.${value.label}`]: { $in: otherFilters[value.label] } })
+                            }
+                        }
+                        else {
+                            console.log(3);
+                            if (value.mode === "gte") {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $gte: val } })
+                            } else {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $lte: val } })
+                            }
+                        }
+                    }
+                })
             }
             const limit = 12
-
-            const productDetails = await PRODUCT.find({$and:query}).populate('userId').skip(page).limit(limit)
-            if(productDetails){
+            PRODUCT.find({ $and: query }).populate('userId').skip(page).limit(limit).then((productDetails) => {
+                // console.log(productDetails, "hhhh");
+                query = [{ deleted: false }]
                 res.status(200).json(productDetails)
-            }else{
-                res.status(404).json({messagge:"products not found"})
-            }
+            }).catch((error) => {
+
+                query = [{ deleted: false }]
+                res.status(404).json({ messagge: "products not found" })
+            })
 
         } catch (error) {
-            res.status(500).json({message:"something went wrong"})
+            console.log(error);
+            res.status(500).json({ message: "something went wrong" })
         }
 
     },
 
     //filter product using categories and subcategories
 
-    filterbyCategories : async (req,res)=>{
+    filterbyCategories: async (req, res) => {
         try {
 
-            let {subcategory,category,max,min,page} = req.query    
-            let query = [{deleted:false}]
-            if(category){
-                query.push({category:category})
+            let { subcategory, category, max, min, page } = req.query
+            let query = [{ deleted: false }]
+            if (category) {
+                query.push({ category: category })
             }
-            if(subcategory){
-                query.push({SubCategory:subcategory})
+            if (subcategory) {
+                query.push({ SubCategory: subcategory })
             }
-            if(min){
-                query.push({price:{$gte:min}})
-            }if(max){
-                query.push({price:{$lte:max}})
+            if (min) {
+                query.push({ price: { $gte: min } })
+            } if (max) {
+                query.push({ price: { $lte: max } })
             }
             const limit = 12
 
-            const productDetails = await PRODUCT.find({$and:query}).populate('userId').skip(page).limit(limit)
-            if(productDetails){
+            const productDetails = await PRODUCT.find({ $and: query }).populate('userId').skip(page).limit(limit)
+            if (productDetails) {
+
                 res.status(200).json(productDetails)
-            }else{
-                res.status(404).json({messagge:"products not found"})
+            } else {
+                res.status(404).json({ messagge: "products not found" })
             }
 
         } catch (error) {
-            res.status(500).json({message:"something went wrong"})
+            res.status(500).json({ message: "something went wrong" })
         }
     }
 
-   
+
 
 
 
