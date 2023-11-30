@@ -27,6 +27,19 @@ module.exports = {
                     cloudUpload(locaFilePath, title)
                 )
             })
+            console.log(parsedDetails);
+
+            for (const key in parsedDetails) {
+                console.log(parsedDetails[key]);
+                if(isNaN(parsedDetails[key])){
+                    continue;
+                }else{
+                    parsedDetails[key]=parseInt(parsedDetails[key])
+                }
+              }
+
+              console.log(parsedDetails);
+            
             const results = await Promise.all(Upload);
             if (results) {
                 const productTemplate = new PRODUCT({

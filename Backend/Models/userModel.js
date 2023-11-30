@@ -82,7 +82,7 @@ const USERschema = new schema({
     default:"20"
   },
   ImageCount:{
-    type:String,
+    type:Number,
     default:"10"
   },
   emailVerified: {

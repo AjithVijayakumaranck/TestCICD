@@ -73,7 +73,7 @@ const productSchema = new schema({
   },
   keyword:[String], 
   price:{
-    type:String,
+    type:Number,
     required:true
   },
   SubCategory: { type: String, ref: 'subcategory'}
