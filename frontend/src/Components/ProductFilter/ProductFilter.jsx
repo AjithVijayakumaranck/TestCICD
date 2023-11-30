@@ -8,7 +8,7 @@ import Select from "react-select";
 
 
 
-const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory, onMin, onMax, onState, onDistrict, otherSelectedFilter }) => {
+const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories, onChangeSubcategory, onMin, onMax, onState, onDistrict, otherSelectedFilter }) => {
 
     const [CategoryToggle, SetCategoryToggle] = useState(true)
     const [LocationToggle, SetLocationToggle] = useState(true)
@@ -19,8 +19,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
     const [selectedOption, setSelectedOption] = useState({});
     const [filterCollection, setFilterCollection] = useState({});
 
-    const [minValue, setMinValue] = useState(null);
-    const [maxValue, setMaxValue] = useState(null);
+    const [minValue, setMinValue] = useState("");
+    const [maxValue, setMaxValue] = useState("");
 
     const [filterBySubcategory, setFilterBySubcategory] = useState(null);
     const [filterByState, setFilterByState] = useState(null);
@@ -89,14 +89,13 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
     //Handle Price Filter 
     const HandlePriceFilter = (e) => {
         e.preventDefault()
-        if (filterByMinPrice !== "") {
-            onMin(filterByMinPrice)
-            setFilterCollection({ ...filterCollection, filterByMinPrice });
-        }
-        if (filterByMaxPrice !== "") {
-            onMax(filterByMaxPrice)
-            setFilterCollection({ ...filterCollection, filterByMaxPrice });
-        }
+
+        const minPrice = filterByMinPrice !== "" ? filterByMinPrice : '';
+        const maxPrice = filterByMaxPrice !== "" ? filterByMaxPrice : '';
+
+        onMin(minPrice)
+        onMax(maxPrice)
+        setFilterCollection({ ...filterCollection, minPrice, maxPrice });
     };
 
     const HandleInputSearch = (e) => {
@@ -105,9 +104,14 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
         setFilterCollection({ ...filterCollection, ...selectedOption });
     }
 
-    const HandleRangeSearch = (e, label) => {
+    const HandleRangeSearch = (e, label, rangeMax) => {
         e.preventDefault();
-        const rangeValue = `${minValue} - ${maxValue}`;
+
+        // Check if minValue and maxValue are null, set them to 0 by default
+        const min = minValue !== "" ? minValue : 0;
+        const max = maxValue !== "" ? maxValue : parseInt(rangeMax);
+
+        const rangeValue = `${min} - ${max}`;
 
         if (filterCollection[label] !== undefined) {
             // If data exists, set it to null
@@ -123,8 +127,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
 
         const rangeData = {
             [label]: {
-                min: minValue.toString(),
-                max: maxValue.toString()
+                min: min,
+                max: max
             }
         };
 
@@ -139,6 +143,7 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
         }));
     }
 
+
     const HandleClearAll = (e) => {
         e.preventDefault();
         setSelectedOption('');
@@ -148,11 +153,10 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
         setFilterByState(null);
         setFilterByDistrict(null);
         setFilterCollection({});
-        setMinValue(null);
-        setMaxValue(null);
+        setMinValue("");
+        setMaxValue("");
         load();
     }
-
 
     return (
         <div className={Style.Container}>
@@ -317,6 +321,67 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                     })}
 
                     {FilterOptions.map((FilterData, index) => {
+                        if (FilterData.type === "checkbox") {
+                            return (
+                                <div className={Style.accordion_item} key={index}>
+                                    <div className={Style.titleDiv}>
+                                        <h3>{FilterData.label}</h3>
+                                    </div>
+                                    <div className={Style.inputContent} >
+                                        <div className={Style.radioFields} >
+                                            {FilterData.options.map((Data, index) => {
+                                                return (
+                                                    <div className={Style.radioField_wrapper} key={index}>
+                                                        <input
+                                                            type="checkbox"
+                                                            id={Data}
+                                                            name={FilterData.label}
+                                                            value={Data}
+                                                            checked={selectedOption[Data] === Data}
+                                                            onChange={(e) => {
+                                                                const selectedValues = e.target.value;
+                                                                const isSelected = e.target.checked;
+
+                                                                setSelectedOption((prevSelectedOption) => {
+                                                                    const updatedCollection = { ...prevSelectedOption };
+                                                                    if (isSelected) {
+                                                                        updatedCollection[selectedValues] = selectedValues;
+                                                                    } else {
+                                                                        delete updatedCollection[selectedValues];
+                                                                    }
+                                                                    return updatedCollection;
+                                                                });
+
+                                                                otherSelectedFilter({
+                                                                    [FilterData.label]: isSelected
+                                                                        ? [...(OtherSelectedFilter[FilterData.label] || []), selectedValues]
+                                                                        : (OtherSelectedFilter[FilterData.label] || []).filter((checkedValue) => checkedValue !== selectedValues),
+                                                                });
+
+                                                                setFilterCollection((prevFilterCollection) => {
+                                                                    const updatedCollection = { ...prevFilterCollection };
+                                                                    if (isSelected) {
+                                                                        updatedCollection[selectedValues] = selectedValues;
+                                                                    } else {
+                                                                        delete updatedCollection[selectedValues];
+                                                                    }
+                                                                    return updatedCollection;
+                                                                });
+
+                                                            }}
+                                                        />
+                                                        <label htmlFor={Data}>{Data}</label>
+                                                    </div>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+
+                    {FilterOptions.map((FilterData, index) => {
                         if (FilterData.type === "radio") {
                             return (
                                 <div className={Style.accordion_item} key={index}>
@@ -383,8 +448,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                                         <div className={Style.slider_wrapper} >
                                             <p>Choose Range From Below</p>
                                             <div className={Style.slider_label}>
-                                                <span>{minValue !== null ? minValue : FilterData.defaultMinValue}</span>
-                                                <span>{maxValue !== null ? maxValue : FilterData.defaultMaxValue}</span>
+                                                <span>{minValue !== "" ? minValue : FilterData.defaultMinValue}</span>
+                                                <span>{maxValue !== "" ? maxValue : FilterData.defaultMaxValue}</span>
                                             </div>
                                             <div className={Style.slider} >
                                                 <div className={Style.progress_wrap} >
@@ -397,8 +462,8 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                                                         min={FilterData.defaultMinValue}
                                                         max={FilterData.defaultMaxValue}
                                                         step={FilterData.stepValue}
-                                                        value={minValue !== null ? minValue : parseInt(FilterData.defaultMinValue)}
-                                                        onChange={(e) => setMinValue(parseInt(e.target.value))}
+                                                        value={minValue !== "" ? minValue : parseInt(FilterData.defaultMinValue)}
+                                                        onChange={(e) => setMinValue(e.target.value.toString())}
                                                     />
                                                     <input
                                                         type="range"
@@ -406,13 +471,13 @@ const ProductFilter = ({ load, FilterOptions, Subcategories, onChangeSubcategory
                                                         min={FilterData.defaultMinValue}
                                                         max={FilterData.defaultMaxValue}
                                                         step={FilterData.stepValue}
-                                                        value={maxValue !== null ? maxValue : parseInt(FilterData.defaultMaxValue)}
-                                                        onChange={(e) => setMaxValue(parseInt(e.target.value))}
+                                                        value={maxValue !== "" ? maxValue : parseInt(FilterData.defaultMaxValue)}
+                                                        onChange={(e) => setMaxValue(e.target.value.toString())}
                                                     />
                                                 </div>
                                             </div>
                                             <div className={Style.range_searchBtn}>
-                                                <button onClick={(e) => { HandleRangeSearch(e, FilterData.label) }}> Apply </button>
+                                                <button onClick={(e) => { HandleRangeSearch(e, FilterData.label, FilterData.defaultMaxValue) }}> Apply </button>
                                             </div>
 
                                         </div>

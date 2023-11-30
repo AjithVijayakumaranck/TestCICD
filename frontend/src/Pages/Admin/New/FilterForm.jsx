@@ -13,7 +13,7 @@ import adminInstance from '../../../instance/AdminInstance';
 
 const FilterForm = ({ title }) => {
 
-  const { categoryId } = useParams()
+  const { categoryId } = useParams();
 
   const navigate = useNavigate()
   const selectRef = useRef(null);
@@ -33,6 +33,7 @@ const FilterForm = ({ title }) => {
   const [OptionData, SetOptionData] = useState("");
   const [Options, SetOptions] = useState([]);
 
+
   const optionHandler = (e) => {
     if (CurrentInput.type === "range") {
       const newOption = [OptionData, { "min": MinRange, "max": MaxRange }];
@@ -40,7 +41,7 @@ const FilterForm = ({ title }) => {
       SetOptionData("");
       SetMinRange("");
       SetMaxRange("");
-    } else if (CurrentInput.type === "radio") {
+    } else if (CurrentInput.type === "radio" || CurrentInput.type === "checkbox") {
       SetOptions([...Options, OptionData])
       SetOptionData("")
     }
@@ -139,7 +140,7 @@ const FilterForm = ({ title }) => {
                     <option value="text" >Text</option>
                     <option value="radio" >Radio</option>
                     <option value="range" >Range</option>
-
+                    <option value="checkbox" >CheckBox</option>
                   </select>
                 </div>
               </div>
@@ -223,7 +224,7 @@ const FilterForm = ({ title }) => {
                 </div>
               )}
 
-              {CurrentInput.type === 'radio' && (
+              {(CurrentInput.type === 'radio' || CurrentInput.type === 'checkbox') && (
                 <div className={Style.additionalOptions}>
                   <div className={Style.field_wrapper}>
                     <div className={Style.input_field}>
@@ -260,7 +261,7 @@ const FilterForm = ({ title }) => {
           </form>
         </div>
 
-        {CurrentInput.type === 'radio' && Options.length !== 0 && (
+        {(CurrentInput.type === 'radio' || CurrentInput.type === 'checkbox') && Options.length !== 0 && (
           <div className={Style.bottomTable}>
             <h1 className={Style.title}>Options</h1>
             {Options.map((data, index) => {

@@ -16,6 +16,7 @@ const CategoryProductPage = () => {
     const location = useLocation();
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
 
+
     const { categoryId } = useParams()
 
     const [Categories, SetCategories] = useState([]);
@@ -34,23 +35,12 @@ const CategoryProductPage = () => {
     const [DistrictValue, SetDistrictValue] = useState("");
     const [SortedProducts, SetSortedProducts] = useState([]);
 
-    //Scroll to top
-    function ScrollToTopOnMount() {
-        window.scrollTo(0, 0);
-        return null;
-    }
 
-    //Call Scroll To Top 
-    useEffect(() => {
-        ScrollToTopOnMount();
-    }, []);
-
-    //Get the Category Details
     useEffect(() => {
         instance.get(`/api/category/get_SingleCategory?categoryId=${categoryId}`).then((response) => {
             SetCategories(response.data);
-            SetSubcategory(response.data?.subcategory);
-            SetFilters(response.data?.filters);
+            SetSubcategory(response.data?.subcategory)
+            SetFilters(response.data?.filters)
         }).catch((error) => {
             console.log(error);
         });
@@ -60,7 +50,7 @@ const CategoryProductPage = () => {
     const loadProducts = () => {
         try {
             instance.get(`/api/user/filter/filter_products?category=${CatId}&min=${Min}&max=${Max}&page=${CurrentPage}
-            &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${OtherSelectedFilter}`).then((response) => {
+            &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${JSON.stringify(OtherSelectedFilter)}`).then((response) => {
                 SetProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -90,7 +80,7 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, CatId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, CatId]);
 
 
     const handlePreviousPage = () => {
@@ -137,8 +127,14 @@ const CategoryProductPage = () => {
         SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
     }
 
+    function ScrollToTopOnMount() {
+        window.scrollTo(0, 0);
+        return null;
+    }
 
-
+    useEffect(() => {
+        ScrollToTopOnMount();
+    }, []);
 
     return (
         <div className={Style.page_wrapper}>
@@ -171,6 +167,7 @@ const CategoryProductPage = () => {
                                     onDistrict={HandleDistrict}
                                     onState={HandleState}
                                     load={HandleDefault}
+                                    OtherSelectedFilter={OtherSelectedFilter}
                                 />
                             </div>
 
@@ -186,7 +183,6 @@ const CategoryProductPage = () => {
                                     </div>
                                     :
                                     <div className={Style.error_container}>
-                                        {/* <img src="/Images/No-data.svg" alt="" /> */}
                                         <h1>No Product Found</h1>
                                     </div>
                                 }
