@@ -45,6 +45,7 @@ const CategoryProductPage = () => {
             console.log(error);
         });
     }, []);
+    
 
 
     const loadProducts = () => {
