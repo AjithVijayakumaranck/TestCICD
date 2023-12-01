@@ -290,10 +290,10 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
               <span className="star">*</span>{" "}
             </label>
             <div className={Style.items}>
-              <input type="text"
+              <input
+                type="text"
                 name="title"
                 value={ProductData.title}
-                //onChange={(e) => TitleValidation(e)}
                 onChange={(e) => { SetProductData({ ...ProductData, title: e.target.value }) }}
               />
               <span>{Error.title}</span>
@@ -333,8 +333,8 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     {Input.important === "true" ? <span className="star">*</span> : null} {" "}
                   </label>
                   <div className={Style.items}>
-                    <input type={Input.type}
-                      //ref={selectRef1}
+                    <input
+                      type={Input.type}
                       name={Input.label}
                       onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
                     />
@@ -355,32 +355,26 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     {Input.label}
                     {Input.important === "true" ? <span className="star">*</span> : null} {" "}
                   </label>
-                  <div className={Style.items}>
+                  <div className={Style.radioFieldItems}>
                     {Input.options.map((Radios, index) => {
                       return (
-                        <div className={Style.radio} >
+                        <div className={Style.radio} key={index} >
                           <input
                             type={Input.type}
                             id={Radios}
                             name={Input.label}
-                            //ref={selectRef2}
                             value={Radios}
                             onChange={(e) => { SetOtherDet({ ...OtherDet, [Input.label]: e.target.value }) }}
                           />
-                          <label htmlFor={Radios}>{Radios}</label>
+                          <label className={Style.radioLabel} htmlFor={Radios}>{Radios}</label>
                         </div>
                       );
                     })}
-                    <p> Mention the key features of item(eg. Brand, MOdel,Type etc.) </p>
                   </div>
                 </div>
               );
             }
           })}
-
-
-
-
 
           {/* Discriptions */}
           <div className={Style.row}>
@@ -468,7 +462,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
               <label>Listed by
                 <span className="star">*</span>{" "}
               </label>
-              <div className={Style.listeditems}>
+              <div className={Style.radioFieldItems}>
                 <div className={Style.radio} >
                   <input
                     type="radio"
@@ -477,7 +471,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     value="Dealer"
                     onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
                   />
-                  <label htmlFor="">Dealer</label>
+                  <label className={Style.radioLabel} htmlFor="">Dealer</label>
                 </div>
                 <div className={Style.radio} >
                   <input
@@ -487,7 +481,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     value="Owner"
                     onChange={(e) => { SetProductData({ ...ProductData, listedBy: e.target.value }) }}
                   />
-                  <label htmlFor="">Owner</label>
+                  <label className={Style.radioLabel} htmlFor="">Owner</label>
                 </div>
                 <span>{Error.listedBy}</span>
               </div>

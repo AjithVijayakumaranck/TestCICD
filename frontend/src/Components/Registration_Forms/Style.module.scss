@@ -43,7 +43,7 @@
         }
     }
 
-   
+
 
     /*--------Registeration form-------  */
 
@@ -96,12 +96,42 @@
                     align-items: center;
                     font-size: 16px;
                     font-weight: 600;
+                    margin: 10px 0;
                 }
 
                 .listeditems {
                     display: flex;
                     gap: 30px;
                     width: 100%;
+                }
+
+                .radioFieldItems {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 10px 20px;
+                    width: 100%;
+
+                    .radio {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding-top: 5px;
+
+                        input {
+                            display: flex;
+                            flex-direction: row;
+                            height: 1.5rem;
+                            width: 20px;
+                            margin-right: 10px;
+                        }
+
+                        .radioLabel {
+                            font-size: 16px;
+                            font-weight: 500;
+                            margin-bottom: 0;
+                        }
+                    }
                 }
 
                 .items {
@@ -150,29 +180,6 @@
                             background-color: $primary-color;
                             color: #fff;
                             border: 1px solid $primary-color;
-                        }
-                    }
-
-
-                    .radio {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: flex-start;
-                        align-items: center;
-                        padding-top: 5px;
-
-                        input {
-                            display: flex;
-                            flex-direction: row;
-                            height: 1.5rem;
-                            width: 20px;
-                            margin-right: 10px;
-
-                        }
-
-                        label {
-                            font-size: 16px;
-                            font-weight: 500;
                         }
                     }
 
@@ -236,17 +243,10 @@
                     align-items: center;
                     gap: 10px;
 
-                    @include breakpoint(md) {}
-
-                    @include mediumScreen {}
-
-                    @include LargeScreen {}
-
                     label {
-
                         padding: 40px;
                         font-size: 30px;
-                        border: 1px solid lightgray;
+                        border: 2px dashed lightgray;
                         cursor: pointer;
                     }
 
@@ -255,13 +255,11 @@
                     }
 
                     .image_sec {
-
                         display: flex;
                         align-items: center;
                         flex-wrap: wrap;
                         gap: 10px;
                         position: relative;
-
 
                         img {
                             width: 120px;

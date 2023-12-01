@@ -75,6 +75,7 @@ import AdminProtectedRouter from '../utilities/AdminProtectedRouter'
 import SuperAdminProtectedRouter from '../utilities/SuperAdminProtectedRouter'
 import UnProtectedRouter from '../utilities/UnProtectedRouter'
 import NotFound from '../Components/404/NotFound'
+import FilterForm from '../Pages/Admin/New/FilterForm'
 
 
 
@@ -166,6 +167,7 @@ const Routings = () => {
                 <Route index element={<CategoryList />} />
                 <Route path="form" element={<CategoryForm title="Add New Category" />} />
                 <Route path="edit/:categoryId" element={<EditCategory title="Edit Category" />} />
+                <Route path="add-filter/:categoryId" element={<FilterForm title="Add Filter" />} />
               </Route>
               <Route path="/admin/subcategory">
                 <Route index element={<SubcategoryList />} />

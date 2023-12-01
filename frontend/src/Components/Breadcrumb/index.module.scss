@@ -1,11 +1,10 @@
 @import '../../StyleHelpers/Variables.scss';
 
 .breadcrumb {
-    //width: 100%;
     border-bottom: 0.1rem solid rgba(235, 235, 235, 0.55);
 
     .container {
-        padding: 1.5rem 3rem;
+        padding: 1rem 3rem;
 
         @include breakpoint(md) {
             padding: 1.5rem 1rem;
