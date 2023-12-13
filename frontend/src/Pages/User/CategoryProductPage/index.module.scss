@@ -25,8 +25,8 @@
 
 
         .productwrapper {
-            padding: 3rem 0;
-            min-height: 25rem;
+            padding: 1.5rem 0;
+            min-height: 35rem;
             background-color: $base-color3;
 
             .container {
@@ -36,7 +36,7 @@
 
                 @include breakpoint(md) {
                     margin: 0 0;
-                    padding: 0 10px;
+                    padding: 0 20px;
                 }
 
                 @include mediumScreen {
@@ -56,9 +56,13 @@
                     display: flex;
                     gap: 20px;
 
-                    @include breakpoint(md) {}
+                    @include breakpoint(md) {
+                        flex-direction: column-reverse;
+                    }
 
-                    @include mediumScreen {}
+                    @include mediumScreen {
+                        flex-direction: column-reverse;
+                    }
 
                     @include extraMediumScreen {}
 
@@ -69,21 +73,20 @@
                     .Left_container {
                         display: flex;
                         flex-direction: column;
-                        width: 23%;
-                        padding: 10px 0;
-                        padding-right: 40px;
-                        border-right: 2px solid $base-color;
+                        width: 25%;
+                        padding-right: 25px;
+                        border-right: 1px solid $base-color;
 
                         @include breakpoint(md) {
                             width: 100%;
-                            border-bottom: 2px solid $base-color;
+                            border-top: 2px solid $base-color;
                             padding: 0;
                             border-right: none;
                         }
 
                         @include mediumScreen {
                             width: 100%;
-                            border-bottom: 2px solid $base-color;
+                            border-top: 2px solid $base-color;
                             padding: 10px 0;
                             border-right: none;
                         }
@@ -98,9 +101,11 @@
 
                     .Right_container {
                         display: flex;
-                        width: 77%;
+                        width: 75%;
+                        min-height: 100%;
                         align-items: center;
                         flex-direction: column;
+                        justify-content: space-between;
                         gap: 20px;
                         padding: 10px;
 
@@ -118,6 +123,25 @@
                             width: 75%;
                         }
 
+                        .error_container {
+                            height: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+
+                            img {
+                                width: 350px;
+                                height: 350px;
+                                object-fit: contain;
+                            }
+
+                            h1 {
+                                color: $base-color5;
+                            }
+                        }
+
+
                         .card_container {
                             position: relative;
                             display: grid;
@@ -127,20 +151,15 @@
                             margin-bottom: 1rem;
 
                             @include breakpoint(md) {
-                                grid-template-columns: 1fr;
-                                padding: 20px 10px;
-                                gap: 10px 0px;
+                                grid-template-columns: 1fr 1fr;
                             }
 
                             @include LargeScreen {
-                                grid-template-columns: 1fr 1fr 1fr;
-                                gap: 20px;
+                                grid-template-columns: 1fr 1fr 1fr 1fr;
                             }
 
                             @include mediumScreen {
                                 grid-template-columns: 1fr 1fr 1fr;
-                                padding: 20px;
-                                gap: 20px 20px;
                             }
                         }
 

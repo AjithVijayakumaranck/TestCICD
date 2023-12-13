@@ -8,44 +8,36 @@ const Footer = () => {
             <div className={Style.grid} >
                 <div className={Style.box}>
                     <Link to='/' className={Style.navigation} > <h1>DealNBuy</h1> </Link>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor libero id et,sollicitudin elit at amet.</p>
 
                 </div>
 
                 <div className={Style.box}>
                     <h2>About Us</h2>
                     <ul>
-                        <li>Careers</li>
-                        <li>Our Stores</li>
-                        <li>Help Center</li>
-                        <li>Terms & Conditions</li>
-                        <li>Privacy Policy</li>
+                        <Link to='/help-center' className={Style.navigation} ><li>Help Center</li></Link>
+                        <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><li>Terms & Conditions</li></Link>
+                        <Link to='/legal-and-privacy' className={Style.navigation} ><li>Privacy Policy</li></Link>
                     </ul>
                 </div>
                 <div className={Style.box}>
                     <h2>Locations</h2>
                     <ul>
-                        <li> Banglore </li>
-                        <li> Kerala </li>
-                        <li> Kochi </li>
-                        <li> France </li>
-
+                        <li> India </li>
                     </ul>
                 </div>
                 <div className={Style.box}>
                     <h2>Contact Us</h2>
                     <ul>
-                        <li>kerala </li>
-                        <li>Email: deal&buy@gmail.com</li>
-                        <li>Phone: +91 123 456 789</li>
+                        <li>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur , Kerala ,India. </li>
+                        <li>Email: contact.in@dealnbuy.co.in</li>
                     </ul>
                 </div>
             </div>
             <div className={Style.bottom}>
                 <div className={Style.bottomleft}>
-                    <p>Copyright © 2023 DealNBuy store. All Rights Reserved.
-                        <span className={Style.left}><i>Terms Of Use</i></span>
-                        <span><i>Privacy Policy</i></span>
+                    <p>Copyright © 2023 DealNBuy. All Rights Reserved.
+                        <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><span className={Style.left}><i>Terms Of Use</i></span></Link>
+                        <Link to='/legal-and-privacy' className={Style.navigation} ><span><i>Privacy Policy</i></span></Link>
                     </p>
                 </div>
             </div>

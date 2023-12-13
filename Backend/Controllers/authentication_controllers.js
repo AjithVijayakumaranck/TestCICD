@@ -4,6 +4,7 @@ const { verifyHashedData, hashData } = require("../utilities/hashData")
 const { sendOTP } = require("./otp/otp")
 const OTP = require("../Models/otp")
 const { verifyPhoneOtp, sentVerificationOtp } = require("./otp/twilio")
+const { Encrypt } = require("../utilities/encryption")
 
 
 
@@ -13,7 +14,6 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { data, password } = req.body
-            console.log(data, password);
             const userInfo = await USER.findOne({
                 $and: [{
                     $or: [
@@ -23,23 +23,49 @@ module.exports = {
                 },
                 {
                     $or: [
-                        { phoneVerified: true },
-                        { emailVerified: true }
+                        { $and: [  { phoneVerified: true },{ emailVerified: true } ] },
+                        {role:"admin"},
+                        {role:"superadmin"}
                     ]
                 },
                 { googleVerified: false }
                 ]
             });
-            console.log(userInfo, "userdata");
-            const verified = await verifyHashedData(password, userInfo.password)
-            console.log(verified, "verification sTATUIS");
-            if (verified) {
-                console.log(userInfo, "helll");
-                const token = await jwt.sign({ ...userInfo }, process.env.JWT_SECRET_KEY)
-                res.status(200).json({ token: token, user: userInfo })
-            } else {
-                res.status(401).json({ message: "email or password is wrong" })
-            }
+       
+// ----------------------------------------------------------------
+
+            // if(userInfo.phoneVerified === false || userInfo.emailVerified === false){
+            //     if(userInfo.emailVerified === false){
+            //         console.log("email not verified");
+            //         const createdOTP = await sendOTP({ email : userInfo.email });    
+            //         res.status(200).json(createdOTP);
+            //     }else if(userinfo.phoneVerified === false){
+            //         sentVerificationOtp(userInfo.userInfo.phoneNumber).then(() => {
+            //             res.status(200).json({mobileVerified:false,message:"otp sent",phonenumber:userInfo.phoneNumber});
+            //         }).catch(() => {
+            //             res.status(500).json("something went wrong");
+            //         })
+            //     }
+            // }else{
+            //     const verified = await verifyHashedData(password, userInfo.password)
+            //     if (verified) {
+            //         const token = await jwt.sign({ ...userInfo}, process.env.JWT_SECRET_KEY)
+            //         res.status(200).json({ token: token, user: userInfo })
+            //     } else {
+            //         res.status(401).json({ message: "email or password is wrong" })
+            //     }
+            // }
+
+// ----------------------------------------------------------------
+
+
+                const verified = await verifyHashedData(password, userInfo.password)
+                if (verified) {
+                    const token = await jwt.sign({ ...userInfo}, process.env.JWT_SECRET_KEY)
+                    res.status(200).json({ token: token, user: userInfo })
+                } else {
+                    res.status(401).json({ message: "email or password is wrong" })
+                }
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "something went wrong" })

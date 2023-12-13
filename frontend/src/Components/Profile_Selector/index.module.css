@@ -34,32 +34,54 @@
   padding: 5px;
   position: relative;
 }
-.option_wrapper .box div {
+.option_wrapper .box .boxWrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   cursor: pointer;
 }
-.option_wrapper .box div .eachopt {
+.option_wrapper .box .boxWrapper .eachopt {
   border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.option_wrapper .box div .eachopt,
-.option_wrapper .box div .logout {
+.option_wrapper .box .boxWrapper .logout {
+  width: 100%;
+}
+.option_wrapper .box .boxWrapper .eachopt,
+.option_wrapper .box .boxWrapper .logout {
   padding: 5px 0;
 }
-.option_wrapper .box div .eachopt:hover,
-.option_wrapper .box div .logout:hover {
+.option_wrapper .box .boxWrapper .eachopt:hover,
+.option_wrapper .box .boxWrapper .logout:hover {
   background-color: #f8f8f8;
 }
-.option_wrapper .box div .eachopt h4,
-.option_wrapper .box div .logout h4 {
+.option_wrapper .box .boxWrapper .eachopt h4,
+.option_wrapper .box .boxWrapper .logout h4 {
   margin: 4px 10px;
-  font-size: 13px;
-  font-weight: 3;
+  font-size: 12px;
+  font-weight: 400;
   cursor: pointer;
 }
-.option_wrapper .box div .User_wrapper {
+.option_wrapper .box .boxWrapper .eachopt .count,
+.option_wrapper .box .boxWrapper .logout .count {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  padding: 2px;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+  color: #fff;
+  background-color: #046BD2;
+  border-radius: 50%;
+}
+.option_wrapper .box .boxWrapper .User_wrapper {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -67,16 +89,15 @@
   padding: 10px 0;
   border-bottom: 1px solid lightgrey;
 }
-.option_wrapper .box div .User_wrapper .profile {
+.option_wrapper .box .boxWrapper .User_wrapper .profile {
   aspect-ratio: 1;
-  width: 60px;
+  width: 40px;
   height: 40px;
   margin: 0 10px;
   border-radius: 50%;
-  border: 1px solid #046BD2;
   overflow: hidden;
 }
-.option_wrapper .box div .User_wrapper .profile img {
+.option_wrapper .box .boxWrapper .User_wrapper .profile img {
   width: 100%;
   height: 100%;
 }/*# sourceMappingURL=index.module.css.map */

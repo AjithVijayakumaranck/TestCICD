@@ -1,6 +1,16 @@
 .mainContainer {
-  margin-top: 90px;
+  margin-top: 80px;
   overflow: hidden;
+}
+@media (max-width: 550px) {
+  .mainContainer {
+    margin-top: 120px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .mainContainer {
+    margin-top: 80px;
+  }
 }
 .mainContainer .Container {
   display: flex;

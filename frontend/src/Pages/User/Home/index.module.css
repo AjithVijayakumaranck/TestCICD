@@ -2,8 +2,14 @@
   width: 100%;
   margin-top: 5rem;
 }
+@media (max-width: 550px) {
+  .home_container {
+    margin-top: 7rem;
+  }
+}
 .home_container .Main_container {
   display: flex;
+  justify-content: center;
   gap: 0.2rem;
   min-height: 510px;
   overflow: hidden;
@@ -34,6 +40,7 @@
 .home_container .Main_container .Left {
   background-color: #f8f8f8;
   width: 23%;
+  max-width: 340px;
 }
 @media (max-width: 550px) {
   .home_container .Main_container .Left {
@@ -57,6 +64,7 @@
 }
 .home_container .Main_container .Right {
   width: 77%;
+  max-width: 1080px;
   display: flex;
   justify-content: center;
   align-items: center;

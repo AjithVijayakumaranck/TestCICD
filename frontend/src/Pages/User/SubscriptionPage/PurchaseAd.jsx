@@ -16,6 +16,7 @@ const PurchaseAd = () => {
     const { User } = loggedInUser
 
     const [Subscriptions, SetSubscriptions] = useState([])
+    const [UserData, SetUserData] = useState({})
 
     const location = useLocation();
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
@@ -25,11 +26,21 @@ const PurchaseAd = () => {
         instance.get('/api/user/subscription_plans/get_subscription').then((response) => {
             SetSubscriptions([...response.data])
         }).catch((error) => {
-            //toast the error
             console.log(error);
         })
     }, [])
 
+    useEffect(() => {
+        try {
+            instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
+                SetUserData({ ...Response.data })
+            }).catch((err) => {
+                console.log(err)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }, [User]);
 
     return (
         <>
@@ -44,7 +55,7 @@ const PurchaseAd = () => {
                         </div>
                         <div className={Style.bottom_row}>
                             <span className={Style.First} >Remaining Ad Count </span>
-                            <span className={Style.Second}>{User ? User.AdCount : 0}</span>
+                            <span className={Style.Second}>{UserData ? UserData.AdCount : 0}</span>
                         </div>
                     </div>
                     <div className={Style.bottom} >

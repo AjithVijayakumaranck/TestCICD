@@ -5,8 +5,13 @@
     width: 100%;
     margin-top: 5rem;
 
+    @include breakpoint(md) {
+        margin-top: 7rem;
+    }
+
     .Main_container {
         display: flex;
+        justify-content: center;
         gap: 0.2rem;
         min-height: 510px;
         overflow: hidden;
@@ -34,6 +39,7 @@
         .Left {
             background-color: $base-color3;
             width: 23%;
+            max-width: 340px;
 
             @include breakpoint(md) {
                 display: none;
@@ -56,6 +62,7 @@
 
         .Right {
             width: 77%;
+            max-width: 1080px;
             display: flex;
             justify-content: center;
             align-items: center;

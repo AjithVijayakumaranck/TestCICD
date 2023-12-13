@@ -42,5 +42,44 @@ module.exports = {
         } catch (error) {
             res.status(500).json({message:"something went wrong "})
         }
+    },
+
+    getNotificationCount: async (req,res)=>{
+        try {
+            const {userId} = req.query
+            NOTIFICATION.find({$or : [{reciverId:userId},{broadcast:true}], read: { $nin: [userId ] }}).count().then((response)=>{
+                res.status(200).json(response)
+            }).catch((error)=>{
+                res.status(400).json(error.message)
+            })
+
+        } catch (error) {
+            res.status(500).json({message:error.message})
+        }
+    },
+
+    MarkRead:(req,res)=>{
+        try {
+            const {notificationId,userId} = req.body
+            NOTIFICATION.findById(notificationId).then((response)=>{
+                if(response.read.includes(userId)){
+                    res.status(200).json({message:"its a read message"})
+                }else{
+                    NOTIFICATION.updateOne({_id:notificationId},{
+                        $push:{
+                            read:userId
+                        }
+                    }).then((response)=>{
+                        res.status(200).json(response)
+                    }).catch((error)=>{
+                        res.status(400).json(error.message)
+                    })
+                }
+            }).catch((error)=>{
+                res.status(400).json(error.message)
+            })
+        } catch (error) {
+            res.status(500).json(error.status)
+        }
     }
 }

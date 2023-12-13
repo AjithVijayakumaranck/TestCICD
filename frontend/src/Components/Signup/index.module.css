@@ -21,19 +21,16 @@
 }
 .form_container .left_section h1 {
   color: #046BD2;
-  margin-bottom: 10px;
 }
 .form_container .left_section p {
   font-size: 12px;
-  margin-bottom: 5px;
 }
 .form_container .left_section .login_Details h1 {
-  padding: 2px;
   color: #046BD2;
   font-size: 20px;
 }
 .form_container .left_section .login_Details p {
-  padding: 10px 0px;
+  padding: 5px 0px;
   font-size: 12px;
 }
 .form_container .left_section form .error_para {
@@ -69,19 +66,35 @@
 }
 .form_container .left_section form .input_div div span {
   color: #046BD2;
-  cursor: pointer;
   font-size: 10px;
   margin-left: 10px;
+  cursor: pointer;
 }
 .form_container .left_section form .input_div div span:hover {
   color: #10E3C2;
 }
 .form_container .left_section form .input_div div input {
-  border-width: 0.3px;
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
-  padding: 15px 10px;
+  border-width: 0.3px;
+  border-radius: 5px;
+  padding: 14px 10px;
   background-color: #ebebeb;
+}
+.form_container .left_section form .input_div div .input_Wrap {
+  position: relative;
+}
+.form_container .left_section form .input_div div .input_Wrap .eye_icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  font-size: 16px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+.form_container .left_section form .input_div div .input_Wrap .eye_icon:hover {
+  color: #046BD2;
 }
 .form_container .left_section form .input_div div label {
   font-size: 12px;
@@ -93,11 +106,12 @@
   width: 100%;
   color: white;
   border: none;
-  padding: 15px 0px;
+  border-radius: 5px;
+  padding: 14px 0px;
   font-size: 15px;
 }
 .form_container .left_section form button:hover {
-  background-color: #10E3C2;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
 .form_container .left_section .additional_options {
   padding-top: 10px;
@@ -157,7 +171,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #10E3C2;
+  background: #046BD2;
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }

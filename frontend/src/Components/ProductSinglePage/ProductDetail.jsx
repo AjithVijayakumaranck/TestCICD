@@ -6,7 +6,6 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useNavigate, useParams } from 'react-router-dom';
-import instance from '../../instance/AxiosInstance';
 import { AiFillHeart } from 'react-icons/ai';
 import { UserContext } from '../../Contexts/UserContext';
 import authInstance from '../../instance/AuthInstance';
@@ -51,24 +50,23 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
 
     const loadWishlistData = () => {
-        authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
-            //console.log(Response.data);
+        authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((Response) => {
             SetWishlistData(Response.data)
         }).catch((err) => {
             console.log(err);
         })
     };
 
-   
+
 
     //Make favorite
     const handleFavoriteClick = (e) => {
         e.preventDefault();
         try {
-            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: ProductDet._id }).then((Response) => {
-                //console.log(Response, 'favorite');
+            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: ProductDet?._id }).then((Response) => {
                 SetIsClicked(true);
             }).catch((err) => {
+                Navigate('/registration_login')
                 console.log(err);
             })
         } catch (error) {
@@ -78,41 +76,40 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === productId)
-                //console.log(foundItem);
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === productId)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        console.log(User._id);
-        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${productId}`).then((Response) => {
-            // console.log('deleted', Response)
-            SetIsClicked(false)
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${productId}`).then((Response) => {
+                SetIsClicked(false)
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
 
     const ConversationHandler = () => {
         try {
             if (User?._id !== ClientData?._id) {
-                authInstance.post('/api/user/chat/createconversation', { senderId: User._id, recieverId: ClientData._id, productId: ProductDet._id }).then((response) => {
-                    console.log("response", response);
-                    Navigate(`/chat/${response.data.savedConversation._id}`)
+                authInstance.post('/api/user/chat/createconversation', { senderId: User?._id, recieverId: ClientData?._id, productId: ProductDet?._id }).then((response) => {
+                    Navigate(`/chat/${response.data?.savedConversation?._id}`)
                 }).catch((err) => {
-                    console.log(err, "erooooor");
+                    Navigate('/registration_login')
+                    console.log(err);
                 })
             } else {
                 toast.error('Oops! You are chatting with yourself!')
@@ -127,17 +124,12 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
     //LoadCategory functions
     useEffect(() => {
-        //loadProducts();
         loadWishlistData();
     }, []);
 
     useEffect(() => {
         findItemId();
     }, [WishlistData, productId]);
-
-
-
-
 
 
     const settings = {
@@ -155,126 +147,122 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
 
 
     return (
-        <>
-            <div className={Style.Container}>
+        <div className={Style.Container}>
 
-                <div className={Style.row}>
-                    <div className={Style.Left_container}>
-                        <div className={Style.image_wrapper}>
-                            <Slider {...settings}>
-                                {ProductImages.map((images) => {
-                                    return (
-                                        <div className={Style.box}>
-                                            <div className={Style.img_Container}>
-                                                <img src={images.url} alt='' />
-                                                <span
-                                                    onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
-                                                    style={{ color: IsClicked ? 'red' : 'grey' }}
-                                                >
-                                                    <AiFillHeart />
-                                                </span>
-                                            </div>
+            <div className={Style.row}>
+                <div className={Style.Left_container}>
+                    <div className={Style.image_wrapper}>
+                        <Slider {...settings}>
+                            {ProductImages.map((images, index) => {
+                                return (
+                                    <div className={Style.box}>
+                                        <div className={Style.img_Container}>
+                                            <img src={images?.url} alt='' />
+                                            <span
+                                                onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavoriteClick(e)}
+                                                style={{ color: IsClicked ? 'red' : 'darkgray' }}
+                                            >
+                                                <AiFillHeart />
+                                            </span>
+                                            <p className={Style.img_index}>{index + 1} / {ProductImages.length}</p>
                                         </div>
-                                    )
-                                })}
-                            </Slider>
-                        </div>
+                                    </div>
+                                )
+                            })}
+                        </Slider>
                     </div>
+                </div>
 
-                    <div className={Style.Right_container}>
-                        <div className={Style.Details}>
+                <div className={Style.Right_container}>
+                    <div className={Style.Details}>
+                        <div>
+                            <h3> {ProductDet?.title} </h3>
+                            <h1>${ProductDet?.price}</h1>
+                        </div>
+                        <div className={Style.Rating}>
                             <div>
-                                <h3> {ProductDet?.title} </h3>
-                                <h1>${ProductDet?.price}</h1>
+                                <Star stars={ClientData?.totalrating} />
                             </div>
-                            <div className={Style.Rating}>
-                                <div>
-                                    <Star stars={ClientData?.totalrating} />
-                                </div>
-                                <p>({Reviews?.length} Reviews)</p>
+                            <p>({Reviews?.length} Reviews)</p>
+                        </div>
+                        <h5><IoLocationOutline className={Style.icon} /><span>{ProductDet?.locality} / {ProductDet?.state}</span></h5>
+                        <div className={Style.Button_wrapper}>
+                            <div className={Style.chat}>
+                                <button onClick={ConversationHandler} ><BsChat />
+                                    <span>Chat</span>
+                                </button>
                             </div>
-                            <h5><IoLocationOutline className={Style.icon} /><span>{ProductDet?.locality} / {ProductDet?.state}</span></h5>
-                            <div className={Style.Button_wrapper}>
-                                <div className={Style.chat}>
-                                    <button onClick={ConversationHandler} ><BsChat />
-                                        <span>Chat</span>
-                                    </button>
-                                </div>
-                                <div className={Style.call}>
-                                    <button><IoCallOutline /><span>Call</span></button>
-                                </div>
+                            <div className={Style.call}>
+                                <button><IoCallOutline /><span>Call</span></button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={Style.row}>
-                    <div className={Style.Left_container}>
-                        <h3>Ad Details</h3>
-                        <div className={Style.Ad_detail}>
+            </div>
+            <div className={Style.row}>
+                <div className={Style.Left_container}>
+                    <h3>Ad Details</h3>
+                    <div className={Style.Ad_detail}>
 
-                            <ul>
+                        <ul>
+                            {Object.entries(OtherDet).map(([key, value]) => {
+                                return (
+                                    <li key={key}>
+                                        <label>{key} : </label>
+                                        <span>{value}</span>
+                                    </li>
+                                )
+                            })}
+                        </ul>
 
-                                {Object.entries(OtherDet).map(([key, value]) => {
-                                    return (
-                                        <li key={key}>
-                                            <label>{key} : </label>
-                                            <span>{value}</span>
-                                        </li>
-                                    )
-                                })}
-
-                            </ul>
-
-                        </div>
-                        <h3>Description</h3>
-                        <div className={Style.des}>
-                            <p>
-                                {ProductDet?.description}
-                            </p>
-                        </div>
                     </div>
-                    <div className={Style.Right_container}>
-                        <div className={Style.seller}>
-
-                            <div className={Style.map_wrapper}>
-                                <div className={Style.title_div}>
-                                    <label>Posted In</label>
-                                </div>
-                                <div className={Style.map_div}>
-                                    map
-                                </div>
-                            </div>
-
-                            <div className={Style.Id_wrap} >
-                                <label>Ad Id : </label>
-                                <span> {productId} </span>
-                            </div>
-
-                            <div className={Style.seller_wrapper} onClick={() => Navigate(`/clientprofile/${ClientData._id}`)}>
-                                <div>
-                                    <img
-                                        src={
-                                            ClientImage
-                                                ? ClientImage
-                                                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                        }
-                                        className={Style.itemImg}
-                                        alt=""
-                                    />
-                                    <h3>{ClientData?.fullname || ''} {ClientData?.surname || ''}</h3>
-                                </div>
-                                <div>
-                                    <span> <BsChevronRight /> </span>
-                                </div>
-                            </div>
-
-                        </div>
+                    <h3>Description</h3>
+                    <div className={Style.des}>
+                        <p>
+                            {ProductDet?.description}
+                        </p>
                     </div>
                 </div>
+                <div className={Style.Right_container}>
+                    <div className={Style.seller}>
 
+                        <div className={Style.map_wrapper}>
+                            <div className={Style.title_div}>
+                                <label>Posted In</label>
+                            </div>
+                            <div className={Style.map_div}>
+                                map
+                            </div>
+                        </div>
+
+                        <div className={Style.Id_wrap} >
+                            <label>Ad Id : </label>
+                            <span> {productId} </span>
+                        </div>
+
+                        <div className={Style.seller_wrapper} onClick={() => Navigate(`/clientprofile/${ClientData._id}`)}>
+                            <div>
+                                <img
+                                    src={
+                                        ClientImage
+                                            ? ClientImage
+                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                    }
+                                    className={Style.itemImg}
+                                    alt=""
+                                />
+                                <h3>{ClientData?.fullname || ''} {ClientData?.surname || ''}</h3>
+                            </div>
+                            <div>
+                                <span> <BsChevronRight /> </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-        </>
+        </div>
     )
 }
 

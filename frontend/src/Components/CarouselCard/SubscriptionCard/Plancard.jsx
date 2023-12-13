@@ -8,12 +8,11 @@ const Plancard = ({ item }) => {
 
     const user = useContext(UserContext)
     const { User, SetUser } = user
- 
+
     const selectHandler = (e) => {
         console.log("hello");
         e.preventDefault()
         authInstance.post('/api/user/check_out/stripe-checkout', { subscriptionPlanId: item._id, userId: User._id }).then((response) => {         // navigate()
-            console.log(response, "HELLO");
             window.location.replace(response.data.url);
         }).catch((err) => {
             console.log(err);
@@ -25,16 +24,16 @@ const Plancard = ({ item }) => {
             <div className={Style.wrapper}>
                 <div className={Style.top}>
                     <div className={Style.row1}>
-                        <h3>{item.plan_name}</h3>
-                        <h5>Popular</h5>
+                        <h3>{item?.plan_name}</h3>
+                        {item?.popular && (<h5>Popular</h5>)}
                     </div>
                     <div className={Style.row2}>
-                        <h1>{item.monthly_pricing}</h1>
+                        <h1>{item?.monthly_pricing}</h1>
                         <span> / </span>
                         <h4>Month per user</h4>
                     </div>
                     <div className={Style.row3} >
-                        <p>15% Discount</p>
+                        <p>{item?.discount}% Discount</p>
                     </div>
 
                     <div className={Style.row4}>
@@ -51,7 +50,7 @@ const Plancard = ({ item }) => {
                     </div>
                     <div className={Style.row} >
                         {
-                            item.Features.map((item, index) => {
+                            item?.Features.map((item, index) => {
                                 return (
                                     <div className={Style.item} key={index} >
                                         <span><TiTick /></span>

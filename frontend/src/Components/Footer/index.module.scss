@@ -127,14 +127,14 @@
 
                 span {
                     margin: .6rem;
-                    text-decoration: underline;
                     cursor: pointer;
 
                     i {
                         margin-right: 0.6rem;
                         font-style: normal;
                         font-size: 14px;
-                        text-decoration: none;
+                        text-decoration: underline;
+                        color: #fff;
 
                         @include breakpoint(md) {
                             font-size: 12px

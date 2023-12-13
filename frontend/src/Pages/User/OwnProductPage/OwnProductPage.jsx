@@ -63,7 +63,9 @@ const OwnProductPage = () => {
                             </div>
                         </div>
                         <div className={Style.cardWrapper}>
-                            <OwnCard products={UserProducts} reload={SetReload} userId={User._id} />
+                            {UserProducts.map((product, index) => (
+                                <OwnCard product={product} />
+                            ))}
                         </div>
                     </div>
                 </div>

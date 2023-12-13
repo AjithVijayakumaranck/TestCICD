@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Style from './Style.module.css'
 import Sidebar from '../../../Components/AdminComponents/Sidebar/Sidebar'
 import Header from '../../../Components/AdminComponents/Header/Header'
@@ -7,19 +7,24 @@ import Charts from '../../../Components/AdminComponents/Charts/Charts'
 import Featured from '../../../Components/AdminComponents/Featured/Featured'
 import Table from '../../../Components/AdminComponents/Table/List'
 import { useState } from 'react'
-import instance from '../../../instance/AxiosInstance'
 import adminInstance from '../../../instance/AdminInstance'
+import { AdminContext } from '../../../Contexts/AdminContext'
 
 
 const AdminHome = () => {
 
+  const LoggedInAdmin = useContext(AdminContext);
+  const { Admin, SetAdmin } = LoggedInAdmin
+
   const [Products, SetProducts] = useState([]);
+  const [LatestProducts, SetLatestProducts] = useState([]);
 
   const loadProducts = () => {
     try {
       adminInstance.get("/api/super_admin/product_control/get_products").then((response) => {
         //console.log(response.data);
         SetProducts([...response.data]);
+        SetLatestProducts([...response.data?.slice(-5)])
       }).catch((error) => {
         console.log(error);
       });
@@ -31,9 +36,10 @@ const AdminHome = () => {
   //LoadCategory functions
   useEffect(() => {
     loadProducts();
-  }, []);
+  }, [Admin]);
 
-  const LatestProducts = Products.slice(-5)
+
+
 
   return (
     <div className={Style.home}>
@@ -46,13 +52,15 @@ const AdminHome = () => {
           <Widgets type="category" />
           <Widgets type="earning" />
         </div>
-        <div className={Style.charts}>
-          <Featured />
-          <Charts />
-        </div>
+
         <div className={Style.listContainer}>
           <div className={Style.listTitle}> Latest Products </div>
           <Table rows={LatestProducts} />
+        </div>
+
+        <div className={Style.charts}>
+          <Featured />
+          <Charts />
         </div>
 
       </div>

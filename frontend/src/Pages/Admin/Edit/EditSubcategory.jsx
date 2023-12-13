@@ -3,8 +3,6 @@ import Style from './Style.module.css'
 import Header from '../../../Components/AdminComponents/Header/Header';
 import Sidebar from '../../../Components/AdminComponents/Sidebar/Sidebar'
 import { BsPlusCircle } from "react-icons/bs";
-//import Select from "react-select";
-import instance from '../../../instance/AxiosInstance';
 import { Delete } from '@mui/icons-material';
 import Tooltip from '@mui/material/Tooltip';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -269,7 +267,7 @@ const EditSubcategory = ({ title }) => {
               </div>
 
               <div className={Style.formBtn}>
-                <Tooltip title="Check before Saving the data">
+                <Tooltip title="Check the data before Saving the data">
                   <button>Save</button>
                 </Tooltip>
                 <button onClick={(e) => HandleCancel(e)}>Cancel</button>

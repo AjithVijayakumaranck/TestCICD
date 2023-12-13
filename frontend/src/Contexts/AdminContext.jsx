@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
+
 
 export const AdminContext = createContext();
 
@@ -10,12 +11,11 @@ export const AdminContextProvider = ({ children }) => {
     useEffect(() => {
         const decodeToken = async () => {
 
-            const Token = localStorage.getItem('AdminToken');
+            const Token = await localStorage.getItem('AdminToken');
+
             if (Token) {
                 const decodedToken = jwt_decode(Token);
-                //console.log(decodedToken._doc, "Admintoken decode");
                 SetAdmin(decodedToken._doc);
-                //console.log(Admin, "Admin");
             }
         };
         // Call the decodeToken function when the component mounts

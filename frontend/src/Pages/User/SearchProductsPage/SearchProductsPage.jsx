@@ -30,7 +30,6 @@ const SearchProductsPage = () => {
     const loadProducts = () => {
         try {
             instance.get(`/api/user/product/get_products?page=${CurrentPage}`).then((response) => {
-                //console.log(response.data);
                 SetProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -65,14 +64,12 @@ const SearchProductsPage = () => {
 
 
     const handlePreviousPage = () => {
-        console.log("hello prev");
         if (CurrentPage > 1) {
             SetCurrentPage(CurrentPage - 12);
         }
     };
 
     const handleNextPage = () => {
-        console.log("hello next");
         SetCurrentPage(CurrentPage + 12);
     };
 
@@ -102,10 +99,13 @@ const SearchProductsPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={Style.loadbtn}>
-                        <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                        <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
-                    </div>
+                    {SortedProducts.length !== 0 ?
+                        <div className={Style.loadbtn}>
+                            <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
+                            <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                        </div>
+                        : null
+                    }
                 </div>
                 <Footer />
             </div>

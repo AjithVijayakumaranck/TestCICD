@@ -33,7 +33,7 @@ const UsersList = () => {
       name: 'Options',
       cell: (row) => (
         <div className={Style.optionsContainer}>
-          <button className={Style.viewButton} onClick={() => navigate(`/admin/users/single/${row._id}`)}  > View </button>
+          <button className={Style.viewButton} onClick={() => navigate(`/admin/users/singles/${row._id}`)}  > View </button>
           <button className={Style.deleteButton} onClick={() => handleDelete(row._id)} > Block </button>
         </div>
       ),

@@ -68,12 +68,21 @@ const USERschema = new schema({
     type: Boolean,
     default: false
   },
-  AdCount:{
+  role:{
+    type: String,
+    enum:["admin","superadmin","user"],
+    default:"user"
+  },
+  roleupgradeBy:{
     type:String,
+    enum:["admin","superadmin"],
+},
+  AdCount:{
+    type:Number,
     default:"20"
   },
   ImageCount:{
-    type:String,
+    type:Number,
     default:"10"
   },
   emailVerified: {

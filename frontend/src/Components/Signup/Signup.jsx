@@ -4,23 +4,33 @@ import instance from "../../instance/AxiosInstance";
 import Style from "./index.module.css";
 import LoadingSpin from "react-loading-spin";
 import { toast } from "react-toastify";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 
 
 const Signup = ({ setLogin }) => {
 
- 
+
 
   //authentication option
   const [otp, setOtp] = useState(false);
-
-  const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [responseError, setResponseError] = useState("");
+  const [ShowPassword, SetShowPassword] = useState(false);
+  const [ShowConfirmPassword, SetShowConfirmPassword] = useState(false);
+  const [isEmailOtpVerified, setIsEmailOtpVerified] = useState(false);
 
   const maxDate = new Date().toISOString().split("T")[0];
 
-  const [loading, setLoading] = useState(false);
+  // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+    SetShowPassword(!ShowPassword);
+  };
 
-  const [responseError, setResponseError] = useState("");
+  // Function to toggle confirm password visibility
+  const toggleConfirmPasswordVisibility = () => {
+    SetShowConfirmPassword(!ShowConfirmPassword);
+  };
 
   const [otpDetails, setOtpDetails] = useState({
     email: "",
@@ -61,7 +71,7 @@ const Signup = ({ setLogin }) => {
   //validations
 
   const fullname_validation = (e) => {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+    if (/^[a-zA-Z\s-]*$/.test(e.target.value)) {
       setFormError(false);
       setError({ ...error, fullname: "" });
       setUserData({ ...userData, fullname: e.target.value });
@@ -77,7 +87,7 @@ const Signup = ({ setLogin }) => {
   };
 
   const lastname_validation = (e) => {
-    if (/^[a-zA-Z]*$/.test(e.target.value)) {
+    if (/^[a-zA-Z\s-]*$/.test(e.target.value)) {
       setFormError(false);
       setError({ ...error, lastname: "" });
       setUserData({ ...userData, lastname: e.target.value });
@@ -100,7 +110,6 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      console.log("not validated");
       setError({ ...error, email: "Invalid email" });
       setTimeout(() => {
         setError({ ...error, email: "" });
@@ -110,7 +119,6 @@ const Signup = ({ setLogin }) => {
   };
 
   const phone_validation = (e) => {
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setFormError(false);
       if (e.target.value.toString().length < 10) {
@@ -124,7 +132,6 @@ const Signup = ({ setLogin }) => {
       }
     } else {
       setFormError(true);
-      console.log("not validated");
       setError({ ...error, phonenumber: "This field cannot be empty" });
       setTimeout(() => {
         setError({ ...error, phonenumber: "" });
@@ -141,7 +148,6 @@ const Signup = ({ setLogin }) => {
       return true;
     } else {
       setFormError(true);
-      console.log(e.target.value, "not validated");
       setError({ ...error, dateOfbirth: "Field can't be empty" });
       setTimeout(() => {
         setError({ ...error, dateOfbirth: "" });
@@ -151,10 +157,8 @@ const Signup = ({ setLogin }) => {
   };
 
   const password_validation = (e) => {
-    console.log("im ahere");
     if (e.target.value !== "") {
       setFormError(true);
-      console.log(e.target.value.length);
       if (e.target.value.replace(/ /g, "").length <= 8) {
         setError({ ...error, password: "Minimum 8 character needed" });
         return false;
@@ -177,7 +181,6 @@ const Signup = ({ setLogin }) => {
   const confirmPassword_validation = (e) => {
     if (e.target.value !== "") {
       setFormError(true);
-      console.log(e.target.value.length);
       if (e.target.value.replace(/ /g, "") !== userData.password) {
         setError({ ...error, confirmPassword: "Enter Correct password" });
         return false;
@@ -197,10 +200,7 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  const otp_validation = (e) => { };
-
   // submit handler and submit validation
-
   const submitHandler = (e) => {
     setResponseError("");
     e.preventDefault();
@@ -208,32 +208,17 @@ const Signup = ({ setLogin }) => {
       console.log("enter proper details");
     } else {
       setLoading(true);
-      if (auth) {
-        instance
-          .post("/api/registerphone", userData)
-          .then((response) => {
-            setLoading(false);
-            setOtp(true);
-            console.log(response, "hello phgone");
-          })
-          .catch((Error) => {
-            setLoading(false);
-            setResponseError(Error.response.data.message);
-          });
-      } else {
-        instance
-          .post("/api/register", userData)
-          .then((response) => {
-            setLoading(false);
-            setOtp(true);
-            console.log(response, "hello email");
-          })
-          .catch((Error) => {
-            setLoading(false);
-            setResponseError(Error.response.data.message);
-            console.log(Error, "heee");
-          });
-      }
+      instance.post("/api/register2n1", userData).then((response) => {
+        setLoading(false);
+        setOtp(true);
+        if (response.data.mobileVerified === false) {
+          setIsEmailOtpVerified(true)
+        }
+      }).catch((Error) => {
+        setLoading(false);
+        toast.error("already used these credentials")
+        setResponseError(Error.response?.data?.message);
+      });
     }
   };
 
@@ -244,35 +229,27 @@ const Signup = ({ setLogin }) => {
       setError({ ...error, otp: "enter the otp" });
     } else {
       setLoading(true);
-      auth
-        ? instance
-          .post("api/verifyphone", otpDetails)
-          .then((response) => {
-            setLoading(false);
-            console.log(response, "helll");
-            setLogin(false)
-            setOtp(false)
-            toast.success("User Regitered")
-          })
-          .catch((error) => {
-            setLoading(false);
-            console.log(error, "helllllll");
-            setOtp(false)
-          })
-        : instance
-          .post("api/verifyemail", otpDetails)
-          .then((response) => {
-            setLoading(false);
-            console.log(response, "helloooo");
-            setLogin(false)
-            setOtp(false)
-            toast.success("User Regitered")
-          })
-          .catch((error) => {
-            setLoading(false);
-            console.log(error, "halllllooo");
-            setOtp(false)
-          });
+
+      isEmailOtpVerified ?
+        instance.post("api/verifyphone", otpDetails).then((response) => {
+          setLoading(false);
+          setLogin(false)
+          setOtp(false)
+          toast.success("User registration successful")
+        }).catch((error) => {
+          setLoading(false);
+          setOtp(false)
+        })
+        : instance.post("api/verifyemail2n1", otpDetails).then((response) => {
+          setLoading(false);
+          setIsEmailOtpVerified(true)
+          setOtpDetails({ otp: "" })
+          setOtp(true)
+          toast.success("Email has been successfully verified")
+        }).catch((error) => {
+          setLoading(false);
+          setOtp(false)
+        });
     }
   };
 
@@ -297,27 +274,24 @@ const Signup = ({ setLogin }) => {
       {otp ? (
         <div className={Style.left_section}>
           <h1>Lets Authenticate</h1>
-          <p>
-            We have sent you a One Time Password to your{" "}
-            {auth ? "Phonenumber" : "Email"}
-          </p>
+          <p> We have sent you a One Time Password to your {" "} {isEmailOtpVerified ? "Phonenumber" : "Email"} </p>
           <form onSubmit={(e) => { otpVerifyHandle(e); }}>
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="OTP">Enter Your Otp here</label>
                 <input
-                  onChange={(e) => {
-                    otpHandler(e);
-                  }}
-                  type="number"
+                  type="tel"
                   placeholder="One Time Password"
                   id="OTP"
                   value={otpDetails.otp}
+                  onChange={(e) => { otpHandler(e); }}
                 />
               </div>
             </div>
             <button>
-              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Signup")}
+              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) :
+                isEmailOtpVerified ? ("Complete Registration") : ("Continue")
+              }
             </button>
             <p className={Style.error_para}>{error.otp}</p>
           </form>
@@ -325,19 +299,17 @@ const Signup = ({ setLogin }) => {
       ) : (
         <div className={Style.left_section}>
           <div className={Style.login_Details}>
-            <h1>SIGNUP</h1>
+            <h1>Create Account</h1>
             <p>Please provide your details to register on DealNBuy</p>
           </div>
           <form onSubmit={(e) => { submitHandler(e); }} >
             <div className={Style.input_div}>
               <div>
-                <label htmlFor="Full_name">Full name</label>
+                <label htmlFor="Full_name">First Name</label>
                 <input
                   type="text"
-                  placeholder="Fullname"
-                  onChange={(e) => {
-                    fullname_validation(e);
-                  }}
+                  placeholder="First Name"
+                  onChange={(e) => { fullname_validation(e); }}
                   required
                   id="Full_name"
                 />
@@ -345,60 +317,17 @@ const Signup = ({ setLogin }) => {
               </div>
 
               <div>
-                <label htmlFor="lastname">Sur name</label>
+                <label htmlFor="Last Name">Sur Name</label>
                 <input
                   type="text"
-                  placeholder="lastname"
+                  placeholder="Last Name"
                   id="lastname"
                   required
-                  onChange={(e) => {
-                    lastname_validation(e);
-                  }}
+                  onChange={(e) => { lastname_validation(e); }}
                 />
                 <p>{error.lastname}</p>
               </div>
             </div>
-            {auth ? (
-              <div className={Style.input_div}>
-                <div>
-                  <label htmlFor="Phone Number">
-                    Phonenumber{" "}
-                    <span onClick={() => { setAuth(false); }} > Using my email </span>
-                  </label>
-                  <input
-                    required
-                    type="number"
-                    placeholder="Phonenumber"
-                    id="phonenumber"
-                    maxLength="10"
-                    onChange={(e) => {
-                      phone_validation(e);
-                    }}
-                  />
-                  <p>{error.phonenumber}</p>
-                </div>
-              </div>
-            ) : (
-              <div className={Style.input_div}>
-                <div>
-                  <label htmlFor="Email">
-                    Email{" "}
-                    <span onClick={() => { setAuth(true); }} > Using my Phonenumber </span>
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    placeholder="Email"
-                    id="Email"
-                    onChange={(e) => {
-                      email_validation(e);
-                    }}
-                  />
-                  <p>{error.email}</p>
-                </div>
-              </div>
-            )}
-
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="DateofBirth">Date of birth</label>
@@ -408,38 +337,70 @@ const Signup = ({ setLogin }) => {
                   placeholder="Date of birth"
                   id="DateofBirth"
                   max={maxDate}
-                  onChange={(e) => {
-                    dob_validation(e);
-                  }}
+                  onChange={(e) => { dob_validation(e); }}
                 />
                 <p>{error.dateOfbirth}</p>
+              </div>
+
+              <div>
+                <label htmlFor="Phone Number"> Phone Number{" "} </label>
+                <input
+                  required
+                  type="tel"
+                  placeholder="Phone Number"
+                  id="phonenumber"
+                  maxLength="10"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  onChange={(e) => { phone_validation(e); }}
+                />
+                <p>{error.phonenumber}</p>
+              </div>
+            </div>
+            <div className={Style.input_div}>
+              <div>
+                <label htmlFor="Email"> E-mail{" "} </label>
+                <input
+                  required
+                  type="email"
+                  placeholder="E-mail"
+                  id="Email"
+                  onChange={(e) => { email_validation(e); }}
+                />
+                <p>{error.email}</p>
               </div>
             </div>
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  required
-                  placeholder="Password"
-                  id="password"
-                  onChange={(e) => {
-                    password_validation(e);
-                  }}
-                />
+                <div className={Style.input_Wrap}>
+                  <input
+                    type={ShowPassword ? "text" : "password"}
+                    placeholder="Password"
+                    required
+                    id="password"
+                    onChange={(e) => { password_validation(e); }}
+                  />
+                  <span className={Style.eye_icon} onClick={togglePasswordVisibility}>
+                    {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                  </span>
+                </div>
                 <p>{error.password}</p>
               </div>
               <div>
                 <label htmlFor="Confrim_Password">Confirm Password</label>
-                <input
-                  type="password"
-                  required
-                  placeholder="Confirm Password"
-                  id="Confirm_Password"
-                  onChange={(e) => {
-                    confirmPassword_validation(e);
-                  }}
-                />
+                <div className={Style.input_Wrap}>
+                  <input
+                    type={ShowConfirmPassword ? "text" : "password"}
+                    required
+                    placeholder="Confirm Password"
+                    id="Confirm_Password"
+                    onChange={(e) => { confirmPassword_validation(e); }}
+                  />
+                  <span className={Style.eye_icon} onClick={toggleConfirmPasswordVisibility}>
+                    {ShowConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                  </span>
+                </div>
                 <p>{error.confirmPassword}</p>
               </div>
             </div>

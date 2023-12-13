@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom'
 import authInstance from '../../instance/AuthInstance'
 
 
-const Chat = ({ existingConverstaionId }) => {
+const Chat = ({ existingConverstaionId, HandleRead }) => {
 
     let { conversationId } = useParams();
 
@@ -74,9 +74,7 @@ const Chat = ({ existingConverstaionId }) => {
     };
     useEffect(() => {
         if (!conversationId || conversationId !== null) {
-            console.log("not undefined", conversationId);
             fetchCurrentReceiver(conversationId)
-            console.log("fetchCurrent Receiver");
         }
     }, [])
 
@@ -90,21 +88,14 @@ const Chat = ({ existingConverstaionId }) => {
 
         if (socket) {
             // Subscribe to events, emit messages, etc.
-
             socket.emit("addUser", {
                 userId: User._id,
                 data: "hello guuys"
             });
 
-
-
-
             // take event from client (get message from client)
-
             socket.on("getMessage", (data) => {
-                //console.log(data, "current dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 const decryptText = decrypt(data.text)
-                console.log(decryptText, "decryooot.", data.offerMade);
                 SetArrivalMessage({
                     ...ArrivalMessage,
                     sender: data.userId,
@@ -135,7 +126,7 @@ const Chat = ({ existingConverstaionId }) => {
     useEffect(() => {
         const getConersations = () => {
             try {
-                authInstance.get(`/api/user/chat/getconversation/${User._id}`).then((res) => {
+                authInstance.get(`/api/user/chat/getconversation/${User?._id}`).then((res) => {
                     SetConversation(res.data)
                 }).catch((err) => {
                     console.log(err)
@@ -145,22 +136,18 @@ const Chat = ({ existingConverstaionId }) => {
             }
         };
         getConersations();
-    }, [User._id])
+    }, [User?._id])
 
 
     // fetch current receiver profile details
     const fetchCurrentReceiver = async (conversationId) => {
         try {
-            //console.log(conversationId, "coooooooooooooooooo");
             const converstionDetails = await authInstance.get(`/api/user/chat/getspecific_converstaion/${conversationId}`)
             const conversations = converstionDetails.data
-            //console.log(conversations, "hellllo");
-            const friendId = conversations.member.find((m) => m !== User._id)
-            //console.log(friendId, "friiebd iddd");
+            const friendId = conversations.member.find((m) => m !== User?._id)
             instance.get(`/api/user/profile/get_profile/${friendId}`).then((res) => {
-                console.log(res.data, "friend data 2");
                 SetCurrentProfile(res.data)
-                SetCurrentProfileImage(res.data.profilePicture.url)
+                SetCurrentProfileImage(res.data?.profilePicture?.url)
                 setCurrentChat(conversations)
             }).catch((error) => {
                 console.log(error);
@@ -175,9 +162,9 @@ const Chat = ({ existingConverstaionId }) => {
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await authInstance.get(`/api/user/chat/getmessages/${currentChat._id}`);
-                decryptData(res.data.allMessagges)
-                SetMessage(res.data.allMessagges)
+                const res = await authInstance.get(`/api/user/chat/getmessages/${currentChat?._id}`);
+                decryptData(res.data?.allMessagges)
+                SetMessage(res.data?.allMessagges)
             } catch (err) {
                 console.log(err);
             }
@@ -190,9 +177,9 @@ const Chat = ({ existingConverstaionId }) => {
         e.preventDefault()
         SetMessage([...Message, Text]);
         const NewMessage = {
-            sender: User._id,
+            sender: User?._id,
             text: encryptData(),
-            conversationId: currentChat._id,
+            conversationId: currentChat?._id,
             offerMade: Text.offerMade
         }
 
@@ -204,7 +191,7 @@ const Chat = ({ existingConverstaionId }) => {
 
         // send event to server (send message to server)
         socket.emit("sendMessage", {
-            userId: User._id,  // change userId
+            userId: User?._id,  // change userId
             receiverId,
             text: encryptData(),
             offerMade: Text.offerMade
@@ -225,7 +212,6 @@ const Chat = ({ existingConverstaionId }) => {
     };
 
     const handleKeyPress = (event) => {
-        console.log(event.key, "asdasd");
         if (event.key === 'Enter') {
             event.preventDefault();
         }
@@ -242,7 +228,10 @@ const Chat = ({ existingConverstaionId }) => {
                             <h3>Messages</h3>
                         </div>
                         {Conversation.map((con, index) => (
-                            <div key={index} className={Style.clients} onClick={() => fetchCurrentReceiver(con._id)} >
+                            <div key={index} className={Style.clients} onClick={() => {
+                                fetchCurrentReceiver(con._id);
+                                HandleRead(con._id);
+                            }}>
                                 <Conversations conversations={con} currentUser={User._id} />
                             </div>
                         ))}
@@ -271,7 +260,7 @@ const Chat = ({ existingConverstaionId }) => {
                                     {Message.map((m, index) => {
                                         return (
                                             <div ref={ScrollRef} key={index} >
-                                                <Messages msg={m} own={m.sender === User._id} offermade={m.offerMade === true} />
+                                                <Messages msg={m} own={m?.sender === User?._id} offermade={m?.offerMade === true} />
                                             </div>
                                         )
                                     })}
@@ -287,7 +276,7 @@ const Chat = ({ existingConverstaionId }) => {
                                                 onChange={(e) => SetText({
                                                     text: e.target.value,
                                                     createdAt: new Date(),
-                                                    sender: User._id,
+                                                    sender: User?._id,
                                                     offerMade: true
                                                 })}
                                                 value={Text.text}
@@ -315,7 +304,7 @@ const Chat = ({ existingConverstaionId }) => {
                                                 onChange={(e) => SetText({
                                                     text: e.target.value,
                                                     createdAt: new Date(),
-                                                    sender: User._id
+                                                    sender: User?._id
                                                 })}
                                                 value={Text.text}
                                             />
@@ -332,7 +321,9 @@ const Chat = ({ existingConverstaionId }) => {
                             </div>
                             :
                             <div className={Style.chat_wrapper}>
-                                <div className={Style.empty}>No Message</div>
+                                <div className={Style.empty}>
+                                    <img src="/Images/chat.svg" alt="" />
+                                </div>
                             </div>
                         }
 

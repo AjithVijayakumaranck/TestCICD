@@ -1,4 +1,4 @@
-import React, { useContext }from 'react'
+import React, { useContext } from 'react'
 import Style from './Style.module.css'
 import { Link, useNavigate } from "react-router-dom"
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
@@ -10,6 +10,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PaymentsIcon from '@mui/icons-material/Payments';
+import ArticleIcon from '@mui/icons-material/Article';
 import { AdminContext } from '../../../Contexts/AdminContext';
 
 
@@ -31,20 +32,22 @@ const Sidebar = () => {
     SetAdmin("");
 
     // Redirect to the login page
-    navigate('/admin');
+    navigate('/registration_login');
   }
 
   return (
     <div className={Style.sidebar}>
 
       <div className={Style.top}>
-        <span className={Style.logo}>Deal N Buy</span>
+        <Link to="/" className={Style.logo_navigation} >
+          <span className={Style.logo}>DealNBuy</span>
+        </Link>
       </div>
       <hr />
       <div className={Style.center}>
         <ul>
-          <Link to="/admin/home" className={`${Style.navigation} `} >
-            <li className={` ${window.location.pathname === '/admin/home' ? Style.active : null}`}>
+          <Link to="/admin" className={`${Style.navigation} `} >
+            <li className={` ${window.location.pathname === '/admin' ? Style.active : null}`}>
               <SpaceDashboardIcon className={Style.icons} />
               <span>Dashboard</span>
             </li>
@@ -66,6 +69,13 @@ const Sidebar = () => {
             <li className={` ${window.location.pathname === '/admin/notifications' ? Style.active : null}`}>
               <MailIcon className={Style.icons} />
               <span>Notifications</span>
+            </li>
+          </Link>
+
+          <Link to="/admin/document" className={Style.navigation} >
+            <li className={` ${window.location.pathname === '/admin/document' ? Style.active : null}`}>
+              <ArticleIcon className={Style.icons} />
+              <span>Documents</span>
             </li>
           </Link>
 

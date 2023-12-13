@@ -63,7 +63,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 10px 20px;
+        padding: 8px 20px;
 
         img {
             width: 30px;
@@ -117,8 +117,8 @@
         margin-top: 20px;
 
         h3 {
-            font-size: 28px;
-            font-weight: 600px;
+            font-size: 24px;
+            font-weight: 600;
             color: $base-color5;
 
             @include breakpoint(md) {
@@ -186,8 +186,9 @@
                 height: 100px;
                 text-align: center;
                 background-color: white;
-                padding: 10px;
-                border-radius: 50%;
+                padding: 5px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
                 cursor: pointer;
 
                 @include breakpoint(md) {
@@ -217,9 +218,10 @@
                 flex-wrap: wrap;
                 align-items: center;
                 justify-content: center;
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: 500;
                 line-height: 1;
+                color: $base-color5;
                 cursor: default;
 
                 @include breakpoint(md) {

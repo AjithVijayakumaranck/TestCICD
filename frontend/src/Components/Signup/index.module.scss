@@ -11,10 +11,7 @@
         transition: 0.5s ease-in-out;
     }
 
-
-
     .left_section {
-
         width: 100%;
         padding: 20px;
         background-color: white;
@@ -24,15 +21,12 @@
         border-top-right-radius: 7px;
         border-bottom-right-radius: 7px;
 
-
         h1 {
             color: $primary_color;
-            margin-bottom: 10px;
         }
 
         p {
             font-size: 12px;
-            margin-bottom: 5px;
         }
 
 
@@ -40,13 +34,12 @@
         .login_Details {
 
             h1 {
-                padding: 2px;
                 color: $primary_color;
                 font-size: 20px;
             }
 
             p {
-                padding: 10px 0px;
+                padding: 5px 0px;
                 font-size: 12px;
             }
         }
@@ -69,7 +62,6 @@
             .input_div {
                 padding: 2px;
                 display: flex;
-                // flex-direction: ;
                 gap: 10px;
 
                 @include breakpoint(md) {
@@ -90,9 +82,9 @@
 
                     span {
                         color: $primary_color;
-                        cursor: pointer;
                         font-size: 10px;
                         margin-left: 10px;
+                        cursor: pointer;
 
                         &:hover {
                             color: $secondary_color;
@@ -100,11 +92,31 @@
                     }
 
                     input {
-                        border-width: .3px;
                         border-color: rgb(149 149 149 / 52%);
                         outline: none;
-                        padding: 15px 10px;
+                        border-width: .3px;
+                        border-radius: 5px;
+                        padding: 14px 10px;
                         background-color: $base_color;
+
+                    }
+
+                    .input_Wrap {
+                        position: relative;
+
+                        .eye_icon {
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            font-size: 16px;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            color: #999;
+
+                            &:hover {
+                                color: $primary_color;
+                            }
+                        }
                     }
 
                     label {
@@ -121,11 +133,12 @@
                 width: 100%;
                 color: white;
                 border: none;
-                padding: 15px 0px;
+                border-radius: 5px;
+                padding: 14px 0px;
                 font-size: 15px;
 
                 &:hover {
-                    background-color: $secondary_color;
+                    background: $gradient_color;
                 }
             }
         }
@@ -201,7 +214,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $secondary_color;
+        background: $primary_color;
         border-top-left-radius: 7px;
         border-bottom-left-radius: 7px;
 

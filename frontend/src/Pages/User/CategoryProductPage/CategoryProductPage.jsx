@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import Style from "./index.module.css"
 import { useLocation } from 'react-router-dom';
 import Breadcrumb from '../../../Components/Breadcrumb/Breadcrumb';
@@ -8,7 +8,7 @@ import ProductCard from '../../../Components/Cards/ProductCard/ProductCard';
 import instance from '../../../instance/AxiosInstance';
 import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons/hi'
 import { useParams } from 'react-router-dom';
-import CategoryFilter from '../../../Components/CatagoryFilter/CategoryFilter'
+import ProductFilter from '../../../Components/ProductFilter/ProductFilter';
 
 
 const CategoryProductPage = () => {
@@ -23,27 +23,35 @@ const CategoryProductPage = () => {
     const [Products, SetProducts] = useState([]);
     const [CurrentPage, SetCurrentPage] = useState(0);
     const [Subcategory, SetSubcategory] = useState([]);
-    const [Min, SetMin] = useState('')
-    const [Max, SetMax] = useState('')
-    const [SubValue, SetSubValue] = useState("")
-    const [StateValue, SetStateValue] = useState("")
-    const [DistrictValue, SetDistrictValue] = useState("")
+    const [Filters, SetFilters] = useState([]);
+
+    const [CatId, SetCatId] = useState(categoryId);
+    const [Min, SetMin] = useState('');
+    const [Max, SetMax] = useState('');
+    const [SubValue, SetSubValue] = useState("");
+    const [StateValue, SetStateValue] = useState("");
+    const [OtherSelectedFilter, SetOtherSelectedFilter] = useState({});
+
+    const [DistrictValue, SetDistrictValue] = useState("");
     const [SortedProducts, SetSortedProducts] = useState([]);
 
 
     useEffect(() => {
         instance.get(`/api/category/get_SingleCategory?categoryId=${categoryId}`).then((response) => {
             SetCategories(response.data);
-            SetSubcategory(response.data.subcategory)
+            SetSubcategory(response.data?.subcategory)
+            SetFilters(response.data?.filters)
         }).catch((error) => {
             console.log(error);
         });
     }, []);
+    
 
 
     const loadProducts = () => {
         try {
-            instance.get(`/api/user/filter/filter_products?category=${categoryId}&min=${Min}&max=${Max}&page=${CurrentPage}&state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}`).then((response) => {
+            instance.get(`/api/user/filter/filter_products?category=${CatId}&min=${Min}&max=${Max}&page=${CurrentPage}
+            &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${JSON.stringify(OtherSelectedFilter)}`).then((response) => {
                 SetProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -63,7 +71,6 @@ const CategoryProductPage = () => {
             return 0;
         });
         SetSortedProducts(sortedProducts)
-        console.log(SortedProducts, "sorted products");
     }
 
     useEffect(() => {
@@ -74,43 +81,52 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, categoryId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, CatId]);
 
 
     const handlePreviousPage = () => {
-        console.log("hello prev");
         if (CurrentPage > 1) {
             SetCurrentPage(CurrentPage - 12);
         }
     };
 
     const handleNextPage = () => {
-        console.log("hello next");
         SetCurrentPage(CurrentPage + 12);
+    };
+
+    const HandleDefault = () => {
+        SetCatId(categoryId);
+        SetMax("");
+        SetMin("");
+        SetSubValue("");
+        SetStateValue("");
+        SetDistrictValue("");
+        SetOtherSelectedFilter("")
     };
 
     const HandleMin = (value) => {
         SetMin(value);
-        loadProducts();
     };
 
     const HandleMax = (value) => {
         SetMax(value);
-        loadProducts();
-    };
-    const HandleSub = (value) => {
-        SetSubValue(value);
-        loadProducts();
-    };
-    const HandleState = (value) => {
-        SetStateValue(value);
-        loadProducts();
-    };
-    const HandleDistrict = (value) => {
-        SetDistrictValue(value);
-        loadProducts();
     };
 
+    const HandleSubcategory = (value) => {
+        SetSubValue(value);
+    };
+
+    const HandleState = (value) => {
+        SetStateValue(value);
+    };
+
+    const HandleDistrict = (value) => {
+        SetDistrictValue(value);
+    };
+
+    const HandleOtherFilter = (value) => {
+        SetOtherSelectedFilter({ ...OtherSelectedFilter, ...value })
+    }
 
     function ScrollToTopOnMount() {
         window.scrollTo(0, 0);
@@ -142,22 +158,43 @@ const CategoryProductPage = () => {
                         <div className={Style.Wrapper}>
 
                             <div className={Style.Left_container}>
-                                <CategoryFilter Subcategories={Subcategory} OnMax={HandleMax}
-                                    OnMin={HandleMin} OnSubcategory={HandleSub} OnDistrict={HandleDistrict} OnState={HandleState} />
+                                <ProductFilter
+                                    FilterOptions={Filters}
+                                    Subcategories={Subcategory}
+                                    onChangeSubcategory={HandleSubcategory}
+                                    onMax={HandleMax}
+                                    onMin={HandleMin}
+                                    otherSelectedFilter={HandleOtherFilter}
+                                    onDistrict={HandleDistrict}
+                                    onState={HandleState}
+                                    load={HandleDefault}
+                                    OtherSelectedFilter={OtherSelectedFilter}
+                                />
                             </div>
 
                             <div className={Style.Right_container}>
-                                <div className={Style.card_container}>
-                                    {SortedProducts.map((product) => {
-                                        return (
-                                            <ProductCard product={product} />
-                                        )
-                                    })}
-                                </div>
-                                <div className={Style.loadbtn}>
-                                    <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                                    <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
-                                </div>
+
+                                {SortedProducts.length !== 0 ?
+                                    <div className={Style.card_container}>
+                                        {SortedProducts.map((product) => {
+                                            return (
+                                                <ProductCard product={product} />
+                                            )
+                                        })}
+                                    </div>
+                                    :
+                                    <div className={Style.error_container}>
+                                        <h1>No Product Found</h1>
+                                    </div>
+                                }
+
+                                {SortedProducts.length !== 0 ?
+                                    <div className={Style.loadbtn}>
+                                        <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
+                                        <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                                    </div>
+                                    : null
+                                }
                             </div>
 
                         </div>

@@ -106,27 +106,6 @@ const UpdateProfileForm = () => {
             newErrors.surname = 'Surname is required';
         }
 
-        if (UpdateProfile.dob === '') {
-            newErrors.dob = 'DoB is required';
-        }
-
-        if (UpdateProfile.address.locality === '') {
-            newErrors.locality = 'Locality is required';
-        }
-
-        if (UpdateProfile.address.state === '') {
-            newErrors.state = 'State is required';
-        }
-
-        if (UpdateProfile.address.district === '') {
-            newErrors.district = 'District is required';
-        }
-
-        if (UpdateProfile.address.region === '') {
-            newErrors.region = 'Region is required';
-        }
-
-
         // Set the new errors state
         SetError(newErrors);
         // Return true if there are no errors
@@ -147,7 +126,6 @@ const UpdateProfileForm = () => {
     };
 
     const phone_validation = (phoneNumber) => {
-        console.log(phoneNumber);
         if (phoneNumber !== "") {
             if (phoneNumber.toString().length < 10) {
                 SetError({ ...Error, phoneNumber: "Phonenumber must have 10 digits" });
@@ -180,28 +158,21 @@ const UpdateProfileForm = () => {
             let data = new FormData()
 
             if (File.File === "") {
-                console.log("1");
                 if (CurrentProfileImage !== "") {
-                    console.log("2");
                     data.append("file", DefaultImage)
                 }
                 else {
-                    console.log("3");
                     data.append("file", DefaultImage)
                 }
             } else {
-                console.log("4");
                 data.append("file", File.File)
             }
 
-
-            console.log(data, "No image");
 
             const objectData = JSON.stringify(UpdateProfile);
             data.append('userData', objectData);
 
             authInstance.put('/api/user/profile/update_profile', data).then((Response) => {
-                console.log(Response.data);
                 toast.success("profile updated")
                 navigate('/profile')
             }).catch((err) => {
@@ -220,7 +191,6 @@ const UpdateProfileForm = () => {
     useEffect(() => {
         try {
             instance.get(`/api/user/profile/get_profile/${User._id}`).then((result) => {
-                console.log(result.data, "data");
                 SetUpdateProfile(result.data);
                 SetCurrentProfile(result.data);
                 SetCurrentProfileImage(result.data.profilePicture.url)
@@ -231,8 +201,6 @@ const UpdateProfileForm = () => {
             console.log(error);
         }
     }, [User]);
-    console.log(UpdateProfile, "updated profile");
-    console.log(CurrentProfile, "current profile");
 
 
     //-----------email & phone otp verify--------------
@@ -244,10 +212,9 @@ const UpdateProfileForm = () => {
         authInstance.post("/api/user/profile/update_email", { updatingEmail: UpdateProfile.email, currentEmail: CurrentProfile.email, userId: User._id }).then((response) => {
             setLoading(false);
             setOtp(true);
-            console.log(response, "verify email");
         }).catch((Error) => {
             setLoading(false);
-            console.log(Error, "verify email error");
+            console.log(Error);
         });
     }
 
@@ -256,10 +223,9 @@ const UpdateProfileForm = () => {
         authInstance.post("/api/user/profile/update_phone", { phonenumber: UpdateProfile.phoneNumber, userId: User._id }).then((response) => {
             setLoading(false);
             setOtp(true);
-            console.log(response, "verify phonenumber");
         }).catch((Error) => {
             setLoading(false);
-            console.log(Error, "verify phonenumber error");
+            console.log(Error);
         });
     }
 
@@ -276,7 +242,6 @@ const UpdateProfileForm = () => {
             IsPhoneEditing
                 ? authInstance.put("/api/user/profile/verify_phone", { otp: otpDetails, phoneNumber: UpdateProfile.phoneNumber, userId: User._id }).then((response) => {
                     setLoading(false);
-                    console.log(response, "Otp phone update");
                     setOtp(false)
                     SetIsPhoneVerified(true)
                     SetIsPhoneEditing(false)
@@ -285,12 +250,11 @@ const UpdateProfileForm = () => {
                 }).catch((error) => {
                     setLoading(false);
                     toast.error("failed phone number verification")
-                    console.log(error, "error otp phone");
+                    console.log(error);
                     setOtp(false)
                 })
                 : authInstance.put("/api/user/profile/verify_email", { otp: otpDetails, updatingEmail: UpdateProfile.email, currentEmail: CurrentProfile.email, userId: User._id }).then((response) => {
                     setLoading(false);
-                    console.log(response, "helloooo");
                     setOtp(false)
                     SetIsEmailVerified(true)
                     SetIsEmailEditing(false)
@@ -300,7 +264,7 @@ const UpdateProfileForm = () => {
                 }).catch((error) => {
                     setLoading(false);
                     toast.error("failed email verification")
-                    console.log(error, "halllllooo");
+                    console.log(error);
                     setOtp(false)
                 });
         }
@@ -321,7 +285,6 @@ const UpdateProfileForm = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 authInstance.delete(`/api/user/profile/delete_account/${User._id}`).then((response) => {
-                    console.log(response);
                     toast.success("user deleted")
                     localStorage.removeItem('logged');
                     localStorage.removeItem('token');
@@ -524,9 +487,8 @@ const UpdateProfileForm = () => {
                                                 </div>
                                             </div>
                                             {IsEmailEditing && !IsEmailVerified && (
-                                                <div className={Style.col}>
-
-                                                    <button onClick={handleVerifyEmail}>Verify</button>
+                                                <div className={Style.col} onClick={handleVerifyEmail}>
+                                                    <button>Verify</button>
                                                 </div>
                                             )}
                                         </div>
@@ -537,7 +499,7 @@ const UpdateProfileForm = () => {
                                             <div className={Style.flexcol}>
                                                 <div className={Style.formInput}>
                                                     <input
-                                                        type="number"
+                                                        type="tel"
                                                         placeholder='Phone number'
                                                         name="phoneNumber"
                                                         value={UpdateProfile.phoneNumber}
@@ -550,8 +512,8 @@ const UpdateProfileForm = () => {
                                                 </div>
                                             </div>
                                             {IsPhoneEditing && !IsPhoneVerified && (
-                                                <div className={Style.col}>
-                                                    <button onClick={handleVerifyPhoneNumber}>Verify</button>
+                                                <div className={Style.col} onClick={handleVerifyPhoneNumber}>
+                                                    <button>Verify</button>
                                                 </div>
                                             )}
                                         </div>

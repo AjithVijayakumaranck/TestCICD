@@ -25,8 +25,8 @@
 
 
         .productwrapper {
-            padding: 3rem 0;
-            min-height: 25rem;
+            padding: 1.5rem 0;
+            min-height: 35rem;
             background-color: #f8f8f8;
 
             .container {
@@ -65,6 +65,23 @@
                     @include mediumScreen {}
 
                     @include LargeScreen {}
+                }
+
+                .imgWrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 350px;
+                        height: 450px;
+                        object-fit: contain;
+
+                        @include breakpoint(md) {
+                            width: 250px;
+                            height: 450px;
+                        }
+                    }
                 }
             }
         }

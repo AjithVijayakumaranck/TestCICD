@@ -1,4 +1,5 @@
 .Main_Container {
+  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 80px;
@@ -76,11 +77,37 @@
   align-items: center;
   font-size: 16px;
   font-weight: 600;
+  margin: 10px 0;
 }
 .Main_Container .Container_Wrapper form .row .listeditems {
   display: flex;
   gap: 30px;
   width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 5px;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio input {
+  display: flex;
+  flex-direction: row;
+  height: 1.5rem;
+  width: 20px;
+  margin-right: 10px;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio .radioLabel {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0;
 }
 .Main_Container .Container_Wrapper form .row .items {
   display: flex;
@@ -122,27 +149,6 @@
   background-color: #046BD2;
   color: #fff;
   border: 1px solid #046BD2;
-}
-.Main_Container .Container_Wrapper form .row .items .radio,
-.Main_Container .Container_Wrapper form .row .listeditems .radio {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 5px;
-}
-.Main_Container .Container_Wrapper form .row .items .radio input,
-.Main_Container .Container_Wrapper form .row .listeditems .radio input {
-  display: flex;
-  flex-direction: row;
-  height: 1.5rem;
-  width: 20px;
-  margin-right: 10px;
-}
-.Main_Container .Container_Wrapper form .row .items .radio label,
-.Main_Container .Container_Wrapper form .row .listeditems .radio label {
-  font-size: 16px;
-  font-weight: 500;
 }
 .Main_Container .Container_Wrapper form .row .items select,
 .Main_Container .Container_Wrapper form .row .listeditems select {
@@ -201,7 +207,7 @@
 .Main_Container .Container_Wrapper form .row .image_wrapper label {
   padding: 40px;
   font-size: 30px;
-  border: 1px solid lightgray;
+  border: 2px dashed lightgray;
   cursor: pointer;
 }
 .Main_Container .Container_Wrapper form .row .image_wrapper input {

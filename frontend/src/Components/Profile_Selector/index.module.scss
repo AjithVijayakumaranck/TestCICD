@@ -11,7 +11,7 @@
     border-radius: 5px;
     z-index: 9999;
 
-   
+
 
     &:after {
         content: " ";
@@ -44,17 +44,22 @@
         position: relative;
 
 
-        div {
+        .boxWrapper {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             cursor: pointer;
 
-
-
             .eachopt {
                 border-bottom: 1px solid $base_color4;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logout {
+                width: 100%;
             }
 
             .eachopt,
@@ -67,13 +72,29 @@
 
                 h4 {
                     margin: 4px 10px;
-                    font-size: 13px;
-                    font-weight: 3;
+                    font-size: 12px;
+                    font-weight: 400;
                     cursor: pointer;
+                }
+
+                .count {
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0 10px;
+                    padding: 2px;
+                    width: 1rem;
+                    height: 1rem;
+                    font-size: 0.6rem;
+                    color: #fff;
+                    background-color: $primary_color;
+                    border-radius: 50%;
                 }
             }
 
             .User_wrapper {
+                width: 100%;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
@@ -84,11 +105,10 @@
 
                 .profile {
                     aspect-ratio: 1;
-                    width: 60px;
+                    width: 40px;
                     height: 40px;
                     margin: 0 10px;
                     border-radius: 50%;
-                    border: 1px solid $primary_color;
                     overflow: hidden;
 
                     img {

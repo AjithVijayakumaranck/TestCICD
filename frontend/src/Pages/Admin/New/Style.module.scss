@@ -9,12 +9,14 @@
 
         .bottom,
         .center,
-        .bottomTable {
+        .bottomTable,
+        .centerDiv {
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
         }
 
-        .bottomTable {
+        .bottomTable,
+        .centerDiv {
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -23,7 +25,8 @@
         .top,
         .bottom,
         .center,
-        .bottomTable {
+        .bottomTable,
+        .centerDiv {
             padding: 20px;
             margin: 20px;
             border-radius: 5px;
@@ -34,6 +37,127 @@
                 font-size: 20px;
             }
 
+            //Filter form styling
+            .input_contents {
+                padding: .5rem;
+
+                .field_wrapper {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    gap: 1rem;
+                    margin-bottom: 1rem;
+
+                    .input_field {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        gap: .5rem;
+
+                        label {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                            gap: 10px;
+                            font-size: 15px;
+
+                            span {
+                                color: red;
+                            }
+
+                            .icon {
+                                cursor: pointer;
+                            }
+                        }
+
+                        input {
+                            height: 30px;
+                            padding: .5rem;
+                            outline: none;
+                            border-radius: 5px;
+                            font-size: 15px;
+                            background: none;
+                            border: 1px solid #ccc;
+                        }
+
+                        select {
+                            height: 46px;
+                            padding: 0 .5rem;
+                            outline: none;
+                            border-radius: 5px;
+                            font-size: 15px;
+                            background: none;
+                            border: 1px solid #ccc;
+                        }
+                    }
+                }
+
+                .additionalOptions {
+                    .field_wrapper {
+                        .additionalOptions_btn {
+                            width: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            .optionButton {
+                                padding: .5rem 2rem;
+                                border: none;
+                                text-align: center;
+                                background-color: $primary_color;
+                                border-radius: 5px;
+                                color: white;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .input_contentBtn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: .5rem;
+
+                        .optionButton {
+                            width: 100px;
+                            padding: .5rem;
+                            border: none;
+                            text-align: center;
+                            background-color: $primary_color;
+                            border-radius: 5px;
+                            color: white;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+
+            .formButtonDiv {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem;
+
+                .Button_wrapper {
+                    display: flex;
+                    gap: 1rem;
+
+                    button {
+                        width: 150px;
+                        padding: .8rem;
+                        border: none;
+                        border-radius: 5px;
+                        background-color: $primary_color;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+
+            }
+
+            //End 
+
             .leftItem {
                 flex: 1;
                 text-align: center;
@@ -43,7 +167,6 @@
                     height: 150px;
                     border-radius: 0%;
                     object-fit: scale-down;
-
                 }
             }
 
@@ -96,6 +219,7 @@
                             display: flex;
                             align-items: center;
                             gap: 10px;
+                            margin-bottom: 10px;
 
                             span {
                                 color: red;
@@ -108,22 +232,40 @@
 
                         input {
                             width: 100%;
-                            padding: 10px 0;
-                            border: none;
+                            height: 40px;
                             outline: none;
+                            border-radius: 5px;
+                            font-size: 15px;
                             background: none;
-                            border-bottom: 1px solid gray;
+                            text-align: center;
+                            border: 1px solid #ccc;
+                            --moz-appearance: none;
+                        }
+
+                        input[type="number"] {
+                            -moz-appearance: textfield;
+                            appearance: textfield;
+
+                            &::-webkit-inner-spin-button,
+                            &::-webkit-outer-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
+                            }
                         }
 
                         select {
                             width: 100%;
-                            padding: 10px 0;
-                            border: none;
+                            height: 40px;
                             outline: none;
-                            border-bottom: 1px solid gray;
+                            border-radius: 5px;
+                            font-size: 15px;
+                            background: none;
+                            text-align: center;
+                            border: 1px solid #ccc;
                         }
                     }
 
+                    //Plan form styling
                     .featuresForm {
                         width: 100%;
                         display: flex;
@@ -147,13 +289,23 @@
                         }
                     }
 
+                    //End plan form styling
+
                     .formproperty {
                         width: 100%;
-                        margin: 20px 0;
                         display: flex;
                         flex-direction: column;
-                        gap: 30px;
-                        padding: 10px;
+                        gap: 20px;
+
+                        textarea {
+                            height: 8rem;
+                            outline: none;
+                            border-radius: 5px;
+                            padding: 10px;
+                            font-size: 15px;
+                            background: none;
+                            border: 1px solid #ccc;
+                        }
 
                         .formWrapper {
                             display: flex;
@@ -163,12 +315,24 @@
                             gap: 10px;
 
                             .formInput {
-
                                 width: 30%;
+                            }
+                        }
 
+                        .formWrap {
+                            display: flex;
+                            flex-direction: column;
+
+                            .formInput {
+                                width: 100%;
+                                margin: 10px 0;
+                            }
+                        }
+
+                        .formWrapper,
+                        .formWrap {
+                            .formInput {
                                 label {
-                                    margin: 0 5px;
-
                                     span {
                                         color: red;
                                         border: none;
@@ -181,19 +345,65 @@
 
                                 input {
                                     width: 100%;
-                                    padding: 10px 0;
-                                    border: none;
+                                    height: 40px;
                                     outline: none;
-                                    border-bottom: 1px solid gray;
+                                    border-radius: 5px;
+                                    font-size: 15px;
+                                    background: none;
+                                    text-align: center;
+                                    border: 1px solid #ccc;
+                                    --moz-appearance: none;
                                 }
 
+                                input[type="number"] {
+                                    -moz-appearance: textfield;
+                                    appearance: textfield;
+
+                                    &::-webkit-inner-spin-button,
+                                    &::-webkit-outer-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
+                                    }
+                                }
+
+                                textarea {
+                                    width: 100%;
+                                    height: 8rem;
+                                    outline: none;
+                                    border-radius: 5px;
+                                    padding: 10px 2px;
+                                    font-size: 15px;
+                                    background: none;
+                                    border: 1px solid #ccc;
+                                }
                             }
+
+                            //DocumentForm form button wrap
+                            .formButtonWrap {
+                                width: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: flex-end;
+
+                                .formButton {
+                                    padding: 10px 20px;
+                                    border: none;
+                                    background-color: $primary_color;
+                                    border-radius: 5px;
+                                    color: white;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            //End DocumentForm form button wrap
 
                             .formSelect {
                                 width: 15%;
+                                display: flex;
+                                flex-direction: column;
 
                                 label {
-                                    margin: 0 5px;
+                                    margin-bottom: 10px;
 
                                     span {
                                         color: red;
@@ -203,10 +413,13 @@
 
                                 select {
                                     width: 100%;
-                                    padding: 10px 0;
-                                    border: none;
+                                    height: 40px;
                                     outline: none;
-                                    border-bottom: 1px solid gray;
+                                    border-radius: 5px;
+                                    font-size: 15px;
+                                    background: none;
+                                    text-align: center;
+                                    border: 1px solid #ccc;
                                 }
                             }
 
@@ -217,8 +430,20 @@
                                 padding: 20px 0;
                                 gap: 40px;
 
+                                //subcategoryForm styling
                                 .formInput {
                                     width: 40%;
+                                }
+
+                                //DocumentForm styling
+                                .formDescrption {
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+
+                                    textarea {
+                                        margin-top: 0.5rem;
+                                    }
                                 }
                             }
                         }
@@ -316,6 +541,7 @@
                         }
                     }
 
+                    //Option listing styling
                     .option_wrap {
                         margin-bottom: 10px;
                         font-size: 14px;
@@ -336,6 +562,15 @@
                                 display: flex;
                                 gap: 2px;
                             }
+
+                            //Document form options listing styling
+                            .DocumentItem {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 5px;
+                            }
+
+                            //End document form options listing styling
                         }
                     }
                 }

@@ -14,7 +14,7 @@ const SuperAdminProtectedRouter =  () => {
     //console.log(auth ,"prorected router");
 
   return (
-      auth ? <Outlet/> : <Navigate to='/admin'/>
+      auth ? <Outlet/> : <Navigate to='/registration_login'/>
     )
 }
 

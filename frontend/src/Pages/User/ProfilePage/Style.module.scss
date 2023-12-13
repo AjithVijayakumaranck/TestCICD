@@ -25,25 +25,6 @@
             margin-top: 80px;
         }
 
-    }
-}
-
-/* End user profile styling */
-.Main_container {
-    margin-top: 80px;
-    display: flex;
-    align-items: center;
-
-    .container {
-        width: 100%;
-        min-height: 510px;
-
-        @include breakpoint(md) {}
-
-        @include mediumScreen {}
-
-        @include LargeScreen {}
-
         //------review container styling-------
 
         .popup {
@@ -137,42 +118,70 @@
 
         .ad_container {
             min-height: 240px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            place-items: center;
+            gap: 20px;
+            margin-bottom: 1rem;
+
+            @include breakpoint(md) {
+                grid-template-columns: 1fr 1fr;
+                padding: 20px 10px;
+                gap: 10px 20px;
+            }
+
+            @include LargeScreen {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 20px;
+            }
+
+            @include mediumScreen {
+                grid-template-columns: 1fr 1fr 1fr;
+                padding: 20px;
+                gap: 20px 20px;
+            }
         }
 
         .ad_container,
         .review_container {
-            display: flex;
-            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
             padding: 20px;
-            margin: 10px 20px;
-            border-radius: 7px;
         }
-
 
         //----- Review Styling -----
         .review_container {
             display: flex;
-            //align-items: center;
             gap: 10px;
             min-height: 510px;
             padding: 30px 20px;
+            margin: 10px 20px;
+            border-top: 1px solid $base-color4;
 
-            @include breakpoint(md) {}
+            @include breakpoint(md) {
+                flex-direction: column;
+            }
 
-            @include mediumScreen {}
-    
+            @include mediumScreen {
+                flex-direction: column;
+            }
+
             @include LargeScreen {}
 
             .left {
                 flex: 2;
                 height: 100%;
                 padding: 20px;
-                //border: 3px solid $base_color3;
                 border-radius: 5px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                @include breakpoint(md) {
+                    flex: 1;
+                }
+
+                @include mediumScreen {
+                    flex: 1;
+                }
 
                 .top {
                     height: 50%;
@@ -211,7 +220,6 @@
                     }
                 }
 
-
                 .bottom {
                     height: 50%;
                     width: 100%;
@@ -221,6 +229,9 @@
                     border-top: 1px solid $base_color3;
 
                     .title {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         width: 100%;
                         margin: 10px 0;
                         text-align: start;
@@ -229,8 +240,6 @@
                             margin: 0 10px;
                         }
                     }
-
-
 
                     .Btn_wrap {
                         width: 100%;
@@ -255,11 +264,17 @@
 
             .right {
                 flex: 6;
-                //height: 100%;
                 border: 3px solid $base_color3;
                 border-radius: 5px;
                 overflow: hidden;
-                //padding: 5px;
+
+                @include breakpoint(md) {
+                    flex: 1;
+                }
+
+                @include mediumScreen {
+                    flex: 1;
+                }
 
                 .top {
                     text-align: start;
@@ -293,7 +308,6 @@
 
                     .reviews_wrap {
                         width: 100%;
-                        //min-height: 100px;
                         display: flex;
                         align-items: center;
                         gap: 10px;
@@ -365,7 +379,5 @@
         }
 
         //----- End Review Styling -----
-
-
     }
 }

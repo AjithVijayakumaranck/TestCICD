@@ -8,6 +8,9 @@
     transition: 0.5s ease-in-out;
   }
 }
+.form_container .navigation {
+  text-decoration: none;
+}
 .form_container .left_section {
   width: 100%;
   padding: 20px;
@@ -19,8 +22,13 @@
   border-bottom-left-radius: 7px;
 }
 .form_container .left_section .login_Details h1 {
+  padding-top: 10px;
+  color: #046BD2;
+  font-size: 26px;
+}
+.form_container .left_section .login_Details h2 {
   padding: 2px;
-  color: #10E3C2;
+  color: #046BD2;
   font-size: 20px;
 }
 .form_container .left_section .login_Details p {
@@ -32,13 +40,26 @@
   flex-direction: column;
   padding: 10px 0px;
   gap: 4px;
+  position: relative;
 }
 .form_container .left_section form .input_div input {
   border-width: 0.3px;
+  border-radius: 5px;
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
   padding: 15px 10px;
   background-color: #ebebeb;
+}
+.form_container .left_section form .input_div .eye_icon {
+  position: absolute;
+  right: 15px;
+  top: 65%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+.form_container .left_section form .input_div .eye_icon:hover {
+  color: #046BD2;
 }
 .form_container .left_section form .input_div label {
   font-size: 12px;
@@ -50,11 +71,12 @@
   width: 100%;
   color: white;
   border: none;
+  border-radius: 5px;
   padding: 15px 0px;
   font-size: 15px;
 }
 .form_container .left_section form button:hover {
-  background-color: #10E3C2;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
 .form_container .left_section .additional_options {
   padding-top: 10px;
@@ -71,8 +93,9 @@
 .form_container .left_section .additional_options p {
   font-size: 13px;
 }
-.form_container .left_section .additional_options .navigation {
+.form_container .left_section .additional_options p .navigation {
   text-decoration: none;
+  color: #046BD2;
 }
 .form_container .left_section .Google_authentication {
   padding-top: 20px;
@@ -95,26 +118,27 @@
   display: flex;
   justify-content: center;
 }
-.form_container .left_section .Google_authentication a {
+.form_container .left_section .Google_authentication .GoogleButton a {
   display: flex;
   align-items: center;
   gap: 5px;
   text-decoration: none;
   border: none;
-  padding: 2rem 3rem;
   font-size: 15px;
   background-color: white;
 }
-.form_container .left_section .Google_authentication a:hover {
-  background-color: #ebebeb;
-  border-radius: 50px;
-}
-.form_container .left_section .Google_authentication a button {
+.form_container .left_section .Google_authentication .GoogleButton a button {
   display: flex;
   align-items: center;
   gap: 5px;
   border: none;
   background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+}
+.form_container .left_section .Google_authentication .GoogleButton a button:hover {
+  background-color: #ebebeb;
+  border-radius: 50px;
 }
 .form_container .right_section {
   background-color: #046BD2;

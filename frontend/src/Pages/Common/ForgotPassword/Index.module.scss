@@ -4,76 +4,130 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;   
+    height: 100vh;
+    overflow: hidden;
 
     .form_container {
-        width: 100%;
-        padding: 0 1rem;
+        width: 45rem;
+        min-height: 25rem;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        
-        @include breakpoint(md){
-            width: 55rem;
-            padding: 0 5rem;
-            min-height: 30rem;
-            transition: 0.5s ease-in-out;
-        }
-        
-        h1{
-            color: $primary_color;
-        }
-    
-        p {
-            font-size: .8rem;
-            padding: 1rem 0;
-        }
-    
-        form {
-        
-            div{
-                display: flex;
-                flex-direction: column;
+        // padding: 1rem;
+        //flex-direction: column;
+        //justify-content: center;
+        border-radius: 5px;
+        box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
 
-                p{
-                    color:red;
-                    font-size: 12px;
-                    text-align: start;
-                }
-    
-                label {
-                    font-size: .8rem;
-                }
-                input {
-                    border-width: .3px;
-                    border-color:rgb(149 149 149 / 52%);
-                    outline: none;
-                    padding: 15px 10px;  
-                    background-color: $base_color;
+        @include breakpoint(md) {
+            width: 20rem;
+            padding: 1rem 2rem;
+            min-height: 20rem;
+            transition: 0.5s ease-in-out;
+            box-shadow: none;
+        }
+
+        @include mediumScreen {
+            width: 30rem;
+        }
+
+        @include LargeScreen {
+            width: 45rem;
+        }
+
+        .left {
+            display: flex;
+            flex: 2;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem 2rem;
+
+            h1 {
+                color: $primary_color;
+                font-size: 24px;
+
+                @include breakpoint(md) {
+                    font-size: 20px;
                 }
             }
-            button {
-                cursor: pointer;
-                margin-top: 5px;
-                background-color: $primary_color;
-                width: 100%;
-                color:white;
-                border:none;
-                padding: 15px 0px;
-                font-size: 15px;
-                &:hover{
-                    background-color: $secondary_color;
-                }
-            }
+
             p {
                 font-size: .8rem;
-                text-align: center;
-                padding-top: .5rem;
+                padding: 1rem 0;
             }
-            span {
-                color: $primary_color;
-                cursor: pointer;
+
+            form {
+
+                div {
+                    display: flex;
+                    flex-direction: column;
+
+                    p {
+                        color: red;
+                        font-size: 12px;
+                        text-align: start;
+                    }
+
+                    label {
+                        font-size: .8rem;
+                    }
+
+                    input {
+                        border-width: .3px;
+                        border-radius: 5px;
+                        border-color: rgb(149 149 149 / 52%);
+                        outline: none;
+                        padding: 15px 10px;
+                        background-color: $base_color;
+                    }
+                }
+
+                button {
+                    cursor: pointer;
+                    margin-top: 5px;
+                    background-color: $primary_color;
+                    width: 100%;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 15px 0px;
+                    font-size: 15px;
+
+                    &:hover {
+                        background: $gradient_color;
+                    }
+                }
+
+                p {
+                    font-size: .8rem;
+                    text-align: center;
+                    padding-top: .5rem;
+                }
+
+                span {
+                    color: $primary_color;
+                    cursor: pointer;
+                }
             }
-        } 
+        }
+
+        .right{
+            width: 100%;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            background-color: $primary_color;
+
+            @include breakpoint(md) {
+                display: none;
+            }
+
+            img{
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
     }
 }

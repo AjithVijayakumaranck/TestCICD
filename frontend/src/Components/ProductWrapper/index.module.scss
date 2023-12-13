@@ -2,6 +2,7 @@
 
 .productwrapper {
     width: 100%;
+    min-height: 300px;
     background-color: #f8f8f8;
 
     .container {
@@ -11,7 +12,7 @@
 
         @include breakpoint(md) {
             margin: 0 0;
-            padding: 0 10px;
+            padding: 0 20px;
         }
 
         @include mediumScreen {
@@ -26,9 +27,10 @@
             padding: .5rem 0;
             border-bottom: 2px solid #ebebeb;
 
-            .left{
-                h2{
+            .left {
+                h2 {
                     color: $base-color5;
+                    font-size: 22px;
                     font-weight: 600;
                 }
             }
@@ -44,14 +46,13 @@
 
             @include breakpoint(md) {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px 20px;
             }
 
             @include mediumScreen {
                 grid-template-columns: 1fr 1fr 1fr;
             }
 
-            @include extraMediumScreen{
+            @include extraMediumScreen {
                 grid-template-columns: 1fr 1fr 1fr 1fr;
             }
 
