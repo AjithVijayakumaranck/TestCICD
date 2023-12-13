@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
     //LoadCategory functions
     useEffect(() => {
         try {
-            authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((Response) => {
+            authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((Response) => {
                 SetWishlistData(Response.data)
             }).catch((err) => {
                 console.log(err);
@@ -34,17 +34,15 @@ const ProductCard = ({ product }) => {
 
     //check weather these product in wishlist
     const findItemId = () => {
-        {
-            WishlistData.map((Data) => {
-                const item = Data.wishlist
-                const foundItem = item.find(item => item._id === product._id)
-                if (foundItem) {
-                    SetIsClicked(true)
-                } else {
-                    SetIsClicked(false)
-                }
-            })
-        }
+        WishlistData.forEach((Data) => {
+            const item = Data?.wishlist
+            const foundItem = item.find(item => item?._id === product?._id)
+            if (foundItem) {
+                SetIsClicked(true)
+            } else {
+                SetIsClicked(false)
+            }
+        })
     }
 
     useEffect(() => {
@@ -54,16 +52,13 @@ const ProductCard = ({ product }) => {
     const handleFavorite = (e) => {
         e.preventDefault();
         try {
-            if (User) {
-                authInstance.post('/api/user/wishlist/add_wishlist', { userId: User._id, productId: product._id }).then((Response) => {
-                    toast.success("Product Added to Wishlist")
-                    SetIsClicked(true)
-                }).catch((err) => {
-                    console.log(err);
-                })
-            } else {
-                Navigate('/registration_login');
-            }
+            authInstance.post('/api/user/wishlist/add_wishlist', { userId: User?._id, productId: product?._id }).then((Response) => {
+                toast.success("Product Added to Wishlist")
+                SetIsClicked(true)
+            }).catch((err) => {
+                Navigate('/registration_login')
+                console.log(err);
+            })
         } catch (error) {
             console.log(error);
         }
@@ -72,12 +67,16 @@ const ProductCard = ({ product }) => {
     //Delete from wishlist
     const handleFavoriteDelete = (e) => {
         e.preventDefault()
-        authInstance.delete(`/api/user/wishlist/remove_wishlist/${User._id}/${product._id}`).then((Response) => {
-            toast.success("Product removed from Wishlist")
-            SetIsClicked(false)
-        }).catch((err) => {
-            console.log(err);
-        })
+        try {
+            authInstance.delete(`/api/user/wishlist/remove_wishlist/${User?._id}/${product?._id}`).then((Response) => {
+                toast.success("Product removed from Wishlist")
+                SetIsClicked(false)
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const star = product.userId.totalrating ? product.userId.totalrating : "0"

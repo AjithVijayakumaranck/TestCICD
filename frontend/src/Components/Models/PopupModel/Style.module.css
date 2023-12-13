@@ -1,0 +1,49 @@
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.popup .content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.36);
+}
+.popup .content .Title {
+  margin: 10px 0;
+}
+.popup .content .Title h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+.popup .content .btnBox {
+  display: flex;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.popup .content .btnBox button {
+  padding: 10px 15px;
+  background-color: #fff;
+  color: #046BD2;
+  border: 1px solid #046BD2;
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.popup .content .btnBox button:hover {
+  background-color: #046BD2;
+  color: #fff;
+  border: none;
+}/*# sourceMappingURL=Style.module.css.map */

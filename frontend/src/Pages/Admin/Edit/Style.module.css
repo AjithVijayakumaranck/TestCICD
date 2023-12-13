@@ -153,11 +153,19 @@
 .new .newContainer .center .right form .formproperty,
 .new .newContainer .bottomTable .right form .formproperty {
   width: 100%;
-  margin: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 10px;
+  gap: 20px;
+}
+.new .newContainer .top .right form .formproperty textarea,
+.new .newContainer .bottom .right form .formproperty textarea,
+.new .newContainer .center .right form .formproperty textarea,
+.new .newContainer .bottomTable .right form .formproperty textarea {
+  height: 6rem;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
 }
 .new .newContainer .top .right form .formproperty .formWrapper,
 .new .newContainer .bottom .right form .formproperty .formWrapper,
@@ -175,58 +183,137 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput {
   width: 30%;
 }
-.new .newContainer .top .right form .formproperty .formWrapper .formInput label,
-.new .newContainer .bottom .right form .formproperty .formWrapper .formInput label,
-.new .newContainer .center .right form .formproperty .formWrapper .formInput label,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label {
-  margin: 0 5px;
+.new .newContainer .top .right form .formproperty .formWrap,
+.new .newContainer .bottom .right form .formproperty .formWrap,
+.new .newContainer .center .right form .formproperty .formWrap,
+.new .newContainer .bottomTable .right form .formproperty .formWrap {
+  display: flex;
+  flex-direction: column;
+}
+.new .newContainer .top .right form .formproperty .formWrap .formInput,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput,
+.new .newContainer .center .right form .formproperty .formWrap .formInput,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput {
+  width: 100%;
+  margin: 10px 0;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .top .right form .formproperty .formWrap .formInput label span,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput label span,
 .new .newContainer .center .right form .formproperty .formWrapper .formInput label span,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label span {
+.new .newContainer .center .right form .formproperty .formWrap .formInput label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label span {
   color: red;
   border: none;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .top .right form .formproperty .formWrap .formInput label .icon,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput label .icon,
 .new .newContainer .center .right form .formproperty .formWrapper .formInput label .icon,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label .icon {
+.new .newContainer .center .right form .formproperty .formWrap .formInput label .icon,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput label .icon,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput label .icon {
   cursor: pointer;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .top .right form .formproperty .formWrap .formInput input,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput input,
 .new .newContainer .center .right form .formproperty .formWrapper .formInput input,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input {
+.new .newContainer .center .right form .formproperty .formWrap .formInput input,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput input,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput input {
   width: 100%;
   padding: 10px 0;
   border: none;
   outline: none;
   border-bottom: 1px solid gray;
 }
+.new .newContainer .top .right form .formproperty .formWrapper .formInput textarea,
+.new .newContainer .top .right form .formproperty .formWrap .formInput textarea,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formInput textarea,
+.new .newContainer .bottom .right form .formproperty .formWrap .formInput textarea,
+.new .newContainer .center .right form .formproperty .formWrapper .formInput textarea,
+.new .newContainer .center .right form .formproperty .formWrap .formInput textarea,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formInput textarea,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formInput textarea {
+  height: 10rem;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid gray;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formButtonWrap,
+.new .newContainer .top .right form .formproperty .formWrap .formButtonWrap,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formButtonWrap,
+.new .newContainer .bottom .right form .formproperty .formWrap .formButtonWrap,
+.new .newContainer .center .right form .formproperty .formWrapper .formButtonWrap,
+.new .newContainer .center .right form .formproperty .formWrap .formButtonWrap,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formButtonWrap,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.new .newContainer .top .right form .formproperty .formWrapper .formButtonWrap .formButton,
+.new .newContainer .top .right form .formproperty .formWrap .formButtonWrap .formButton,
+.new .newContainer .bottom .right form .formproperty .formWrapper .formButtonWrap .formButton,
+.new .newContainer .bottom .right form .formproperty .formWrap .formButtonWrap .formButton,
+.new .newContainer .center .right form .formproperty .formWrapper .formButtonWrap .formButton,
+.new .newContainer .center .right form .formproperty .formWrap .formButtonWrap .formButton,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formButtonWrap .formButton,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap .formButton {
+  padding: 10px 20px;
+  border: none;
+  background-color: #046BD2;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .top .right form .formproperty .formWrap .formSelect,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .bottom .right form .formproperty .formWrap .formSelect,
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect {
+.new .newContainer .center .right form .formproperty .formWrap .formSelect,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect {
   width: 15%;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .top .right form .formproperty .formWrap .formSelect label,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .bottom .right form .formproperty .formWrap .formSelect label,
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect label,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label {
+.new .newContainer .center .right form .formproperty .formWrap .formSelect label,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label {
   margin: 0 5px;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .top .right form .formproperty .formWrap .formSelect label span,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .bottom .right form .formproperty .formWrap .formSelect label span,
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect label span,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label span {
+.new .newContainer .center .right form .formproperty .formWrap .formSelect label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect label span,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect label span {
   color: red;
   border: none;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .top .right form .formproperty .formWrap .formSelect select,
 .new .newContainer .bottom .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .bottom .right form .formproperty .formWrap .formSelect select,
 .new .newContainer .center .right form .formproperty .formWrapper .formSelect select,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect select {
+.new .newContainer .center .right form .formproperty .formWrap .formSelect select,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .formSelect select,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .formSelect select {
   width: 100%;
   padding: 10px 0;
   border: none;
@@ -234,9 +321,13 @@
   border-bottom: 1px solid gray;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .newform,
+.new .newContainer .top .right form .formproperty .formWrap .newform,
 .new .newContainer .bottom .right form .formproperty .formWrapper .newform,
+.new .newContainer .bottom .right form .formproperty .formWrap .newform,
 .new .newContainer .center .right form .formproperty .formWrapper .newform,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform {
+.new .newContainer .center .right form .formproperty .formWrap .newform,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform {
   width: 100%;
   display: flex;
   align-items: center;
@@ -244,9 +335,13 @@
   gap: 40px;
 }
 .new .newContainer .top .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .top .right form .formproperty .formWrap .newform .formInput,
 .new .newContainer .bottom .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .bottom .right form .formproperty .formWrap .newform .formInput,
 .new .newContainer .center .right form .formproperty .formWrapper .newform .formInput,
-.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formInput {
+.new .newContainer .center .right form .formproperty .formWrap .newform .formInput,
+.new .newContainer .bottomTable .right form .formproperty .formWrapper .newform .formInput,
+.new .newContainer .bottomTable .right form .formproperty .formWrap .newform .formInput {
   width: 40%;
 }
 .new .newContainer .top .right form .formproperty .toggleBtn,

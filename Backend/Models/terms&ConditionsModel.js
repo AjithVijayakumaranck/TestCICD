@@ -5,6 +5,7 @@ const policySchema = new schema({
     policy: [{
         type: schema.Types.Mixed
     }],
+
     name:{
         type:String
     },

@@ -13,6 +13,9 @@ const CATEGORYchema = new schema({
     type:String,
     ref:"subcategory"
 }],
+filters: [{
+  type: schema.Types.Mixed
+}],
   deleted:{
     type:Boolean,
     default:false

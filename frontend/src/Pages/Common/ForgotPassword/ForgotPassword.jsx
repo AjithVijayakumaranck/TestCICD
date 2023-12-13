@@ -77,13 +77,13 @@ const ForgotPassword = () => {
             <form onSubmit={submitHandler}>
               {toggle ? (
                 <div>
-                  <label htmlFor="forgotEmail">Email</label>
+                  {/* <label htmlFor="forgotEmail">Email</label> */}
                   <input type="Email" placeholder="Email" onChange={(e) => setFormdata({ ...formData, email: e.target.value })} id="forgotEmail" />
                   <p>{error.message}</p>
                 </div>
               ) : (
                 <div>
-                  <label htmlFor="forgotPhone">Phone Number</label>
+                  {/* <label htmlFor="forgotPhone">Phone Number</label> */}
                   <input type="tel" placeholder="Phonenumber" id="forgotPhone" value={formData.phonenumber} onChange={(e) => setFormdata({ ...formData, phonenumber: e.target.value })}/>
                   <p>{error.message}</p>
                 </div>

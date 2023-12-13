@@ -37,7 +37,7 @@
         .Left_container {
             width: 50%;
             padding: 0 30px;
-           
+
 
             @include breakpoint(md) {
                 width: 100%;
@@ -88,7 +88,8 @@
                         position: relative;
 
                         @include breakpoint(md) {
-                            height: 250px;
+                            height: 350px;
+                            border: 1px solid $base-color3;
                         }
 
                         span {
@@ -108,6 +109,21 @@
                             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
                             cursor: pointer;
 
+                        }
+
+                        .img_index {
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            width: 60px;
+                            height: 40px;
+                            border-radius: 10px;
+                            font-size: 14px;
+                            font-weight: 500;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #6666665b;
                         }
 
                         img {
@@ -142,44 +158,26 @@
                     list-style: none;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
                     align-items: center;
                     width: 100%;
-                    padding: 0 40px;
 
                     @include breakpoint(md) {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
                     }
-
 
                     li {
                         display: flex;
                         align-items: center;
-                        text-align: center;
-                        padding: 5px 40px;
+                        justify-content: space-between;
                         width: 100%;
 
                         label {
-                            width: 50%;
                             text-align: start;
-                            margin-left: 100px;
-
-                            @include breakpoint(md) {
-                                margin-left: 30px;
-                            }
                         }
 
                         span {
-                            width: 50%;
-                            margin-left: 100px;
-                            text-align: start;
-
-                            @include breakpoint(md) {
-                                margin-left: 140px;
-                            }
+                            text-align: end;
                         }
                     }
                 }
@@ -454,6 +452,11 @@
         transform: 0.5s;
         z-index: 5;
 
+        @include breakpoint(md) {
+            width: 40px;
+            height: 40px;
+        }
+
 
         i {
             display: flex;
@@ -462,14 +465,19 @@
             font-size: 30px;
             transition: 0.5s;
             color: #fff;
+
+            @include breakpoint(md) {
+                font-size: 22px;
+            }
+
         }
     }
 
     .prev {
-        left: 0;
+        left: 10px;
     }
 
     .next {
-        right: 0;
+        right: 10px;
     }
 }

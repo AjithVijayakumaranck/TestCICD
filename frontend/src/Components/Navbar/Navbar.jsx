@@ -106,13 +106,16 @@ const Navbar = ({ location, setLocation, reload }) => {
     SetUser("");
     // Redirect to the login page
     navigate('/');
+    if (window.location.pathname === '/') {
+      window.location.reload();
+    }
   }
 
   //Function to get Wishlist count
   useEffect(() => {
     try {
-      authInstance.get(`/api/user/wishlist/get_wishlist/${User._id}`).then((response) => {
-        SetWishlistCount(response.data[0]?.wishlist.length)
+      authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((response) => {
+        SetWishlistCount(response.data[0]?.wishlist?.length)
       }).catch((err) => {
         console.log(err);
       })
@@ -124,11 +127,13 @@ const Navbar = ({ location, setLocation, reload }) => {
   //Function to get Notification count
   useEffect(() => {
     try {
-      authInstance.get(`/api/user/notification/notification_count?userId=${User?._id}`).then((response) => {
-        SetNotificationCount(response.data)
-      }).catch((err) => {
-        console.log(err);
-      })
+      if (User?._id) {
+        authInstance.get(`/api/user/notification/notification_count?userId=${User?._id}`).then((response) => {
+          SetNotificationCount(response.data)
+        }).catch((err) => {
+          console.log(err);
+        })
+      }
     } catch (error) {
       console.log(error);
     }
@@ -194,17 +199,15 @@ const Navbar = ({ location, setLocation, reload }) => {
         <div className={Style.Options}>
           <div className={Style.OptionsWrapper}>
             <Link to='/chat' className={Style.navigation} > <BsChat className={Style.icon} /> </Link>
-            {ConversationCount !== 0 ?
+            {ConversationCount > 0 && (
               <span className={Style.count}>{ConversationCount}</span>
-              : null
-            }
+            )}
           </div>
           <div className={Style.OptionsWrapper}>
             <Link to='/notification' className={Style.navigation} >{NewMessages ? <BsBellFill className={Style.icon} /> : <BsBell className={Style.icon} />} </Link>
-            {NotificationCount !== 0 ?
+            {NotificationCount > 0 && (
               <span className={Style.count}>{NotificationCount}</span>
-              : null
-            }
+            )}
           </div>
 
 
@@ -245,7 +248,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   }}>
                   <h1>DealNBuy</h1>
                 </Link>
-                
+
               </div>
               <div>
                 <button> <IoCloseOutline onClick={() => setToggle(false)} /></button>
@@ -267,7 +270,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   </div>
                   <div>
                     <h6>"Hello"</h6>
-                    <h4>{UserData.fullname} {UserData.surname}</h4>
+                    <h4>{UserData?.fullname} {UserData?.surname}</h4>
                     <Link to='/profile' className={Style.navigation} ><h5>View and edit Profile</h5> </Link>
                   </div>
                 </div>
@@ -319,10 +322,9 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <BsChat className={Style.icons} />
                           <span>Chats</span>
                         </div>
-                        {ConversationCount !== 0 ?
-                          <div className={Style.counter} > {ConversationCount} </div>
-                          : null
-                        }
+                        {ConversationCount > 0 && (
+                          <div className={Style.counter}>{ConversationCount}</div>
+                        )}
                       </div>
                     </li>
                   </Link>
@@ -333,10 +335,9 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <BsBell className={Style.icons} />
                           <span>Alerts</span>
                         </div>
-                        {NotificationCount !== 0 ?
-                          <div className={Style.counter} > {NotificationCount} </div>
-                          : null
-                        }
+                        {NotificationCount > 0 && (
+                          <div className={Style.counter}>{NotificationCount}</div>
+                        )}
                       </div>
                     </li>
                   </Link>
@@ -361,10 +362,9 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <MdOutlineFavoriteBorder className={Style.icons} />
                           <span>Wishlist</span>
                         </div>
-                        {WishlistCount !== 0 ?
-                          <div className={Style.counter} > {WishlistCount} </div>
-                          : null
-                        }
+                        {WishlistCount > 0 && (
+                          <div className={Style.counter}>{WishlistCount}</div>
+                        )}
                       </div>
                     </li>
                   </Link>

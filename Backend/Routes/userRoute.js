@@ -10,9 +10,13 @@ const {CLIENT_URL} = process.env
 
 //email verification routes
 
-router.post('/register', user_registration.userRegistration)
+// router.post('/register', user_registration.userRegistration)
 
-router.post('/verifyemail', user_registration.verifyEmail)
+// router.post('/verifyemail', user_registration.verifyEmail)
+
+router.post('/register2n1', user_registration.registrationBothOtp)
+
+router.post('/verifyemail2n1', user_registration.verifyEmailBoth)
 
 //phone number verification routes 
 
@@ -26,7 +30,7 @@ router.post('/login',authentication_controllers.login)
 
 //login with phone
 
-router.post('/loginwithphone',authentication_controllers.loginWithPhone)
+// router.post('/loginwithphone',authentication_controllers.loginWithPhone)
 
 //otp routes
 
@@ -43,8 +47,6 @@ router.post('/verifyotp_mobile',authentication_controllers.verificationPhoneOtp)
 //reset password
 
 router.post('/resetpassword',authentication_controllers.resetPassword)
-
-
 
 
 

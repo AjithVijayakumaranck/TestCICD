@@ -12,13 +12,22 @@ cloudinary.config({
     api_secret: CLOUD_API_SECRET
 });
 
+//delete local files
+async function deleteFile(filePath) {
+    try {
+      await fs.unlinkSync(filePath);
+      console.log(`Deleted ${filePath}`);
+    } catch (error) {
+        console.log(error);
+      console.error(`Got an error trying to delete the file: ${error.message}`);
+    }
+  }
+
 
 // Upload
 
 const cloudUpload = (Image, folderName) => {
     return new Promise((resolve, reject) => {
-
-
         const options = {
             width: 200,
             height: 200,
@@ -41,12 +50,14 @@ const cloudUpload = (Image, folderName) => {
                 data.compressedUrl = transformedURL
                 data.aspectUrl = aspect_ratio
                 console.log(data, "traaa");
+                deleteFile(Image)
                 resolve(data)
             }).catch((err) => {
                 reject(err)
             });
 
         } catch (err) {
+            console.log(err,"error");
             throw (err)
         }
     })

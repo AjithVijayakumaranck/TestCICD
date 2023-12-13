@@ -6,7 +6,20 @@ const USER = require("../Models/userModel");
 module.exports = {
     addProduct: async (req, res) => {
         try {
-            const { title, description, otherDetails,featured, subcategory,keywords, category, userId, price, listedBy, locality, district, state, region } = req.body
+            const { title,
+                    description,
+                    otherDetails,
+                    featured,
+                    subcategory,
+                    keywords, category,
+                    userId,
+                    price,
+                    listedBy,
+                    locality,
+                    district,
+                    state,
+                    region 
+                } = req.body
             const parsedDetails = JSON.parse(otherDetails);
             const Upload = req.files.map((file) => {
                 let locaFilePath = file.path;
@@ -14,6 +27,19 @@ module.exports = {
                     cloudUpload(locaFilePath, title)
                 )
             })
+            console.log(parsedDetails);
+
+            for (const key in parsedDetails) {
+                console.log(parsedDetails[key]);
+                if(isNaN(parsedDetails[key])){
+                    continue;
+                }else{
+                    parsedDetails[key]=parseInt(parsedDetails[key])
+                }
+              }
+
+              console.log(parsedDetails);
+            
             const results = await Promise.all(Upload);
             if (results) {
                 const productTemplate = new PRODUCT({
@@ -43,13 +69,21 @@ module.exports = {
                         if(response.AdCount <= 0){
                             USER.updateOne({_id: userId},{
                               AdCount: 0
+                            }).then((response)=>{
+                                console.log(response)
+                                res.status(200).json({ message: 'ad posted successfully' })
+                            }).catch((err)=>{
+                                res.status(400).json({message:"problem with updating user",error:err})
                             })
-                            res.status(200).json({ message: 'ad posted successfully' })
                         }else{
                             USER.updateOne({_id: userId},{
                                 $inc: {AdCount: -1}
+                            }).then((response)=>{
+                                res.status(200).json({ message: 'ad posted successfully' })
                             })
-                            res.status(200).json({ message: 'ad posted successfully' })
+                            .catch((err)=>{
+                                res.status(400).json({message:"problem with updating user",error:err})
+                            })
                         }
                     })
                 } else {
@@ -59,7 +93,7 @@ module.exports = {
                 res.status(400).json({ message: "something error with images" })
             }
         } catch (error) {
-            res.status(500).json({ message: "something went wrong" })
+            res.status(500).json({ message: "something went wrong" ,error:error.message})
         }
     },
 
@@ -85,7 +119,6 @@ module.exports = {
 
             const {page} = req.query
             const limit = 12
-
             const productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
             if(productDetails){
                 res.status(200).json(productDetails)
