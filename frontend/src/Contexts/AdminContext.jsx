@@ -15,12 +15,12 @@ export const AdminContextProvider = ({ children }) => {
 
             if (Token) {
                 const decodedToken = jwt_decode(Token);
-                SetAdmin(decodedToken._doc);
+                SetAdmin(decodedToken._doc);  
             }
         };
         // Call the decodeToken function when the component mounts
         decodeToken();
-    }, [])
+    }, [])  
 
     return (
         <AdminContext.Provider value={{ Admin, SetAdmin }}>
