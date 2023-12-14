@@ -8,6 +8,11 @@ const user_registration = require('../Controllers/user_registration')
 const {CLIENT_URL} = process.env
 
 
+router.get('/onlinecheck',(req,res)=>{
+    res.send("yeah we are online")
+})
+
+
 //email verification routes
 
 // router.post('/register', user_registration.userRegistration)
