@@ -8,11 +8,15 @@ export const SocketContext = createContext();
 // Create a custom SocketProvider component
 export const SocketProvider = ({ children }) => {
 
+    const socketUrl = process.env.REACT_APP_SOCKET_URL
+
     const LoggedInUser = useContext(UserContext);
     const { User, SetUser } = LoggedInUser
+
+    console.log(socketUrl);
     // Initialize the socket instance
 
-    const socket = socketIOClient.connect("https://socket.dealnbuy.in", { path: "/socket/socket.io", withCredentials: true });
+    const socket = socketIOClient.connect(socketUrl, { path: "/socket/socket.io", withCredentials: true });
 
     socket.emit("addUser", {
         userId: User._id,
