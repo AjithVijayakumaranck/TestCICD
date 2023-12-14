@@ -55,7 +55,9 @@ app.use("/uploads", express.static("uploads"));
 const allowedOrigins = [
     "https://www.dealnbuy.in",
     "https://dealnbuy.in",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "http://195.35.22.187"
+
 ];
 
 app.use(cors({

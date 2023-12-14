@@ -3,7 +3,7 @@
 const io = require('socket.io')(8900, {
     path: "/socket/socket.io",
     cors: {
-        origin: ["https://www.dealnbuy.in", "https://dealnbuy.in", "http://localhost:3000"],
+        origin: ["https://www.dealnbuy.in", "https://dealnbuy.in", "http://localhost:3000","http://195.35.22.187"],
         credentials:true
     }
 }, () => {
