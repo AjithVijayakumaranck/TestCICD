@@ -83,7 +83,7 @@ const OwnCard = ({ product, reload }) => {
     return (
         <div className={Style.products} >
             <div className={Style.productmedia}>
-                {product?.userId?.premiumuser ?
+                {product?.featured ?
                     <span className={Style.productlabel}>Featured</span>
                     : null
                 }

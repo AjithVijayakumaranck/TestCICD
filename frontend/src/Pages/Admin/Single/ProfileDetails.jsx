@@ -14,9 +14,6 @@ const ProfileDetails = () => {
   const LoggedInAdmin = useContext(AdminContext);
   const { Admin, SetAdmin } = LoggedInAdmin
 
-  console.log(Admin, "admin details");
-
-
   return (
     <div className={Style.single}>
       <Sidebar />

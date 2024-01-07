@@ -24,7 +24,6 @@ const NotificationForm = ({ title }) => {
         if (Notification !== "") {
             try {
                 adminInstance.post('/api/super_admin/notification_control/sent_notification', { notification: Notification }).then((response) => {
-                    console.log(response.data);
                     toast.success('Sucessfully Sended')
                     Navigate('/admin/notifications')
                 })
@@ -33,7 +32,7 @@ const NotificationForm = ({ title }) => {
                 toast.error('Something Went Wrong')
             }
             SetError("")
-        }else{
+        } else {
             SetError("Notification message is not available")
         }
     }

@@ -43,7 +43,6 @@ const AdsLists = () => {
   const handleDelete = (itemId) => {
     try {
       adminInstance.delete(`/api/super_admin/carousal_control/delete_carousal?carousalId=${itemId}`).then((Response) => {
-        console.log(Response.data);
         loadCarousel();
       }).catch((err) => {
         console.log(err);
@@ -54,10 +53,8 @@ const AdsLists = () => {
   };
 
   const HandleToggle = (Id,Status) => {
-    console.log(!Status,"status");
     try {
       adminInstance.put(`/api/super_admin/carousal_control/toggle_active?carousalId=${Id}&&status=${!Status}`).then((Response) => {
-        console.log(Response.data);
         loadCarousel();
       }).catch((err) => {
         console.log(err);
@@ -71,7 +68,6 @@ const AdsLists = () => {
   const loadCarousel = () => {
     try {
       adminInstance.get("/api/super_admin/carousal_control/get_carousal").then((response) => {
-        console.log(response.data);
         SetCarousel([...response.data]);
       }).catch((error) => {
         console.log(error);

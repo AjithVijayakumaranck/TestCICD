@@ -22,7 +22,7 @@ const MainMenu = ({ Data }) => {
                         return (
                             <div className={Style.bottom} key={index}>
                                 <div className={Style.subtitle}>
-                                    <span>1.</span>
+                                    <span>{index+1}.</span>
                                     <h3> {policies?.subtitle} </h3>
                                 </div>
                                 <div className={Style.subdata}>

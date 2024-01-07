@@ -17,7 +17,6 @@ const SuperAdminDetails = () => {
   useEffect(() => {
     try {
       adminInstance.get(`/api/super_admin/get_profile?adminId=${superadminId}`).then((response) => {
-        console.log(response.data);
         SetSuperAdminData(response.data)
       })
     } catch (error) {

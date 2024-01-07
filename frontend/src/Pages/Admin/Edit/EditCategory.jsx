@@ -13,7 +13,7 @@ import adminInstance from '../../../instance/AdminInstance';
 const EditCategory = ({ title }) => {
 
   const { categoryId } = useParams()
-  console.log(categoryId, "cat id");
+
   const navigate = useNavigate();
 
   const [CategoryDet, SetCategoryDet] = useState("");
@@ -26,8 +26,6 @@ const EditCategory = ({ title }) => {
 
   const uploadFile = (e) => {
 
-    console.log(e.target.files[0], "sdas");
-
     SetFile({
       ...File, FileUrl: URL.createObjectURL(e.target.files[0]),
       File: e.target.files[0]
@@ -38,7 +36,7 @@ const EditCategory = ({ title }) => {
     try {
       adminInstance.get(`/api/super_admin/category/get_singlecategory?categoryId=${categoryId}`).then((res) => {
         SetCategoryDet(res.data)
-        console.log(res.data);
+
       })
     } catch (error) {
       console.log(error);
@@ -47,9 +45,7 @@ const EditCategory = ({ title }) => {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    console.log(CategoryDet, "daata cat");
-    console.log(File.File, "daata cat");
-    console.log(categoryId, "daata cat");
+
 
     if (CategoryDet !== "") {
 
@@ -58,18 +54,18 @@ const EditCategory = ({ title }) => {
       data.append("CategoryDet", CategoryDet)
       data.append("categoryId", categoryId)
 
-      console.log(data, "edit categorydata");
+
 
       adminInstance.put("/api/super_admin/category/update_category", data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       }).then((Response) => {
-        console.log('Category created successfully', Response);
+
         toast.success("Sucessfully Updated")
         navigate('/admin/category')
       }).catch((err) => {
-          console.log('Error creating category:', err);
-          toast.error("Something Went Wrong")
-        })
+        console.log('Error creating category:', err);
+        toast.error("Something Went Wrong")
+      })
     } else {
       toast.error("This field cannot be empty")
     }

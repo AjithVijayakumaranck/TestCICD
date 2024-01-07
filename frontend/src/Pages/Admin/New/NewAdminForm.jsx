@@ -91,23 +91,20 @@ const NewAdminForm = ({ title }) => {
 
   const HandleSubmit = (e) => {
     e.preventDefault();
-    console.log(AdminDetail, "admin details");
 
     if (validateForm()) {
-     adminInstance.post('/api/super_admin/admin_create',
+      adminInstance.post('/api/super_admin/admin_create',
         {
           fullName: AdminDetail.fullname, surName: AdminDetail.surname, email: AdminDetail.email,
           password: AdminDetail.confirmpassword, locality: AdminDetail.locality, district: AdminDetail.district,
           state: AdminDetail.state, region: AdminDetail.region, role: AdminDetail.role
         }).then((response) => {
-          console.log(response.data);
           toast.success("Sucessfully Created")
           Navigate('/admin/members')
         }).catch((err) => {
           console.log(err);
         })
     } else {
-      console.log('Form validation failed');
       toast.error("Something Went Wrong")
     }
   }

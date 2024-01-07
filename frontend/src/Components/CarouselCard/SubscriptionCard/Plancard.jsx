@@ -10,7 +10,6 @@ const Plancard = ({ item }) => {
     const { User, SetUser } = user
 
     const selectHandler = (e) => {
-        console.log("hello");
         e.preventDefault()
         authInstance.post('/api/user/check_out/stripe-checkout', { subscriptionPlanId: item._id, userId: User._id }).then((response) => {         // navigate()
             window.location.replace(response.data.url);

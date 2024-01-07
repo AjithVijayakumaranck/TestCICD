@@ -21,7 +21,7 @@ const EditPlanForm = ({ title }) => {
     useEffect(() => {
         try {
             adminInstance.get(`/api/super_admin/subscription_control/get_singlesubscription/${subscriptionId}`).then((response) => {
-                //console.log(response.data);
+              
                 SetCurrentInput(response.data);
                 SetFeatures(response.data.Features)
             }).catch((error) => {
@@ -39,8 +39,7 @@ const EditPlanForm = ({ title }) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(CurrentInput, Features, "in edit sub")
+        e.preventDefault();
         try {
             adminInstance.put("/api/super_admin/subscription_control/edit_subscription", {
                 subscriptionId: subscriptionId, planName: CurrentInput.plan_name,

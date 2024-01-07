@@ -58,14 +58,12 @@ const EditPassword = ({ title, path }) => {
 
     const HandleSubmit = (e) => {
         e.preventDefault();
-        console.log(Id, Data, "edit password");
 
         if (validateForm()) {
             adminInstance.put('/api/super_admin/update_password', {
                 profileId: Id, currentPassword: Data.currentpassword,
                 newPassword: Data.confirmpassword
             }).then((response) => {
-                console.log(response.data);
                 toast.success("Sucessfully Created")
                 Navigate(`/admin/${path}`)
             }).catch((err) => {

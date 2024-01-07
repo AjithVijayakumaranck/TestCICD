@@ -37,7 +37,7 @@
 
 
         .Left {
-            background-color: $base-color3;
+            background-color: $base_color3;
             width: 23%;
             max-width: 340px;
 
@@ -111,7 +111,7 @@
                         justify-content: center;
                         align-items: center;
                         gap: 10px;
-                        color: $base-color5;
+                        color: $base_color5;
                         background-color: transparent;
                         padding: 10px;
                         font-size: 1.2rem;
@@ -123,7 +123,6 @@
 
                         &:hover {
                             color: $primary_color;
-                            //border: 2px solid $base-color4;
                         }
 
                         .icon {

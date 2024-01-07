@@ -16,7 +16,6 @@ const ProductDetails = () => {
     const loadProductData = () => {
         try {
             adminInstance.get(`/api/super_admin/product_control/get_singleproduct?productId=${productId}`).then((response) => {
-                console.log(response.data, "productId single");
                 SetProductData(response.data);
                 SetOtherDet({ ...response.data.otherDetails });
                 SetProductImage(response.data.images[0].url)

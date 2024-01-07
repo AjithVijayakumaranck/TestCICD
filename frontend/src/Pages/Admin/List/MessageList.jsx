@@ -17,7 +17,6 @@ const MessageList = () => {
   const LoadMessage = () => {
     try {
       adminInstance.get('/api/super_admin/feedback_control/get_feedbacks').then((response) => {
-        console.log(response.data);
         SetMessages(response.data);
       })
     } catch (error) {
@@ -67,7 +66,6 @@ const MessageList = () => {
   const HandleRead = (Id) => {
     try {
       adminInstance.put(`/api/super_admin/feedback_control/mark_as_read/${Id}`).then((response) => {
-        console.log(response.data);
         toast.success('Mark As Readed')
         LoadMessage();
       })

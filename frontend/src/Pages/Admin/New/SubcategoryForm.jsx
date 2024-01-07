@@ -41,7 +41,6 @@ const New = ({ title }) => {
   //get Category functions
   useEffect(() => {
     adminInstance.get("/api/category/get_categories").then((response) => {
-      console.log(response.data);
       setCategories([...response.data]);
     }).catch((error) => {
       console.log(error);
@@ -51,7 +50,6 @@ const New = ({ title }) => {
 
   const optionHandler = (e) => {
     if (CurrentInput.type === "select") {
-      console.log(OptionData);
       SetOptions([...Options, { value: OptionData, label: OptionData }])
       SetOptionData("")
     } else if (CurrentInput.type === "radio") {
@@ -63,7 +61,6 @@ const New = ({ title }) => {
 
   //Handle add all data to formdata
   const handleAddProperty = () => {
-    console.log(Options, "hello options");
     CurrentInput.options.push(...Options)
     SetFormInputs((prevFormInputs) => [...prevFormInputs, CurrentInput]);
     SetOptions("")
@@ -84,12 +81,9 @@ const New = ({ title }) => {
   //Handle submiting the data to database
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('CurrentInput:', CurrentInput);
-    console.log('FormInputs:', FormInputs);
     adminInstance
       .post('/api/super_admin/category/add_subcategory', { categoryId: categoryName, subCategory: SubcategoryName, formInputs: FormInputs })
       .then((response) => {
-        console.log(response.data);
         SetSubcategoryName('')
         SetFormInputs([])
         selectRef1.current.value = ''

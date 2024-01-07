@@ -43,10 +43,8 @@ const SubcategoryList = () => {
 
 
   const handleDelete = (itemId, categoryId) => {
-    console.log(itemId, categoryId, "handle delete sub");
     try {
       adminInstance.delete(`/api/super_admin/category/delete_subcategory?subcategoryId=${itemId}&&categoryId=${categoryId}`).then((Response) => {
-        //console.log(Response.data);
         loadcategory();
       }).catch((err) => {
         console.log(err);
@@ -59,7 +57,6 @@ const SubcategoryList = () => {
   const loadcategory = () => {
     try {
       adminInstance.get("/api/super_admin/category/get_subcategory").then((response) => {
-        //console.log(response.data, "sub");
         SetSubCategories([...response.data]);
       }).catch((error) => {
         console.log(error);

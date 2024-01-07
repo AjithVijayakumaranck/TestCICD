@@ -32,17 +32,14 @@ const New = ({ title }) => {
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (CategoryData !== "") {
-      console.log(CategoryData, "categoryName");
       let data = new FormData()
 
       data.append("file", File.File)
       data.append("category", CategoryData)
-      console.log(data, "category data upload");
 
       adminInstance.post("/api/super_admin/category/add_category", data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       }).then((Response) => {
-        console.log('Category created successfully');
         toast.success("Sucessfully Created")
         navigate('/admin/category')
         // Reset the form
@@ -53,7 +50,6 @@ const New = ({ title }) => {
           Caption: ""
         })
       }).catch((err) => {
-        console.log('Error creating category:', err);
         toast.error("Something Went Wrong")
       })
     } else {
@@ -108,7 +104,7 @@ const New = ({ title }) => {
                 <button>Save</button>
                 <button onClick={() => { navigate('/admin/category') }}>Cancel</button>
               </div>
-              
+
             </form>
           </div>
         </div>

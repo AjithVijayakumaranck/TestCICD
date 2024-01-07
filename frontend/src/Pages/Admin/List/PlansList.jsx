@@ -88,8 +88,6 @@ const PlansList = () => {
     loadPlans();
   }, []);
 
-  //console.log(Plans,"get plans");
-
 
   return (
     <div className={Style.list} >

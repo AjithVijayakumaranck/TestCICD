@@ -17,6 +17,7 @@ const Footer = () => {
                         <Link to='/help-center' className={Style.navigation} ><li>Help Center</li></Link>
                         <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><li>Terms & Conditions</li></Link>
                         <Link to='/legal-and-privacy' className={Style.navigation} ><li>Privacy Policy</li></Link>
+                        <Link to='/legal-and-privacy/cookies' className={Style.navigation} ><li> Cookies and Similar Technologies</li></Link>
                     </ul>
                 </div>
                 <div className={Style.box}>

@@ -19,8 +19,7 @@ const Widgets = ({ type }) => {
 
     const loadUsers = () => {
         try {
-           adminInstance.get("/api/super_admin/user_control/get_allprofile").then((response) => {
-                //console.log(response.data);
+            adminInstance.get("/api/super_admin/user_control/get_allprofile").then((response) => {
                 SetUsers([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -46,7 +45,6 @@ const Widgets = ({ type }) => {
     const loadProducts = () => {
         try {
             adminInstance.get("/api/super_admin/product_control/get_products").then((response) => {
-                //console.log(response.data);
                 SetProducts([...response.data]);
             }).catch((error) => {
                 console.log(error);
@@ -73,7 +71,7 @@ const Widgets = ({ type }) => {
     let data;
 
     //Temporary
-   
+
     const diff = 20
 
     switch (type) {

@@ -23,7 +23,6 @@ const ContactForm = () => {
                 SetEmail('')
                 toast.success("Feedback registered successfully")
             }).catch((err) => {
-                console.log(err.response.data.messsage);
                 SetEmail('')
                 toast.error(err.response.data.messsage)
             })

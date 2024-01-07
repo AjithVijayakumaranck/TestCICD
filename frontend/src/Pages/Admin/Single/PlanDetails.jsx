@@ -16,7 +16,6 @@ const PlanDetails = () => {
     useEffect(() => {
         try {
             adminInstance.get(`/api/super_admin/subscription_control/get_singlesubscription/${subscriptionId}`).then((response) => {
-                //console.log(response.data);
                 SetCurrentInput(response.data);
                 SetFeatures(response.data.Features)
             }).catch((error) => {

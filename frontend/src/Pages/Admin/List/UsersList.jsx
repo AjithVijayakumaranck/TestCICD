@@ -49,7 +49,6 @@ const UsersList = () => {
   const loadUsers = () => {
     try {
       adminInstance.get("/api/super_admin/user_control/get_allprofile").then((response) => {
-        //console.log(response.data);
         SetUsers([...response.data]);
       }).catch((error) => {
         console.log(error);
@@ -70,7 +69,6 @@ const UsersList = () => {
     try {
       adminInstance.delete(`/api/super_admin/user_control/deleteProfile/${itemId}`).then((Response) => {
         loadUsers();
-        //console.log(Response);
       }).catch((err) => {
         console.log(err);
       })

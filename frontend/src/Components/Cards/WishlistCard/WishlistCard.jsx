@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from "./index.module.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineDelete } from 'react-icons/ai'
 import authInstance from '../../../instance/AuthInstance'
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 
 const WishlistCard = ({ wishlist, user, reload }) => {
 
+  const Navigate = useNavigate();
 
   const handleDelete = (itemId) => {
     try {
@@ -38,7 +39,7 @@ const WishlistCard = ({ wishlist, user, reload }) => {
         <tbody>
           {wishlist.map((data, index) => {
             return (
-              <tr key={index} >
+              <tr key={index} onClick={() => Navigate(`/product/${product?._id}`)}>
                 <td className={Style.prod_col}>
                   <div className={Style.product} >
                     <div className={Style.product_media} >

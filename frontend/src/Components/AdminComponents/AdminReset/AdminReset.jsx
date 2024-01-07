@@ -51,12 +51,10 @@ const AdminReset = ({ adminData }) => {
     const SubmitHandler = (e) => {
         e.preventDefault()
         if (FormData.password === "" || FormData.confirmPassword === "") {
-            console.log(FormData, "passwords");
             SetError({ ...Error, confirmPassword: "This field cannot be empty", password: "This field cannot be empty" })
         } else {
             SetLoading(true)
             const data = { data: adminData, password: FormData.password }
-            console.log(data);
             instance.post("/api/super_admin/reset_Password", { data: adminData, password: FormData.password }).then((response) => {
                 SetLoading(false)
                 toast.success("Password updated")
@@ -82,7 +80,7 @@ const AdminReset = ({ adminData }) => {
                             id="password"
                             onChange={(e) => passwordValidation(e)}
                         />
-                         <p>{Error.password}</p>
+                        <p>{Error.password}</p>
                     </div>
                     <div className={Style.formInput}>
                         <input type="password"
@@ -91,7 +89,7 @@ const AdminReset = ({ adminData }) => {
                             id="confirm password"
                             onChange={(e) => confirmValidation(e)}
                         />
-                         <p>{Error.confirmPassword}</p>
+                        <p>{Error.confirmPassword}</p>
                     </div>
 
                     <div className={Style.formInput}>

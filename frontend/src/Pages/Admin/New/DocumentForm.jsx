@@ -30,14 +30,12 @@ const DocumentForm = ({ title }) => {
 
   //Handle adding all data points 
   const HandleAddingDataPoints = (e) => {
-    console.log(DocumentPoints, "Document Points");
     SetSubData([...SubData, DocumentPoints])
     SetDocumentPoints("")
   }
 
   //Handle add all data to formdata
   const HandleCreateSubData = () => {
-    console.log(SubData, "sub data options");
     DocumentData.subData.push(...SubData)
     SetFormInputs((prevFormInputs) => [...prevFormInputs, DocumentData]);
     SetSubData("")
@@ -51,13 +49,10 @@ const DocumentForm = ({ title }) => {
 
   //Handle submiting the data to database
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Document Data:', DocumentData);
-    console.log('FormInputs:', FormInputs);
+    e.preventDefault();
     adminInstance
-      .post('/api/super_admin/term/add_terms', { name: DocumentName, description: DocumentDescription, policies: FormInputs })
+      .post('/api/super_admin/terms/add_terms', { name: DocumentName, description: DocumentDescription, policies: FormInputs })
       .then((response) => {
-        console.log(response.data, "response");
         SetDocumentName('')
         SetDocumentDescription('')
         SetFormInputs([])
@@ -196,10 +191,10 @@ const DocumentForm = ({ title }) => {
 
         <div className={Style.bottomTable}>
           <h1 className={Style.title}>Information</h1>
-          {FormInputs.map((formInput) => {
+          {FormInputs.map((formInput, index) => {
             const FormOptions = formInput.subData
             return (
-              <div className={Style.details}>
+              <div className={Style.details} key={index}>
                 <div className={Style.left_wrap}>
                   <div className={Style.detailItem}>
                     <span className={Style.itemKey}>Subtitle Name:</span>
@@ -222,7 +217,7 @@ const DocumentForm = ({ title }) => {
                 </div>
 
                 <div className={Style.right}>
-                  <button className={Style.rembtn} onClick={() => HandleRemove()}>Remove</button>
+                  <button className={Style.rembtn} onClick={() => HandleRemove(index)}>Remove</button>
                 </div>
               </div>
             )

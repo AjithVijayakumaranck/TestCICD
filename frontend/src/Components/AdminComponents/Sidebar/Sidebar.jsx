@@ -19,11 +19,9 @@ const Sidebar = () => {
   const LoggedInAdmin = useContext(AdminContext);
   const { Admin, SetAdmin } = LoggedInAdmin
   const navigate = useNavigate();
-  // const [AdminRole, SetAdminRole] = useState("")
-
 
   const AdminRole = Admin ? Admin.role : null
-  //console.log(AdminRole, Admin, "role");
+
 
   const handleLogout = (e) => {
     e.preventDefault()

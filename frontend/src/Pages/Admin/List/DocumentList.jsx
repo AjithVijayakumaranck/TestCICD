@@ -32,8 +32,8 @@ const DocumentList = () => {
 
   const loadDocuments = () => {
     try {
-      adminInstance.get("/api/super_admin/term/get_term").then((response) => {
-        SetDocuments([response.data]);
+      adminInstance.get("/api/super_admin/terms/get_term").then((response) => {
+        SetDocuments([...response.data]);
       }).catch((err) => {
         console.log(err);
       });

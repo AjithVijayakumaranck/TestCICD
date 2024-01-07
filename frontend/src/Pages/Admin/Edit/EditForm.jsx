@@ -20,7 +20,7 @@ const EditForm = ({ title }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         adminInstance.post("", formData).then((Response) => {
-            console.log((Response));
+            console.log(("Nothing"));
         }).catch((err) => {
             console.log(err);
         })

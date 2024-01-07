@@ -22,7 +22,6 @@ const AdminHome = () => {
   const loadProducts = () => {
     try {
       adminInstance.get("/api/super_admin/product_control/get_products").then((response) => {
-        //console.log(response.data);
         SetProducts([...response.data]);
         SetLatestProducts([...response.data?.slice(-5)])
       }).catch((error) => {

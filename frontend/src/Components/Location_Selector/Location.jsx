@@ -5,11 +5,10 @@ import instance from '../../instance/AxiosInstance';
 
 
 //fetching  
-    const Location = ({ setLocation, location }) => {
-    const onChangeHandler = (e) => {
-    console.log(e.target.value);
+const Location = ({ setLocation, location }) => {
+
+  const onChangeHandler = (e) => {
     instance.get(`api/user/filter/get_location?location=${e.target.value}`).then((response) => {
-      console.log(response)
       if (response.data.features.length === 0) {
       } else {
         setLocation([...response.data.features])
@@ -20,7 +19,6 @@ import instance from '../../instance/AxiosInstance';
 
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position, "posss");
       setLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude

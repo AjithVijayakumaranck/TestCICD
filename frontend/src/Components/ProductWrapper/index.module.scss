@@ -3,7 +3,7 @@
 .productwrapper {
     width: 100%;
     min-height: 300px;
-    background-color: #f8f8f8;
+    background-color: $base_color3;
 
     .container {
         margin: 0 2rem;
@@ -25,11 +25,11 @@
             justify-content: space-between;
             margin-bottom: 2rem;
             padding: .5rem 0;
-            border-bottom: 2px solid #ebebeb;
+            border-bottom: 2px solid $base_color;
 
             .left {
                 h2 {
-                    color: $base-color5;
+                    color: $base_color5;
                     font-size: 22px;
                     font-weight: 600;
                 }

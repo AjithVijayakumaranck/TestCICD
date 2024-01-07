@@ -34,12 +34,9 @@ const AdsForm = ({ title }) => {
     let data = new FormData()
     data.append("file", File.File)
 
-    console.log(data, "category data upload");
-
     adminInstance.post("/api/super_admin/carousal_control/upload_carousal", data, {
       headers: { 'Content-Type': 'multipart/form-data' },
     }).then((Response) => {
-      console.log(Response.data, 'Coursel created successfully');
       toast.success("Sucessfully Created")
       navigate('/admin/ads')
       SetFile({
@@ -48,7 +45,6 @@ const AdsForm = ({ title }) => {
         Caption: ""
       })
     }).catch((err) => {
-      console.log('Error creating category:', err);
       toast.error("Something Went Wrong")
     })
   }

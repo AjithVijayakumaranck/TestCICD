@@ -75,7 +75,6 @@ const AdminList = () => {
             superAdminId: Admin._id,
             password: password, adminId: ItemId, role: "superadmin"
           }).then((response) => {
-            console.log(response.data);
             toast.success("Updated Sucessfully")
             loadAdmins();
           })
@@ -89,7 +88,6 @@ const AdminList = () => {
   const loadAdmins = () => {
     try {
       adminInstance.get("/api/super_admin/get_admins").then((response) => {
-        //console.log(response.data);
         SetAdminData([...response.data]);
       }).catch((error) => {
         console.log(error);
@@ -105,19 +103,7 @@ const AdminList = () => {
   }, []);
 
 
-  //Handle Delete function
-  // const handleDelete = (itemId) => {
-  //   try {
-  //     instance.delete(`/api/super_admin/deleteProfile/${itemId}`).then((Response) => {
-  //       loadAdmins();
-  //       //console.log(Response);
-  //     }).catch((err) => {
-  //       console.log(err);
-  //     })
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  
 
 
 

@@ -47,7 +47,7 @@ const EditSubcategory = ({ title }) => {
   useEffect(() => {
     try {
       adminInstance.get(`/api/super_admin/category/get_singlesubcategory?subCategoryId=${subcategoryId}`).then((response) => {
-        console.log(response.data, "sub");
+
         SetSubCategoryData(response.data);
         SetSubcategoryName(response.data.subcategory)
         SetCategoryId(response.data.category)
@@ -65,7 +65,6 @@ const EditSubcategory = ({ title }) => {
   useEffect(() => {
     try {
       adminInstance.get(`/api/category/get_SingleCategory?categoryId=${CategoryId}`).then((response) => {
-        //console.log(response.data.categoryName, "");
         SetCategoryName(response.data.categoryName);
       }).catch((error) => {
         console.log(error);
@@ -83,7 +82,6 @@ const EditSubcategory = ({ title }) => {
   //get Category functions
   useEffect(() => {
     adminInstance.get("/api/category/get_categories").then((response) => {
-      //console.log(response.data);
       setCategories([...response.data]);
     }).catch((error) => {
       console.log(error);
@@ -94,7 +92,6 @@ const EditSubcategory = ({ title }) => {
   //add option data to array
   const optionHandler = (e) => {
     if (CurrentInput.type === "select") {
-      console.log(OptionData);
       SetOptions([...Options, { value: OptionData, label: OptionData }])
       SetOptionData("")
     } else if (CurrentInput.type === "radio") {
@@ -106,7 +103,7 @@ const EditSubcategory = ({ title }) => {
 
   //Handle add all data to formdata
   const handleAddProperty = () => {
-    console.log(Options, "hello options");
+
     CurrentInput.options.push(...Options)
     SetFormInputs((prevFormInputs) => [...prevFormInputs, CurrentInput]);
     SetOptions("")
@@ -126,12 +123,10 @@ const EditSubcategory = ({ title }) => {
   //Handle submiting the data to database
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('CurrentInput:',SubcategoryName, CurrentInput);
-    console.log('FormInputs:', FormInputs);
+
     adminInstance
       .put('/api/super_admin/category/update_subcategory', { subcategoryId: subcategoryId, newInfo: SubcategoryName, categoryId: CategoryId, formInputs: FormInputs })
       .then((response) => {
-        console.log(response.data);
         SetSubcategoryName('')
         SetFormInputs([])
         selectRef1.current.value = ''

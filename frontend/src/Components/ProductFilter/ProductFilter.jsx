@@ -5,6 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import instance from '../../instance/AxiosInstance';
 import Select from "react-select";
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -18,6 +19,8 @@ const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories
 
     const [selectedOption, setSelectedOption] = useState({});
     const [filterCollection, setFilterCollection] = useState({});
+
+    const [tooltipText, setTooltipText] = useState("");
 
     const [minValue, setMinValue] = useState("");
     const [maxValue, setMaxValue] = useState("");
@@ -451,6 +454,7 @@ const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories
                                                 <span>{minValue !== "" ? minValue : FilterData.defaultMinValue}</span>
                                                 <span>{maxValue !== "" ? maxValue : FilterData.defaultMaxValue}</span>
                                             </div>
+                                            <Tooltip title={tooltipText}>
                                             <div className={Style.slider} >
                                                 <div className={Style.progress_wrap} >
                                                     <div className={Style.progress} > </div>
@@ -464,6 +468,8 @@ const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories
                                                         step={FilterData.stepValue}
                                                         value={minValue !== "" ? minValue : parseInt(FilterData.defaultMinValue)}
                                                         onChange={(e) => setMinValue(e.target.value.toString())}
+                                                        onMouseMove={(e) => setTooltipText(`Min Value: ${e.target.value}`)}
+                                                        onMouseOut={() => setTooltipText("")}
                                                     />
                                                     <input
                                                         type="range"
@@ -473,9 +479,12 @@ const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories
                                                         step={FilterData.stepValue}
                                                         value={maxValue !== "" ? maxValue : parseInt(FilterData.defaultMaxValue)}
                                                         onChange={(e) => setMaxValue(e.target.value.toString())}
+                                                        onMouseMove={(e) => setTooltipText(`Max Value: ${e.target.value}`)}
+                                                        onMouseOut={() => setTooltipText("")}
                                                     />
                                                 </div>
                                             </div>
+                                            </Tooltip>
                                             <div className={Style.range_searchBtn}>
                                                 <button onClick={(e) => { HandleRangeSearch(e, FilterData.label, FilterData.defaultMaxValue) }}> Apply </button>
                                             </div>

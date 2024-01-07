@@ -82,7 +82,6 @@ const UpdateProfileForm = () => {
     });
 
     const DefaultImage = "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-    console.log(DefaultImage, "default")
 
 
     const uploadFile = (e) => {

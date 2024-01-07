@@ -50,7 +50,6 @@ const SuperAdminList = () => {
       cell: (row) => (
         <div className={Style.optionsContainer}>
           <button className={Style.viewButton} onClick={() => navigate(`/admin/superadmins/single/${row._id}`)}  > View </button>
-          {/* <button className={Style.deleteButton} onClick={() => handleDelete(row._id)} > Block </button> */}
           <button className={Style.editButton} onClick={() => HandleRoleChange(row._id)} >Make Admin</button>
           <button className={Style.viewButton} onClick={() => navigate(`/admin/superadmins/updatepassword/${row._id}`)}  > Edit Password </button>
         </div>
@@ -83,7 +82,7 @@ const SuperAdminList = () => {
             superAdminId: Admin._id,
             password: password, adminId: ItemId, role: "admin"
           }).then((response) => {
-            console.log(response.data);
+    
             toast.success("Updated Sucessfully")
             loadSuperAdmins();
           })
@@ -98,7 +97,7 @@ const SuperAdminList = () => {
   const loadSuperAdmins = () => {
     try {
       adminInstance.get("/api/super_admin/get_superadmins").then((response) => {
-        //console.log(response.data);
+     
         SetSuperAdmins([...response.data]);
       }).catch((error) => {
         console.log(error);
@@ -114,19 +113,7 @@ const SuperAdminList = () => {
   }, []);
 
 
-  //Handle Delete function
-  // const handleDelete = (itemId) => {
-  //   try {
-  //     instance.delete(`/api/super_admin/deleteProfile/${itemId}`).then((Response) => {
-  //       loadSuperAdmins();
-  //       //console.log(Response);
-  //     }).catch((err) => {
-  //       console.log(err);
-  //     })
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  
 
 
 

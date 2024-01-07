@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import Breadcrumb from '../../../Components/Breadcrumb/Breadcrumb';
 import Navbar from '../../../Components/Navbar/Navbar';
 import Footer from '../../../Components/Footer/Footer';
-import ContactForm from '../../../Components/ContactForm/ContactForm';
 import SideMenu from '../../../Components/Legal&Privacy/SideMenu/SideMenu';
 import MainMenu from '../../../Components/Legal&Privacy/MainMenu/MainMenu';
 import instance from '../../../instance/AxiosInstance';
@@ -13,7 +12,8 @@ import instance from '../../../instance/AxiosInstance';
 const CookiesPage = () => {
 
     const location = useLocation();
-    const [Documents, SetDocuments] = useState([]);
+    const [Documents, SetDocuments] = useState({});
+    const [Name, SetName] = useState("Cookies Notice");
 
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
 
@@ -29,8 +29,8 @@ const CookiesPage = () => {
     //Load Documents functions
     useEffect(() => {
         try {
-            instance.get("/api/super_admin/term/get_term").then((response) => {
-                SetDocuments([response.data]);
+            instance.get(`/api/super_admin/terms/get_term?name=${Name}`).then((response) => {
+                SetDocuments(response.data);
             }).catch((err) => {
                 console.log(err);
             });
@@ -39,7 +39,7 @@ const CookiesPage = () => {
         }
     }, []);
 
-    const Result = Documents.find(document => document.name === 'Cookies Notice');
+
 
     return (
         <div className={Style.page_wrapper}>
@@ -52,7 +52,7 @@ const CookiesPage = () => {
                         <SideMenu />
                     </div>
                     <div className={Style.right}>
-                        <MainMenu Data={Result} />
+                        <MainMenu Data={Documents} />
                     </div>
                 </div>
                 <Footer />

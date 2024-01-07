@@ -51,7 +51,6 @@ const ProductsList = () => {
   const loadProducts = () => {
     try {
       adminInstance.get("/api/super_admin/product_control/get_products").then((response) => {
-        //console.log(response.data);
         SetProducts([...response.data]);
       }).catch((error) => {
         console.log(error);
@@ -72,7 +71,6 @@ const ProductsList = () => {
     try {
       adminInstance.delete(`/api/super_admin/product_control/delete_product/${itemId}`).then((Response) => {
         loadProducts();
-        //console.log(Response);
       }).catch((err) => {
         console.log(err);
       })

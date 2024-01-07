@@ -18,7 +18,6 @@ const UsersDetails = () => {
   const loadUsers = () => {
     try {
       adminInstance.get(`/api/super_admin/user_control/get_profile/${userId}`).then((response) => {
-        //console.log(response.data, "userdetail res");
         SetUserData(response.data);
         SetUserAddress(response.data.address);
         SetUserImage(response.data?.profilePicture);
@@ -33,7 +32,6 @@ const UsersDetails = () => {
   const loadUserProducts = () => {
     try {
       adminInstance.get(`/api/super_admin/product_control/get_userproducts/${userId}`).then((response) => {
-        //console.log(response.data, "user products res");
         SetUserProducts(response.data);
       }).catch((error) => {
         console.log(error);

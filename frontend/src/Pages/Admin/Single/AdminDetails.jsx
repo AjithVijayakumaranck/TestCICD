@@ -18,7 +18,6 @@ const AdminDetails = () => {
   useEffect(() => {
     try {
       adminInstance.get(`/api/super_admin/get_profile?adminId=${adminId}`).then((response) => {
-        console.log(response.data);
         SetAdminData(response.data)
       })
     } catch (error) {

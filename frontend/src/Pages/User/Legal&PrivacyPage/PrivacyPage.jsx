@@ -12,7 +12,8 @@ import instance from '../../../instance/AxiosInstance';
 const PrivacyPage = () => {
 
     const location = useLocation();
-    const [Documents, SetDocuments] = useState([]);
+    const [Documents, SetDocuments] = useState({});
+    const [Name, SetName] = useState("Privacy Notice");
 
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
 
@@ -25,12 +26,11 @@ const PrivacyPage = () => {
         ScrollToTopOnMount();
     }, []);
 
-
     //Load Documents functions
     useEffect(() => {
         try {
-            instance.get("/api/super_admin/term/get_term").then((response) => {
-                SetDocuments([response.data]);
+            instance.get(`/api/super_admin/terms/get_term?name=${Name}`).then((response) => {
+                SetDocuments(response.data);
             }).catch((err) => {
                 console.log(err);
             });
@@ -38,8 +38,6 @@ const PrivacyPage = () => {
             console.log(error);
         }
     }, []);
-
-    const Result = Documents.find(document => document.name === 'Privacy Notice');
 
 
 
@@ -54,7 +52,7 @@ const PrivacyPage = () => {
                         <SideMenu />
                     </div>
                     <div className={Style.right}>
-                        <MainMenu Data={Result} />
+                        <MainMenu Data={Documents} />
                     </div>
                 </div>
                 <Footer />

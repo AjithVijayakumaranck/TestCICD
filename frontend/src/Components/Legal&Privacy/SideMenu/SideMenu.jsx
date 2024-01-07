@@ -24,9 +24,9 @@ const SideMenu = () => {
                         <li className={` ${window.location.pathname === '/legal-and-privacy/terms&condition' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/terms&condition')}>
                             <span>Terms and Conditions</span>
                         </li>
-                        {/* <li className={` ${window.location.pathname === '/legal-and-privacy/cookies' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/cookies')}>
-                            <span>Cookies Notice</span>
-                        </li> */}
+                        <li className={` ${window.location.pathname === '/legal-and-privacy/cookies' ? Style.active : null}`} onClick={() => Navigate('/legal-and-privacy/cookies')}>
+                            <span> Cookies and Similar Technologies</span>
+                        </li>
                     </ul>
                 </div>
             </div>

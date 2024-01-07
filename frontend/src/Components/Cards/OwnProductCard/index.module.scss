@@ -3,7 +3,7 @@
 
 .products {
     width: 100%;
-    max-width: 220px;
+    max-width: 200px;
     transition: box-shadow .35s ease;
     background-color: #fff;
     margin-bottom: 0 !important;
@@ -136,6 +136,9 @@
             font-weight: 300;
             font-size: 0.8rem;
             line-height: 1.2;
+            overflow: hidden; 
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .product_title {
@@ -146,6 +149,9 @@
                 font-size: 1rem;
                 line-height: 1.25;
                 color: #333333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
         }
 

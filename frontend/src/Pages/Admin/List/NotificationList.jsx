@@ -17,7 +17,6 @@ const NotificationList = () => {
   const LoadNotification = () => {
     try {
       adminInstance.get(`/api/super_admin/notification_control/get_notification`).then((response) => {
-        console.log(response.data);
         SetNotification(response.data);
       })
     } catch (error) {
@@ -35,11 +34,6 @@ const NotificationList = () => {
       selector: (row) => row.notification,
       sortable: true,
     },
-
-    // {
-    //   name: 'Option',
-    //   cell: (row) => <button className={Style.deleteButton} onClick={() => handleDelete(row._id)} > Block </button>,
-    // },
 
   ];
 
