@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineDelete } from 'react-icons/ai'
 import authInstance from '../../../instance/AuthInstance'
 import { toast } from "react-toastify";
+import { PiCurrencyInrBold } from "react-icons/pi";
 
 
 const WishlistCard = ({ wishlist, user, reload }) => {
@@ -52,7 +53,7 @@ const WishlistCard = ({ wishlist, user, reload }) => {
                     </div>
                   </div>
                 </td>
-                <td className={Style.price_col} >${data?.price}</td>
+                <td className={Style.price_col} ><PiCurrencyInrBold/> {data?.price}</td>
                 <td className={Style.remove_col} ><button onClick={() => handleDelete(data._id)}> <AiOutlineDelete /> </button></td>
               </tr>
             )

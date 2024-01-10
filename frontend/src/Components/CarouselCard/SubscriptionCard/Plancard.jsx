@@ -3,6 +3,7 @@ import Style from './Style.module.css'
 import { TiTick } from "react-icons/ti";
 import { UserContext } from '../../../Contexts/UserContext';
 import authInstance from '../../../instance/AuthInstance';
+import { PiCurrencyInrBold } from "react-icons/pi";
 
 const Plancard = ({ item }) => {
 
@@ -27,7 +28,7 @@ const Plancard = ({ item }) => {
                         {item?.popular && (<h5>Popular</h5>)}
                     </div>
                     <div className={Style.row2}>
-                        <h1>{item?.monthly_pricing}</h1>
+                        <h1><PiCurrencyInrBold/> {item?.monthly_pricing}</h1>
                         <span> / </span>
                         <h4>Month per user</h4>
                     </div>

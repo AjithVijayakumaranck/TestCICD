@@ -11,6 +11,7 @@ import { UserContext } from '../../Contexts/UserContext';
 import authInstance from '../../instance/AuthInstance';
 import Star from '../ReviewStars/Star';
 import { toast } from 'react-toastify';
+import { PiCurrencyInrBold } from "react-icons/pi";
 
 
 const SampleNextArrow = (props) => {
@@ -177,7 +178,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                     <div className={Style.Details}>
                         <div>
                             <h3> {ProductDet?.title} </h3>
-                            <h1>${ProductDet?.price}</h1>
+                            <h1><PiCurrencyInrBold/> {ProductDet?.price}</h1>
                         </div>
                         <div className={Style.Rating}>
                             <div>

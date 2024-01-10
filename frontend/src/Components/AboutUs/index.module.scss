@@ -1,0 +1,243 @@
+@import '../../StyleHelpers/Variables.scss';
+
+.content_wrapper {
+    height: 100vh;
+    padding: 3rem;
+
+    @include breakpoint(md) {
+        padding: 2rem 1rem;
+    }
+
+    @include mediumScreen {
+        padding: 3rem 1rem;
+    }
+
+    @include LargeScreen {}
+
+    .container {
+        width: 100%;
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-right: 6rem;
+
+            @include breakpoint(md) {
+                flex-direction: column;
+                margin-right: 0;
+            }
+
+            @include mediumScreen {
+                flex-direction: column;
+                margin-right: 0;
+            }
+
+            .top,
+            .bottom {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                padding: 10px;
+
+                .title {
+                    margin-bottom: 2rem;
+
+                    h2 {
+                        margin-bottom: .8rem;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        line-height: 1;
+                    }
+
+                    p {
+                        font-size: 1rem;
+                        font-weight: 300;
+                        font-family: 'Poppins';
+                        letter-spacing: 0;
+                        color: #777;
+                    }
+                }
+
+                .subtitle {
+                    margin-bottom: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    span{
+                        text-align: center;
+                        margin-right: 0.5rem;
+                    }
+
+                    h3 {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        line-height: 1.5;
+                    }
+                }
+
+                .subdata {
+                    p {
+                        margin-bottom: 1rem;
+                        font-size: 14px;
+                        font-weight: 300;
+
+                        span {
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                .row {
+                    display: flex;
+                    width: 100%;
+
+                    .col {
+                        padding: 0 10px;
+                        display: flex;
+                        flex: 1;
+
+                        .cont_info {
+                            margin-bottom: 2rem;
+                            display: block;
+
+                            h3 {
+                                margin-top: 0.5rem;
+                                font-weight: 400;
+                                font-size: 1.2rem;
+                                line-height: 1.1;
+                                letter-spacing: -.025em;
+                                margin-bottom: 1.5rem;
+                                color: #333333;
+                            }
+
+                            .cont_list {
+                                max-width: 250px;
+                                list-style: none;
+                                margin-right: 1.5rem;
+
+                                li {
+                                    margin-bottom: 1.4rem;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 20px;
+
+                                    i {
+                                        font-size: 1.2rem;
+                                        font-weight: 500;
+                                        color: $primary_color;
+                                    }
+
+                                    span {
+                                        font-size: 1rem;
+                                        font-weight: 300;
+                                    }
+
+                                    div {
+                                        display: flex;
+                                        flex-direction: column;
+
+                                        span {
+                                            font-size: 1rem;
+                                            font-weight: 300;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .main_row {
+                    margin-bottom: 2rem;
+
+                    form {
+                        display: block;
+
+                        .row {
+                            display: flex;
+                            flex-direction: row;
+                            gap: 10px;
+
+                            .col {
+                                padding: 0;
+                                display: flex;
+                                flex: 1;
+
+                                input {
+                                    width: 100%;
+                                    height: 40px;
+                                    padding: 0.2rem 2rem;
+                                    font-size: .8rem;
+                                    line-height: 1;
+                                    font-weight: 300;
+                                    color: #777;
+                                    background-color: #fafafa;
+                                    border: 1px solid #ebebeb;
+                                    border-radius: 5px;
+                                    margin-bottom: 2rem;
+                                    transition: all 0.3s;
+                                    box-shadow: none;
+                                    outline: none;
+
+                                    &:focus {
+                                        border: 1px solid $primary_color;
+                                    }
+                                }
+                            }
+
+                            textarea {
+                                width: 100%;
+                                min-height: 150px;
+                                padding: 1rem 2rem;
+                                font-size: .8rem;
+                                line-height: 1.5;
+                                font-weight: 300;
+                                color: #777;
+                                background-color: #fafafa;
+                                border: 1px solid #ebebeb;
+                                border-radius: 5px;
+                                margin-bottom: 2rem;
+                                transition: all 0.3s;
+                                box-shadow: none;
+                                outline: none;
+
+                                &:focus {
+                                    border: 1px solid $primary_color;
+                                }
+                            }
+
+                            button {
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-align: center;
+                                padding: 0.6rem 1rem;
+                                font-weight: 400;
+                                font-size: 1rem;
+                                line-height: 1.2;
+                                min-width: 170px;
+                                border-radius: 5px;
+                                white-space: normal;
+                                transition: all 0.3s;
+                                color: $primary_color;
+                                background-color: #fff;
+                                border: 1px solid $primary_color;
+                                box-shadow: none;
+                                outline: none;
+                                cursor: pointer;
+
+                                i {
+                                    display: flex;
+                                    align-items: center;
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

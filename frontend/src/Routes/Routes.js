@@ -34,7 +34,8 @@ import HelpToContact from '../Pages/User/HelpCenterPage/HelpToContact'
 import HelpToListingPolicy from '../Pages/User/HelpCenterPage/HelpToListingPolicy'
 import HelpToFraud from '../Pages/User/HelpCenterPage/HelpToFraud'
 import HelpToSafetyTips from '../Pages/User/HelpCenterPage/HelpToSafetyTips'
-
+import AboutUsPage from '../Pages/User/AboutUsPage/AboutUsPage'
+import NotFound from '../Components/404/NotFound'
 
 //-------Admin components--------
 
@@ -68,14 +69,15 @@ import NotificationList from '../Pages/Admin/List/NotificationList'
 import MessageList from '../Pages/Admin/List/MessageList'
 import DocumentList from '../Pages/Admin/List/DocumentList'
 import DocumentForm from '../Pages/Admin/New/DocumentForm'
+import FilterForm from '../Pages/Admin/New/FilterForm'
 
 
 import ProtectedRoutes from '../utilities/ProtectedRoutes'
 import AdminProtectedRouter from '../utilities/AdminProtectedRouter'
 import SuperAdminProtectedRouter from '../utilities/SuperAdminProtectedRouter'
 import UnProtectedRouter from '../utilities/UnProtectedRouter'
-import NotFound from '../Components/404/NotFound'
-import FilterForm from '../Pages/Admin/New/FilterForm'
+
+
 
 
 
@@ -105,6 +107,7 @@ const Routings = () => {
             <Route path='/forgetpassword' element={<ForgotPassword />} />
             <Route path='/resetpassword' element={<ResetPassword />} />
             <Route path='/contact' element={<ContactPage />} />
+            <Route path='/about-us' element={<AboutUsPage />} />
             <Route path='/product/:productId' element={<SinglePage />} />
             <Route path='/category/:categoryId' element={< CategoryProductPage />} />
             <Route path='/search/:query' element={< SearchProductsPage />} />

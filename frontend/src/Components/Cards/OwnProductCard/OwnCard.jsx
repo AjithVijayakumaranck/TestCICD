@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import authInstance from '../../../instance/AuthInstance';
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2';
 import { Link, useNavigate } from 'react-router-dom'
-import Star from '../../ReviewStars/Star';
 import { AiFillHeart } from 'react-icons/ai';
+import { PiCurrencyInrBold } from "react-icons/pi";
 import { UserContext } from '../../../Contexts/UserContext';
 
 const OwnCard = ({ product, reload }) => {
@@ -106,12 +106,7 @@ const OwnCard = ({ product, reload }) => {
                     <h3> {product?.title} </h3>
                 </div>
                 <div className={Style.product_price}>
-                    $ {product?.price}
-                </div>
-                <div className={Style.rating_container}>
-                    <div className={Style.rating}>
-                        <Star stars={product?.totalRating} />
-                    </div>
+                    <PiCurrencyInrBold/> {product?.price}
                 </div>
             </div>
         </div>

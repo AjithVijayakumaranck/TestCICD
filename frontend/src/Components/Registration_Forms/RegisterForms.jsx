@@ -483,87 +483,87 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                   />
                   <label className={Style.radioLabel} htmlFor="">Owner</label>
                 </div>
-                <span>{Error.listedBy}</span>
+              </div>
+              <span>{Error.listedBy}</span>
+            </div>
+
+            <div className={Style.location_wrap}>
+              <div className={Style.col}>
+                <label> State <span className="star">*</span>{" "}  </label>
+                <Select
+                  options={StateOptions}
+                  isSearchable={true}
+                  onChange={(e) => {
+                    SetProductData({ ...ProductData, state: e.label });
+                    SetStateId(e.value)
+                  }}
+                />
+                <span>{Error.locality}</span>
               </div>
 
-
-              <div className={Style.location_wrap}>
+              {District && District.length > 0 && (
                 <div className={Style.col}>
-                  <label> State <span className="star">*</span>{" "}  </label>
+                  <label> District <span className="star">*</span>{" "}  </label>
                   <Select
-                    options={StateOptions}
-                    isSearchable={true}
+                    options={DistrictOptions}
                     onChange={(e) => {
-                      SetProductData({ ...ProductData, state: e.label });
-                      SetStateId(e.value)
+                      SetProductData({ ...ProductData, district: e.label })
+                      SetDistrictId(e.label)
+                      SetIsLocalityDisabled(false)
                     }}
                   />
                   <span>{Error.locality}</span>
                 </div>
+              )}
+            </div>
 
-                {District && District.length > 0 && (
-                  <div className={Style.col}>
-                    <label> District <span className="star">*</span>{" "}  </label>
-                    <Select
-                      options={DistrictOptions}
-                      onChange={(e) => {
-                        SetProductData({ ...ProductData, district: e.label })
-                        SetDistrictId(e.label)
-                        SetIsLocalityDisabled(false)
-                      }}
-                    />
-                    <span>{Error.locality}</span>
-                  </div>
-                )}
-              </div>
+            <div className={Style.location_wrap}>
 
-              <div className={Style.location_wrap}>
-
-                {Locality && Locality.length > 0 && (
-                  <div className={Style.col}>
-                    <label> Locality <span className="star">*</span>{" "}  </label>
-                    <Select
-                      options={LocalityOptions}
-                      isDisabled={IsLocalityDisabled}
-                      onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
-                    />
-                    <span>{Error.locality}</span>
-                  </div>
-                )}
-
+              {Locality && Locality.length > 0 && (
                 <div className={Style.col}>
-                  <label> Country <span className="star">*</span>{" "}  </label>
+                  <label> Locality <span className="star">*</span>{" "}  </label>
                   <Select
-                    options={options}
-                    onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
+                    options={LocalityOptions}
+                    isDisabled={IsLocalityDisabled}
+                    onChange={(e) => { SetProductData({ ...ProductData, locality: e.value }) }}
                   />
                   <span>{Error.locality}</span>
                 </div>
-              </div>
+              )}
 
-
-              <label> Name </label>
-              <div className={Style.items}>
-                <input type="text"
-                  name="name"
-                  value={UserData.fullname}
+              <div className={Style.col}>
+                <label> Country <span className="star">*</span>{" "}  </label>
+                <Select
+                  options={options}
+                  onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
                 />
-              </div>
-              <label>Email Id </label>
-              <div className={Style.items}>
-                <input type="email"
-                  name="email"
-                  value={UserData.email}
-                />
-              </div>
-              <label>Phone Number </label>
-              <div className={Style.items}>
-                <input type="text"
-                  name="phonenumber"
-                  value={UserData.phoneNumber}
-                />
+                <span>{Error.locality}</span>
               </div>
             </div>
+
+
+            <label> Name </label>
+            <div className={Style.items}>
+              <input type="text"
+                name="name"
+                value={UserData.fullname}
+              />
+            </div>
+            <label>Email Id </label>
+            <div className={Style.items}>
+              <input type="email"
+                name="email"
+                value={UserData.email}
+              />
+            </div>
+            <label>Phone Number </label>
+            <div className={Style.items}>
+              <input type="text"
+                name="phonenumber"
+                value={UserData.phoneNumber}
+              />
+            </div>
+
           </div>
           <div className={Style.submit_section}>
             <button>Post Now</button>

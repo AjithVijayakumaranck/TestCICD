@@ -8,6 +8,7 @@ import authInstance from '../../../instance/AuthInstance';
 import Star from '../../ReviewStars/Star';
 import { toast } from 'react-toastify';
 import { AiFillHeart } from 'react-icons/ai';
+import { PiCurrencyInrBold } from "react-icons/pi";
 
 const ProductCard = ({ product }) => {
 
@@ -107,7 +108,7 @@ const ProductCard = ({ product }) => {
                     <h3> {product?.title} </h3>
                 </div>
                 <div className={Style.product_price}>
-                    $ {product?.price}
+                    <PiCurrencyInrBold/> {product?.price}
                 </div>
                 <div className={Style.rating_container}>
                     <div className={Style.rating}>
