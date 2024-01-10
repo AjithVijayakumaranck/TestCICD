@@ -74,6 +74,9 @@
                     padding: 0 10px;
 
                     h1 {
+                        display: flex;
+                        align-items: center;
+                        text-align: center;
                         font-size: 38px;
                         color: $primary_color;
 
