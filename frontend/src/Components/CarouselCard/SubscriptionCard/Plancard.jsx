@@ -28,21 +28,22 @@ const Plancard = ({ item }) => {
                         {item?.popular && (<h5>Popular</h5>)}
                     </div>
                     <div className={Style.row2}>
-                        <h1><PiCurrencyInrBold/> {item?.monthly_pricing}</h1>
+                        <h1><PiCurrencyInrBold /> {item?.monthly_pricing}</h1>
                         <span> / </span>
                         <h4>Month per user</h4>
                     </div>
                     <div className={Style.row3} >
                         <p>{item?.discount}% Discount</p>
                     </div>
-
-                    <div className={Style.row4}>
-                        <form onSubmit={(e) => { selectHandler(e) }} >
-                            <button >
-                                Checkout
-                            </button>
-                        </form>
-                    </div>
+                    {item?.monthly_pricing > 0 &&
+                        <div className={Style.row4}>
+                            <form onSubmit={(e) => { selectHandler(e) }} >
+                                <button >
+                                    Checkout
+                                </button>
+                            </form>
+                        </div>
+                    }
                 </div>
                 <div className={Style.bottom}>
                     <div className={Style.title} >
