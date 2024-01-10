@@ -1,9 +1,15 @@
 .content_wrapper {
-  padding: 3rem 1rem;
+  height: 100vh;
+  padding: 3rem;
 }
 @media (max-width: 550px) {
   .content_wrapper {
     padding: 2rem 1rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .content_wrapper {
+    padding: 3rem 1rem;
   }
 }
 .content_wrapper .container {
