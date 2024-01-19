@@ -230,6 +230,9 @@
                 gap: 10px;
 
                 h1 {
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
                     font-size: 30px;
                     margin: 5px 0;
                 }

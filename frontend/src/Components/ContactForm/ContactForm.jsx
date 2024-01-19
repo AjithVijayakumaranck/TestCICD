@@ -48,7 +48,7 @@ const ContactForm = () => {
                                     <ul className={Style.cont_list}>
                                         <li>
                                             <i><MdOutlineLocationOn /></i>
-                                            <span>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur , Kerala ,India.</span>
+                                            <span>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur, 670567, Kerala, India.</span>
                                         </li>
                                         <li>
                                             <i><MdOutlineMail /></i>
