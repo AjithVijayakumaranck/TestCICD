@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Style from "./index.module.css"
 import { MdOutlineLocationOn, MdOutlineMail } from 'react-icons/md';
 import { FiClock } from 'react-icons/fi';
+import { BsTelephone } from 'react-icons/bs';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import instance from '../../instance/AxiosInstance';
 import { toast } from 'react-toastify';
@@ -53,6 +54,10 @@ const ContactForm = () => {
                                         <li>
                                             <i><MdOutlineMail /></i>
                                             <span>contact.in@dealnbuy.co.in</span>
+                                        </li>
+                                        <li>
+                                            <i><BsTelephone /></i>
+                                            <span>+91 7907658092</span>
                                         </li>
                                     </ul>
                                 </div>

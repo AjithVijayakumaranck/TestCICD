@@ -313,11 +313,18 @@
                     }
                 }
             }
+        }
+
+        .Right_containerBottom {
+            display: flex;
+            justify-content: flex-start;
+            align-items: start;
+            padding: 20px;
+            width: 50%;
 
             .seller {
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                align-items: start;
                 flex-direction: column;
                 width: 100%;
                 padding: 20px;
@@ -391,16 +398,11 @@
                     justify-content: space-between;
                     border: 2px solid $base-color3;
                     border-radius: 5px;
-                    padding: 5px 10px;
                     cursor: pointer;
 
-                    @include breakpoint(md) {
-                        padding: 5px;
-                    }
+                    @include breakpoint(md) {}
 
-                    @include mediumScreen {
-                        padding: 5px 10px;
-                    }
+                    @include mediumScreen {}
 
                     @include LargeScreen {}
 
@@ -410,6 +412,7 @@
                         align-items: center;
                         justify-content: center;
                         flex-direction: row;
+                        padding: .5rem;
 
                         img {
                             width: 70px;
@@ -420,8 +423,9 @@
                         }
 
                         h3 {
-                            font-size: 22px;
+                            font-size: 18px;
                             font-weight: 500;
+                            text-overflow: ellipsis;
                         }
 
                         span {
@@ -434,10 +438,10 @@
                     }
                 }
             }
-
         }
     }
 }
+
 
 /*----- control btn -------*/
 .control_btn {

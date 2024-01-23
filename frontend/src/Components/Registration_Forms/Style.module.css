@@ -254,6 +254,23 @@
   border-top: 1px solid #373737;
   padding: 20px 0;
 }
+.Main_Container .Container_Wrapper form .seller_section .items {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .seller_section .items input {
+  height: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 0 5px 0 5px;
+}
+.Main_Container .Container_Wrapper form .seller_section .items input:hover {
+  border-color: #046BD2;
+  color: #111;
+}
 .Main_Container .Container_Wrapper form .seller_section .location_wrap {
   display: flex;
   gap: 30px;

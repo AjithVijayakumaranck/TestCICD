@@ -266,15 +266,14 @@
       }
 
 
+      
       .profile {
         aspect-ratio: 1;
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
+        width: 35px;
+        height: 35px;
+        border-radius: 7px;
         border: 1px solid $base_color;
         position: relative;
-        // overflow: hidden;
-
 
         @include breakpoint(md) {
           display: none;
@@ -285,9 +284,9 @@
         }
 
         img {
-          width: 40px;
-          height: 40px;
-          border-radius: 100%;
+          width: 35px;
+          height: 35px;
+          border-radius: 7px;
           object-fit: cover;
           cursor: pointer;
         }

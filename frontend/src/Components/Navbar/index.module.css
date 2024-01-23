@@ -252,9 +252,9 @@
 }
 .header_container .Container .Options .profile {
   aspect-ratio: 1;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
   border: 1px solid #ebebeb;
   position: relative;
 }
@@ -269,9 +269,9 @@
   }
 }
 .header_container .Container .Options .profile img {
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  border-radius: 7px;
   -o-object-fit: cover;
      object-fit: cover;
   cursor: pointer;
