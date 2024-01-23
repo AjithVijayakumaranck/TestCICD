@@ -178,7 +178,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                     <div className={Style.Details}>
                         <div>
                             <h3> {ProductDet?.title} </h3>
-                            <h1><PiCurrencyInrBold/> {ProductDet?.price}</h1>
+                            <h1><PiCurrencyInrBold /> {ProductDet?.price}</h1>
                         </div>
                         <div className={Style.Rating}>
                             <div>
@@ -224,22 +224,9 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                         </p>
                     </div>
                 </div>
-                <div className={Style.Right_container}>
+
+                <div className={Style.Right_containerBottom}>
                     <div className={Style.seller}>
-
-                        <div className={Style.map_wrapper}>
-                            <div className={Style.title_div}>
-                                <label>Posted In</label>
-                            </div>
-                            <div className={Style.map_div}>
-                                map
-                            </div>
-                        </div>
-
-                        <div className={Style.Id_wrap} >
-                            <label>Ad Id : </label>
-                            <span> {productId} </span>
-                        </div>
 
                         <div className={Style.seller_wrapper} onClick={() => Navigate(`/clientprofile/${ClientData._id}`)}>
                             <div>
@@ -259,8 +246,14 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                             </div>
                         </div>
 
+                        <div className={Style.Id_wrap} >
+                            <label>Ad Id : </label>
+                            <span> {productId} </span>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
 
         </div>

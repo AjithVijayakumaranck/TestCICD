@@ -541,7 +541,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
               </div>
             </div>
 
-
             <label> Name </label>
             <div className={Style.items}>
               <input type="text"
@@ -549,6 +548,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 value={UserData.fullname}
               />
             </div>
+
             <label>Email Id </label>
             <div className={Style.items}>
               <input type="email"
@@ -556,6 +556,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 value={UserData.email}
               />
             </div>
+            
             <label>Phone Number </label>
             <div className={Style.items}>
               <input type="text"

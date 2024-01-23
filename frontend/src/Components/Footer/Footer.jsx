@@ -32,7 +32,7 @@ const Footer = () => {
                     <h2>Locations</h2>
                     <ul>
                         <li> India </li>
-                        <li> Kannur </li>
+                        <li onClick={() => { navigate("/contact") }} style={{ marginLeft: '10px' }} >Kannur</li>
                     </ul>
                 </div>
                 <div className={Style.box}>

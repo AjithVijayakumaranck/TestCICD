@@ -309,6 +309,27 @@
                 border-top: 1px solid $base-color2 ;
                 padding: 20px 0;
 
+                .items {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 10px 0;
+                    width: 100%;
+
+                    input {
+
+                        height: 2.5rem;
+                        border-radius: 4px;
+                        border: 1px solid lightgrey;
+                        outline: none;
+                        padding: 0 5px 0 5px;
+
+                        &:hover {
+                            border-color: $primary-color;
+                            color: #111;
+                        }
+                    }
+                }
+                
                 .location_wrap {
                     display: flex;
                     gap: 30px;
