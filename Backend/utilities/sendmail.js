@@ -11,7 +11,7 @@ let transporter = nodemailer.createTransport({
         pass: "ISCdnb19102023!."
     },
     tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: true
     }
     
 })
