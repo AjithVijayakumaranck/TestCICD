@@ -7,9 +7,8 @@ const { AUTH_EMAIL, AUTH_PASS } = process.env
 let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
     auth: {
-        user: AUTH_EMAIL,
-        pass: AUTH_PASS
-
+        user:"dealnbuy@hotmail.com",
+        pass: "ISCdnb19102023!."
     },
     tls: {
         rejectUnauthorized: false
@@ -20,10 +19,11 @@ let transporter = nodemailer.createTransport({
 //test transporter
 transporter.verify((error, success) => {
     if (error) {
-        // console.log(AUTH_EMAIL,AUTH_PASS);
+        console.log(AUTH_EMAIL,AUTH_PASS);
         console.log(error.message);
         throw error
     } else {
+        console.log(AUTH_EMAIL,AUTH_PASS);
         console.log("transporter working fine");
     }
 });
