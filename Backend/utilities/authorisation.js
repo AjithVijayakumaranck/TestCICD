@@ -2,7 +2,7 @@ const jwt  = require('jsonwebtoken')
 
 //Authentication middeware session
 const authorisationMiddleware = (req,res,next)=>{
-    if(req.user){
+    if(req.user){ 
         console.log("user autherised");
         next()
     }else{
