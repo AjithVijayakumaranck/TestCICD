@@ -7,8 +7,8 @@ const { AUTH_EMAIL, AUTH_PASS } = process.env
 let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
     auth: {
-        user:"dealnbuy@hotmail.com",
-        pass: "ISCdnb19102023!."
+        user:AUTH_EMAIL,
+        pass:AUTH_PASS 
     },
     tls: {
         rejectUnauthorized: true
