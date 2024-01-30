@@ -93,11 +93,9 @@ module.exports = {
 
 
     //Otpsend
-
     email_otpSent: async (req, res) => {
         try {
             const { email } = req.body
-            console.log(req.body);
             const userInfo = await USER.findOne({ email: email })
             if (userInfo) {
                 const createdOTP = await sendOTP({ email });
@@ -114,7 +112,6 @@ module.exports = {
     //verifyOtp
 
     verifyOtp: async (req, res) => {
-
         try {
             const { otp, userData } = req.body
             console.log(req.body);
@@ -139,7 +136,6 @@ module.exports = {
     sendphoneOtp: async (req, res) => {
         try {
             const { phonenumber } = req.body
-            console.log(req.body, "hjellog ");
             const userInfo = await USER.findOne({ phoneNumber: phonenumber })
             if (userInfo) {
                 sentVerificationOtp(phonenumber).then(() => {

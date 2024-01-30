@@ -93,6 +93,27 @@ const USERschema = new schema({
     type: Boolean,
     default: false
   },
+  showFullname: {
+    type: Boolean,
+    default: true
+  },
+  showLastname: {
+    type: Boolean,
+    default: true
+  },
+  showAddress: {
+    type: Boolean,
+    default: false
+  },
+  showEmail: {
+    type: Boolean,
+    default: false
+  },
+  showPhonenumber: {
+    type: Boolean,
+    default: false
+  },
+
   googleVerified: {
     type: Boolean,
     default: false
