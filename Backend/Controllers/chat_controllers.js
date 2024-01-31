@@ -7,7 +7,6 @@ module.exports = {
     createConversation: async (req, res) => {
         try {
             const { senderId, recieverId, productId } = req.body
-            console.log(req.body, "eeee");
 
             const existingConversation = await CONVERSATION.findOne({
                 member: { $all: [senderId, recieverId] },
@@ -15,7 +14,6 @@ module.exports = {
             });
 
             if (existingConversation) {
-                console.log("existtingggg");
                 return res
                     .status(200)
                     .json({ savedConversation: existingConversation, message: "Conversation already exists with the same productId" });

@@ -49,10 +49,7 @@ module.exports = {
                                     state: userDetails.address.state,
                                     region: userDetails.address.region,
                                 },
-                                showFullname:userDetails?.showFullname,
-                                showLastname:userDetails?.showLastname,
-                                showEmail:userDetails?.showEmail,
-                                showAddress:userDetails?.showAddress,
+                                pseudoName:userDetails?.pseudoName,
                                 profilePicture: result,
                             }
                         }).then(async (response) => {
@@ -83,10 +80,7 @@ module.exports = {
                                 state: userDetails.address.state,
                                 region: userDetails.address.region,
                             },
-                            showFullname:userDetails?.showFullname,
-                            showLastname:userDetails?.showLastname,
-                            showEmail:userDetails?.showEmail,
-                            showAddress:userDetails?.showAddress,
+                            pseudoName:userDetails?.pseudoName
                         }
                     }).then(async (response) => {
                         const updatedDetails = await USER.findOne({ _id: userDetails._id })
@@ -453,6 +447,20 @@ module.exports = {
             }
         } catch (error) {
            res.status(500).json(error.message) 
+        }
+    },
+
+    checkPsudoname : async (req,res)=>{
+        try {
+            const {pseudoNameCheck} = req.body
+           const userExist = await USER.findOne({pseudoName:pseudoNameCheck})
+           if(!userExist){
+            res.status(200).json({userExist:false,message:"user not exist , you can continue"})
+           }else{
+            res.status(400).json({userExist:true,message:"psudoname already exists"})
+           }
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

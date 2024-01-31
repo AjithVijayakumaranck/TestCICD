@@ -105,6 +105,9 @@ const USERschema = new schema({
     type: Boolean,
     default: false
   },
+  pseudoName:{
+    type:String
+  },
   showEmail: {
     type: Boolean,
     default: false
