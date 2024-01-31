@@ -437,6 +437,7 @@ module.exports = {
                     showName:toggleValues?.showName,
                     showEmail:toggleValues?.showEmail,
                     showAddress:toggleValues?.showAddress,
+                    showPhonenumber:toggleValues?.showPhonenumber,
                 }}).then(()=>{
                     res.status(200).json({message:"privacy settings changed"})
                 }).catch((error)=>{
