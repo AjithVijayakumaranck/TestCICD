@@ -28,7 +28,6 @@ module.exports = {
     updateProfile: async (req, res) => {
         try {
             const { userData } = req.body
-            console.log(userData,"update profile userdetails");
             const userDetails = JSON.parse(userData);
             const profileDetails = await USER.findOne({ _id: userDetails._id })
             if (!profileDetails) {
@@ -50,6 +49,10 @@ module.exports = {
                                     state: userDetails.address.state,
                                     region: userDetails.address.region,
                                 },
+                                showFullname:userDetails?.showFullname,
+                                showLastname:userDetails?.showLastname,
+                                showEmail:userDetails?.showEmail,
+                                showAddress:userDetails?.showAddress,
                                 profilePicture: result,
                             }
                         }).then(async (response) => {
@@ -79,7 +82,11 @@ module.exports = {
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
                                 region: userDetails.address.region,
-                            }
+                            },
+                            showFullname:userDetails?.showFullname,
+                            showLastname:userDetails?.showLastname,
+                            showEmail:userDetails?.showEmail,
+                            showAddress:userDetails?.showAddress,
                         }
                     }).then(async (response) => {
                         const updatedDetails = await USER.findOne({ _id: userDetails._id })
@@ -421,6 +428,31 @@ module.exports = {
         } catch (error) {
             console.log(error.message);
             res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+
+    //change privacy settings
+    togglePrivacy: async (req,res)=>{
+        try {
+            const {userId,toggleValues} = req.body
+            const userDetails = await USER.findById(userId)
+            if(userDetails){
+                USER.updateOne({userId},{$set:{
+                    showFullname:toggleValues?.showFullname,
+                    showLastname:toggleValues?.showLastname,
+                    showEmail:toggleValues?.showEmail,
+                    showAddress:toggleValues?.showAddress,
+                }}).then(()=>{
+                    res.status(200).json({message:"privacy settings changed"})
+                }).catch((error)=>{
+                    res.status(400).json(error.message)
+                })
+            }else{
+                res.status(404).json({message:"user not found"})
+            }
+        } catch (error) {
+           res.status(500).json(error.message) 
         }
     }
 }
