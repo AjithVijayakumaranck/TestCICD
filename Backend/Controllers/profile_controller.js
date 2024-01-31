@@ -432,13 +432,13 @@ module.exports = {
             const {userId,toggleValues} = req.body
             const userDetails = await USER.findById(userId)
             if(userDetails){
-                USER.updateOne({userId},{$set:{
+                USER.updateOne({_id:userId},{$set:{
                     showDob:toggleValues?.showDob,
                     showName:toggleValues?.showName,
                     showEmail:toggleValues?.showEmail,
                     showAddress:toggleValues?.showAddress,
                     showPhonenumber:toggleValues?.showPhonenumber,
-                }},{new:true}).then(()=>{
+                }},{new:true}).then((response)=>{
                     res.status(200).json({message:"privacy settings changed"})
                 }).catch((error)=>{
                     res.status(400).json(error.message)
