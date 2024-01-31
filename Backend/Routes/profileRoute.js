@@ -19,6 +19,9 @@ router.put('/update_privacy',authoriseJwt,profile_controller.togglePrivacy)
 //update email
 router.post('/update_email',authoriseJwt,profile_controller.updateEmail)
 
+//check peudoname
+router.post('/check_pseudoname',authoriseJwt,profile_controller.checkPsudoname)
+
 //verify email
 router.put('/verify_email',authoriseJwt,profile_controller.updateEmailVerification)
 
