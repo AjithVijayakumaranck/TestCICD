@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
         }
     };
 
-    const star = product.userId.totalrating ? product.userId.totalrating : "0"
+    const star = product?.userId?.totalrating ? product?.userId?.totalrating : "0"
 
 
     return (

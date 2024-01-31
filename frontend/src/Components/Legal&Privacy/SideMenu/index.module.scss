@@ -8,7 +8,6 @@
     .contentWrapper {
         display: flex;
         flex-direction: column;
-        align-items: center;
         padding: 40px 10px;
 
         @include breakpoint(md) {
@@ -28,6 +27,12 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+
+            .title {
+                display: flex;
+                align-items: start;
+                justify-content: flex-start;
+            }
 
             ul {
                 list-style: none;
