@@ -433,8 +433,8 @@ module.exports = {
             const userDetails = await USER.findById(userId)
             if(userDetails){
                 USER.updateOne({userId},{$set:{
-                    showFullname:toggleValues?.showFullname,
-                    showLastname:toggleValues?.showLastname,
+                    showDob:toggleValues?.showDob,
+                    showName:toggleValues?.showName,
                     showEmail:toggleValues?.showEmail,
                     showAddress:toggleValues?.showAddress,
                 }}).then(()=>{
@@ -452,7 +452,7 @@ module.exports = {
 
     checkPsudoname : async (req,res)=>{
         try {
-            const {pseudoNameCheck} = req.body
+           const {pseudoNameCheck} = req.body
            const userExist = await USER.findOne({pseudoName:pseudoNameCheck})
            if(!userExist){
             res.status(200).json({userExist:false,message:"user not exist , you can continue"})
