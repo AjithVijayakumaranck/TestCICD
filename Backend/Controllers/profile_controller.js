@@ -52,7 +52,7 @@ module.exports = {
                                 pseudoName:userDetails?.pseudoName,
                                 profilePicture: result,
                             }
-                        }).then(async (response) => {
+                        },{new:true}).then(async (response) => {
                             const updatedDetails = await USER.findOne({ _id: userDetails._id })
                             console.log(updatedDetails,"updated details");
                             if (!updatedDetails) {
@@ -82,7 +82,7 @@ module.exports = {
                             },
                             pseudoName:userDetails?.pseudoName
                         }
-                    }).then(async (response) => {
+                    },{new:true}).then(async (response) => {
                         const updatedDetails = await USER.findOne({ _id: userDetails._id })
                         console.log(updatedDetails,"updated details");
                         if (!updatedDetails) {
@@ -438,7 +438,7 @@ module.exports = {
                     showEmail:toggleValues?.showEmail,
                     showAddress:toggleValues?.showAddress,
                     showPhonenumber:toggleValues?.showPhonenumber,
-                }}).then(()=>{
+                }},{new:true}).then(()=>{
                     res.status(200).json({message:"privacy settings changed"})
                 }).catch((error)=>{
                     res.status(400).json(error.message)
