@@ -93,7 +93,7 @@ const USERschema = new schema({
     type: Boolean,
     default: false
   },
-  showNames: {
+  showName: {
     type: Boolean,
     default: true
   },
