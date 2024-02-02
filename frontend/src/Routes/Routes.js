@@ -76,6 +76,7 @@ import ProtectedRoutes from '../utilities/ProtectedRoutes'
 import AdminProtectedRouter from '../utilities/AdminProtectedRouter'
 import SuperAdminProtectedRouter from '../utilities/SuperAdminProtectedRouter'
 import UnProtectedRouter from '../utilities/UnProtectedRouter'
+import Settings from '../Pages/User/SettingsPage/Settings'
 
 
 
@@ -135,7 +136,10 @@ const Routings = () => {
               <Route path='/myads' element={< OwnProductPage />} />
               <Route path='/notification' element={< NotificationPage />} />
               <Route path='/registerad/:subCategoryId' element={<RegisterAd />} />
-              <Route path='/profile' element={<UserProfile />} />
+              <Route path='/profile'>
+                <Route index element={<UserProfile />} />
+                <Route path="privacy-settings" element={<Settings />} />
+              </Route>
               <Route path='/updateprofile' element={<UpdateProfilePage />} />
               <Route path='/wishlist' element={<WishlistPage />} />
               <Route path='/clientprofile/:clientId' element={< ClientProfile />} />

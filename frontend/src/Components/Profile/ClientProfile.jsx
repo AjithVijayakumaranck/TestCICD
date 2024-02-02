@@ -1,10 +1,11 @@
 import React from 'react'
 import Style from './Style.module.css'
+import { Blank_Profile } from '../../Assets/Constants'
 
 
 const ClientProfile = ({ profile, profileaddress, image }) => {
 
-
+  console.log(profile, "client profile");
   return (
 
     <div className={Style.top}>
@@ -16,30 +17,41 @@ const ClientProfile = ({ profile, profileaddress, image }) => {
             src={
               image
                 ? image
-                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                : Blank_Profile
             }
             className={Style.itemImg}
             alt=""
           />
           <div className={Style.details}>
-            <h1 className={Style.itemTitle}> {profile?.fullname} {profile?.surname}</h1>
+            <h1 className={Style.itemTitle}>
+              {profile?.showName
+                ? `${profile?.fullname} ${profile?.surname}`
+                : profile.pseudoName
+              }
+            </h1>
             <div className={Style.detailItem}>
-              <span className={Style.itemKey}>Email:</span>
-              <span className={Style.itemValue}>{profile?.email}</span>
+              <span className={Style.itemKey}>Email :</span>
+              <span className={Style.itemValue}> {profile?.showEmail ? profile?.email : null} </span>
             </div>
             <div className={Style.detailItem}>
-              <span className={Style.itemKey}>Phone:</span>
-              <span className={Style.itemValue}> {profile?.phoneNumber}</span>
+              <span className={Style.itemKey}>Phone :</span>
+              <span className={Style.itemValue}> {profile?.showPhonenumber ? profile?.phoneNumber : null}</span>
             </div>
             <div className={Style.detailItem}>
-              <span className={Style.itemKey}>Address:</span>
-              <span className={Style.itemValue}>
-                {profileaddress?.locality || ''} {profileaddress?.district || ''} {profileaddress?.state || ''}
-              </span>
+              <span className={Style.itemKey}>Locality :</span>
+              <span className={Style.itemValue}> {profile?.showAddress ? profileaddress?.locality : null} </span>
             </div>
             <div className={Style.detailItem}>
-              <span className={Style.itemKey}>Country:</span>
-              <span className={Style.itemValue}>{profileaddress?.region}</span>
+              <span className={Style.itemKey}>District :</span>
+              <span className={Style.itemValue}>{profile?.showAddress ? profileaddress?.district : null} </span>
+            </div>
+            <div className={Style.detailItem}>
+              <span className={Style.itemKey}>State :</span>
+              <span className={Style.itemValue}> {profile?.showAddress ? profileaddress?.state : null} </span>
+            </div>
+            <div className={Style.detailItem}>
+              <span className={Style.itemKey}>Country :</span>
+              <span className={Style.itemValue}> {profile?.showAddress ? profileaddress?.region : null} </span>
             </div>
           </div>
         </div>

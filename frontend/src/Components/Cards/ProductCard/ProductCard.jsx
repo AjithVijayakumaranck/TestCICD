@@ -110,7 +110,7 @@ const ProductCard = ({ product }) => {
                 <div className={Style.product_price}>
                     <PiCurrencyInrBold/> {product?.price}
                 </div>
-                <div className={Style.rating_container}>
+                <div className={Style.rating_container} onClick={() => Navigate(`/clientprofile/${product.userId._id}`)}>
                     <div className={Style.rating}>
                         <Star stars={star} />
                     </div>

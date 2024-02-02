@@ -59,6 +59,18 @@ const PostAdsPage = () => {
             });
     };
 
+    
+
+    // Sorting the array by categoryName in alphabetical order
+    categories.sort((a, b) => {
+        const nameA = a.categoryName.toLowerCase();
+        const nameB = b.categoryName.toLowerCase();
+
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
+
     //Mounting functions
     useEffect(() => {
         mountingfunction();

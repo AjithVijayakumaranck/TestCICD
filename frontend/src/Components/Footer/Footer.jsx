@@ -31,8 +31,9 @@ const Footer = () => {
                 <div className={Style.box}>
                     <h2>Locations</h2>
                     <ul>
-                        <li> India </li>
-                        <li onClick={() => { navigate("/contact") }} style={{ marginLeft: '10px' }} >Kannur</li>
+                        <li> Kannur </li>
+                        {/* <li> India </li> */}
+                        {/* <li onClick={() => { navigate("/contact") }} style={{ marginLeft: '10px' }} >Kannur</li> */}
                     </ul>
                 </div>
                 <div className={Style.box}>

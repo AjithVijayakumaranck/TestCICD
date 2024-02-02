@@ -40,8 +40,8 @@ const WishlistCard = ({ wishlist, user, reload }) => {
         <tbody>
           {wishlist.map((data, index) => {
             return (
-              <tr key={index} onClick={() => Navigate(`/product/${data?._id}`)}>
-                <td className={Style.prod_col}>
+              <tr key={index} >
+                <td className={Style.prod_col} onClick={() => Navigate(`/product/${data?._id}`)}>
                   <div className={Style.product} >
                     <div className={Style.product_media} >
                       <Link>

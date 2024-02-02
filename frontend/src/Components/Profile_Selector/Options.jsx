@@ -61,10 +61,9 @@ const Options = ({ data, Image, WishlistCount }) => {
           <Link to='/wishlist' className={Style.navigation} >
             <div className={Style.eachopt}>
               <h4>My Wishlist</h4>
-              {WishlistCount !== 0 ?
-                <span className={Style.count}> {WishlistCount} </span>
-                : null
-              }
+              {WishlistCount > 0 && (
+                <span className={Style.count}>{WishlistCount}</span>
+              )}
             </div>
           </Link>
 

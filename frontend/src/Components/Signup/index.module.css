@@ -18,12 +18,45 @@
   justify-content: center;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
+  position: relative;
+}
+.form_container .left_section .Step_Status {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #046BD2;
 }
 .form_container .left_section h1 {
   color: #046BD2;
 }
 .form_container .left_section p {
   font-size: 12px;
+}
+.form_container .left_section p span {
+  color: #046BD2;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.form_container .left_section .resendBtn {
+  background: none;
+  border: none;
+  outline: none;
+  color: #046BD2;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.form_container .left_section .resendBtn:hover {
+  background: none;
+}
+.form_container .left_section .error_para {
+  color: red;
+  font-size: 13px;
+  text-align: center;
 }
 .form_container .left_section .login_Details h1 {
   color: #046BD2;
@@ -32,11 +65,6 @@
 .form_container .left_section .login_Details p {
   padding: 5px 0px;
   font-size: 12px;
-}
-.form_container .left_section form .error_para {
-  color: red;
-  font-size: 13px;
-  text-align: center;
 }
 .form_container .left_section form p {
   font-size: 12px;

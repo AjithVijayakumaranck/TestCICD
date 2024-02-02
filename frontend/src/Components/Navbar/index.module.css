@@ -15,16 +15,13 @@
   align-items: center;
   background-color: white;
   z-index: 999;
+  gap: 10px;
 }
 @media (max-width: 550px) {
   .header_container .Container {
-    padding: 0;
+    gap: 0;
+    padding: 0.5rem 0;
     flex-direction: column;
-  }
-}
-@media (min-width: 900px) and (max-width: 1024px) {
-  .header_container .Container {
-    padding: 0 40px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
@@ -33,10 +30,14 @@
     gap: 20px;
   }
 }
+@media (min-width: 900px) and (max-width: 1024px) {
+  .header_container .Container {
+    padding: 0 40px;
+  }
+}
 @media (min-width: 768px) and (max-width: 900px) {
   .header_container .Container {
     padding: 0 20px;
-    gap: 20px;
   }
 }
 .header_container .Container .navigation {
@@ -53,7 +54,53 @@
 @media (max-width: 550px) {
   .header_container .Container .Branding {
     justify-content: space-between;
-    padding: 0 10px;
+  }
+}
+.header_container .Container .Branding .profile_Div {
+  display: none;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Branding .profile_Div {
+    display: contents;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+  }
+  .header_container .Container .Branding .profile_Div img {
+    width: 2rem;
+    height: 2rem;
+    margin: 0 1rem;
+    border-radius: 0.4rem;
+  }
+}
+.header_container .Container .Branding .loginBtn_Div {
+  display: none;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Branding .loginBtn_Div {
+    display: contents;
+  }
+  .header_container .Container .Branding .loginBtn_Div .navigation {
+    padding: 0 1rem;
+  }
+  .header_container .Container .Branding .loginBtn_Div button {
+    width: 3.5rem;
+    height: 2rem;
+    border: none;
+    background: transparent;
+    color: white;
+    margin: 0;
+    background-color: #046BD2;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .header_container .Container .Branding .loginBtn_Div button:hover {
+    background-color: white;
+    border: 1px solid #046BD2;
+    color: #046BD2;
   }
 }
 .header_container .Container .Branding div {
@@ -61,11 +108,16 @@
   align-items: center;
   gap: 5px;
 }
+@media (max-width: 550px) {
+  .header_container .Container .Branding div {
+    gap: 10px;
+  }
+}
 .header_container .Container .Branding div button {
   border: 0;
   background: transparent;
   aspect-ratio: 1;
-  font-size: 32px;
+  font-size: 24px;
   margin-left: 10px;
   display: none;
   cursor: pointer;
@@ -91,17 +143,38 @@
     align-items: center;
   }
 }
+.header_container .Container .Branding img {
+  height: 2.5rem;
+  width: 4rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Branding img {
+    height: 3rem;
+    width: 4rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Branding img {
+    height: 3rem;
+    width: 4rem;
+  }
+}
 .header_container .Container .Branding h1 {
   color: #046BD2;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin: 0.4rem 0;
   cursor: pointer;
 }
 @media (max-width: 550px) {
   .header_container .Container .Branding h1 {
-    font-size: 1.6rem;
-    padding: 5px 5px;
+    display: none;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 5px 0;
+    margin: 0.3rem 0;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
@@ -114,7 +187,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  flex: 6;
+  flex: 4;
   margin: 5px;
   position: relative;
 }
@@ -372,6 +445,8 @@
   color: #046BD2;
 }
 .header_container .Container .Mobile_screen .logoContainer div button {
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: 0;
   font-size: 30px;

@@ -1,6 +1,7 @@
 .products {
   width: 100%;
   max-width: 200px;
+  min-width: 140px;
   transition: box-shadow 0.35s ease;
   background-color: #fff;
   margin-bottom: 0 !important;
@@ -19,9 +20,10 @@
 .products .productmedia {
   position: relative;
   display: block;
-  background-color: #d7d7d7;
+  background-color: #fff;
   margin-bottom: 1rem;
   border-radius: 5px;
+  padding: 0.2rem;
   overflow: hidden;
 }
 .products .productmedia .productlabel {

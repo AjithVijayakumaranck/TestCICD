@@ -16,6 +16,7 @@ import { SocketContext } from '../../Contexts/socketContext';
 import instance from '../../instance/AxiosInstance';
 import Selector from '../Search_Selector/Selector';
 import authInstance from '../../instance/AuthInstance';
+import { Blank_Profile, Dnb_Logo } from '../../Assets/Constants';
 
 
 
@@ -153,6 +154,10 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id, reload])
 
+  const HandleCategoryClick = (categoryId) => {
+    navigate(`/category/${categoryId}`);
+  }
+
 
   return (
     <div className={Style.header_container}>
@@ -163,6 +168,8 @@ const Navbar = ({ location, setLocation, reload }) => {
             <button onClick={() => { setToggle(true) }} className={`${Style.Toggle}`}>
               <GiHamburgerMenu />
             </button>
+
+            <img src={Dnb_Logo} alt="" />
 
             <Link to='/' className={Style.navigation}
               onClick={() => {
@@ -176,6 +183,23 @@ const Navbar = ({ location, setLocation, reload }) => {
             </Link>
 
           </div>
+
+          {User._id ?
+            <div className={Style.profile_Div} onClick={() => navigate('/profile')} >
+              <img
+                src={UserImage ?
+                  UserImage
+                  : Blank_Profile
+                }
+                alt="profile"
+              />
+            </div>
+            :
+            <div className={Style.loginBtn_Div}>
+              <Link to='/registration_login' className={Style.navigation} > <button>Login</button></Link>
+            </div>
+          }
+
         </div>
 
         <div className={Style.Search}>
@@ -216,7 +240,7 @@ const Navbar = ({ location, setLocation, reload }) => {
               <img
                 src={UserImage ?
                   UserImage
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : Blank_Profile
                 }
                 alt="profile pricture "
               />
@@ -262,7 +286,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                     <img
                       src={UserImage ?
                         UserImage
-                        : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                        : Blank_Profile
                       }
                       alt="nav profile pricture "
                     />
@@ -284,15 +308,15 @@ const Navbar = ({ location, setLocation, reload }) => {
             <div className={Style.categoryContainer}>
               <div className={Style.accordion}>
                 <div className={Style.item}  >
-                  <div className={Style.title}>
+                  <div className={Style.title} onClick={() => SetSelected(!Selected)}>
                     <h3>Category</h3>
-                    <span>{Selected ? <SlArrowUp onClick={() => SetSelected(false)} /> : <SlArrowDown onClick={() => SetSelected(true)} />} </span>
+                    <span>{Selected ? <SlArrowUp /> : <SlArrowDown />} </span>
                   </div>
 
                   <div className={Selected ? Style.show : Style.content} >
                     {Categories.map((data, index) => {
                       return (
-                        <div className={Style.row} key={index} onClick={() => navigate(`/category/${data?._id}`)}>
+                        <div className={Style.row} key={data?._id} onClick={() => HandleCategoryClick(data?._id)}>
                           <h3>{data?.categoryName}</h3>
                         </div>
                       )
