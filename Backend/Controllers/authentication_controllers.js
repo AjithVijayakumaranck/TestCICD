@@ -14,6 +14,7 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { data, password } = req.body
+            console.log(data,password, "authentication controller log");
             const userInfo = await USER.findOne({
                 $and: [{
                     $or: [
@@ -67,7 +68,7 @@ module.exports = {
                     res.status(401).json({ message: "email or password is wrong" })
                 }
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
             res.status(500).json({ message: "something went wrong" })
         }
 
