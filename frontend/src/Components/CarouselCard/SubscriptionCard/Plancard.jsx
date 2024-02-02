@@ -4,6 +4,7 @@ import { TiTick } from "react-icons/ti";
 import { UserContext } from '../../../Contexts/UserContext';
 import authInstance from '../../../instance/AuthInstance';
 import { PiCurrencyInrBold } from "react-icons/pi";
+import RazorpayButton from '../../Buttons/RazorpayButton/Razorpay';
 
 const Plancard = ({ item }) => {
 
@@ -37,11 +38,7 @@ const Plancard = ({ item }) => {
                     </div>
                     {item?.monthly_pricing > 0 &&
                         <div className={Style.row4}>
-                            <form onSubmit={(e) => { selectHandler(e) }} >
-                                <button >
-                                    Checkout
-                                </button>
-                            </form>
+                            <RazorpayButton plan={item} />
                         </div>
                     }
                 </div>
