@@ -6,7 +6,7 @@ const moment = require("moment")
 
 const { AUTH_EMAIL } = process.env
 
-const sendOTP = async ({ email, subject="", message="", duration = 1 }) => {
+const sendOTP = async ({ email, subject="", message="", duration = 10 }) => {
     try {
         if (!(email)) {
             throw Error("Provide proper email")

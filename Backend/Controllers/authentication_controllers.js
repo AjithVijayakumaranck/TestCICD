@@ -14,6 +14,7 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { data, password } = req.body
+            console.log(data,password, "authentication controller log");
             const userInfo = await USER.findOne({
                 $and: [{
                     $or: [
@@ -67,7 +68,7 @@ module.exports = {
                     res.status(401).json({ message: "email or password is wrong" })
                 }
         } catch (error) {
-            console.log(error);
+            console.log(error.message);
             res.status(500).json({ message: "something went wrong" })
         }
 
@@ -93,11 +94,9 @@ module.exports = {
 
 
     //Otpsend
-
     email_otpSent: async (req, res) => {
         try {
             const { email } = req.body
-            console.log(req.body);
             const userInfo = await USER.findOne({ email: email })
             if (userInfo) {
                 const createdOTP = await sendOTP({ email });
@@ -114,7 +113,6 @@ module.exports = {
     //verifyOtp
 
     verifyOtp: async (req, res) => {
-
         try {
             const { otp, userData } = req.body
             console.log(req.body);
@@ -139,7 +137,6 @@ module.exports = {
     sendphoneOtp: async (req, res) => {
         try {
             const { phonenumber } = req.body
-            console.log(req.body, "hjellog ");
             const userInfo = await USER.findOne({ phoneNumber: phonenumber })
             if (userInfo) {
                 sentVerificationOtp(phonenumber).then(() => {

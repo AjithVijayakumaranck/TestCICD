@@ -1,8 +1,13 @@
 const Stripe = require('stripe')
 const SUBSCRIPTION = require('../Models/subcriptionModel')
 const USER = require('../Models/userModel')
+const Razorpay = require('razorpay');
 const paypal = require('@paypal/checkout-server-sdk');
 const stripe = Stripe(process.env.STRIPE_KEY)
+const shortid = require('shortid');
+const crypto = require('crypto')
+
+const instance = new Razorpay({ key_id: process.env.RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
 
 
 //PAYPAL config
@@ -21,6 +26,71 @@ const paypalClient = new paypal.core.PayPalHttpClient(
 
 
 module.exports = {
+
+  createRazorpayOrder : async (req,res)=>{
+    try {
+      const { userId, subscriptionPlanId } = req.body
+    const planDetails = await SUBSCRIPTION.findById(subscriptionPlanId)
+    const orderCreated =await instance.orders.create({
+      amount: Number(planDetails.monthly_pricing * 100),
+      currency: "INR",
+      receipt: shortid.generate(),
+      notes:{
+        reqUser : userId
+      }
+    })
+    if(orderCreated){
+      res.status(200).json({orderId:orderCreated.id,amount:orderCreated.amount,currency:orderCreated.currency})
+    }else{
+      res.status(500).json({message:"order not created"})
+    }
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json(error.message)
+    }
+  },
+
+  orderValidation : async (req,res)=>{
+    try {
+      console.log(req.body);
+      const {razorpay_order_id,razorpay_payment_id,razorpay_signature,userId,planId} = req.body;
+      const secret = process.env.RAZORPAY_SECRET
+  
+    const sha = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);
+    //order_id + "|" + razorpay_payment_id
+    sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
+    const digest = sha.digest("hex");
+    if (digest !== razorpay_signature) {
+      console.log('transaction is not valied');
+      return res.status(400).json({ msg: "Transaction is not legit!" });
+    }else {
+      console.log('transaction is valied');
+      const userDetails = await USER.findOne({ _id: userId })
+      if (!userDetails) {
+        res.status(404).json({ message: "user not found" })
+      } else {
+        const planDetails = await SUBSCRIPTION.findById(planId)
+        USER.updateOne({ _id: userId }, {
+          $set: {
+            'subscription.plan': planId,
+            'subscription.subscribedAt': Date.now(),
+            premiumuser: true,
+            AdCount: +userDetails.AdCount + +planDetails.extra_ads,
+            ImageCount: +userDetails.ImageCount + +planDetails.extra_images
+          }
+        }).then((response) => {
+          res.status(200).json({ message: "success" }).end()
+        }).catch((error) => {
+          console.log(error);
+          res.status(500).json({ message: error.message }).end()
+        })
+      }
+    }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error.message)
+    }
+  },
 
   //stripe checkout
   sripeCheckout: async (req, res) => {
@@ -172,6 +242,7 @@ module.exports = {
       res.status(500).json({error:error.message})
     }
 
-  }
+  },
+
 
 }

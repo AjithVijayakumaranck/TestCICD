@@ -28,7 +28,6 @@ module.exports = {
     updateProfile: async (req, res) => {
         try {
             const { userData } = req.body
-            console.log(userData,"update profile userdetails");
             const userDetails = JSON.parse(userData);
             const profileDetails = await USER.findOne({ _id: userDetails._id })
             if (!profileDetails) {
@@ -50,9 +49,10 @@ module.exports = {
                                     state: userDetails.address.state,
                                     region: userDetails.address.region,
                                 },
+                                pseudoName:userDetails?.pseudoName,
                                 profilePicture: result,
                             }
-                        }).then(async (response) => {
+                        },{new:true}).then(async (response) => {
                             const updatedDetails = await USER.findOne({ _id: userDetails._id })
                             console.log(updatedDetails,"updated details");
                             if (!updatedDetails) {
@@ -79,9 +79,10 @@ module.exports = {
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
                                 region: userDetails.address.region,
-                            }
+                            },
+                            pseudoName:userDetails?.pseudoName
                         }
-                    }).then(async (response) => {
+                    },{new:true}).then(async (response) => {
                         const updatedDetails = await USER.findOne({ _id: userDetails._id })
                         console.log(updatedDetails,"updated details");
                         if (!updatedDetails) {
@@ -421,6 +422,46 @@ module.exports = {
         } catch (error) {
             console.log(error.message);
             res.status(500).json({message:"something went wrong"})
+        }
+    },
+
+
+    //change privacy settings
+    togglePrivacy: async (req,res)=>{
+        try {
+            const {userId,toggleValues} = req.body
+            const userDetails = await USER.findById(userId)
+            if(userDetails){
+                USER.updateOne({_id:userId},{$set:{
+                    showDob:toggleValues?.showDob,
+                    showName:toggleValues?.showName,
+                    showEmail:toggleValues?.showEmail,
+                    showAddress:toggleValues?.showAddress,
+                    showPhonenumber:toggleValues?.showPhonenumber,
+                }},{new:true}).then((response)=>{
+                    res.status(200).json({message:"privacy settings changed"})
+                }).catch((error)=>{
+                    res.status(400).json(error.message)
+                })
+            }else{
+                res.status(404).json({message:"user not found"})
+            }
+        } catch (error) {
+           res.status(500).json(error.message) 
+        }
+    },
+
+    checkPsudoname : async (req,res)=>{
+        try {
+           const {pseudoNameCheck} = req.body
+           const userExist = await USER.findOne({pseudoName:pseudoNameCheck})
+           if(!userExist){
+            res.status(200).json({userExist:false,message:"user not exist , you can continue"})
+           }else{
+            res.status(400).json({userExist:true,message:"psudoname already exists"})
+           }
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

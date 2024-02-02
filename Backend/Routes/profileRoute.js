@@ -13,8 +13,14 @@ router.get('/get_profile/:userId',profile_controller.getProfile)
 //update profile
 router.put('/update_profile',authoriseJwt,upload.single("file"),profile_controller.updateProfile)
 
+//update privacy settings
+router.put('/update_privacy',authoriseJwt,profile_controller.togglePrivacy)
+
 //update email
 router.post('/update_email',authoriseJwt,profile_controller.updateEmail)
+
+//check peudoname
+router.post('/check_pseudoname',authoriseJwt,profile_controller.checkPsudoname)
 
 //verify email
 router.put('/verify_email',authoriseJwt,profile_controller.updateEmailVerification)
