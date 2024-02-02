@@ -118,17 +118,37 @@ module.exports = {
         try {
 
             const {page} = req.query
+            let lastPage = false
             const limit = 12
-            const productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
+            let productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
+
             if(productDetails){
                 res.status(200).json(productDetails)
             }else{
-                res.status(404).json({messagge:"products not found"})
+                res.status(404).json({message:"products not found"})
             }
 
         } catch (error) {
             res.status(500).json({message:"something went wrong"})
         }
+    },
+
+    //get lastpage
+    getLastPage : async (req,res)=>{
+        try {
+            const {page} = req.query
+            const limit = 12
+            const totalCount = await PRODUCT.count()
+            const totalPage = await totalCount / limit
+            if(totalPage <= parseInt(page)+1){
+                res.status(200).json({lastPage:true})
+            }else{
+                res.status(200).json({lastPage:false})
+            }
+        } catch (error) {
+            res.status(500).json({message:"something went wrong"})
+        }
+
     },
 
     //block product

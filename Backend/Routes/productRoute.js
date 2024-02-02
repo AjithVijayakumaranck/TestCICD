@@ -19,5 +19,8 @@ router.get('/get_products',productController.getProducts)
 //get specific userProduct
 router.get('/get_user_products/:userId',authoriseJwt,productController.getUserProduct)
 
+//lastpage Status
+router.get("/check_lastpage",productController.getLastPage)
+
 
 module.exports = router
