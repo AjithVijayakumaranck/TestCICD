@@ -1,0 +1,142 @@
+.switch {
+  --button-width: 3em;
+  --button-height: 1.6em;
+  --toggle-diameter: 1.2em;
+  --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+  --toggle-shadow-offset: 10px;
+  --toggle-wider: 3em;
+  --color-grey: #cccccc;
+  --color-green: #046BD2;
+}
+
+.slider {
+  display: inline-block;
+  width: var(--button-width);
+  height: var(--button-height);
+  background-color: var(--color-grey);
+  border-radius: calc(var(--button-height) / 2);
+  position: relative;
+  transition: 0.3s all ease-in-out;
+}
+.slider::after {
+  content: "";
+  display: inline-block;
+  width: var(--toggle-diameter);
+  height: var(--toggle-diameter);
+  background-color: #fff;
+  border-radius: calc(var(--toggle-diameter) / 2);
+  position: absolute;
+  top: var(--button-toggle-offset);
+  transform: translateX(var(--button-toggle-offset));
+  box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+  transition: 0.3s all ease-in-out;
+}
+
+.switch input[type=checkbox]:checked + .slider {
+  background-color: var(--color-green);
+}
+.switch input[type=checkbox]:checked + .slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+  box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+}
+
+.switch input[type=checkbox] {
+  display: none;
+}
+.switch input[type=checkbox]:active + .slider::after {
+  width: var(--toggle-wider);
+}
+.switch input[type=checkbox]:checked:active + .slider::after {
+  transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+}
+
+.Container {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 3rem;
+  border-left: 2px solid #f8f8f8;
+  position: relative;
+}
+@media (max-width: 550px) {
+  .Container {
+    padding: 0;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Container {
+    padding: 1rem;
+  }
+}
+.Container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+.Container .header .headerDiv h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.Container .header .headerBtnDiv {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.Container .header .headerBtnDiv button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #046BD2;
+  gap: 5px;
+  background: none;
+  border: none;
+  font-size: medium;
+  cursor: pointer;
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Container .header .headerBtnDiv button {
+    right: 20px;
+  }
+}
+.Container .header .headerBtnDiv button .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Container .details {
+  display: flex;
+  place-content: center;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.Container .details .detailItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
+  background-color: #f8f8f8;
+}
+.Container .details .detailItem .title h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+.Container .details .detailItem .title p {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.Container .details .detailItem .toggleBtnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=Style.module.css.map */

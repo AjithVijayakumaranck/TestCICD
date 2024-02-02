@@ -19,7 +19,7 @@ const Breadcrumb = ({ pathSegments, customName }) => {
                 <span className={Style.navlink} >{customName || lastSegment}</span>
               ) : (
                 <span>
-                  <Link className={Style.navlink} to={'/' + pathSegments.slice(0, index + 1).join('/')}>{segment}</Link>
+                  <Link className={Style.navlink} >{segment}</Link>
                   {index < pathSegments.length - 1 && <MdKeyboardArrowRight />}
                 </span>
               )}

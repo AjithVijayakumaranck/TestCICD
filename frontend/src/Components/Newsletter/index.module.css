@@ -14,7 +14,6 @@
 }
 .newsletter .container {
   width: 100%;
-  padding: 0 10px;
 }
 .newsletter .container .row {
   display: flex;
@@ -40,13 +39,14 @@
 @media (max-width: 550px) {
   .newsletter .container .row .left {
     flex: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .newsletter .container .row .left {
     flex: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 }
 .newsletter .container .row .left p {

@@ -25,6 +25,46 @@
     margin-top: 80px;
   }
 }
+.page_wrapper .main .Main_Container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding: 0 3rem;
+  overflow: hidden;
+  gap: 5px;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .Main_Container {
+    padding: 0.5rem;
+  }
+}
+.page_wrapper .main .Main_Container .Left_Section {
+  flex: 2;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .Main_Container .Left_Section {
+    flex: 1;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .Main_Container .Left_Section {
+    flex: 1;
+  }
+}
+.page_wrapper .main .Main_Container .Right_Section {
+  flex: 6;
+}
+@media (max-width: 550px) {
+  .page_wrapper .main .Main_Container .Right_Section {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .page_wrapper .main .Main_Container .Right_Section {
+    display: none;
+  }
+}
 .page_wrapper .main .popup {
   position: fixed;
   top: 0;
@@ -112,8 +152,7 @@
 @media (max-width: 550px) {
   .page_wrapper .main .ad_container {
     grid-template-columns: 1fr 1fr;
-    padding: 20px 10px;
-    gap: 10px 20px;
+    gap: 10px 5px;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
@@ -131,7 +170,7 @@
 }
 .page_wrapper .main .ad_container,
 .page_wrapper .main .review_container {
-  padding: 20px;
+  padding: 10px;
 }
 .page_wrapper .main .review_container {
   display: flex;
@@ -144,6 +183,8 @@
 @media (max-width: 550px) {
   .page_wrapper .main .review_container {
     flex-direction: column;
+    padding: 1rem;
+    margin: 0;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {

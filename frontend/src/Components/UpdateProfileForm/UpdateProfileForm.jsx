@@ -34,7 +34,7 @@ const UpdateProfileForm = () => {
     const [IsEmailEditing, SetIsEmailEditing] = useState(false); // State variable to track if email is being edited
     const [IsPhoneEditing, SetIsPhoneEditing] = useState(false);  // State variable to track if phone number is being edited
 
-
+    const [Checking, SetChecking] = useState(false);
 
     const [otpDetails, setOtpDetails] = useState("");
 
@@ -45,6 +45,7 @@ const UpdateProfileForm = () => {
         fullname: "",
         surname: "",
         dob: "",
+        pseudoName: "",
         address: {
             locality: "",
             region: "",
@@ -64,7 +65,7 @@ const UpdateProfileForm = () => {
         fullname: "",
         phoneNumber: "",
         surname: "",
-
+        pseudoName: "",
         address: {
             locality: "",
             region: "",
@@ -103,6 +104,22 @@ const UpdateProfileForm = () => {
 
         if (UpdateProfile.surname === '') {
             newErrors.surname = 'Surname is required';
+        }
+
+        if (UpdateProfile.address.locality === '') {
+            newErrors.locality = 'Locality is required';
+        }
+
+        if (UpdateProfile.address.state === '') {
+            newErrors.state = 'State is required';
+        }
+
+        if (UpdateProfile.address.district === '') {
+            newErrors.district = 'District is required';
+        }
+
+        if (UpdateProfile.address.region === '') {
+            newErrors.region = 'Region is required';
         }
 
         // Set the new errors state
@@ -144,43 +161,66 @@ const UpdateProfileForm = () => {
 
 
 
-
-
-    //Handle submit 
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (validateForm()) {
-
-            // Perform the submit action 
-
-            let data = new FormData()
-
-            if (File.File === "") {
-                if (CurrentProfileImage !== "") {
-                    data.append("file", DefaultImage)
-                }
-                else {
-                    data.append("file", DefaultImage)
-                }
-            } else {
-                data.append("file", File.File)
-            }
-
-
-            const objectData = JSON.stringify(UpdateProfile);
-            data.append('userData', objectData);
-
-            authInstance.put('/api/user/profile/update_profile', data).then((Response) => {
-                toast.success("profile updated")
-                navigate('/profile')
+    // -- Handle Pseudonym checking
+    const HandleChecking = (Pseudo) => {
+        SetChecking(true);
+        if (Pseudo === "") {
+            SetError({ ...Error, pseudonym: "" });
+        }
+        try {
+            authInstance.post('/api/user/profile/check_pseudoname', { pseudoNameCheck: Pseudo }).then((response) => {
+                SetUpdateProfile({ ...UpdateProfile, pseudoName: Pseudo });
+                SetChecking(false);
+                SetError({ ...Error, pseudonym: "" });
             }).catch((err) => {
-                console.log(err);
-                toast.error("Something Went Wrong")
+                SetChecking(false);
+                SetError({ ...Error, pseudonym: "These name is already taken" });
             })
+        } catch (error) {
+            console.log(error);
+        }
 
-            // Clear any previous errors
-            SetError({});
+    }
+
+    // Handle submit 
+    const HandleSubmit = (e) => {
+        e.preventDefault();
+
+        // Check if there are no validation form error
+        if (validateForm()) {
+            // Check if there are no psedonym errors 
+            if (Error.pseudonym === "" || Object.keys(Error).length === 0) {
+                // Perform the submit action 
+                let data = new FormData()
+
+                if (File.File === "") {
+                    if (CurrentProfileImage !== "") {
+                        data.append("file", DefaultImage)
+                    }
+                    else {
+                        data.append("file", DefaultImage)
+                    }
+                } else {
+                    data.append("file", File.File)
+                }
+
+                const objectData = JSON.stringify(UpdateProfile);
+                data.append('userData', objectData);
+
+                authInstance.put('/api/user/profile/update_profile', data).then((Response) => {
+                    toast.success("profile updated")
+                    navigate('/profile')
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error("Something Went Wrong")
+                })
+
+                // Clear any previous errors
+                SetError({});
+            } else {
+                // Display a user-friendly error message
+                toast.error('Please fix the errors');
+            }
         } else {
             console.log('Form validation failed');
         }
@@ -192,7 +232,7 @@ const UpdateProfileForm = () => {
             instance.get(`/api/user/profile/get_profile/${User._id}`).then((result) => {
                 SetUpdateProfile(result.data);
                 SetCurrentProfile(result.data);
-                SetCurrentProfileImage(result.data.profilePicture.url)
+                SetCurrentProfileImage(result.data?.profilePicture?.url)
             }).catch((err) => {
                 console.log(err);
             })
@@ -330,7 +370,7 @@ const UpdateProfileForm = () => {
 
                 ) : (
                     <div className={Style.row}>
-                        <form action="" onSubmit={(e) => handleSubmit(e)}>
+                        <form action="" onSubmit={(e) => HandleSubmit(e)}>
                             <div className={Style.left}>
                                 <div className={Style.row}>
                                     <div className={Style.col}>
@@ -400,6 +440,31 @@ const UpdateProfileForm = () => {
                                             <p>{Error.surname}</p>
                                         </div>
                                     </div>
+
+                                    <div className={Style.flexrow}>
+                                        <div className={Style.Single_row}>
+                                            <div className={Style.formInput}>
+                                                <input type="text"
+                                                    placeholder='Pseudonym'
+                                                    id="Pseudonym"
+                                                    name="Pseudonym"
+                                                    value={UpdateProfile.pseudoName}
+                                                    onChange={(e) => {
+                                                        SetUpdateProfile({ ...UpdateProfile, pseudoName: e.target.value });
+                                                        HandleChecking(e.target.value);
+                                                    }}
+                                                />
+                                            </div>
+
+                                            {Checking && (
+                                                <div className={Style.col}>
+                                                    <span>Checking ...</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <p>{Error.pseudonym}</p>
+                                    </div>
+
                                     <div className={Style.row}>
                                         <div className={Style.col}>
                                             <div className={Style.formInput}>
@@ -469,6 +534,7 @@ const UpdateProfileForm = () => {
                                             <p>{Error.region}</p>
                                         </div>
                                     </div>
+
                                     <div className={Style.flexrow}>
                                         <div className={Style.row}>
                                             <div className={Style.flexcol}>
@@ -493,6 +559,7 @@ const UpdateProfileForm = () => {
                                         </div>
                                         <p>{Error.email}</p>
                                     </div>
+
                                     <div className={Style.flexrow}>
                                         <div className={Style.row}>
                                             <div className={Style.flexcol}>

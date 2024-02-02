@@ -175,14 +175,14 @@ const ProductFilter = ({ OtherSelectedFilter, load, FilterOptions, Subcategories
                     </div>
                 </div>
 
-                {filterCollection && (
+                {Object.entries(filterCollection).length !== 0 && (
                     <div className={Style.selectedFilterDiv}>
                         {Object.entries(filterCollection).map(([key, value]) => {
                             return (
                                 <div className={Style.wrap} key={key}>
                                     <h5> {value} </h5>
                                 </div>
-                            )
+                            );
                         })}
                     </div>
                 )}

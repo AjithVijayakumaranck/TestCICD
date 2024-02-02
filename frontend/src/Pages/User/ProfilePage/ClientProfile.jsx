@@ -226,11 +226,11 @@ const ClientProfile = () => {
 
                             {Reviews.map((reviews, index) => {
                                 return (
-                                    <div className={Style.reviews_wrap} >
+                                    <div className={Style.reviews_wrap} key={index}>
                                         <div className={Style.Image_wrap} >
                                             <img
                                                 src={
-                                                    reviews
+                                                    reviews?.postedby
                                                         ? reviews?.postedby?.profilePicture?.url
                                                         : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                                                 }

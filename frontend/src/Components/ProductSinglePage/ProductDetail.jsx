@@ -12,6 +12,7 @@ import authInstance from '../../instance/AuthInstance';
 import Star from '../ReviewStars/Star';
 import { toast } from 'react-toastify';
 import { PiCurrencyInrBold } from "react-icons/pi";
+import { Blank_Profile } from '../../Assets/Constants';
 
 
 const SampleNextArrow = (props) => {
@@ -234,12 +235,17 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                     src={
                                         ClientImage
                                             ? ClientImage
-                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                            : Blank_Profile
                                     }
                                     className={Style.itemImg}
                                     alt=""
                                 />
-                                <h3>{ClientData?.fullname || ''} {ClientData?.surname || ''}</h3>
+                                <h3>
+                                    {ClientData?.showName
+                                        ? `${ClientData?.fullname} ${ClientData?.surname}`
+                                        : ClientData.pseudoName
+                                    }
+                                </h3>
                             </div>
                             <div>
                                 <span> <BsChevronRight /> </span>

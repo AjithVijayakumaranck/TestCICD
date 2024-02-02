@@ -34,9 +34,9 @@ const SinglePage = () => {
                 SetProductDetails({ ...response.data });
                 SetOtherDetails({ ...response.data.otherDetails });
                 SetProductImg([...response.data.images]);
-                SetClientDetails({ ...response.data.userId })
-                SetClientImg(response.data.userId.profilePicture.url);
-                SetReviewsData(response.data.userId.ratings)
+                SetClientDetails({ ...response.data?.userId })
+                SetClientImg(response.data?.userId?.profilePicture?.url);
+                SetReviewsData(response.data?.userId?.ratings)
             }).catch((error) => {
                 console.log(error);
             });
@@ -45,7 +45,7 @@ const SinglePage = () => {
         }
     }, [productId])
 
-    //Finging Category Products
+    //Finding Category Products
     useEffect(() => {
         try {
             instance.get(`/api/user/filter/filter_products?category=${ProductData?.category}`).then((response) => {

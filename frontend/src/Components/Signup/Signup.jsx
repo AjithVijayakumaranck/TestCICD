@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import instance from "../../instance/AxiosInstance";
 import Style from "./index.module.css";
@@ -19,6 +19,10 @@ const Signup = ({ setLogin }) => {
   const [ShowPassword, SetShowPassword] = useState(false);
   const [ShowConfirmPassword, SetShowConfirmPassword] = useState(false);
   const [isEmailOtpVerified, setIsEmailOtpVerified] = useState(false);
+
+  const [Step, SetStep] = useState(0);
+  const [Timer, SetTimer] = useState(60);
+  const [IsTimerRunning, SetIsTimerRunning] = useState(false);
 
   const maxDate = new Date().toISOString().split("T")[0];
 
@@ -68,8 +72,35 @@ const Signup = ({ setLogin }) => {
     username: "",
   });
 
-  //validations
+  // -- To set Otp into the state
+  const otpHandler = (e) => {
+    setOtpDetails({
+      ...otpDetails,
+      email: userData.email,
+      phonenumber: userData.phonenumber,
+      otp: e.target.value,
+    });
+  };
 
+  // -- Function to set timer to resend the Otp
+  useEffect(() => {
+    let interval;
+
+    if (IsTimerRunning && Timer > 0) {
+      interval = setInterval(() => {
+        SetTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (Timer === 0) {
+      SetIsTimerRunning(false);
+      SetTimer(60); // Reset timer
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [IsTimerRunning, Timer]);
+
+  // -- From validations
   const fullname_validation = (e) => {
     if (/^[a-zA-Z\s-]*$/.test(e.target.value)) {
       setFormError(false);
@@ -200,7 +231,7 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  // submit handler and submit validation
+  // -- Submit handler and submit validation
   const submitHandler = (e) => {
     setResponseError("");
     e.preventDefault();
@@ -211,8 +242,9 @@ const Signup = ({ setLogin }) => {
       instance.post("/api/register2n1", userData).then((response) => {
         setLoading(false);
         setOtp(true);
+        SetStep(Step + 1);
         if (response.data.mobileVerified === false) {
-          setIsEmailOtpVerified(true)
+          setIsEmailOtpVerified(true);
         }
       }).catch((Error) => {
         setLoading(false);
@@ -222,7 +254,8 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  const otpVerifyHandle = (e) => {
+  // -- Function to handle Otp verification
+  const HandleOtpVerify = (e) => {
     e.preventDefault();
     setError({ ...error, otp: "" });
     if (e.target.value === "") {
@@ -233,8 +266,9 @@ const Signup = ({ setLogin }) => {
       isEmailOtpVerified ?
         instance.post("api/verifyphone", otpDetails).then((response) => {
           setLoading(false);
-          setLogin(false)
-          setOtp(false)
+          setLogin(false);
+          setOtp(false);
+          SetStep(0);
           toast.success("User registration successful")
         }).catch((error) => {
           setLoading(false);
@@ -242,7 +276,8 @@ const Signup = ({ setLogin }) => {
         })
         : instance.post("api/verifyemail2n1", otpDetails).then((response) => {
           setLoading(false);
-          setIsEmailOtpVerified(true)
+          setIsEmailOtpVerified(true);
+          SetStep(Step + 1);
           setOtpDetails({ otp: "" })
           setOtp(true)
           toast.success("Email has been successfully verified")
@@ -253,14 +288,31 @@ const Signup = ({ setLogin }) => {
     }
   };
 
-  const otpHandler = (e) => {
-    setOtpDetails({
-      ...otpDetails,
-      email: userData.email,
-      phonenumber: userData.phonenumber,
-      otp: e.target.value,
-    });
-  };
+  // -- Function to handle resend Otp 
+  const HandleResendClick = () => {
+    if (!IsTimerRunning) {
+      SetTimer(60);
+      SetIsTimerRunning(true);
+      try {
+        isEmailOtpVerified ?
+          instance.post("api/otpsent_mobile", { phonenumber: userData?.phonenumber }).then((response) => {
+            toast.success("OTP resent to your phone number");
+          }).catch((err) => {
+            console.log(err);
+          })
+          : instance.post("api/otpsent_email", { email: userData?.email }).then((response) => {
+            toast.success("OTP resent to your email");
+          }).catch((err) => {
+            console.log(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+  }
+
+
 
   return (
     <div className={Style.form_container}>
@@ -273,9 +325,10 @@ const Signup = ({ setLogin }) => {
 
       {otp ? (
         <div className={Style.left_section}>
+          <h4 className={Style.Step_Status}>Step {Step} / 2</h4>
           <h1>Lets Authenticate</h1>
-          <p> We have sent you a One Time Password to your {" "} {isEmailOtpVerified ? "Phonenumber" : "Email"} </p>
-          <form onSubmit={(e) => { otpVerifyHandle(e); }}>
+          <p> We have sent you a One Time Password to your {" "} <span> {isEmailOtpVerified ? "Phonenumber" : "Email"} </span>  </p>
+          <form onSubmit={(e) => { HandleOtpVerify(e); }}>
             <div className={Style.input_div}>
               <div>
                 <label htmlFor="OTP">Enter Your Otp here</label>
@@ -288,13 +341,16 @@ const Signup = ({ setLogin }) => {
                 />
               </div>
             </div>
-            <button>
+            <button >
               {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) :
                 isEmailOtpVerified ? ("Complete Registration") : ("Continue")
               }
             </button>
-            <p className={Style.error_para}>{error.otp}</p>
           </form>
+          <button className={Style.resendBtn} onClick={(e) => { HandleResendClick(e) }} disabled={IsTimerRunning}>
+            {IsTimerRunning ? `Resend OTP in ${Timer}s` : "Resend One-Time Password"}
+          </button>
+          <p className={Style.error_para}>{error.otp}</p>
         </div>
       ) : (
         <div className={Style.left_section}>
