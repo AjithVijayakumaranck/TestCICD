@@ -7,7 +7,11 @@ const { authoriseJwt } = require('../utilities/authorisation')
 
 
 
+//razorpay createorder
+router.post('/create_order_razorpay',authoriseJwt,checkoutControllers.createRazorpayOrder)
 
+//razorpay createorder
+router.post('/validate_razorpay_order',checkoutControllers.orderValidation)
 
 //stripe checkout
 router.post('/stripe-checkout',authoriseJwt,checkoutControllers.sripeCheckout)
