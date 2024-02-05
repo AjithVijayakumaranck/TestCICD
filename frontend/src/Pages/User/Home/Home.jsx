@@ -20,7 +20,7 @@ const Home = () => {
   const [SortedProducts, SetSortedProducts] = useState([]);
   const [CurrentPage, SetCurrentPage] = useState(0);
   const [SliderImage, SetSliderImage] = useState([]);
-
+  const [IsLastPage, SetIsLastPage] = useState(false);
 
 
   const loadProducts = () => {
@@ -75,6 +75,18 @@ const Home = () => {
     }
   }, []);
 
+  // -- functions to check that islast page
+  useEffect(() => {
+    try {
+      instance.get(`/api/user/product/check_lastpage?page=${CurrentPage}`).then((response) => {
+        SetIsLastPage(response?.data?.lastPage)
+      }).catch((error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [CurrentPage]);
 
 
   const findPremiumProducts = () => {
@@ -110,7 +122,7 @@ const Home = () => {
             {SortedProducts.length !== 0 ?
               <div className={Style.loadbtn}>
                 <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                <button onClick={handleNextPage} disabled={IsLastPage} > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
               </div>
               : null
             }
