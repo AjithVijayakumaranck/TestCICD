@@ -169,7 +169,13 @@ const Navbar = ({ location, setLocation, reload }) => {
               <GiHamburgerMenu />
             </button>
 
-            <img src={Dnb_Logo} alt="" />
+            <img src={Dnb_Logo} alt="" onClick={() => {
+              if (window.location.pathname === '/') {
+                window.location.reload();
+              } else {
+                navigate('/');
+              }
+            }} />
 
             <Link to='/' className={Style.navigation}
               onClick={() => {
@@ -179,8 +185,16 @@ const Navbar = ({ location, setLocation, reload }) => {
                   navigate('/');
                 }
               }}>
-              <h1>DealNBuy</h1>
+              <h1>Deal N Buy</h1>
             </Link>
+
+            {/* <img src={Dnb_Logo} alt="" onClick={() => {
+              if (window.location.pathname === '/') {
+                window.location.reload();
+              } else {
+                navigate('/');
+              }
+            }} /> */}
 
           </div>
 
@@ -261,8 +275,14 @@ const Navbar = ({ location, setLocation, reload }) => {
 
             <div className={Style.logoContainer}>
               <div className={Style.logo_wrap}>
-
-                <Link to='/' className={Style.navigation}
+                <img src={Dnb_Logo} alt="" onClick={() => {
+                  if (window.location.pathname === '/') {
+                    window.location.reload();
+                  } else {
+                    navigate('/');
+                  }
+                }} />
+                {/* <Link to='/' className={Style.navigation}
                   onClick={() => {
                     if (window.location.pathname === '/') {
                       window.location.reload();
@@ -270,8 +290,8 @@ const Navbar = ({ location, setLocation, reload }) => {
                       navigate('/');
                     }
                   }}>
-                  <h1>DealNBuy</h1>
-                </Link>
+                  <h1>Deal N Buy</h1>
+                </Link> */}
 
               </div>
               <div>

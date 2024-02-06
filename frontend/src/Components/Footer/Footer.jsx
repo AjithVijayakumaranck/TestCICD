@@ -14,7 +14,7 @@ const Footer = () => {
         <div className={Style.Container}>
             <div className={Style.grid} >
                 <div className={Style.box}>
-                    <Link to='/' className={Style.navigation} > <h1>DealNBuy</h1> </Link>
+                    <Link to='/' className={Style.navigation} > <h1>Deal N Buy</h1> </Link>
 
                 </div>
 
