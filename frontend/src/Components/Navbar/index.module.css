@@ -56,53 +56,28 @@
     justify-content: space-between;
   }
 }
-.header_container .Container .Branding .profile_Div {
+.header_container .Container .Branding .PostAdBtn_Div {
   display: none;
 }
 @media (max-width: 550px) {
-  .header_container .Container .Branding .profile_Div {
-    display: contents;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 100%;
-  }
-  .header_container .Container .Branding .profile_Div img {
-    width: 2rem;
-    height: 2rem;
-    -o-object-fit: cover;
-       object-fit: cover;
-    margin: 0 1rem;
-    border-radius: 0.4rem;
-  }
-}
-.header_container .Container .Branding .loginBtn_Div {
-  display: none;
-}
-@media (max-width: 550px) {
-  .header_container .Container .Branding .loginBtn_Div {
+  .header_container .Container .Branding .PostAdBtn_Div {
     display: contents;
   }
-  .header_container .Container .Branding .loginBtn_Div .navigation {
+  .header_container .Container .Branding .PostAdBtn_Div .navigation {
     padding: 0 1.2rem;
   }
-  .header_container .Container .Branding .loginBtn_Div button {
-    width: 3.5rem;
+  .header_container .Container .Branding .PostAdBtn_Div button {
+    width: 90px;
     height: 2rem;
     border: none;
-    background: transparent;
     color: white;
     margin: 0;
-    background-color: #046BD2;
+    background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
     padding: 0.3rem 0.6rem;
-    border-radius: 5px;
-    font-size: 0.8rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
     font-weight: 600;
     cursor: pointer;
-  }
-  .header_container .Container .Branding .loginBtn_Div button:hover {
-    background-color: white;
-    border: 1px solid #046BD2;
-    color: #046BD2;
   }
 }
 .header_container .Container .Branding div {
@@ -468,6 +443,8 @@
 }
 .header_container .Container .Mobile_screen .logoContainer .logo_wrap h1 {
   color: #046BD2;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 .header_container .Container .Mobile_screen .logoContainer div button {
   display: flex;

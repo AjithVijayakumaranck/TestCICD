@@ -6,7 +6,6 @@
 .productwrapper .container {
   margin: 0 2rem;
   display: block;
-  padding: 0 20px;
 }
 @media (max-width: 550px) {
   .productwrapper .container {

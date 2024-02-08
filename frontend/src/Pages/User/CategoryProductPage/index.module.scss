@@ -32,15 +32,18 @@
             .container {
                 margin: 0 4rem;
                 display: block;
-                padding: 0 20px;
 
                 @include breakpoint(md) {
                     margin: 0 0;
-                    padding: 0 20px;
+                    padding: 0 10px;
                 }
 
                 @include mediumScreen {
-                    margin: 0 1rem;
+                    margin: 0 1.5rem;
+                }
+
+                @include LargeScreen {
+                    margin: 0 3rem;
                 }
 
                 .heading {
@@ -63,8 +66,6 @@
                     @include mediumScreen {
                         flex-direction: column-reverse;
                     }
-
-                    @include extraMediumScreen {}
 
                     @include LargeScreen {}
 
@@ -107,7 +108,7 @@
                         flex-direction: column;
                         justify-content: space-between;
                         gap: 20px;
-                        padding: 10px;
+
 
                         @include breakpoint(md) {
                             width: 100%;
@@ -143,6 +144,7 @@
 
 
                         .card_container {
+                            width: 100%;
                             position: relative;
                             display: grid;
                             grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -154,11 +156,11 @@
                                 grid-template-columns: 1fr 1fr;
                             }
 
-                            @include LargeScreen {
-                                grid-template-columns: 1fr 1fr 1fr 1fr;
+                            @include mediumScreen {
+                                grid-template-columns: 1fr 1fr 1fr;
                             }
 
-                            @include mediumScreen {
+                            @include LargeScreen {
                                 grid-template-columns: 1fr 1fr 1fr;
                             }
                         }

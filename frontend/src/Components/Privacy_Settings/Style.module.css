@@ -60,11 +60,13 @@
 @media (max-width: 550px) {
   .Container {
     padding: 0;
+    border-left: none;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .Container {
     padding: 1rem;
+    border-left: none;
   }
 }
 .Container .header {

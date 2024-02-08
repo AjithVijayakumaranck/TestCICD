@@ -7,7 +7,7 @@ import 'animate.css';
 import { CategoryContext } from '../../Contexts/CategoryContext';
 import Options from '../Profile_Selector/Options'
 import { Link, useNavigate } from "react-router-dom"
-import { MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
+import { MdAccountCircle, MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
 import { BiPurchaseTag, BiLogOut } from "react-icons/bi";
 import { SlArrowUp } from "react-icons/sl";
 import { SlArrowDown } from "react-icons/sl";
@@ -156,6 +156,7 @@ const Navbar = ({ location, setLocation, reload }) => {
 
   const HandleCategoryClick = (categoryId) => {
     navigate(`/category/${categoryId}`);
+    window.location.reload();
   }
 
 
@@ -185,40 +186,21 @@ const Navbar = ({ location, setLocation, reload }) => {
                   navigate('/');
                 }
               }}>
-              <h1>Deal N Buy</h1>
+              <h1>DealNBuy</h1>
             </Link>
-
-            {/* <img src={Dnb_Logo} alt="" onClick={() => {
-              if (window.location.pathname === '/') {
-                window.location.reload();
-              } else {
-                navigate('/');
-              }
-            }} /> */}
 
           </div>
 
-          {User._id ?
-            <div className={Style.profile_Div} onClick={() => navigate('/profile')} >
-              <img
-                src={UserImage ?
-                  UserImage
-                  : Blank_Profile
-                }
-                alt="profile"
-              />
-            </div>
-            :
-            <div className={Style.loginBtn_Div}>
-              <Link to='/registration_login' className={Style.navigation} > <button>Login</button></Link>
-            </div>
-          }
+          <div className={Style.PostAdBtn_Div}>
+            <Link to='/postadd' className={Style.navigation} > <button>Post Free Ad</button></Link>
+          </div>
 
         </div>
 
         <div className={Style.Search}>
 
           <div className={Style.Search_container}>
+
             <input
               type="search"
               placeholder='Search Here'
@@ -275,14 +257,7 @@ const Navbar = ({ location, setLocation, reload }) => {
 
             <div className={Style.logoContainer}>
               <div className={Style.logo_wrap}>
-                <img src={Dnb_Logo} alt="" onClick={() => {
-                  if (window.location.pathname === '/') {
-                    window.location.reload();
-                  } else {
-                    navigate('/');
-                  }
-                }} />
-                {/* <Link to='/' className={Style.navigation}
+                <Link to='/' className={Style.navigation}
                   onClick={() => {
                     if (window.location.pathname === '/') {
                       window.location.reload();
@@ -290,8 +265,8 @@ const Navbar = ({ location, setLocation, reload }) => {
                       navigate('/');
                     }
                   }}>
-                  <h1>Deal N Buy</h1>
-                </Link> */}
+                  <h1>DealNBuy</h1>
+                </Link>
 
               </div>
               <div>
@@ -336,7 +311,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                   <div className={Selected ? Style.show : Style.content} >
                     {Categories.map((data, index) => {
                       return (
-                        <div className={Style.row} key={data?._id} onClick={() => HandleCategoryClick(data?._id)}>
+                        <div className={Style.row} key={index} onClick={() => HandleCategoryClick(data?._id)}>
                           <h3>{data?.categoryName}</h3>
                         </div>
                       )
@@ -353,6 +328,12 @@ const Navbar = ({ location, setLocation, reload }) => {
               <div className={Style.menu_wrap}>
 
                 <ul>
+                  <Link to="/profile" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <MdAccountCircle className={Style.icons} />
+                      <span>My Account</span>
+                    </li>
+                  </Link>
                   <Link to="/postadd" className={Style.navigation} >
                     <li className={Style.list_items} >
                       <MdPostAdd className={Style.icons} />

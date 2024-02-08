@@ -17,7 +17,7 @@ const CategoryProductPage = () => {
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
 
 
-    const { categoryId } = useParams()
+    const { categoryId } = useParams();
 
     const [Categories, SetCategories] = useState([]);
     const [Products, SetProducts] = useState([]);
@@ -107,7 +107,9 @@ const CategoryProductPage = () => {
     };
 
     const handleNextPage = () => {
-        SetCurrentPage(CurrentPage + 12);
+        if (!IsLastPage) {
+            SetCurrentPage(CurrentPage + 12);
+        }
     };
 
     const HandleDefault = () => {
