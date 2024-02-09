@@ -58,6 +58,7 @@ const SearchProductsPage = () => {
         loadProducts();
     }, [CurrentPage]);
 
+    // -- Function to find premium product
     const findPremiumProducts = () => {
         const sortedProducts = Products.sort((a, b) => {
             if (a.featured && !b.featured) {
@@ -84,7 +85,9 @@ const SearchProductsPage = () => {
     };
 
     const handleNextPage = () => {
-        SetCurrentPage(CurrentPage + 12);
+        if (!IsLastPage) {
+            SetCurrentPage(CurrentPage + 12);
+        }
     };
 
     const location = useLocation();

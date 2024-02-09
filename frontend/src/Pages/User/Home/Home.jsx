@@ -58,7 +58,9 @@ const Home = () => {
   };
 
   const handleNextPage = () => {
-    SetCurrentPage(CurrentPage + 12);
+    if (!IsLastPage) {
+      SetCurrentPage(CurrentPage + 12);
+    }
   };
 
 

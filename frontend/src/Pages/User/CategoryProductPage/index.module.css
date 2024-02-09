@@ -32,17 +32,21 @@
 .page_wrapper .main .productwrapper .container {
   margin: 0 4rem;
   display: block;
-  padding: 0 20px;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container {
     margin: 0 0;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container {
-    margin: 0 1rem;
+    margin: 0 1.5rem;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .page_wrapper .main .productwrapper .container {
+    margin: 0 3rem;
   }
 }
 .page_wrapper .main .productwrapper .container .heading {
@@ -103,7 +107,6 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  padding: 10px;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container {
@@ -139,6 +142,7 @@
   color: #666;
 }
 .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
+  width: 100%;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -151,12 +155,12 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 900px) and (max-width: 1024px) {
+@media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (min-width: 550px) and (max-width: 768px) {
+@media (min-width: 900px) and (max-width: 1024px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
     grid-template-columns: 1fr 1fr 1fr;
   }
