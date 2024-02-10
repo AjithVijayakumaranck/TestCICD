@@ -16,7 +16,7 @@
         }
 
         @include mediumScreen {
-            margin-top: 80px;
+            margin-top: 120px;
         }
 
         @include LargeScreen {
@@ -31,10 +31,12 @@
 
             @include breakpoint(md) {
                 flex-direction: column;
+                padding: 0 1rem;
             }
 
             @include mediumScreen {
                 flex-direction: column;
+                padding: 0 2rem;
             }
 
             .left {

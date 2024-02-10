@@ -25,7 +25,7 @@ const CategoryProductPage = () => {
     const [Subcategory, SetSubcategory] = useState([]);
     const [Filters, SetFilters] = useState([]);
 
-    const [CatId, SetCatId] = useState(categoryId);
+    const [DefaultId, SetDefaultId] = useState(categoryId);
     const [Min, SetMin] = useState('');
     const [Max, SetMax] = useState('');
     const [SubValue, SetSubValue] = useState("");
@@ -52,7 +52,7 @@ const CategoryProductPage = () => {
 
     const loadProducts = () => {
         try {
-            instance.get(`/api/user/filter/filter_products?category=${CatId}&min=${Min}&max=${Max}&page=${CurrentPage}
+            instance.get(`/api/user/filter/filter_products?category=${categoryId}&min=${Min}&max=${Max}&page=${CurrentPage}
             &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${JSON.stringify(OtherSelectedFilter)}`).then((response) => {
                 SetProducts([...response.data]);
             }).catch((error) => {
@@ -97,7 +97,7 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, CatId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, DefaultId]);
 
 
     const handlePreviousPage = () => {
@@ -113,7 +113,7 @@ const CategoryProductPage = () => {
     };
 
     const HandleDefault = () => {
-        SetCatId(categoryId);
+        SetDefaultId(categoryId);
         SetMax("");
         SetMin("");
         SetSubValue("");
