@@ -8,7 +8,6 @@
   background-color: $base_color3;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
 
-
   .Container {
     padding: 0 40px;
     min-height: 5rem;
@@ -19,7 +18,6 @@
     background-color: white;
     z-index: 999;
     gap: 10px;
-
 
     @include breakpoint(md) {
       gap: 0;
@@ -32,12 +30,6 @@
       padding: 0.4rem 0.8rem;
       flex-direction: column;
     }
-
-    // @include extraMediumScreen {
-    //   gap: 0;
-    //   padding: 0.4rem 0.8rem;
-    //   flex-direction: column;
-    // }
 
     @include LargeScreen {
       padding: 0 40px;
@@ -64,36 +56,8 @@
         justify-content: space-between;
       }
 
-      // @include extraMediumScreen {
-      //   justify-content: space-between;
-      // }
-
-      // .profile_Div {
-      //   display: none;
-
-      //   @include breakpoint(md) {
-      //     display: contents;
-      //     width: 2rem;
-      //     height: 2rem;
-      //     border-radius: 100%;
-
-      //     img {
-      //       width: 2rem;
-      //       height: 2rem;
-      //       object-fit: cover;
-      //       margin: 0 1rem;
-      //       border-radius: 0.4rem;
-      //     }
-
-      //   }
-      // }
-
       .PostAdBtn_Div {
         display: none;
-
-        // .navigation {
-        //   padding: 0 1.2rem;
-        // }
 
         button {
           width: 90px;
@@ -111,104 +75,24 @@
 
         @include breakpoint(md) {
           display: contents;
-
-          // .navigation {
-          //   padding: 0 1.2rem;
-          // }
-
-          // button {
-          //   width: 90px;
-          //   height: 2rem;
-          //   border: none;
-          //   color: white;
-          //   margin: 0;
-          //   background: $gradient_color;
-          //   padding: 0.3rem 0.6rem;
-          //   border-radius: 3px;
-          //   font-size: 0.7rem;
-          //   font-weight: 600;
-          //   cursor: pointer;
-          // }
         }
 
 
         @include mediumScreen {
           display: contents;
-
-          // .navigation {
-          //   padding: 0 1.2rem;
-          // }
-
-          // button {
-          //   width: 90px;
-          //   height: 2rem;
-          //   border: none;
-          //   color: white;
-          //   margin: 0;
-          //   background: $gradient_color;
-          //   padding: 0.3rem 0.6rem;
-          //   border-radius: 3px;
-          //   font-size: 0.7rem;
-          //   font-weight: 600;
-          //   cursor: pointer;
-          // }
         }
       }
-
-      // @include extraMediumScreen {
-      //   display: contents;
-      // }
-
-      // .loginBtn_Div {
-      //   display: none;
-
-
-      //   @include breakpoint(md) {
-      //     display: contents;
-
-      //     .navigation {
-      //       padding: 0 1.2rem;
-      //     }
-
-      //     button {
-      //       width: 3.5rem;
-      //       height: 2rem;
-      //       border: none;
-      //       // background: transparent;
-      //       color: white;
-      //       margin: 0;
-      //       background-color: $gradient_color;
-      //       padding: 0.3rem 0.6rem;
-      //       border-radius: 5px;
-      //       font-size: 0.8rem;
-      //       font-weight: 600;
-      //       cursor: pointer;
-
-      //       &:hover {
-      //         // background-color: white;
-      //         border: 1px solid $primary_color;
-      //         color: $primary_color;
-      //       }
-      //     }
-      //   }
-      // }
 
       div {
         display: flex;
         align-items: center;
         gap: 5px;
 
-        // @include breakpoint(md) {
-        //   gap: 5px;
-        //   padding: 0 0.8rem;
-        // }
-
         button {
           border: 0;
           background: transparent;
           aspect-ratio: 1;
           font-size: 24px;
-          // margin-left: 10px;
           display: none;
           cursor: pointer;
 
@@ -226,32 +110,8 @@
             align-items: center;
           }
 
-          // @include extraMediumScreen {
-          //   display: flex;
-          //   align-items: center;
-          // }
-
         }
       }
-
-      // img {
-      //   height: 2.5rem;
-      //   width: 4rem;
-      //   object-fit: contain;
-      //   cursor: pointer;
-
-      //   @include breakpoint(md) {
-      //     display: none;
-      //     height: 3rem;
-      //     width: 4rem;
-      //   }
-
-      //   @include mediumScreen {
-      //     display: none;
-      //     height: 3rem;
-      //     width: 4rem;
-      //   }
-      // }
 
       h1 {
         color: $primary_color;
@@ -271,11 +131,6 @@
           font-size: 1.5rem;
           font-weight: 700;
         }
-
-        // @include extraMediumScreen {
-        //   font-size: 1.6rem;
-        //   font-weight: 700;
-        // }
 
         @include LargeScreen {
           font-size: 1.6rem;
@@ -300,10 +155,6 @@
       @include mediumScreen {
         width: 100%;
       }
-
-      // @include extraMediumScreen {
-      //   width: 100%;
-      // }
 
       @include LargeScreen {
         flex: 5;
@@ -340,13 +191,6 @@
             width: 100px;
             border: none;
             outline: none;
-
-            // Styling for the options
-            .dropdownOption {
-              background-color: #f2f2f2;
-              color: #333;
-              padding: 8px;
-            }
           }
         }
 
@@ -367,21 +211,17 @@
         }
 
         div {
-
           select {
             border: none;
             background: transparent;
             outline: 0;
 
             option {
-
               border: none;
               background: transparent;
               outline: none;
-
             }
           }
-
         }
 
         button {
@@ -407,7 +247,6 @@
       align-items: center;
       flex: 3;
 
-
       @include breakpoint(md) {
         display: none;
       }
@@ -415,11 +254,6 @@
       @include mediumScreen {
         display: none;
       }
-
-      // @include extraMediumScreen {
-      //   display: none;
-      // }
-
 
       .OptionsWrapper {
         position: relative;
@@ -436,7 +270,6 @@
           @include mediumScreen {
             display: none;
           }
-
         }
 
         .count {
@@ -462,7 +295,6 @@
           @include mediumScreen {
             display: none;
           }
-
         }
       }
 
@@ -520,12 +352,10 @@
         @include mediumScreen {
           display: none;
         }
-
       }
 
       .ButtonContainer {
         button {
-
           border: none;
           background: transparent;
           color: white;
@@ -551,19 +381,14 @@
         @include mediumScreen {
           display: none;
         }
-
-        // @include extraMediumScreen {
-        //   display: none;
-        // }
       }
     }
 
     //--------- Mobile_Screen Styling ----------
 
     .Mobile_screen {
-      background-color: #fff;
-      // background-color: rgba($color: #ffffff, $alpha: .5);
-      // backdrop-filter: blur(10px);
+      background-color: rgba($color: #ffffff, $alpha: .5);
+      backdrop-filter: blur(10px);
       width: 275px;
       height: 100%;
       left: 0;
@@ -577,7 +402,6 @@
         display: none;
       }
 
-
       @include breakpoint(md) {
         display: flex;
         flex-direction: column;
@@ -590,7 +414,6 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-
       }
 
       .logoContainer {
@@ -602,8 +425,6 @@
         width: 100%;
 
         .logo_wrap {
-
-
           img {
             display: flex;
             align-items: center;
@@ -612,7 +433,6 @@
             cursor: pointer;
 
             @include breakpoint(md) {
-
               height: 3rem;
               width: 6rem;
             }
@@ -659,7 +479,6 @@
         align-items: center;
         border-bottom: 1px solid $base_color4;
         border-top: 1px solid $base_color4;
-
 
         .profile_wrap {
           width: 100%;
@@ -805,81 +624,11 @@
           }
         }
       }
-
-      .categoryContainer {
-        display: flex;
-        place-content: center;
-        width: 100%;
-        border-bottom: 1px solid $base-color4;
-
-        .accordion {
-          width: 100%;
-
-          .item {
-            padding: 10px;
-
-
-            .title {
-              color: black;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 10px 0;
-
-              h3 {
-                font-size: 18px;
-                font-weight: 500;
-              }
-            }
-
-            .content {
-              color: black;
-              overflow-y: hidden;
-              max-height: 0;
-              transition: all 0.5s cubic-bezier(0, 1, 0, 1);
-            }
-
-            .show {
-              height: 50vh;
-              overflow-y: auto;
-              transition: all 0.5s cubic-bezier(1, 0, 1, 0);
-              text-align: center;
-
-              &::-webkit-scrollbar {
-                display: none;
-              }
-
-
-              .row {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                place-content: center;
-                padding: 10px;
-                cursor: pointer;
-                border-top: 1px solid $base-color4;
-
-                &:hover {
-                  background-color: $primary_color;
-                  color: #fff;
-                  border-radius: 5px;
-                }
-
-                h3 {
-                  font-size: 16px;
-                  font-weight: 300;
-                }
-
-              }
-            }
-          }
-        }
-      }
-
     }
   }
 }
 
+//Keyframes
 .in {
   animation: slide-in 0.5s ease-in-out forwards;
 }
@@ -887,10 +636,6 @@
 .out {
   animation: slide-Out 0.5s ease-in-out forwards;
 }
-
-
-
-//Keyframes
 
 //slide in 
 @keyframes slide-in {
