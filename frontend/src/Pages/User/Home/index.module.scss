@@ -9,6 +9,10 @@
         margin-top: 7rem;
     }
 
+    @include mediumScreen {
+        margin-top: 110px;
+    }
+
     .Main_container {
         display: flex;
         justify-content: center;

@@ -50,20 +50,7 @@ const Home = () => {
     ScrollToTopOnMount();
   }, []);
 
-
-  const handlePreviousPage = () => {
-    if (CurrentPage > 1) {
-      SetCurrentPage(CurrentPage - 12);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (!IsLastPage) {
-      SetCurrentPage(CurrentPage + 12);
-    }
-  };
-
-
+  
   //LoadSlider Image functions
   useEffect(() => {
     try {
@@ -106,6 +93,19 @@ const Home = () => {
   useEffect(() => {
     findPremiumProducts();
   }, [Products]);
+
+
+  const handlePreviousPage = () => {
+    if (CurrentPage > 1) {
+      SetCurrentPage(CurrentPage - 12);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (!IsLastPage) {
+      SetCurrentPage(CurrentPage + 12);
+    }
+  };
 
 
   return (

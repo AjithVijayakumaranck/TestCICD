@@ -9,14 +9,13 @@ import Options from '../Profile_Selector/Options'
 import { Link, useNavigate } from "react-router-dom"
 import { MdAccountCircle, MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
 import { BiPurchaseTag, BiLogOut } from "react-icons/bi";
-import { SlArrowUp } from "react-icons/sl";
-import { SlArrowDown } from "react-icons/sl";
 import { UserContext } from '../../Contexts/UserContext';
 import { SocketContext } from '../../Contexts/socketContext';
 import instance from '../../instance/AxiosInstance';
 import Selector from '../Search_Selector/Selector';
 import authInstance from '../../instance/AuthInstance';
-import { Blank_Profile, Dnb_Logo } from '../../Assets/Constants';
+import Select from "react-select";
+import { Blank_Profile } from '../../Assets/Constants';
 
 
 
@@ -35,7 +34,6 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [Toggle, setToggle] = useState(false)
   const [ToggleSelector, SetToggleSelector] = useState(false)
   const [ToggleOpt, setOpt] = useState(false)
-  const [Selected, SetSelected] = useState(false)
   const [NewMessages, SetNewMessages] = useState(false)
   const [UserData, SetUserData] = useState({})
   const [UserImage, SetUserImage] = useState('')
@@ -47,7 +45,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [ConversationCount, SetConversationCount] = useState(0);
 
 
-
+  // -- Fetching data for search items
   const HandleSearch = () => {
     try {
       instance.get(`/api/user/filter/search_products?SearchQuery=${SearchQuery}&&limit=${5}`).then((response) => {
@@ -64,6 +62,8 @@ const Navbar = ({ location, setLocation, reload }) => {
     HandleSearch()
   }, [SearchQuery])
 
+
+  // -- Function for dropdown for search bar
   const HandleSelector = (e) => {
     e.preventDefault()
 
@@ -86,7 +86,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   }, [socket])
 
 
-
+  // -- Fetching profile data of the user
   useEffect(() => {
     try {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
@@ -100,6 +100,8 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User._id]);
 
+
+  // -- Function to logout from site
   const handleLogout = (e) => {
     e.preventDefault()
     localStorage.removeItem('logged');
@@ -112,7 +114,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }
 
-  //Function to get Wishlist count
+  // -- Function to get Wishlist count
   useEffect(() => {
     try {
       authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((response) => {
@@ -125,7 +127,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id])
 
-  //Function to get Notification count
+  // -- Function to get Notification count
   useEffect(() => {
     try {
       if (User?._id) {
@@ -141,7 +143,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   }, [User?._id, reload])
 
 
-  //Function to get Chat Conversation count
+  // -- Function to get Chat Conversation count
   useEffect(() => {
     try {
       authInstance.get(`/api/user/chat/conversation_count?userId=${User?._id}`).then((response) => {
@@ -154,10 +156,51 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id, reload])
 
+  // -- Function for nagivation to category page
   const HandleCategoryClick = (categoryId) => {
     navigate(`/category/${categoryId}`);
-    window.location.reload();
   }
+
+  // -- Assigning react-select options
+  const SelectOptions = Categories.map((category) => ({
+    value: category?._id,
+    label: category?.categoryName
+  }));
+
+  // -- Custom style for react-select
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      width: '150px',
+      height: '90%',
+      fontSize: '12px',
+      borderRight: '1px solid #111',
+      border: state.isFocused ? 'none' : state.isSelected ? 'none' : 'none',
+      borderRadius: '4px',
+      boxShadow: state.isFocused ? 'none' : null,
+      '&:hover': {
+        border: 'none',
+        boxShadow: 'none', // Remove border on hover
+      },
+      // Mobile styles
+      '@media only screen and (max-width: 580px)': {
+        width: '100px', // Adjust width for smaller screens
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      // borderBottom: '1px solid #ccc', // Example border for options
+      backgroundColor: state.isSelected ? '#ccc' : provided.backgroundColor,
+      color: state.isSelected ? 'white' : provided.color,
+      fontSize: '12px',
+      // Mobile styles
+      '@media only screen and (max-width: 580px)': {
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+    }),
+  };
+
 
 
   return (
@@ -166,17 +209,10 @@ const Navbar = ({ location, setLocation, reload }) => {
         <div className={Style.Branding}>
 
           <div>
+
             <button onClick={() => { setToggle(true) }} className={`${Style.Toggle}`}>
               <GiHamburgerMenu />
             </button>
-
-            <img src={Dnb_Logo} alt="" onClick={() => {
-              if (window.location.pathname === '/') {
-                window.location.reload();
-              } else {
-                navigate('/');
-              }
-            }} />
 
             <Link to='/' className={Style.navigation}
               onClick={() => {
@@ -201,6 +237,14 @@ const Navbar = ({ location, setLocation, reload }) => {
 
           <div className={Style.Search_container}>
 
+            <div className={Style.dropdown}>
+              <Select
+                options={SelectOptions}
+                onChange={(e) => HandleCategoryClick(e.value)}
+                styles={customStyles}
+              />
+            </div>
+
             <input
               type="search"
               placeholder='Search Here'
@@ -210,10 +254,13 @@ const Navbar = ({ location, setLocation, reload }) => {
                 HandleSelector(e)
               }}
             />
+
             <button onClick={HandleSearch}><BsSearch /></button>
+
           </div>
 
           {ToggleSelector && <Selector result={SearchResult} query={SearchQuery} />}
+
         </div>
 
         <div className={Style.Options}>
@@ -249,13 +296,14 @@ const Navbar = ({ location, setLocation, reload }) => {
           }
 
           <div className={Style.ButtonContainer}>
-            <Link to='/postadd' className={Style.navigation} > <button>Post Ad</button></Link>
+            <Link to='/postadd' className={Style.navigation} > <button>Post Free Ad</button></Link>
           </div>
         </div>
         {
           Toggle ? <div className={`${Style.Mobile_screen} ${Toggle ? Style.in : Style.out}`}>
 
             <div className={Style.logoContainer}>
+
               <div className={Style.logo_wrap}>
                 <Link to='/' className={Style.navigation}
                   onClick={() => {
@@ -267,11 +315,12 @@ const Navbar = ({ location, setLocation, reload }) => {
                   }}>
                   <h1>DealNBuy</h1>
                 </Link>
-
               </div>
+
               <div>
                 <button> <IoCloseOutline onClick={() => setToggle(false)} /></button>
               </div>
+
             </div>
 
             <div className={Style.ProfileContainer}>
@@ -300,33 +349,12 @@ const Navbar = ({ location, setLocation, reload }) => {
               }
             </div>
 
-            <div className={Style.categoryContainer}>
-              <div className={Style.accordion}>
-                <div className={Style.item}  >
-                  <div className={Style.title} onClick={() => SetSelected(!Selected)}>
-                    <h3>Category</h3>
-                    <span>{Selected ? <SlArrowUp /> : <SlArrowDown />} </span>
-                  </div>
-
-                  <div className={Selected ? Style.show : Style.content} >
-                    {Categories.map((data, index) => {
-                      return (
-                        <div className={Style.row} key={index} onClick={() => HandleCategoryClick(data?._id)}>
-                          <h3>{data?.categoryName}</h3>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className={Style.menuContainer}>
               <div className={Style.menutitle}>
                 <h4>Menu</h4>
               </div>
-              <div className={Style.menu_wrap}>
 
+              <div className={Style.menu_wrap}>
                 <ul>
                   <Link to="/profile" className={Style.navigation} >
                     <li className={Style.list_items} >
@@ -340,6 +368,28 @@ const Navbar = ({ location, setLocation, reload }) => {
                       <span>PostAd</span>
                     </li>
                   </Link>
+
+                  <Link to="/myads" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <BsCartPlus className={Style.icons} />
+                      <span>My Ads</span>
+                    </li>
+                  </Link>
+
+                  <Link to="/subscribe" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <BiPurchaseTag className={Style.icons} />
+                      <span>Purchase Ads</span>
+                    </li>
+                  </Link>
+
+                </ul>
+              </div>
+            </div>
+
+            <div className={Style.menuContainer}>
+              <div className={Style.menu_wrap}>
+                <ul>
                   <Link to="/chat" className={Style.navigation} >
                     <li>
                       <div className={Style.Options} >
@@ -353,6 +403,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                       </div>
                     </li>
                   </Link>
+
                   <Link to="/notification" className={Style.navigation} >
                     <li>
                       <div className={Style.Options} >
@@ -364,19 +415,6 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <div className={Style.counter}>{NotificationCount}</div>
                         )}
                       </div>
-                    </li>
-                  </Link>
-                  <Link to="/myads" className={Style.navigation} >
-                    <li className={Style.list_items} >
-                      <BsCartPlus className={Style.icons} />
-                      <span>My Ads</span>
-                    </li>
-                  </Link>
-
-                  <Link to="/subscribe" className={Style.navigation} >
-                    <li className={Style.list_items} >
-                      <BiPurchaseTag className={Style.icons} />
-                      <span>Purchase Ads</span>
                     </li>
                   </Link>
 
@@ -393,6 +431,14 @@ const Navbar = ({ location, setLocation, reload }) => {
                       </div>
                     </li>
                   </Link>
+
+                </ul>
+              </div>
+            </div>
+
+            <div className={Style.menuContainer}>
+              <div className={Style.menu_wrap}>
+                <ul>
                   {User._id ?
                     <li className={Style.list_items} onClick={(e) => { handleLogout(e) }}>
                       <BiLogOut className={Style.icons} />
@@ -400,13 +446,9 @@ const Navbar = ({ location, setLocation, reload }) => {
                     </li>
                     : null
                   }
-
                 </ul>
-
               </div>
             </div>
-
-
 
           </div> : ""
         }
