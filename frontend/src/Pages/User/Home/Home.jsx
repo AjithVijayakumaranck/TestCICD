@@ -102,7 +102,7 @@ const Home = () => {
   };
 
   const handleNextPage = () => {
-    if (!IsLastPage) {
+    if (IsLastPage === false) {
       SetCurrentPage(CurrentPage + 12);
     }
   };

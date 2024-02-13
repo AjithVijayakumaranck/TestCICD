@@ -97,7 +97,7 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, DefaultId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, categoryId, DefaultId]);
 
 
     const handlePreviousPage = () => {
@@ -107,7 +107,7 @@ const CategoryProductPage = () => {
     };
 
     const handleNextPage = () => {
-        if (!IsLastPage) {
+        if (IsLastPage === false) {
             SetCurrentPage(CurrentPage + 12);
         }
     };

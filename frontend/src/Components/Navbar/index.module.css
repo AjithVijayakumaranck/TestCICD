@@ -37,6 +37,7 @@
   }
 }
 .header_container .Container .navigation {
+  position: relative;
   text-decoration: none;
   color: #111;
 }
@@ -61,10 +62,13 @@
   display: none;
 }
 .header_container .Container .Branding .PostAdBtn_Div button {
-  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
   height: 2rem;
   border: none;
-  color: white;
+  color: #fff;
   margin: 0;
   background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
   padding: 0.3rem 0.6rem;
@@ -73,22 +77,27 @@
   font-weight: 600;
   cursor: pointer;
 }
+.header_container .Container .Branding .PostAdBtn_Div button:hover {
+  color: #fff;
+}
 @media (max-width: 550px) {
   .header_container .Container .Branding .PostAdBtn_Div {
     display: contents;
+    position: relative;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .header_container .Container .Branding .PostAdBtn_Div {
     display: contents;
+    position: relative;
   }
 }
-.header_container .Container .Branding div {
+.header_container .Container .Branding .Branding_wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.header_container .Container .Branding div button {
+.header_container .Container .Branding .Branding_wrapper button {
   border: 0;
   background: transparent;
   aspect-ratio: 1;
@@ -96,17 +105,17 @@
   display: none;
   cursor: pointer;
 }
-.header_container .Container .Branding div button:hover {
+.header_container .Container .Branding .Branding_wrapper button:hover {
   color: #046BD2;
 }
 @media (max-width: 550px) {
-  .header_container .Container .Branding div button {
+  .header_container .Container .Branding .Branding_wrapper button {
     display: flex;
     align-items: center;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
-  .header_container .Container .Branding div button {
+  .header_container .Container .Branding .Branding_wrapper button {
     display: flex;
     align-items: center;
   }
@@ -291,12 +300,12 @@
   }
 }
 .header_container .Container .Options .profile {
+  position: relative;
   aspect-ratio: 1;
   width: 35px;
   height: 35px;
   border-radius: 7px;
   border: 1px solid #ebebeb;
-  position: relative;
 }
 @media (max-width: 550px) {
   .header_container .Container .Options .profile {
@@ -342,6 +351,9 @@
   .header_container .Container .Options .RegButtonContainer {
     display: none;
   }
+}
+.header_container .Container .Options .ButtonContainer {
+  position: relative;
 }
 .header_container .Container .Options .ButtonContainer button {
   border: none;

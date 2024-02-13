@@ -85,7 +85,7 @@ const SearchProductsPage = () => {
     };
 
     const handleNextPage = () => {
-        if (!IsLastPage) {
+        if (IsLastPage === false) {
             SetCurrentPage(CurrentPage + 12);
         }
     };
