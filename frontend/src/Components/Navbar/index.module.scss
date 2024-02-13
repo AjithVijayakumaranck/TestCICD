@@ -36,6 +36,7 @@
     }
 
     .navigation {
+      position: relative;
       text-decoration: none;
       color: #111;
     }
@@ -60,10 +61,13 @@
         display: none;
 
         button {
-          width: 90px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 120px;
           height: 2rem;
           border: none;
-          color: white;
+          color: #fff;
           margin: 0;
           background: $gradient_color;
           padding: 0.3rem 0.6rem;
@@ -71,19 +75,25 @@
           font-size: 0.7rem;
           font-weight: 600;
           cursor: pointer;
+
+          &:hover {
+            color: #fff;
+          }
         }
 
         @include breakpoint(md) {
           display: contents;
+          position: relative;
         }
 
 
         @include mediumScreen {
           display: contents;
+          position: relative;
         }
       }
 
-      div {
+      .Branding_wrapper {
         display: flex;
         align-items: center;
         gap: 5px;
@@ -301,12 +311,12 @@
 
 
       .profile {
+        position: relative;
         aspect-ratio: 1;
         width: 35px;
         height: 35px;
         border-radius: 7px;
         border: 1px solid $base_color;
-        position: relative;
 
         @include breakpoint(md) {
           display: none;
@@ -355,6 +365,8 @@
       }
 
       .ButtonContainer {
+        position: relative;
+
         button {
           border: none;
           background: transparent;

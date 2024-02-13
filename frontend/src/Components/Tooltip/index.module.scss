@@ -1,0 +1,111 @@
+@import "../../StyleHelpers/Variables.scss";
+
+.option_wrapper {
+    position: absolute;
+    background-color: rgba(17, 17, 17, 0.7);
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+    border-radius: 5px;
+    margin-top: 5px;
+    z-index: 9999;
+    animation: vibrate 0.8s ease-in-out 2s 3 normal forwards;
+
+    @include breakpoint(md) {
+        right: 10%;
+    }
+
+    @include mediumScreen {
+        right: 10%;
+    }
+
+
+    &:after {
+        content: " ";
+        position: absolute;
+        left: 10%;
+        top: -10px;
+        border-top: none;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 10px solid rgba(17, 17, 17, 0.7);
+
+
+        @include breakpoint(md) {
+            left: 75%;
+        }
+
+        @include mediumScreen {
+            left: 75%;
+        }
+    }
+
+    .navigation {
+        text-decoration: none;
+        color: #111;
+        width: 100%;
+    }
+
+    .box {
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 8rem;
+        border-radius: 10px;
+        padding: 5px;
+        position: relative;
+        animation: none; // Reset animation initially
+
+        &:hover {
+            animation: vibrate 0.5s ease-in-out 5s 1 normal forwards; // Apply animation on hover
+        }
+
+        .boxWrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            cursor: pointer;
+
+            .eachopt {
+                padding-top: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0;
+
+                h4 {
+                    color: #fff;
+                    margin: 0 10px;
+                    font-size: 12px;
+                    font-weight: 400;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -16,6 +16,7 @@ import Selector from '../Search_Selector/Selector';
 import authInstance from '../../instance/AuthInstance';
 import Select from "react-select";
 import { Blank_Profile } from '../../Assets/Constants';
+import BoxOptions from '../Tooltip/BoxOptions';
 
 
 
@@ -43,6 +44,16 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [WishlistCount, SetWishlistCount] = useState(0);
   const [NotificationCount, SetNotificationCount] = useState(0);
   const [ConversationCount, SetConversationCount] = useState(0);
+
+  const [isHovered, setIsHovered] = useState(true);
+
+  // Update isHovered to false after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsHovered(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
 
 
   // -- Fetching data for search items
@@ -167,17 +178,20 @@ const Navbar = ({ location, setLocation, reload }) => {
     label: category?.categoryName
   }));
 
-  // -- Custom style for react-select
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      width: '150px',
+      width: '140px',
       height: '90%',
       fontSize: '12px',
       borderRight: '1px solid #111',
       border: state.isFocused ? 'none' : state.isSelected ? 'none' : 'none',
       borderRadius: '4px',
       boxShadow: state.isFocused ? 'none' : null,
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+
       '&:hover': {
         border: 'none',
         boxShadow: 'none', // Remove border on hover
@@ -199,6 +213,13 @@ const Navbar = ({ location, setLocation, reload }) => {
         fontSize: '10px', // Adjust font size for smaller screens
       },
     }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      borderLeft: 'none',  // Remove border from the dropdown indicator
+    }),
+    indicatorSeparator: () => ({
+      display: 'none', // Hide the separator
+    }),
   };
 
 
@@ -208,7 +229,7 @@ const Navbar = ({ location, setLocation, reload }) => {
       <div className={Style.Container}>
         <div className={Style.Branding}>
 
-          <div>
+          <div className={Style.Branding_wrapper}>
 
             <button onClick={() => { setToggle(true) }} className={`${Style.Toggle}`}>
               <GiHamburgerMenu />
@@ -227,8 +248,11 @@ const Navbar = ({ location, setLocation, reload }) => {
 
           </div>
 
-          <div className={Style.PostAdBtn_Div}>
-            <Link to='/postadd' className={Style.navigation} > <button>Post Free Ad</button></Link>
+          <div className={Style.PostAdBtn_Div} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <Link to='/postadd' className={Style.navigation}>
+              <button>Post Free Ad</button>
+              {isHovered && <BoxOptions />}
+            </Link>
           </div>
 
         </div>
@@ -239,6 +263,7 @@ const Navbar = ({ location, setLocation, reload }) => {
 
             <div className={Style.dropdown}>
               <Select
+                placeholder="All Categories"
                 options={SelectOptions}
                 onChange={(e) => HandleCategoryClick(e.value)}
                 styles={customStyles}
@@ -295,9 +320,11 @@ const Navbar = ({ location, setLocation, reload }) => {
             </div>
           }
 
-          <div className={Style.ButtonContainer}>
-            <Link to='/postadd' className={Style.navigation} > <button>Post Free Ad</button></Link>
+          <div className={Style.ButtonContainer} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <Link to='/postadd' className={Style.navigation}><button>Post Free Ad</button></Link>
+            {isHovered && <BoxOptions />}
           </div>
+
         </div>
         {
           Toggle ? <div className={`${Style.Mobile_screen} ${Toggle ? Style.in : Style.out}`}>
@@ -436,7 +463,7 @@ const Navbar = ({ location, setLocation, reload }) => {
               </div>
             </div>
 
-            <div className={Style.menuContainer}>
+            <div className={Style.menuContainer} style={{ borderBottom: 'none' }}>
               <div className={Style.menu_wrap}>
                 <ul>
                   {User._id ?
