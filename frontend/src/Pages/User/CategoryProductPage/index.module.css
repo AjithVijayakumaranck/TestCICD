@@ -174,7 +174,7 @@
   gap: 20px;
   padding: 1rem 0;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .inactiveBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,16 +183,34 @@
   background-color: transparent;
   padding: 10px;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   border-radius: 5px;
   border: none;
   cursor: pointer;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button:hover {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .inactiveBtn:hover {
+  color: #666;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn:hover {
   color: #046BD2;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button .icon {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn .icon {
   font-size: 20px;
   font-weight: 900;
 }/*# sourceMappingURL=index.module.css.map */

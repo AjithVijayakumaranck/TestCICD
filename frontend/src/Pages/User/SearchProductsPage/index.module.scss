@@ -105,12 +105,32 @@
                 gap: 20px;
                 padding: 3rem 0 1rem 0;
 
-                button {
+                .inactiveBtn {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     gap: 10px;
-                    color: $base-color5;
+                    color: $base_color5;
+                    background-color: transparent;
+                    padding: 10px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $base_color5;
+                    }
+                }
+
+                .activeBtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: $base_color5;
                     background-color: transparent;
                     padding: 10px;
                     font-size: 1.2rem;

@@ -45,14 +45,18 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [NotificationCount, SetNotificationCount] = useState(0);
   const [ConversationCount, SetConversationCount] = useState(0);
 
-  const [isHovered, setIsHovered] = useState(true);
-
-  // Update isHovered to false after 5 seconds
+  const [isHovered, setIsHovered] = useState(false);
+  // Set back to false after 5 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (window.location.pathname === '/') {
+      setIsHovered(true);
+      const timer = setTimeout(() => {
+        setIsHovered(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    } else {
       setIsHovered(false);
-    }, 5000);
-    return () => clearTimeout(timer);
+    }
   }, []);
 
 
@@ -85,9 +89,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }
 
-
-
-  //Setting New Messages in Alert
+  // -- Setting New Messages in Alert
   useEffect(() => {
     if (socket) {
       socket.on('notificationAlert', (data) => {
@@ -196,8 +198,16 @@ const Navbar = ({ location, setLocation, reload }) => {
         border: 'none',
         boxShadow: 'none', // Remove border on hover
       },
+      '@media only screen and (max-width: 1199px)': {
+        width: '100px', // Adjust width for smaller screens
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+      '@media only screen and (max-width: 799px)': {
+        width: '140px', // Adjust width for smaller screens
+        fontSize: '12px', // Adjust font size for smaller screens
+      },
       // Mobile styles
-      '@media only screen and (max-width: 580px)': {
+      '@media only screen and (max-width: 429px)': {
         width: '100px', // Adjust width for smaller screens
         fontSize: '10px', // Adjust font size for smaller screens
       },
@@ -222,7 +232,18 @@ const Navbar = ({ location, setLocation, reload }) => {
     }),
   };
 
-
+  // -- Handle search on pressing enter key
+  const HandleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (SearchResult.length === 1) {
+        navigate(`/product/${SearchResult[0]._id}`);
+        SetToggleSelector(false);
+      } else {
+        navigate(`/search/${SearchQuery}`);
+        SetToggleSelector(false);
+      }
+    }
+  };
 
   return (
     <div className={Style.header_container}>
@@ -278,6 +299,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                 SetSearchQuery(e.target.value)
                 HandleSelector(e)
               }}
+              onKeyPress={(e) => HandleKeyPress(e)}
             />
 
             <button onClick={HandleSearch}><BsSearch /></button>

@@ -50,7 +50,7 @@ const Home = () => {
     ScrollToTopOnMount();
   }, []);
 
-  
+
   //LoadSlider Image functions
   useEffect(() => {
     try {
@@ -123,8 +123,17 @@ const Home = () => {
             <HomeProduct sortedproducts={SortedProducts} />
             {SortedProducts.length !== 0 ?
               <div className={Style.loadbtn}>
-                <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                <button onClick={handleNextPage} disabled={IsLastPage} > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                <button
+                  onClick={handlePreviousPage}
+                  className={CurrentPage === 0 ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                  disabled={CurrentPage === 0} >
+                  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev
+                </button>
+                <button
+                  onClick={handleNextPage}
+                  className={IsLastPage ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                  disabled={IsLastPage} > Next <HiOutlineArrowNarrowRight className={Style.icon} />
+                </button>
               </div>
               : null
             }
