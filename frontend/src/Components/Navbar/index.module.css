@@ -7,7 +7,7 @@
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
 }
 .header_container .Container {
-  padding: 0 40px;
+  padding: 0 60px;
   min-height: 5rem;
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@
   align-items: center;
   background-color: white;
   z-index: 999;
-  gap: 10px;
+  gap: 30px;
 }
 @media (max-width: 550px) {
   .header_container .Container {
@@ -34,6 +34,7 @@
 @media (min-width: 900px) and (max-width: 1024px) {
   .header_container .Container {
     padding: 0 40px;
+    gap: 10px;
   }
 }
 .header_container .Container .navigation {
@@ -240,8 +241,8 @@
 }
 .header_container .Container .Options {
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  gap: 25px;
+  justify-content: flex-end;
   align-items: center;
   flex: 3;
 }
@@ -253,6 +254,11 @@
 @media (min-width: 550px) and (max-width: 768px) {
   .header_container .Container .Options {
     display: none;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .header_container .Container .Options {
+    gap: 10px;
   }
 }
 .header_container .Container .Options .OptionsWrapper {
@@ -356,6 +362,11 @@
   position: relative;
 }
 .header_container .Container .Options .ButtonContainer button {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: ellipsis;
   border: none;
   background: transparent;
   color: white;
