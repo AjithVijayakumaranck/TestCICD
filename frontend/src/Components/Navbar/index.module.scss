@@ -8,9 +8,8 @@
   background-color: $base_color3;
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
 
-
   .Container {
-    padding: 0 80px;
+    padding: 0 60px;
     min-height: 5rem;
     display: flex;
     justify-content: center;
@@ -18,29 +17,27 @@
     align-items: center;
     background-color: white;
     z-index: 999;
-    gap: 10px;
-
+    gap: 30px;
 
     @include breakpoint(md) {
       gap: 0;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0.6rem;
       flex-direction: column;
     }
 
     @include mediumScreen {
-      padding: 0 20px;
-      gap: 20px;
+      gap: 0;
+      padding: 0.4rem 0.8rem;
+      flex-direction: column;
     }
 
     @include LargeScreen {
       padding: 0 40px;
-    }
-
-    @include extraMediumScreen {
-      padding: 0 20px;
+      gap: 10px;
     }
 
     .navigation {
+      position: relative;
       text-decoration: none;
       color: #111;
     }
@@ -57,74 +54,56 @@
         justify-content: space-between;
       }
 
-      .profile_Div {
+      @include mediumScreen {
+        justify-content: space-between;
+      }
+
+      .PostAdBtn_Div {
         display: none;
 
-        @include breakpoint(md) {
-          display: contents;
-          width: 2rem;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 120px;
           height: 2rem;
-          border-radius: 100%;
+          border: none;
+          color: #fff;
+          margin: 0;
+          background: $gradient_color;
+          padding: 0.3rem 0.6rem;
+          border-radius: 3px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          cursor: pointer;
 
-          img {
-            width: 2rem;
-            height: 2rem;
-            margin: 0 1rem;
-            border-radius: 0.4rem;
+          &:hover {
+            color: #fff;
           }
-
         }
-      }
-
-      .loginBtn_Div {
-        display: none;
-
 
         @include breakpoint(md) {
           display: contents;
+          position: relative;
+        }
 
-          .navigation {
-            padding: 0 1rem;
-          }
 
-          button {
-            width: 3.5rem;
-            height: 2rem;
-            border: none;
-            background: transparent;
-            color: white;
-            margin: 0;
-            background-color: $primary_color;
-            padding: 0.3rem 0.6rem;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-
-            &:hover {
-              background-color: white;
-              border: 1px solid $primary_color;
-              color: $primary_color;
-            }
-          }
+        @include mediumScreen {
+          display: contents;
+          position: relative;
         }
       }
 
-      div {
+      .Branding_wrapper {
         display: flex;
         align-items: center;
         gap: 5px;
-
-        @include breakpoint(md) {
-          gap: 10px;
-        }
 
         button {
           border: 0;
           background: transparent;
           aspect-ratio: 1;
           font-size: 24px;
-          margin-left: 10px;
           display: none;
           cursor: pointer;
 
@@ -142,27 +121,6 @@
             align-items: center;
           }
 
-          @include extraMediumScreen {
-            display: flex;
-            align-items: center;
-          }
-
-        }
-      }
-
-      img {
-        height: 2.5rem;
-        width: 4rem;
-        object-fit: contain;
-
-        @include breakpoint(md) {
-          height: 3rem;
-          width: 4rem;
-        }
-
-        @include mediumScreen {
-          height: 3rem;
-          width: 4rem;
         }
       }
 
@@ -174,11 +132,15 @@
         cursor: pointer;
 
         @include breakpoint(md) {
-          display: none;
           font-size: 1.3rem;
           font-weight: 600;
           padding: 5px 0;
           margin: .3rem 0;
+        }
+
+        @include mediumScreen {
+          font-size: 1.5rem;
+          font-weight: 700;
         }
 
         @include LargeScreen {
@@ -198,10 +160,12 @@
       position: relative;
 
       @include breakpoint(md) {
-        width: 90%;
+        width: 100%;
       }
 
-      @include mediumScreen {}
+      @include mediumScreen {
+        width: 100%;
+      }
 
       @include LargeScreen {
         flex: 5;
@@ -215,7 +179,7 @@
         align-items: center;
         border-radius: 5px;
         border: 1px solid $primary_color;
-        padding: 5px 10px;
+        padding: 5px;
 
         @include breakpoint(md) {
           font-size: 1.6rem;
@@ -223,6 +187,22 @@
 
         @include LargeScreen {
           font-size: 1.8rem;
+        }
+
+        // Your dropdown styles here
+        .dropdown {
+          height: 90%;
+          display: flex;
+          align-items: center;
+          border-right: 1px solid $base-color4;
+          margin-right: 10px;
+
+          // Styling for the select element
+          select {
+            width: 100px;
+            border: none;
+            outline: none;
+          }
         }
 
         input {
@@ -242,21 +222,17 @@
         }
 
         div {
-
           select {
             border: none;
             background: transparent;
             outline: 0;
 
             option {
-
               border: none;
               background: transparent;
               outline: none;
-
             }
           }
-
         }
 
         button {
@@ -277,11 +253,10 @@
 
     .Options {
       display: flex;
-      gap: 20px;
-      justify-content: center;
+      gap: 25px;
+      justify-content: flex-end;
       align-items: center;
-      flex: 3;
-
+      flex: 2;
 
       @include breakpoint(md) {
         display: none;
@@ -291,10 +266,9 @@
         display: none;
       }
 
-      @include extraMediumScreen {
-        display: none;
+      @include LargeScreen {
+        gap: 10px;
       }
-
 
       .OptionsWrapper {
         position: relative;
@@ -311,7 +285,6 @@
           @include mediumScreen {
             display: none;
           }
-
         }
 
         .count {
@@ -337,19 +310,18 @@
           @include mediumScreen {
             display: none;
           }
-
         }
       }
 
 
 
       .profile {
+        position: relative;
         aspect-ratio: 1;
         width: 35px;
         height: 35px;
         border-radius: 7px;
         border: 1px solid $base_color;
-        position: relative;
 
         @include breakpoint(md) {
           display: none;
@@ -360,8 +332,8 @@
         }
 
         img {
-          width: 35px;
-          height: 35px;
+          width: 100%;
+          height: 100%;
           border-radius: 7px;
           object-fit: cover;
           cursor: pointer;
@@ -377,6 +349,7 @@
           padding: 10px 12px;
           border-radius: 5px;
           font-size: 14px;
+          text-overflow: ellipsis;
           font-weight: 600;
           cursor: pointer;
 
@@ -394,23 +367,30 @@
         @include mediumScreen {
           display: none;
         }
-
       }
 
       .ButtonContainer {
+        position: relative;
+
         button {
+          width: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-overflow: ellipsis;
           border: none;
           background: transparent;
           color: white;
-          background-color: $primary_color;
+          background: $gradient_color;
           padding: 10px 12px;
           border-radius: 5px;
           font-size: 14px;
+          text-overflow: ellipsis;
           font-weight: 600;
           cursor: pointer;
 
           &:hover {
-            background-color: white;
+            background: white;
             border: 1px solid $primary_color;
             color: $primary_color;
           }
@@ -423,8 +403,6 @@
         @include mediumScreen {
           display: none;
         }
-
-
       }
     }
 
@@ -446,7 +424,6 @@
         display: none;
       }
 
-
       @include breakpoint(md) {
         display: flex;
         flex-direction: column;
@@ -459,7 +436,6 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-
       }
 
       .logoContainer {
@@ -471,8 +447,33 @@
         width: 100%;
 
         .logo_wrap {
+          img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: contain;
+            cursor: pointer;
+
+            @include breakpoint(md) {
+              height: 3rem;
+              width: 6rem;
+            }
+
+            @include mediumScreen {
+              height: 3rem;
+              width: 6rem;
+            }
+          }
+
           h1 {
-            color: $primary_color
+            color: $primary_color;
+            font-size: 1.3rem;
+            font-weight: 600;
+
+            @include mediumScreen {
+              font-size: 1.6rem;
+              font-weight: 700;
+            }
           }
         }
 
@@ -498,9 +499,8 @@
         width: 100%;
         display: flex;
         align-items: center;
-        border-bottom: 2px solid $base_color4;
-        border-top: 2px solid $base_color4;
-
+        border-bottom: 1px solid $base_color4;
+        border-top: 1px solid $base_color4;
 
         .profile_wrap {
           width: 100%;
@@ -556,6 +556,7 @@
         display: flex;
         flex-direction: column;
         place-content: center;
+        border-bottom: 1px solid $base_color4;
         width: 100%;
 
         .menutitle {
@@ -602,21 +603,26 @@
               span {
                 font-size: 16px;
                 font-weight: 400;
-                margin-left: 5px;
-
               }
 
               .Options {
                 display: flex;
                 justify-content: space-between;
 
+
                 .OptionsWrapper {
                   display: flex;
                   align-items: center;
+                  gap: 10px;
 
                   .icons {
                     font-size: 18px;
                     padding-left: 10px;
+                  }
+
+                  span {
+                    font-size: 16px;
+                    font-weight: 400;
                   }
                 }
 
@@ -640,81 +646,11 @@
           }
         }
       }
-
-      .categoryContainer {
-        display: flex;
-        place-content: center;
-        width: 100%;
-        border-bottom: 2px solid $base-color4;
-
-        .accordion {
-          width: 100%;
-
-          .item {
-            padding: 10px;
-
-
-            .title {
-              color: black;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              padding: 10px 0;
-
-              h3 {
-                font-size: 18px;
-                font-weight: 500;
-              }
-            }
-
-            .content {
-              color: black;
-              overflow-y: hidden;
-              max-height: 0;
-              transition: all 0.5s cubic-bezier(0, 1, 0, 1);
-            }
-
-            .show {
-              height: 50vh;
-              overflow-y: auto;
-              transition: all 0.5s cubic-bezier(1, 0, 1, 0);
-              text-align: center;
-
-              &::-webkit-scrollbar {
-                display: none;
-              }
-
-
-              .row {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                place-content: center;
-                padding: 10px;
-                cursor: pointer;
-                border-top: 1px solid $base-color4;
-
-                &:hover {
-                  background-color: $primary_color;
-                  color: #fff;
-                  border-radius: 5px;
-                }
-
-                h3 {
-                  font-size: 16px;
-                  font-weight: 300;
-                }
-
-              }
-            }
-          }
-        }
-      }
-
     }
   }
 }
 
+//Keyframes
 .in {
   animation: slide-in 0.5s ease-in-out forwards;
 }
@@ -722,10 +658,6 @@
 .out {
   animation: slide-Out 0.5s ease-in-out forwards;
 }
-
-
-
-//Keyframes
 
 //slide in 
 @keyframes slide-in {

@@ -46,11 +46,11 @@ const UserProfiles = ({ UserData, UserAddress }) => {
           <span className={Style.itemValue}> {UserAddress?.district} </span>
         </div>
         <div className={Style.detailItem}>
-          <span className={Style.itemKey}>Region :</span>
+          <span className={Style.itemKey}>State :</span>
           <span className={Style.itemValue}> {UserAddress?.state} </span>
         </div>
         <div className={Style.detailItem}>
-          <span className={Style.itemKey}>Country :</span>
+          <span className={Style.itemKey}>Region :</span>
           <span className={Style.itemValue}>{UserAddress?.region}</span>
         </div>
         <div className={Style.detailItem}>

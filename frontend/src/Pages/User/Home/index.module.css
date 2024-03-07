@@ -7,6 +7,11 @@
     margin-top: 7rem;
   }
 }
+@media (min-width: 550px) and (max-width: 768px) {
+  .home_container {
+    margin-top: 110px;
+  }
+}
 .home_container .Main_container {
   display: flex;
   justify-content: center;
@@ -109,7 +114,7 @@
   gap: 20px;
   padding: 3rem 0 1rem 0;
 }
-.home_container .Main_container .Right .cardWrapper .loadbtn button {
+.home_container .Main_container .Right .cardWrapper .loadbtn .inactiveBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,10 +129,28 @@
   border: none;
   cursor: pointer;
 }
-.home_container .Main_container .Right .cardWrapper .loadbtn button:hover {
+.home_container .Main_container .Right .cardWrapper .loadbtn .inactiveBtn:hover {
+  color: #666;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn .activeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.home_container .Main_container .Right .cardWrapper .loadbtn .activeBtn:hover {
   color: #046BD2;
 }
-.home_container .Main_container .Right .cardWrapper .loadbtn button .icon {
+.home_container .Main_container .Right .cardWrapper .loadbtn .activeBtn .icon {
   font-size: 20px;
   font-weight: 900;
 }/*# sourceMappingURL=index.module.css.map */

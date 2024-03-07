@@ -7,16 +7,16 @@ import 'animate.css';
 import { CategoryContext } from '../../Contexts/CategoryContext';
 import Options from '../Profile_Selector/Options'
 import { Link, useNavigate } from "react-router-dom"
-import { MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
+import { MdAccountCircle, MdOutlineFavoriteBorder, MdPostAdd } from "react-icons/md";
 import { BiPurchaseTag, BiLogOut } from "react-icons/bi";
-import { SlArrowUp } from "react-icons/sl";
-import { SlArrowDown } from "react-icons/sl";
 import { UserContext } from '../../Contexts/UserContext';
 import { SocketContext } from '../../Contexts/socketContext';
 import instance from '../../instance/AxiosInstance';
 import Selector from '../Search_Selector/Selector';
 import authInstance from '../../instance/AuthInstance';
-import { Blank_Profile, Dnb_Logo } from '../../Assets/Constants';
+import Select from "react-select";
+import { Blank_Profile } from '../../Assets/Constants';
+import BoxOptions from '../Tooltip/BoxOptions';
 
 
 
@@ -35,7 +35,6 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [Toggle, setToggle] = useState(false)
   const [ToggleSelector, SetToggleSelector] = useState(false)
   const [ToggleOpt, setOpt] = useState(false)
-  const [Selected, SetSelected] = useState(false)
   const [NewMessages, SetNewMessages] = useState(false)
   const [UserData, SetUserData] = useState({})
   const [UserImage, SetUserImage] = useState('')
@@ -46,8 +45,22 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [NotificationCount, SetNotificationCount] = useState(0);
   const [ConversationCount, SetConversationCount] = useState(0);
 
+  const [isHovered, setIsHovered] = useState(false);
+  // Set back to false after 5 seconds
+  useEffect(() => {
+    if (window.location.pathname === '/') {
+      setIsHovered(true);
+      const timer = setTimeout(() => {
+        setIsHovered(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsHovered(false);
+    }
+  }, []);
 
 
+  // -- Fetching data for search items
   const HandleSearch = () => {
     try {
       instance.get(`/api/user/filter/search_products?SearchQuery=${SearchQuery}&&limit=${5}`).then((response) => {
@@ -64,6 +77,8 @@ const Navbar = ({ location, setLocation, reload }) => {
     HandleSearch()
   }, [SearchQuery])
 
+
+  // -- Function for dropdown for search bar
   const HandleSelector = (e) => {
     e.preventDefault()
 
@@ -74,9 +89,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }
 
-
-
-  //Setting New Messages in Alert
+  // -- Setting New Messages in Alert
   useEffect(() => {
     if (socket) {
       socket.on('notificationAlert', (data) => {
@@ -86,7 +99,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   }, [socket])
 
 
-
+  // -- Fetching profile data of the user
   useEffect(() => {
     try {
       instance.get(`/api/user/profile/get_profile/${User._id}`).then((Response) => {
@@ -100,6 +113,8 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User._id]);
 
+
+  // -- Function to logout from site
   const handleLogout = (e) => {
     e.preventDefault()
     localStorage.removeItem('logged');
@@ -112,7 +127,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }
 
-  //Function to get Wishlist count
+  // -- Function to get Wishlist count
   useEffect(() => {
     try {
       authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((response) => {
@@ -125,7 +140,7 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id])
 
-  //Function to get Notification count
+  // -- Function to get Notification count
   useEffect(() => {
     try {
       if (User?._id) {
@@ -141,7 +156,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   }, [User?._id, reload])
 
 
-  //Function to get Chat Conversation count
+  // -- Function to get Chat Conversation count
   useEffect(() => {
     try {
       authInstance.get(`/api/user/chat/conversation_count?userId=${User?._id}`).then((response) => {
@@ -154,22 +169,92 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id, reload])
 
+  // -- Function for nagivation to category page
   const HandleCategoryClick = (categoryId) => {
     navigate(`/category/${categoryId}`);
   }
 
+  // -- Assigning react-select options
+  const SelectOptions = Categories.map((category) => ({
+    value: category?._id,
+    label: category?.categoryName
+  }));
+
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      width: '140px',
+      height: '90%',
+      fontSize: '12px',
+      borderRight: '1px solid #111',
+      border: state.isFocused ? 'none' : state.isSelected ? 'none' : 'none',
+      borderRadius: '4px',
+      boxShadow: state.isFocused ? 'none' : null,
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+
+      '&:hover': {
+        border: 'none',
+        boxShadow: 'none', // Remove border on hover
+      },
+      '@media only screen and (max-width: 1199px)': {
+        width: '100px', // Adjust width for smaller screens
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+      '@media only screen and (max-width: 799px)': {
+        width: '140px', // Adjust width for smaller screens
+        fontSize: '12px', // Adjust font size for smaller screens
+      },
+      // Mobile styles
+      '@media only screen and (max-width: 429px)': {
+        width: '100px', // Adjust width for smaller screens
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      // borderBottom: '1px solid #ccc', // Example border for options
+      backgroundColor: state.isSelected ? '#ccc' : provided.backgroundColor,
+      color: state.isSelected ? 'white' : provided.color,
+      fontSize: '12px',
+      // Mobile styles
+      '@media only screen and (max-width: 580px)': {
+        fontSize: '10px', // Adjust font size for smaller screens
+      },
+    }),
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      borderLeft: 'none',  // Remove border from the dropdown indicator
+    }),
+    indicatorSeparator: () => ({
+      display: 'none', // Hide the separator
+    }),
+  };
+
+  // -- Handle search on pressing enter key
+  const HandleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (SearchResult.length === 1) {
+        navigate(`/product/${SearchResult[0]._id}`);
+        SetToggleSelector(false);
+      } else {
+        navigate(`/search/${SearchQuery}`);
+        SetToggleSelector(false);
+      }
+    }
+  };
 
   return (
     <div className={Style.header_container}>
       <div className={Style.Container}>
         <div className={Style.Branding}>
 
-          <div>
+          <div className={Style.Branding_wrapper}>
+
             <button onClick={() => { setToggle(true) }} className={`${Style.Toggle}`}>
               <GiHamburgerMenu />
             </button>
-
-            <img src={Dnb_Logo} alt="" />
 
             <Link to='/' className={Style.navigation}
               onClick={() => {
@@ -184,27 +269,28 @@ const Navbar = ({ location, setLocation, reload }) => {
 
           </div>
 
-          {User._id ?
-            <div className={Style.profile_Div} onClick={() => navigate('/profile')} >
-              <img
-                src={UserImage ?
-                  UserImage
-                  : Blank_Profile
-                }
-                alt="profile"
-              />
-            </div>
-            :
-            <div className={Style.loginBtn_Div}>
-              <Link to='/registration_login' className={Style.navigation} > <button>Login</button></Link>
-            </div>
-          }
+          <div className={Style.PostAdBtn_Div} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <Link to='/postadd' className={Style.navigation}>
+              <button>Post Free Ad</button>
+              {isHovered && <BoxOptions />}
+            </Link>
+          </div>
 
         </div>
 
         <div className={Style.Search}>
 
           <div className={Style.Search_container}>
+
+            <div className={Style.dropdown}>
+              <Select
+                placeholder="All Categories"
+                options={SelectOptions}
+                onChange={(e) => HandleCategoryClick(e.value)}
+                styles={customStyles}
+              />
+            </div>
+
             <input
               type="search"
               placeholder='Search Here'
@@ -213,11 +299,15 @@ const Navbar = ({ location, setLocation, reload }) => {
                 SetSearchQuery(e.target.value)
                 HandleSelector(e)
               }}
+              onKeyPress={(e) => HandleKeyPress(e)}
             />
+
             <button onClick={HandleSearch}><BsSearch /></button>
+
           </div>
 
           {ToggleSelector && <Selector result={SearchResult} query={SearchQuery} />}
+
         </div>
 
         <div className={Style.Options}>
@@ -252,16 +342,18 @@ const Navbar = ({ location, setLocation, reload }) => {
             </div>
           }
 
-          <div className={Style.ButtonContainer}>
-            <Link to='/postadd' className={Style.navigation} > <button>Post Ad</button></Link>
+          <div className={Style.ButtonContainer} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <Link to='/postadd' className={Style.navigation}><button>Post Free Ad</button></Link>
+            {isHovered && <BoxOptions />}
           </div>
+
         </div>
         {
           Toggle ? <div className={`${Style.Mobile_screen} ${Toggle ? Style.in : Style.out}`}>
 
             <div className={Style.logoContainer}>
-              <div className={Style.logo_wrap}>
 
+              <div className={Style.logo_wrap}>
                 <Link to='/' className={Style.navigation}
                   onClick={() => {
                     if (window.location.pathname === '/') {
@@ -272,11 +364,12 @@ const Navbar = ({ location, setLocation, reload }) => {
                   }}>
                   <h1>DealNBuy</h1>
                 </Link>
-
               </div>
+
               <div>
                 <button> <IoCloseOutline onClick={() => setToggle(false)} /></button>
               </div>
+
             </div>
 
             <div className={Style.ProfileContainer}>
@@ -305,40 +398,47 @@ const Navbar = ({ location, setLocation, reload }) => {
               }
             </div>
 
-            <div className={Style.categoryContainer}>
-              <div className={Style.accordion}>
-                <div className={Style.item}  >
-                  <div className={Style.title} onClick={() => SetSelected(!Selected)}>
-                    <h3>Category</h3>
-                    <span>{Selected ? <SlArrowUp /> : <SlArrowDown />} </span>
-                  </div>
-
-                  <div className={Selected ? Style.show : Style.content} >
-                    {Categories.map((data, index) => {
-                      return (
-                        <div className={Style.row} key={data?._id} onClick={() => HandleCategoryClick(data?._id)}>
-                          <h3>{data?.categoryName}</h3>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div className={Style.menuContainer}>
               <div className={Style.menutitle}>
                 <h4>Menu</h4>
               </div>
-              <div className={Style.menu_wrap}>
 
+              <div className={Style.menu_wrap}>
                 <ul>
+                  <Link to="/profile" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <MdAccountCircle className={Style.icons} />
+                      <span>My Account</span>
+                    </li>
+                  </Link>
                   <Link to="/postadd" className={Style.navigation} >
                     <li className={Style.list_items} >
                       <MdPostAdd className={Style.icons} />
                       <span>PostAd</span>
                     </li>
                   </Link>
+
+                  <Link to="/myads" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <BsCartPlus className={Style.icons} />
+                      <span>My Ads</span>
+                    </li>
+                  </Link>
+
+                  <Link to="/subscribe" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <BiPurchaseTag className={Style.icons} />
+                      <span>Purchase Ads</span>
+                    </li>
+                  </Link>
+
+                </ul>
+              </div>
+            </div>
+
+            <div className={Style.menuContainer}>
+              <div className={Style.menu_wrap}>
+                <ul>
                   <Link to="/chat" className={Style.navigation} >
                     <li>
                       <div className={Style.Options} >
@@ -352,6 +452,7 @@ const Navbar = ({ location, setLocation, reload }) => {
                       </div>
                     </li>
                   </Link>
+
                   <Link to="/notification" className={Style.navigation} >
                     <li>
                       <div className={Style.Options} >
@@ -363,19 +464,6 @@ const Navbar = ({ location, setLocation, reload }) => {
                           <div className={Style.counter}>{NotificationCount}</div>
                         )}
                       </div>
-                    </li>
-                  </Link>
-                  <Link to="/myads" className={Style.navigation} >
-                    <li className={Style.list_items} >
-                      <BsCartPlus className={Style.icons} />
-                      <span>My Ads</span>
-                    </li>
-                  </Link>
-
-                  <Link to="/subscribe" className={Style.navigation} >
-                    <li className={Style.list_items} >
-                      <BiPurchaseTag className={Style.icons} />
-                      <span>Purchase Ads</span>
                     </li>
                   </Link>
 
@@ -392,6 +480,14 @@ const Navbar = ({ location, setLocation, reload }) => {
                       </div>
                     </li>
                   </Link>
+
+                </ul>
+              </div>
+            </div>
+
+            <div className={Style.menuContainer} style={{ borderBottom: 'none' }}>
+              <div className={Style.menu_wrap}>
+                <ul>
                   {User._id ?
                     <li className={Style.list_items} onClick={(e) => { handleLogout(e) }}>
                       <BiLogOut className={Style.icons} />
@@ -399,13 +495,9 @@ const Navbar = ({ location, setLocation, reload }) => {
                     </li>
                     : null
                   }
-
                 </ul>
-
               </div>
             </div>
-
-
 
           </div> : ""
         }

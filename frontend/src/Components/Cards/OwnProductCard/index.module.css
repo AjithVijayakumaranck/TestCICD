@@ -1,12 +1,11 @@
 .products {
   width: 100%;
-  max-width: 200px;
+  max-width: 100%;
   min-width: 140px;
   transition: box-shadow 0.35s ease;
   background-color: #fff;
   margin-bottom: 0 !important;
   border-radius: 5px;
-  padding: 5px;
   cursor: pointer;
 }
 .products:hover {

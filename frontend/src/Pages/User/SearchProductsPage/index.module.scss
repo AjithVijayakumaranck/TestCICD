@@ -17,7 +17,7 @@
         }
 
         @include mediumScreen {
-            margin-top: 80px;
+            margin-top: 120px;
         }
 
         @include LargeScreen {
@@ -45,7 +45,7 @@
 
                     @include breakpoint(md) {
                         margin: 0 0;
-                        padding: 0 20px;
+                        padding: 0 10px;
                     }
 
                     @include mediumScreen {
@@ -78,7 +78,7 @@
 
                         @include breakpoint(md) {
                             grid-template-columns: 1fr 1fr;
-                            gap: 10px 20px;
+                            gap: 10px;
                         }
 
                         @include mediumScreen {
@@ -105,12 +105,32 @@
                 gap: 20px;
                 padding: 3rem 0 1rem 0;
 
-                button {
+                .inactiveBtn {
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     gap: 10px;
-                    color: $base-color5;
+                    color: $base_color5;
+                    background-color: transparent;
+                    padding: 10px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $base_color5;
+                    }
+                }
+
+                .activeBtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    color: $base_color5;
                     background-color: transparent;
                     padding: 10px;
                     font-size: 1.2rem;

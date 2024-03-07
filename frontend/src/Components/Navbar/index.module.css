@@ -7,7 +7,7 @@
   box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
 }
 .header_container .Container {
-  padding: 0 80px;
+  padding: 0 60px;
   min-height: 5rem;
   display: flex;
   justify-content: center;
@@ -15,32 +15,30 @@
   align-items: center;
   background-color: white;
   z-index: 999;
-  gap: 10px;
+  gap: 30px;
 }
 @media (max-width: 550px) {
   .header_container .Container {
     gap: 0;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
     flex-direction: column;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .header_container .Container {
-    padding: 0 20px;
-    gap: 20px;
+    gap: 0;
+    padding: 0.4rem 0.8rem;
+    flex-direction: column;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
   .header_container .Container {
     padding: 0 40px;
-  }
-}
-@media (min-width: 768px) and (max-width: 900px) {
-  .header_container .Container {
-    padding: 0 20px;
+    gap: 10px;
   }
 }
 .header_container .Container .navigation {
+  position: relative;
   text-decoration: none;
   color: #111;
 }
@@ -56,109 +54,71 @@
     justify-content: space-between;
   }
 }
-.header_container .Container .Branding .profile_Div {
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Branding {
+    justify-content: space-between;
+  }
+}
+.header_container .Container .Branding .PostAdBtn_Div {
   display: none;
 }
+.header_container .Container .Branding .PostAdBtn_Div button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 2rem;
+  border: none;
+  color: #fff;
+  margin: 0;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+  padding: 0.3rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.header_container .Container .Branding .PostAdBtn_Div button:hover {
+  color: #fff;
+}
 @media (max-width: 550px) {
-  .header_container .Container .Branding .profile_Div {
+  .header_container .Container .Branding .PostAdBtn_Div {
     display: contents;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 100%;
-  }
-  .header_container .Container .Branding .profile_Div img {
-    width: 2rem;
-    height: 2rem;
-    margin: 0 1rem;
-    border-radius: 0.4rem;
+    position: relative;
   }
 }
-.header_container .Container .Branding .loginBtn_Div {
-  display: none;
-}
-@media (max-width: 550px) {
-  .header_container .Container .Branding .loginBtn_Div {
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Branding .PostAdBtn_Div {
     display: contents;
-  }
-  .header_container .Container .Branding .loginBtn_Div .navigation {
-    padding: 0 1rem;
-  }
-  .header_container .Container .Branding .loginBtn_Div button {
-    width: 3.5rem;
-    height: 2rem;
-    border: none;
-    background: transparent;
-    color: white;
-    margin: 0;
-    background-color: #046BD2;
-    padding: 0.3rem 0.6rem;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .header_container .Container .Branding .loginBtn_Div button:hover {
-    background-color: white;
-    border: 1px solid #046BD2;
-    color: #046BD2;
+    position: relative;
   }
 }
-.header_container .Container .Branding div {
+.header_container .Container .Branding .Branding_wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-@media (max-width: 550px) {
-  .header_container .Container .Branding div {
-    gap: 10px;
-  }
-}
-.header_container .Container .Branding div button {
+.header_container .Container .Branding .Branding_wrapper button {
   border: 0;
   background: transparent;
   aspect-ratio: 1;
   font-size: 24px;
-  margin-left: 10px;
   display: none;
   cursor: pointer;
 }
-.header_container .Container .Branding div button:hover {
+.header_container .Container .Branding .Branding_wrapper button:hover {
   color: #046BD2;
 }
 @media (max-width: 550px) {
-  .header_container .Container .Branding div button {
+  .header_container .Container .Branding .Branding_wrapper button {
     display: flex;
     align-items: center;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
-  .header_container .Container .Branding div button {
+  .header_container .Container .Branding .Branding_wrapper button {
     display: flex;
     align-items: center;
-  }
-}
-@media (min-width: 768px) and (max-width: 900px) {
-  .header_container .Container .Branding div button {
-    display: flex;
-    align-items: center;
-  }
-}
-.header_container .Container .Branding img {
-  height: 2.5rem;
-  width: 4rem;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-@media (max-width: 550px) {
-  .header_container .Container .Branding img {
-    height: 3rem;
-    width: 4rem;
-  }
-}
-@media (min-width: 550px) and (max-width: 768px) {
-  .header_container .Container .Branding img {
-    height: 3rem;
-    width: 4rem;
   }
 }
 .header_container .Container .Branding h1 {
@@ -170,11 +130,16 @@
 }
 @media (max-width: 550px) {
   .header_container .Container .Branding h1 {
-    display: none;
     font-size: 1.3rem;
     font-weight: 600;
     padding: 5px 0;
     margin: 0.3rem 0;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Branding h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
@@ -193,7 +158,12 @@
 }
 @media (max-width: 550px) {
   .header_container .Container .Search {
-    width: 90%;
+    width: 100%;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Search {
+    width: 100%;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
@@ -209,7 +179,7 @@
   align-items: center;
   border-radius: 5px;
   border: 1px solid #046BD2;
-  padding: 5px 10px;
+  padding: 5px;
 }
 @media (max-width: 550px) {
   .header_container .Container .Search .Search_container {
@@ -220,6 +190,18 @@
   .header_container .Container .Search .Search_container {
     font-size: 1.8rem;
   }
+}
+.header_container .Container .Search .Search_container .dropdown {
+  height: 90%;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid lightgrey;
+  margin-right: 10px;
+}
+.header_container .Container .Search .Search_container .dropdown select {
+  width: 100px;
+  border: none;
+  outline: none;
 }
 .header_container .Container .Search .Search_container input {
   display: flex;
@@ -259,10 +241,10 @@
 }
 .header_container .Container .Options {
   display: flex;
-  gap: 20px;
-  justify-content: center;
+  gap: 25px;
+  justify-content: flex-end;
   align-items: center;
-  flex: 3;
+  flex: 2;
 }
 @media (max-width: 550px) {
   .header_container .Container .Options {
@@ -274,9 +256,9 @@
     display: none;
   }
 }
-@media (min-width: 768px) and (max-width: 900px) {
+@media (min-width: 900px) and (max-width: 1024px) {
   .header_container .Container .Options {
-    display: none;
+    gap: 10px;
   }
 }
 .header_container .Container .Options .OptionsWrapper {
@@ -324,12 +306,12 @@
   }
 }
 .header_container .Container .Options .profile {
+  position: relative;
   aspect-ratio: 1;
   width: 35px;
   height: 35px;
   border-radius: 7px;
   border: 1px solid #ebebeb;
-  position: relative;
 }
 @media (max-width: 550px) {
   .header_container .Container .Options .profile {
@@ -342,8 +324,8 @@
   }
 }
 .header_container .Container .Options .profile img {
-  width: 35px;
-  height: 35px;
+  width: 100%;
+  height: 100%;
   border-radius: 7px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -357,6 +339,7 @@
   padding: 10px 12px;
   border-radius: 5px;
   font-size: 14px;
+  text-overflow: ellipsis;
   font-weight: 600;
   cursor: pointer;
 }
@@ -375,19 +358,28 @@
     display: none;
   }
 }
+.header_container .Container .Options .ButtonContainer {
+  position: relative;
+}
 .header_container .Container .Options .ButtonContainer button {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-overflow: ellipsis;
   border: none;
   background: transparent;
   color: white;
-  background-color: #046BD2;
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
   padding: 10px 12px;
   border-radius: 5px;
   font-size: 14px;
+  text-overflow: ellipsis;
   font-weight: 600;
   cursor: pointer;
 }
 .header_container .Container .Options .ButtonContainer button:hover {
-  background-color: white;
+  background: white;
   border: 1px solid #046BD2;
   color: #046BD2;
 }
@@ -441,8 +433,36 @@
   justify-content: space-around;
   width: 100%;
 }
+.header_container .Container .Mobile_screen .logoContainer .logo_wrap img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  cursor: pointer;
+}
+@media (max-width: 550px) {
+  .header_container .Container .Mobile_screen .logoContainer .logo_wrap img {
+    height: 3rem;
+    width: 6rem;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Mobile_screen .logoContainer .logo_wrap img {
+    height: 3rem;
+    width: 6rem;
+  }
+}
 .header_container .Container .Mobile_screen .logoContainer .logo_wrap h1 {
   color: #046BD2;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .header_container .Container .Mobile_screen .logoContainer .logo_wrap h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
 }
 .header_container .Container .Mobile_screen .logoContainer div button {
   display: flex;
@@ -459,8 +479,8 @@
   width: 100%;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid lightgrey;
-  border-top: 2px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap {
   width: 100%;
@@ -510,6 +530,7 @@
   display: flex;
   flex-direction: column;
   place-content: center;
+  border-bottom: 1px solid lightgrey;
   width: 100%;
 }
 .header_container .Container .Mobile_screen .menuContainer .menutitle {
@@ -554,7 +575,6 @@
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items span {
   font-size: 16px;
   font-weight: 400;
-  margin-left: 5px;
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options,
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options {
@@ -565,11 +585,17 @@
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .OptionsWrapper {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .OptionsWrapper .icons,
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .OptionsWrapper .icons {
   font-size: 18px;
   padding-left: 10px;
+}
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .OptionsWrapper span,
+.header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .OptionsWrapper span {
+  font-size: 16px;
+  font-weight: 400;
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li .Options .counter,
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items .Options .counter {
@@ -585,62 +611,6 @@
   color: #fff;
   background-color: #046BD2;
   border-radius: 50%;
-}
-.header_container .Container .Mobile_screen .categoryContainer {
-  display: flex;
-  place-content: center;
-  width: 100%;
-  border-bottom: 2px solid lightgrey;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion {
-  width: 100%;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item {
-  padding: 10px;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .title {
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .title h3 {
-  font-size: 18px;
-  font-weight: 500;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .content {
-  color: black;
-  overflow-y: hidden;
-  max-height: 0;
-  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show {
-  height: 50vh;
-  overflow-y: auto;
-  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
-  text-align: center;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show::-webkit-scrollbar {
-  display: none;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show .row {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  place-content: center;
-  padding: 10px;
-  cursor: pointer;
-  border-top: 1px solid lightgrey;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show .row:hover {
-  background-color: #046BD2;
-  color: #fff;
-  border-radius: 5px;
-}
-.header_container .Container .Mobile_screen .categoryContainer .accordion .item .show .row h3 {
-  font-size: 16px;
-  font-weight: 300;
 }
 
 .in {

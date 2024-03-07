@@ -20,7 +20,7 @@ const Home = () => {
   const [SortedProducts, SetSortedProducts] = useState([]);
   const [CurrentPage, SetCurrentPage] = useState(0);
   const [SliderImage, SetSliderImage] = useState([]);
-
+  const [IsLastPage, SetIsLastPage] = useState(false);
 
 
   const loadProducts = () => {
@@ -51,17 +51,6 @@ const Home = () => {
   }, []);
 
 
-  const handlePreviousPage = () => {
-    if (CurrentPage > 1) {
-      SetCurrentPage(CurrentPage - 12);
-    }
-  };
-
-  const handleNextPage = () => {
-    SetCurrentPage(CurrentPage + 12);
-  };
-
-
   //LoadSlider Image functions
   useEffect(() => {
     try {
@@ -75,6 +64,18 @@ const Home = () => {
     }
   }, []);
 
+  // -- functions to check that islast page
+  useEffect(() => {
+    try {
+      instance.get(`/api/user/product/check_lastpage?page=${CurrentPage}`).then((response) => {
+        SetIsLastPage(response?.data?.lastPage)
+      }).catch((error) => {
+        console.log(error);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [CurrentPage]);
 
 
   const findPremiumProducts = () => {
@@ -94,6 +95,19 @@ const Home = () => {
   }, [Products]);
 
 
+  const handlePreviousPage = () => {
+    if (CurrentPage > 1) {
+      SetCurrentPage(CurrentPage - 12);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (IsLastPage === false) {
+      SetCurrentPage(CurrentPage + 12);
+    }
+  };
+
+
   return (
     <div className={Style.home_container}>
       <ScrollToTopOnMount />
@@ -109,8 +123,17 @@ const Home = () => {
             <HomeProduct sortedproducts={SortedProducts} />
             {SortedProducts.length !== 0 ?
               <div className={Style.loadbtn}>
-                <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                <button
+                  onClick={handlePreviousPage}
+                  className={CurrentPage === 0 ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                  disabled={CurrentPage === 0} >
+                  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev
+                </button>
+                <button
+                  onClick={handleNextPage}
+                  className={IsLastPage ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                  disabled={IsLastPage} > Next <HiOutlineArrowNarrowRight className={Style.icon} />
+                </button>
               </div>
               : null
             }

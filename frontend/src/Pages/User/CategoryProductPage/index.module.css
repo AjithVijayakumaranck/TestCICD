@@ -16,7 +16,7 @@
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main {
-    margin-top: 80px;
+    margin-top: 120px;
   }
 }
 @media (min-width: 900px) and (max-width: 1024px) {
@@ -32,17 +32,21 @@
 .page_wrapper .main .productwrapper .container {
   margin: 0 4rem;
   display: block;
-  padding: 0 20px;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container {
     margin: 0 0;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container {
-    margin: 0 1rem;
+    margin: 0 1.5rem;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .page_wrapper .main .productwrapper .container {
+    margin: 0 3rem;
   }
 }
 .page_wrapper .main .productwrapper .container .heading {
@@ -103,7 +107,6 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  padding: 10px;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container {
@@ -139,6 +142,7 @@
   color: #666;
 }
 .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
+  width: 100%;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -151,12 +155,12 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 900px) and (max-width: 1024px) {
+@media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (min-width: 550px) and (max-width: 768px) {
+@media (min-width: 900px) and (max-width: 1024px) {
   .page_wrapper .main .productwrapper .container .Wrapper .Right_container .card_container {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -170,7 +174,7 @@
   gap: 20px;
   padding: 1rem 0;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .inactiveBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,16 +183,34 @@
   background-color: transparent;
   padding: 10px;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   border-radius: 5px;
   border: none;
   cursor: pointer;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button:hover {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .inactiveBtn:hover {
+  color: #666;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  background-color: transparent;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn:hover {
   color: #046BD2;
 }
-.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn button .icon {
+.page_wrapper .main .productwrapper .container .Wrapper .Right_container .loadbtn .activeBtn .icon {
   font-size: 20px;
   font-weight: 900;
 }/*# sourceMappingURL=index.module.css.map */

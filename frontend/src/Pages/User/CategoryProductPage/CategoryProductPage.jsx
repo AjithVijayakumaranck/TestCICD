@@ -17,7 +17,7 @@ const CategoryProductPage = () => {
     const pathSegment = location.pathname.split('/').filter((segment) => segment);
 
 
-    const { categoryId } = useParams()
+    const { categoryId } = useParams();
 
     const [Categories, SetCategories] = useState([]);
     const [Products, SetProducts] = useState([]);
@@ -25,7 +25,7 @@ const CategoryProductPage = () => {
     const [Subcategory, SetSubcategory] = useState([]);
     const [Filters, SetFilters] = useState([]);
 
-    const [CatId, SetCatId] = useState(categoryId);
+    const [DefaultId, SetDefaultId] = useState(categoryId);
     const [Min, SetMin] = useState('');
     const [Max, SetMax] = useState('');
     const [SubValue, SetSubValue] = useState("");
@@ -34,6 +34,8 @@ const CategoryProductPage = () => {
 
     const [DistrictValue, SetDistrictValue] = useState("");
     const [SortedProducts, SetSortedProducts] = useState([]);
+
+    const [IsLastPage, SetIsLastPage] = useState(false);
 
 
     useEffect(() => {
@@ -45,12 +47,12 @@ const CategoryProductPage = () => {
             console.log(error);
         });
     }, []);
-    
+
 
 
     const loadProducts = () => {
         try {
-            instance.get(`/api/user/filter/filter_products?category=${CatId}&min=${Min}&max=${Max}&page=${CurrentPage}
+            instance.get(`/api/user/filter/filter_products?category=${categoryId}&min=${Min}&max=${Max}&page=${CurrentPage}
             &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${JSON.stringify(OtherSelectedFilter)}`).then((response) => {
                 SetProducts([...response.data]);
             }).catch((error) => {
@@ -60,6 +62,7 @@ const CategoryProductPage = () => {
             console.log(error);
         }
     };
+
 
     const findPremiumProducts = () => {
         const sortedProducts = Products.sort((a, b) => {
@@ -73,6 +76,19 @@ const CategoryProductPage = () => {
         SetSortedProducts(sortedProducts)
     }
 
+    // -- functions to check that islast page
+    useEffect(() => {
+        try {
+            instance.get(`/api/user/product/check_lastpage?page=${CurrentPage}`).then((response) => {
+                SetIsLastPage(response?.data?.lastPage)
+            }).catch((error) => {
+                console.log(error);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }, [CurrentPage]);
+
     useEffect(() => {
         findPremiumProducts();
     }, [Products]);
@@ -81,7 +97,7 @@ const CategoryProductPage = () => {
     //LoadCategory functions
     useEffect(() => {
         loadProducts();
-    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, CatId]);
+    }, [CurrentPage, Min, Max, SubValue, StateValue, DistrictValue, OtherSelectedFilter, categoryId, DefaultId]);
 
 
     const handlePreviousPage = () => {
@@ -91,11 +107,13 @@ const CategoryProductPage = () => {
     };
 
     const handleNextPage = () => {
-        SetCurrentPage(CurrentPage + 12);
+        if (IsLastPage === false) {
+            SetCurrentPage(CurrentPage + 12);
+        }
     };
 
     const HandleDefault = () => {
-        SetCatId(categoryId);
+        SetDefaultId(categoryId);
         SetMax("");
         SetMin("");
         SetSubValue("");
@@ -190,8 +208,17 @@ const CategoryProductPage = () => {
 
                                 {SortedProducts.length !== 0 ?
                                     <div className={Style.loadbtn}>
-                                        <button onClick={handlePreviousPage} disabled={CurrentPage === 1} >  <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev </button>
-                                        <button onClick={handleNextPage}  > Next <HiOutlineArrowNarrowRight className={Style.icon} /> </button>
+                                        <button
+                                            onClick={handlePreviousPage}
+                                            className={CurrentPage === 0 ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                                            disabled={CurrentPage === 0} >
+                                            <HiOutlineArrowNarrowLeft className={Style.icon} /> Prev
+                                        </button>
+                                        <button
+                                            onClick={handleNextPage}
+                                            className={IsLastPage ? `${Style.inactiveBtn}` : `${Style.activeBtn}`}
+                                            disabled={IsLastPage} > Next <HiOutlineArrowNarrowRight className={Style.icon} />
+                                        </button>
                                     </div>
                                     : null
                                 }

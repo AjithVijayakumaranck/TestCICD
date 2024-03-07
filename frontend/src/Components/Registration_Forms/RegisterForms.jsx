@@ -9,12 +9,12 @@ import { BiArrowBack } from "react-icons/bi";
 import { UserContext } from "../../Contexts/UserContext";
 import { toast } from "react-toastify";
 import authInstance from "../../instance/AuthInstance";
+import LoadingSpin from 'react-loading-spin'
 import PopupModel from "../Models/PopupModel/PopupModel";
 
 
 
 const RegisterForm = ({ FormInputs, SubCategoryData }) => {
-
 
   const LoggedInUser = useContext(UserContext);
   const { User, SetUser } = LoggedInUser
@@ -32,6 +32,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
     region: ""
   })
 
+  const [Loading, SetLoading] = useState(false);
   const [Categories, SetCategories] = useState('');
   const [OtherDet, SetOtherDet] = useState({})
   const [UserData, SetUserData] = useState([])
@@ -45,7 +46,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   const [District, SetDistrict] = useState([])
   const [DistrictId, SetDistrictId] = useState("")
   const [Locality, SetLocality] = useState([])
-  const [Featured, SetFeatured] = useState(false)
 
   const [Limit, SetLimit] = useState(0);
   const [ModelOpen, SetModelOpen] = useState(false);
@@ -145,8 +145,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
 
 
-
-
   //Image upload function
   const uploadFile = (e) => {
     const files = Array.from(e.target.files);
@@ -193,12 +191,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       newErrors.imgfile = 'Product image is required';
     }
 
-    if (User.premiumuser === true) {
-      SetFeatured(true)
-    } else {
-      SetFeatured(false)
-    }
-
     SetError(newErrors);
     return Object.keys(newErrors).length === 0;
 
@@ -206,7 +198,8 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
   //Handle Submit function 
   const HandleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    SetLoading(true);
 
     if (validateForm()) {
 
@@ -221,21 +214,22 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
       data.append("title", ProductData.title)
       data.append("description", ProductData.description)
-      data.append("subcategory", SubCategoryData._id)
+      data.append("subcategory", SubCategoryData?._id)
       data.append("category", Categories._id)
-      data.append("userId", User._id)
+      data.append("userId", User?._id)
       data.append("price", ProductData.price)
       data.append("listedBy", ProductData.listedBy)
       data.append("locality", ProductData.locality)
       data.append("district", ProductData.district)
       data.append("state", ProductData.state)
       data.append("region", ProductData.region)
-      data.append("featured", Featured)
+      data.append("featured", User?.premiumuser)
 
       if (UserData?.AdCount > 0) {
         authInstance.post('api/user/product/addproduct', data, {
           headers: { 'Content-Type': 'multipart/form-data' },
         }).then((response) => {
+          SetLoading(false);
           toast.success("Product Added Successfully")
           Navigate('/postadd')
 
@@ -253,14 +247,16 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
           SetFile([]);
 
         }).catch((err) => {
-          console.log(err);
+          SetLoading(false);
           toast.error("Something Went Wrong")
         })
       } else {
+        SetLoading(false);
         SetModelOpen(true);
       }
     } else {
-      console.log('Form validation failed');
+      SetLoading(false);
+      toast.error("Something Went Wrong");
     }
   }
 
@@ -556,7 +552,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                 value={UserData.email}
               />
             </div>
-            
+
             <label>Phone Number </label>
             <div className={Style.items}>
               <input type="text"
@@ -567,7 +563,11 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
           </div>
           <div className={Style.submit_section}>
-            <button>Post Now</button>
+            <button>{Loading ? (
+              <LoadingSpin size="20px" direction="alternate" width="4px" />
+            ) : (
+              "Post Now"
+            )}</button>
           </div>
         </form>
       </div >

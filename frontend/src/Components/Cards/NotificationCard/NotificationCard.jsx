@@ -3,6 +3,7 @@ import Style from './Style.module.css'
 import TimeAgo from 'react-timeago';
 import { IoMailOpenSharp } from "react-icons/io5";
 import { IoMdMail } from "react-icons/io";
+import Logo from '../../../Assets/Images/logo.webp'
 
 
 
@@ -17,7 +18,7 @@ const NotificationCard = ({ HandleRead, Alert, User }) => {
                 return (
                     <div className={Style.Item} key={index} onClick={() => HandleRead(alert?._id)}>
                         <div className={Style.left} >
-                            <img src="/imgs/logo.jpg" alt="" />
+                            <img src={Logo} alt="" />
                             <h4>{alert?.notification}</h4>
                         </div>
                         <div className={Style.right}>
