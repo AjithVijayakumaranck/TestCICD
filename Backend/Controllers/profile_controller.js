@@ -44,6 +44,7 @@ module.exports = {
                                 username: userDetails.username,
                                 dob: userDetails.dob,
                                 address: {
+                                    houseName: toString(userDetails.address.houseDetails),
                                     locality: userDetails.address.locality,
                                     district: userDetails.address.district,
                                     state: userDetails.address.state,
@@ -75,6 +76,7 @@ module.exports = {
                             username: userDetails.username,
                             dob: userDetails.dob,
                             address: {
+                                houseName: toString(userDetails.address.houseDetails),
                                 locality: userDetails.address.locality,
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
@@ -435,9 +437,13 @@ module.exports = {
                 USER.updateOne({_id:userId},{$set:{
                     showDob:toggleValues?.showDob,
                     showName:toggleValues?.showName,
+                    showSurname:toggleValues?.showSurname,
                     showEmail:toggleValues?.showEmail,
-                    showAddress:toggleValues?.showAddress,
+                    showAddress:toggleValues?.showAddress,  //optional
                     showPhonenumber:toggleValues?.showPhonenumber,
+                    showStreetName:toggleValues?.streetName,
+                    showAdditionalInformation:toggleValues?.additionalInformation,
+                    showHouseDetails:toggleValues?.houseDetails,
                 }},{new:true}).then((response)=>{
                     res.status(200).json({message:"privacy settings changed"})
                 }).catch((error)=>{

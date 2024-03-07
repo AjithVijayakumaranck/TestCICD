@@ -22,5 +22,8 @@ router.get('/get_user_products/:userId',authoriseJwt,productController.getUserPr
 //lastpage Status
 router.get("/check_lastpage",productController.getLastPage)
 
+// delete Product/mark it sold
+router.delete('/product_sold',productController.soldProduct)
+
 
 module.exports = router

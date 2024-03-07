@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { TrustProductsEntityAssignmentsListInstance } = require('twilio/lib/rest/trusthub/v1/trustProducts/trustProductsEntityAssignments');
 const schema = mongoose.Schema;
 
 const USERschema = new schema({
@@ -32,6 +33,8 @@ const USERschema = new schema({
     type: String
   },
   address: {
+    streetName: {type:String},
+    houseName:{ type: String},
     locality: { type: String },
     district: { type: String },
     state: { type: String },
@@ -97,17 +100,34 @@ const USERschema = new schema({
     type: Boolean,
     default: true
   },
+  showSurname:{
+    type: Boolean,
+    default: true
+  },
+  showStreetName:{
+    type: Boolean,
+    default: true
+  },
+  showAdditionalInformation:{
+    type: Boolean,
+    default: true
+  },
+  showHouseDetails :{
+    type: Boolean,
+    default: true
+  },
   showDob: {
     type: Boolean,
     default: true
   },
   showAddress: {
     type: Boolean,
-    default: false
+    default: true
   },
   pseudoName:{
     type:String
   },
+  
   showEmail: {
     type: Boolean,
     default: false
