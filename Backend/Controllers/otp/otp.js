@@ -19,12 +19,15 @@ const sendOTP = async ({ email, subject="", message="", duration = 10 }) => {
         const generatedPin = await generateOtp()
 
         //send email
-        const mailOptions = {
+        const mailOptions ={
             from: AUTH_EMAIL,
             to: email,
             subject,
-            html: `<p style = "color:blue">SignUp Otp</p><p style = "color:red;font-size:25px;letter-spacing:2px;"><b>${generatedPin}</b></p><p>
-            This otp will expire in ${duration} minutes</p>`
+            template:'invoice',
+            context:{
+                otp:generatedPin,
+                duration:duration
+            }
         }
 
         await sendEmail(mailOptions)

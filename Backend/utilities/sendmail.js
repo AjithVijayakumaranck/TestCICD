@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer')
+const path = require('path')
+var hbs = require('nodemailer-express-handlebars');
 
 const { AUTH_EMAIL, AUTH_PASS } = process.env
 
@@ -16,14 +18,25 @@ let transporter = nodemailer.createTransport({
     
 })
 
+//handlebars options
+const handlebarOptions = {
+    viewEngine: {
+      extName: ".handlebars",
+      partialsDir: path.resolve('./Views'),
+      defaultLayout: false,
+    },
+    viewPath: path.resolve('./Views'),
+    extName: ".handlebars",
+  } 
+  transporter.use('compile', hbs(handlebarOptions));
+
+
 //test transporter
 transporter.verify((error, success) => {
     if (error) {
-        console.log(AUTH_EMAIL,AUTH_PASS);
         console.log(error.message);
         throw error
     } else {
-        console.log(AUTH_EMAIL,AUTH_PASS);
         console.log("transporter working fine");
     }
 });

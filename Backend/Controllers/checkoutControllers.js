@@ -41,12 +41,13 @@ module.exports = {
     })
     if(orderCreated){
       res.status(200).json({orderId:orderCreated.id,amount:orderCreated.amount,currency:orderCreated.currency})
-    }else{
+    }
+    else{
       res.status(500).json({message:"order not created"})
     }
     } catch (error) {
-      console.log(error.message);
-      res.status(500).json(error.message)
+      console.log(error);
+      res.status(500).json(error)
     }
   },
 
@@ -57,7 +58,9 @@ module.exports = {
       const secret = process.env.RAZORPAY_SECRET
   
     const sha = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET);
+
     //order_id + "|" + razorpay_payment_id
+    
     sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
     const digest = sha.digest("hex");
     if (digest !== razorpay_signature) {

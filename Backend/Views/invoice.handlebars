@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            min-height: 100vh;
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f2f2f2;
+        }
+
+        .container {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            background: #fff;
+        }
+
+        .container .section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            display: flex;
+        }
+
+        .header-section .left {
+            display: flex;
+            flex: 2;
+            flex-direction: column;
+        }
+
+        .header-section .right {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            padding-right: 20px;
+        }
+
+        .left .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left .header h1 {
+            color: #0564d1;
+            margin: 5px;
+            font-size: 36px;
+        }
+
+        .left .content {
+            height: 200px;
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .left .content .link {
+            color: #111;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .left .content .clr-link {
+            color: #0564d1;
+            text-decoration: underline;
+        }
+
+        .content p {
+            margin: 5px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .right .invoice-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+        }
+
+        .right .header h2 {
+            color: grey;
+        }
+
+        .invoice-content .left-invoice p {
+            margin: 5px 0;
+            padding: 8px 0;
+            line-height: 1;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .invoice-content .right-invoice p {
+            margin: 5px 0;
+            padding: 8px 10px;
+            line-height: 1;
+            font-size: 12px;
+            font-weight: 600;
+            background: #f2f2f2;
+        }
+
+        .section .Invoice-to {
+            /* width: 100%; */
+            padding: 10px 20px;
+        }
+
+        .Invoice-to .header {
+            width: 40%;
+            background: rgb(33, 235, 117);
+            padding: 10px;
+        }
+
+        .Invoice-to .header h4 {
+            margin: 0px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .Invoice-to .invoice-content p {
+            margin: 10px 0;
+        }
+
+        .section .table {
+            padding: 10px 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        thead {
+            background: rgb(33, 235, 117);
+        }
+
+        th {
+            padding: 10px;
+            text-align: right;
+            color: #fff;
+        }
+
+        .th-left {
+            padding: 10px 15px;
+            text-align: left;
+            color: #fff;
+        }
+
+        td {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .td-left {
+            text-align: left;
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .special-section {
+            display: flex;
+            padding: 10px 20px;
+            gap: 10px;
+        }
+
+        .special-section .special-wrap {
+            flex: 2;
+        }
+
+        .special-section .special-invoice {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+        }
+
+        .special-wrap .header {
+            background: rgb(33, 235, 117);
+            padding: 10px;
+        }
+
+        .special-wrap .header h4 {
+            margin: 0px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .special-wrap .special-content {
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f2f2f2;
+        }
+
+        .special-wrap .special-content p {
+            color: gray;
+            font-size: 16px;
+        }
+
+        .special-invoice .left-invoice {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            align-items: flex-end;
+        }
+
+        .special-invoice .right-invoice {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            align-items: flex-end;
+        }
+
+        .special-invoice .left-invoice p,
+        .special-invoice .right-invoice p {
+            color: grey;
+            margin: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .acc-section {
+            display: flex;
+            padding: 10px 20px;
+            gap: 10px;
+        }
+
+        .acc-section .acc-left {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .acc-section .acc-left h2 {
+            color: grey;
+        }
+
+        .acc-section .acc-right {
+            flex: 1;
+        }
+
+        .acc-section .acc-right .acc-header {
+            margin-bottom: 5px;
+        }
+
+        .acc-section .acc-right .acc-header h4 {
+            margin: 0;
+            color: grey;
+        }
+
+        .acc-section .acc-right .acc-content {
+            display: flex;
+            gap: 5px;
+        }
+
+        .acc-section .acc-right .acc-content p {
+            margin: 5px 0;
+        }
+
+        .section .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .footer h4 {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .footer h4 .link {
+            color: #111;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Media query for tablets */
+        @media only screen and (max-width: 768px) {
+            .container {
+                min-width: 100%;
+                padding: 0;
+            }
+
+            .container .header-section {
+                flex-direction: column;
+            }
+
+            .container .header-section .right {
+                padding: 10px 20px;
+            }
+
+            .special-section {
+                flex-direction: column;
+            }
+
+            .special-section .special-invoice .left-invoice {
+                align-items: flex-start;
+            }
+
+            .acc-section {
+                flex-direction: column-reverse;
+            }
+        }
+
+        /* Media query for smartphones */
+        @media only screen and (max-width: 576px) {
+            .container {
+                min-width: 100%;
+                padding: 0;
+            }
+
+            .container .header-section {
+                flex-direction: column;
+            }
+
+            .container .header-section .right {
+                padding: 10px 20px;
+            }
+
+            .special-section {
+                flex-direction: column;
+            }
+
+            .special-section .special-invoice .left-invoice {
+                align-items: flex-start;
+            }
+
+            .acc-section {
+                flex-direction: column-reverse;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="container">
+            <div class="section">
+                <div class="header-section">
+                    <div class="left">
+                        <div class="header">
+                            <h1>Deal N Buy</h1>
+                            <h1>Intutive Soft Corporation</h1>
+                        </div>
+                        <div class="content">
+                            <div>
+                                <p>{{otp}}</p>
+                                <p>{{duration}}</p>
+                                <p>Kalliasseri,</p>
+                                <p>Kannur – 670567,</p>
+                                <p>Kerala State</p>
+                            </div>
+                            <div>
+                                <p>
+                                    <a class="link" href="mailto:contact.in@dealnbuy.co.in" class="link">
+                                        contact.in@dealnbuy.co.in</a>
+                                </p>
+                                <p>
+                                    <a class="link clr-link" href="https://www.dealnbuy.in"
+                                        class="link">www.dealnbuy.in</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="header">
+                            <h2>Invoice</h2>
+                        </div>
+                        <div class="invoice-content">
+                            <div class="left-invoice">
+                                <p>Date:</p>
+                                <p>Invoice #: </p>
+                                <p>E-way Bill number:</p>
+                                <p>Purchase order #:</p>
+                                <p>Payment due by: </p>
+                            </div>
+                            <div class="right-invoice">
+                                <p>MM/DD/YYYY</p>
+                                <p>000001</p>
+                                <p>000002</p>
+                                <p>00003</p>
+                                <p>MM/DD/YYYY</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="Invoice-to">
+                    <div class="header">
+                        <h4>Billed to</h4>
+                    </div>
+                    <div class="invoice-content">
+                        <p>Client Name</p>
+                        <p>Street address</p>
+                        <p>City, State, Country</p>
+                        <p>ZIP Code</p>
+                        <p>Phone</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="table">
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th class="th-left">Description</th>
+                                <th>Unit cost</th>
+                                <th>Qty/Hr rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>$0,00 </td>
+                                <td>1</td>
+                                <td>$0,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>$0,00 </td>
+                                <td>1</td>
+                                <td>$0,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>$0,00 </td>
+                                <td>1</td>
+                                <td>$0,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>$0,00 </td>
+                                <td>1</td>
+                                <td>$0,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>$0,00 </td>
+                                <td>1</td>
+                                <td>$0,00 </td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="special-section">
+                    <div class="special-wrap">
+                        <div class="header">
+                            <h4>Special notes and instructions</h4>
+                        </div>
+                        <div class="special-content">
+                            <p>Make all cheques payable to my company name</p>
+                        </div>
+                    </div>
+
+                    <div class="special-invoice">
+                        <div class="left-invoice">
+                            <p>SUBTOTAL </p>
+                            <p>DISCOUNT </p>
+                            <p>(TAX RATE)</p>
+                            <p>TAX</p>
+                            <p>TOTAL</p>
+                        </div>
+                        <div class="right-invoice">
+                            <p>$0,00</p>
+                            <p>-$0,00</p>
+                            <p>0%</p>
+                            <p>$0,00</p>
+                            <p class="total">$0,00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="acc-section">
+                    <div class="acc-left">
+                        <h2>Thank you for your business!</h2>
+                    </div>
+                    <div class="acc-right">
+                        <div class="acc-header">
+                            <h4>BANK ACCOUNT DETAILS</h4>
+                        </div>
+                        <div class="acc-content">
+                            <div>
+                                <p>Account holder:</p>
+                                <p>Account number:</p>
+                            </div>
+                            <div>
+                                <p></p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="footer">
+                    <h4>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur - 670567</h4>
+                    <h4>
+                        <a class="link" href="mailto:contact.in@dealnbuy.co.in" class="link">
+                            contact.in@dealnbuy.co.in</a>
+                        <span>|</span>
+                        <a class="link" href="https://www.dealnbuy.in" class="link">www.dealnbuy.in</a>
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -24,7 +24,7 @@ module.exports = {
             const Upload = req.files.map((file) => {
                 let locaFilePath = file.path;
                 return (
-                    cloudUpload(locaFilePath, title)
+                    cloudUpload(locaFilePath, toString(title))
                 )
             })
             console.log(parsedDetails);
@@ -120,7 +120,7 @@ module.exports = {
             const {page} = req.query
             let lastPage = false
             const limit = 12
-            let productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit)
+            let productDetails = await PRODUCT.find({deleted:false}).populate('userId').skip(page).limit(limit).sort({createdAt:-1})
 
             if(productDetails){
                 res.status(200).json(productDetails)

@@ -23,7 +23,7 @@ const sendNotification = async ({ email, subject="", message="", duration = 1 })
         }
 
         await sendEmail(mailOptions)
-
+   
     } catch (error) {
         console.log('error send otp',error.message);
         throw error
