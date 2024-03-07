@@ -44,6 +44,7 @@ module.exports = {
                                 username: userDetails.username,
                                 dob: userDetails.dob,
                                 address: {
+                                    streetName: userDetails.address.streetName,
                                     houseName: toString(userDetails.address.houseDetails),
                                     locality: userDetails.address.locality,
                                     district: userDetails.address.district,
