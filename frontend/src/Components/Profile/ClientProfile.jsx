@@ -5,7 +5,6 @@ import { Blank_Profile } from '../../Assets/Constants'
 
 const ClientProfile = ({ profile, profileaddress, image }) => {
 
-  console.log(profile, "client profile");
   return (
 
     <div className={Style.top}>

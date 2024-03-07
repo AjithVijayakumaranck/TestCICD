@@ -4,12 +4,12 @@ import { TiTick } from "react-icons/ti";
 import { UserContext } from '../../../Contexts/UserContext';
 import authInstance from '../../../instance/AuthInstance';
 import { PiCurrencyInrBold } from "react-icons/pi";
-import RazorpayButton from '../../Buttons/RazorpayButton/Razorpay';
+import RazorpayButton from '../../PaymentGateway/RazorpayButton/Razorpay';
 
 const Plancard = ({ item }) => {
 
     const user = useContext(UserContext)
-    const { User, SetUser } = user
+    const { User } = user
 
     const selectHandler = (e) => {
         e.preventDefault()
@@ -33,9 +33,11 @@ const Plancard = ({ item }) => {
                         <span> / </span>
                         <h4>Month per user</h4>
                     </div>
-                    <div className={Style.row3} >
-                        <p>{item?.discount}% Discount</p>
-                    </div>
+                    {item?.discount !== "" && (
+                        <div className={Style.row3} >
+                            <p>{item?.discount}% Discount</p>
+                        </div>
+                    )}
                     {item?.monthly_pricing > 0 &&
                         <div className={Style.row4}>
                             <RazorpayButton plan={item} />

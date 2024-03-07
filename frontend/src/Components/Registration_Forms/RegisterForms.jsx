@@ -16,7 +16,6 @@ import PopupModel from "../Models/PopupModel/PopupModel";
 
 const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
-
   const LoggedInUser = useContext(UserContext);
   const { User, SetUser } = LoggedInUser
 
@@ -47,7 +46,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
   const [District, SetDistrict] = useState([])
   const [DistrictId, SetDistrictId] = useState("")
   const [Locality, SetLocality] = useState([])
-  const [Featured, SetFeatured] = useState(false)
 
   const [Limit, SetLimit] = useState(0);
   const [ModelOpen, SetModelOpen] = useState(false);
@@ -147,8 +145,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
 
 
-
-
   //Image upload function
   const uploadFile = (e) => {
     const files = Array.from(e.target.files);
@@ -195,12 +191,6 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
       newErrors.imgfile = 'Product image is required';
     }
 
-    if (User.premiumuser === true) {
-      SetFeatured(true)
-    } else {
-      SetFeatured(false)
-    }
-
     SetError(newErrors);
     return Object.keys(newErrors).length === 0;
 
@@ -224,16 +214,16 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
 
       data.append("title", ProductData.title)
       data.append("description", ProductData.description)
-      data.append("subcategory", SubCategoryData._id)
+      data.append("subcategory", SubCategoryData?._id)
       data.append("category", Categories._id)
-      data.append("userId", User._id)
+      data.append("userId", User?._id)
       data.append("price", ProductData.price)
       data.append("listedBy", ProductData.listedBy)
       data.append("locality", ProductData.locality)
       data.append("district", ProductData.district)
       data.append("state", ProductData.state)
       data.append("region", ProductData.region)
-      data.append("featured", Featured)
+      data.append("featured", User?.premiumuser)
 
       if (UserData?.AdCount > 0) {
         authInstance.post('api/user/product/addproduct', data, {

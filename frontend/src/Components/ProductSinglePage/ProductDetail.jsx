@@ -220,9 +220,13 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                     </div>
                     <h3>Description</h3>
                     <div className={Style.des}>
-                        <p>
-                            {ProductDet?.description}
-                        </p>
+                        {ProductDet && ProductDet.description && ProductDet.description.split('\n').map((line, index) => {
+                            return (
+                                <p key={index}>
+                                    {line}
+                                </p>
+                            )
+                        })}
                     </div>
                 </div>
 
