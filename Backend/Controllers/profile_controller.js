@@ -45,7 +45,7 @@ module.exports = {
                                 dob: userDetails.dob,
                                 address: {
                                     streetName: userDetails.address.streetName,
-                                    houseName: toString(userDetails.address.houseDetails),
+                                    houseName: String(userDetails.address.houseDetails),
                                     locality: userDetails.address.locality,
                                     district: userDetails.address.district,
                                     state: userDetails.address.state,
@@ -77,7 +77,7 @@ module.exports = {
                             username: userDetails.username,
                             dob: userDetails.dob,
                             address: {
-                                houseName: toString(userDetails.address.houseDetails),
+                                houseName: String(userDetails.address.houseDetails),
                                 locality: userDetails.address.locality,
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
@@ -107,7 +107,7 @@ module.exports = {
             }
         } catch (error) {
             console.log(error);
-            res.status(500).json({ messgae: "something went wrong" })
+            res.status(500).json({ message: "something went wrong" })
         }
     },
 
