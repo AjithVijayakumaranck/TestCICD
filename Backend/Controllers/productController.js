@@ -6,12 +6,14 @@ const USER = require("../Models/userModel");
 module.exports = {
     addProduct: async (req, res) => {
         try {
-            const { title,
+            const {
+                title,
                 description,
                 otherDetails,
                 featured,
                 subcategory,
-                keywords, category,
+                keywords,
+                category,
                 userId,
                 price,
                 listedBy,

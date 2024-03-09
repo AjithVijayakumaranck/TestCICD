@@ -10,11 +10,11 @@ const { Encrypt } = require("../utilities/encryption")
 
 module.exports = {
 
-    //login with email
+    //login
     login: async (req, res) => {
         try {
             const { data, password } = req.body
-            console.log(data,password, "authentication controller log");
+            console.log(data,password);
             const userInfo = await USER.findOne({
                 $and: [{
                     $or: [
@@ -24,16 +24,17 @@ module.exports = {
                 },
                 {
                     $or: [
-                        { $and: [  { phoneVerified: true },{ emailVerified: true } ] },
-                        {role:"admin"},
-                        {role:"superadmin"}
+                        { $and: [{ phoneVerified: true }, { emailVerified: true }] },
+                        { role: "admin" },
+                        { role: "superadmin" }
                     ]
                 },
                 { googleVerified: false }
                 ]
             });
-       
-// ----------------------------------------------------------------
+
+
+            // ----------------------------------------------------------------
 
             // if(userInfo.phoneVerified === false || userInfo.emailVerified === false){
             //     if(userInfo.emailVerified === false){
@@ -57,16 +58,75 @@ module.exports = {
             //     }
             // }
 
-// ----------------------------------------------------------------
+            // ----------------------------------------------------------------
 
-
+            if (userInfo) {
                 const verified = await verifyHashedData(password, userInfo.password)
-                if (verified) {
-                    const token = await jwt.sign({ ...userInfo}, process.env.JWT_SECRET_KEY)
+                console.log("verification successful ");
+                if (verified){
+                    const token = await jwt.sign({ ...userInfo }, process.env.JWT_SECRET_KEY)
                     res.status(200).json({ token: token, user: userInfo })
-                } else {
-                    res.status(401).json({ message: "email or password is wrong" })
+                }else{
+                    res.status(401).json({ 
+                        message: "Credentials are invalid" 
+                    })
                 }
+            } else {
+                console.log("verification failed 01");
+                const verificationCheck = await USER.findOne({
+                    $and: [{
+                        $or: [
+                            { email: data },
+                            { phoneNumber: data }
+                        ]
+                    },
+                    {
+                        role: "user" 
+                    },
+                    { googleVerified: false }
+                    ]
+                });
+                if(verificationCheck){
+                    console.log("verification failed 02");
+                    const verified = await verifyHashedData(password, verificationCheck.password)
+                   if(verified){  
+                    if (verificationCheck.emailVerified === false && verificationCheck.phoneVerified === false) {
+                        const createdOTP = await sendOTP({ email:verificationCheck.email });
+                        res.status(401).json({
+                            message: "user registered not verified , otp sented to email",
+                            emailStatus: verificationCheck.emailVerified,
+                            phoneStatus: verificationCheck.phoneVerified
+                        })
+                    }
+
+                    else if (verificationCheck.emailVerified === false && verificationCheck.phoneVerified === true) {
+                        const createdOTP = await sendOTP({ email:verificationCheck.email });
+                        res.status(401).json({
+                            message: "user registered email not verified , otp sented to email",
+                            emailStatus: verificationCheck.emailVerified,
+                            phoneStatus: verificationCheck.phoneVerified
+                        })    
+                    }
+
+                    else {
+                        sentVerificationOtp(verificationCheck.phoneNumber).then(() => {
+                            res.status(401).json({
+                                message: "user registered phonenumber not verified",
+                                emailStatus: verificationCheck.emailVerified,
+                                phoneStatus: verificationCheck.phoneVerified
+                            }) 
+                        }).catch(() => {
+                            res.status(400).json("invalid otp");
+                        })
+                    
+                    }
+                   }
+                }else{
+                    res.status(401).json({ 
+                        message: "Credentials are invalid" 
+                    })
+                }
+            }
         } catch (error) {
             console.log(error.message);
             res.status(500).json({ message: "something went wrong" })
@@ -100,7 +160,6 @@ module.exports = {
             const userInfo = await USER.findOne({ email: email })
             if (userInfo) {
                 const createdOTP = await sendOTP({ email });
-                console.log(createdOTP);
                 res.status(200).json({ message: "otp Sented", userInfo: userInfo })
             } else {
                 res.status(400).json({ message: "User not found" })

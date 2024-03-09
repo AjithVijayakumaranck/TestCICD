@@ -11,10 +11,8 @@ module.exports = {
     //sendOTP and Save user record as undefined
     userRegistration: async (req, res) => {
         try {
-            console.log(req.body,"req.body");
             let { email, fullname, lastname, phonenumber, username, dateOfbirth, password, locality, district, state, region } = req.body
-            console.log(req.body,fullname,lastname,phonenumber,dateOfbirth,"req.body");
-            const userInfo = await USER.findOne({ email: email ,googleVerified:false });
+            const userInfo = await USER.findOne({ email: email,googleVerified:false });
             if (!userInfo) {
                 const hashedPassword = await hashData(password);
                 console.log(hashedPassword,"passs");
