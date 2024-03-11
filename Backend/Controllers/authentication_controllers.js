@@ -62,7 +62,6 @@ module.exports = {
 
             if (userInfo) {
                 const verified = await verifyHashedData(password, userInfo.password)
-                console.log("verification successful ");
                 if (verified){
                     const token = await jwt.sign({ ...userInfo }, process.env.JWT_SECRET_KEY)
                     res.status(200).json({ token: token, user: userInfo })
@@ -72,7 +71,6 @@ module.exports = {
                     })
                 }
             } else {
-                console.log("verification failed 01");
                 const verificationCheck = await USER.findOne({
                     $and: [{
                         $or: [
@@ -87,13 +85,14 @@ module.exports = {
                     ]
                 });
                 if(verificationCheck){
-                    console.log("verification failed 02");
                     const verified = await verifyHashedData(password, verificationCheck.password)
                    if(verified){  
                     if (verificationCheck.emailVerified === false && verificationCheck.phoneVerified === false) {
                         const createdOTP = await sendOTP({ email:verificationCheck.email });
                         res.status(401).json({
                             message: "user registered not verified , otp sented to email",
+                            email:verificationCheck.email,
+                            phoneNumber:verificationCheck.phoneNumber,
                             emailStatus: verificationCheck.emailVerified,
                             phoneStatus: verificationCheck.phoneVerified
                         })
@@ -103,6 +102,7 @@ module.exports = {
                         const createdOTP = await sendOTP({ email:verificationCheck.email });
                         res.status(401).json({
                             message: "user registered email not verified , otp sented to email",
+                            email:verificationCheck.email,
                             emailStatus: verificationCheck.emailVerified,
                             phoneStatus: verificationCheck.phoneVerified
                         })    
@@ -112,6 +112,7 @@ module.exports = {
                         sentVerificationOtp(verificationCheck.phoneNumber).then(() => {
                             res.status(401).json({
                                 message: "user registered phonenumber not verified",
+                                phoneNumber:verificationCheck.phoneNumber,
                                 emailStatus: verificationCheck.emailVerified,
                                 phoneStatus: verificationCheck.phoneVerified
                             }) 
