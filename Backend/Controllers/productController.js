@@ -176,7 +176,7 @@ module.exports = {
     getUserProduct: async (req, res) => {
         try {
             const { userId } = req.params
-            const userProducts = await PRODUCT.find({ userId: userId })
+            const userProducts = await PRODUCT.find({ userId: userId , deleted :false})
             if (userProducts) {
                 res.status(200).json(userProducts)
             } else {

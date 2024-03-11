@@ -45,7 +45,7 @@ module.exports = {
                                 dob: userDetails.dob,
                                 address: {
                                     streetName: userDetails.address.streetName,
-                                    houseName: String(userDetails.address.houseDetails),
+                                    houseName: String(userDetails.address.houseName),
                                     locality: userDetails.address.locality,
                                     district: userDetails.address.district,
                                     state: userDetails.address.state,
@@ -77,7 +77,7 @@ module.exports = {
                             username: userDetails.username,
                             dob: userDetails.dob,
                             address: {
-                                houseName: String(userDetails.address.houseDetails),
+                                houseName: String(userDetails.address.houseName),
                                 locality: userDetails.address.locality,
                                 district: userDetails.address.district,
                                 state: userDetails.address.state,
