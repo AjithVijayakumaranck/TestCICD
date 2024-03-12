@@ -7,7 +7,8 @@ const { AUTH_EMAIL, AUTH_PASS } = process.env
 
 //creating transporter
 let transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
+    // host: "smtp-mail.outlook.com",
+    host: "mail.dealnbuy.co.in",
     auth: {
         user:AUTH_EMAIL,
         pass:AUTH_PASS 
