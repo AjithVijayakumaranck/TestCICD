@@ -29,7 +29,7 @@ module.exports = {
                     cloudUpload(locaFilePath, toString(title))
                 )
             })
-            console.log(parsedDetails);
+
 
             for (const key in parsedDetails) {
                 console.log(parsedDetails[key]);
@@ -40,7 +40,7 @@ module.exports = {
                 }
             }
 
-            console.log(parsedDetails);
+
 
             const results = await Promise.all(Upload);
             if (results) {
@@ -176,7 +176,7 @@ module.exports = {
     getUserProduct: async (req, res) => {
         try {
             const { userId } = req.params
-            const userProducts = await PRODUCT.find({ userId: userId , deleted :false})
+            const userProducts = await PRODUCT.find({ userId: userId, deleted: false })
             if (userProducts) {
                 res.status(200).json(userProducts)
             } else {
@@ -202,6 +202,73 @@ module.exports = {
             res.status(500).json({
                 message: error.message
             })
+        }
+    },
+    // advertisement section
+
+
+
+
+
+
+    addAdvertisement: async (req, res) => {
+        try {
+            console.log(req.body);
+            const {
+                title,
+                subcategory,
+                category,
+                userId,
+                locality,
+                district,
+                state,
+                region,
+                advSize,
+                redirectionUrl,
+                featured
+            } = req.body
+            const Upload = req.files.map((file) => {
+                let locaFilePath = file.path;
+                return (
+                    cloudUpload(locaFilePath, toString(title))
+                )
+            })
+
+            const results = await Promise.all(Upload);
+
+            if (results) {
+                const productTemplate = new PRODUCT({
+                    title: title,
+                    locality: locality,
+                    district: district,
+                    state: state,
+                    region: region,
+                    featured: featured,
+                    // location:{
+                    //     type:"Point",
+                    //     coordinates:[Number(longitude),Number(latitude)]
+                    // },
+                    category: category,
+                    SubCategory: subcategory,
+                    images: [...results],
+                    userId: userId,
+                    advSize: parseInt(advSize),
+                    redirectionUrl:redirectionUrl,
+                    price:0,
+                    type:"advertisement"
+                })
+                const SavedData = await productTemplate.save()
+                if (SavedData) {
+                    res.status(200).json({ message: 'ad posted successfully' })
+                } else {
+                    res.status(200).json({ message: 'add failed to post' })
+                }
+            } else {
+                res.status(400).json({ message: "something error with image" })
+            }
+        } catch (error) {
+            console.log(error.message);
+            res.status(500).json({ message: "something went wrong" })
         }
     }
 

@@ -11,7 +11,7 @@ const {}= process.env
 router.post('/addproduct',authoriseJwt,upload.array("files"),productController.addProduct)
 
 //get single Product
-router.get('/get_singleproduct',productController.getSinlgeProduct)
+router.get('/get_singleproduct',productController.getSinlgeProduct) 
 
 //get all Product
 router.get('/get_products',productController.getProducts)

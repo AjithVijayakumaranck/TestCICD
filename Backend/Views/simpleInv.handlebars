@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Google+Sans:regular,500,700|Roboto:regular,500,700|Roboto+Draft:regular,500,700&display=swap">
+
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Google Sans", Roboto, Roboto Draft, Helvetica, Arial, sans-serif;
+        }
+
+        .main {
+            min-height: 100vh;
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: #f2f2f2;
+            color: #313131;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .container .header-wrap {
+            background: #313131;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-wrap h1 {
+            font-weight: bold;
+            font-size: 50px;
+            line-height: 60px;
+            margin: 20px 0;
+            font-style: normal;
+            color: #fff;
+        }
+
+        .container .section {
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 3rem;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .header-section img {
+            width: 100px;
+            height: 60px;
+        }
+
+        .section .Invoice-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Invoice-details .intro,
+        .Invoice-details .invoice-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Invoice-details .intro h4,
+        .Invoice-details .intro p {
+            margin: 5px 0;
+        }
+
+        .Invoice-details h1 {
+            font-size: 35px;
+            line-height: 40px;
+            color: #313131;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .Invoice-details .details {
+            width: 100%;
+        }
+
+        .Invoice-details .details .title {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .Invoice-details .details .title h3 {
+            color: gray;
+            font-size: 14px;
+        }
+
+        .Invoice-details .details .row {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-self: center;
+        }
+
+
+        .section .Invoice-to {
+            color: #313131;
+        }
+
+        .Invoice-to .header {
+            background: #f2f2f2;
+            padding: 10px 20px;
+        }
+
+        .Invoice-to .header h4 {
+            margin: 0px;
+            color: #111;
+            font-size: 16px;
+        }
+
+        .Invoice-to .invoice-content p {
+            margin: 10px 0;
+        }
+
+        .section .table-title h2 {
+            color: gray;
+            font-size: 14px;
+        }
+
+        .section .table {
+            color: #313131;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        thead {
+            background: #f2f2f2;
+        }
+
+        th {
+            padding: 10px;
+            text-align: right;
+            color: #111;
+        }
+
+        .th-left {
+            padding: 10px 15px;
+            text-align: left;
+            color: #111;
+        }
+
+        td {
+            text-align: right;
+            padding: 10px;
+        }
+
+        .td-left {
+            text-align: left;
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .special-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+
+
+        .special-section .special-invoice {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .special-wrap .header {
+            background: #f2f2f2;
+            padding: 10px;
+        }
+
+        .special-wrap .header h4 {
+            margin: 0px;
+            color: #111;
+            font-size: 16px;
+        }
+
+        .special-wrap .special-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 10px;
+        }
+
+        .special-wrap .special-content p {
+            color: gray;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        .acc-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin: 20px 0;
+        }
+
+        .acc-section h5 {
+            margin: 0px;
+            font-size: 14px;
+        }
+
+        .acc-section h5 a {
+            margin: 0;
+            text-decoration: none;
+            color: #0564d1;
+            text-align: center;
+        }
+
+        .acc-section h4 {
+            margin: 5px;
+            text-align: center;
+        }
+
+       
+
+        .section .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .footer h4 {
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .footer h4 .link {
+            color: #111;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Media query for tablets */
+        @media only screen and (max-width: 768px) {
+            .container {
+                min-width: 80%;
+                padding: 0;
+            }
+
+            .container .section {
+                padding: 2rem;
+            }
+
+            .container .header-section {
+                flex-direction: column;
+            }
+
+            .container .header-section .right {
+                padding: 10px 20px;
+            }
+
+            .special-section {
+                flex-direction: column;
+            }
+        }
+
+        /* Media query for smartphones */
+        @media only screen and (max-width: 576px) {
+            .container {
+                min-width: 100%;
+                padding: 0;
+            }
+
+            .container .section {
+                padding: 1rem;
+            }
+
+            .container .header-section {
+                flex-direction: column;
+            }
+
+            .container .header-section .right {
+                padding: 10px 20px;
+            }
+
+            .special-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+
+
+        <div class="container">
+
+            <div class="header-wrap">
+                <div class="section">
+                    <div class="header-section">
+                        <img src="https://dealnbuy.in/imgs/logo.webp" alt="logo">
+                        <h1>Thank you</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="Invoice-details">
+                    <div class="intro">
+                        <h4>Hi Ghost!</h4>
+                        <p>Thanks for your purchase from DealNBuy Ecommerce.</p>
+                    </div>
+                    <div class="invoice-content">
+                        <h1>INVOICE ID</h1>
+                        <h1>F340058717</h1>
+                    </div>
+                    <div class="details">
+                        <div class="title">
+                            <h3>YOUR ORDER INFORMATION:</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h3>Order ID:</h3>
+                                <p>F2403141614553369</p>
+                            </div>
+                            <div class="col">
+                                <h3>Bill To:</h3>
+                                <a class="link" href="mailto:aji001ajith@gmail.com">
+                                    aji001ajith@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h3>Order Date:</h3>
+                                <p>March 14 2024</p>
+                            </div>
+                            <div class="col">
+                                <h3>Source:</h3>
+                                <p>DealNBuy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="Invoice-to">
+                    <div class="header">
+                        <h4>Billed From</h4>
+                    </div>
+                    <div class="invoice-content">
+                        <p>Deal N Buy</p>
+                        <p>Intutive Soft Corporation,</p>
+                        <p>Mizone,</p>
+                        <p>Mangattuparamba, </p>
+                        <p>Kalliasseri,</p>
+                        <p>Kannur – 670567,</p>
+                        <p>Kerala State</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="table-title">
+                    <h2>HERE's WHAT YOU ORDERED</h2>
+                </div>
+                <div class="table">
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th class="th-left">Description</th>
+                                <th>Publisher:</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>INR 0,00 </td>
+                                <td>INR 0,00 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-left">Your item name</td>
+                                <td>INR 0,00 </td>
+                                <td>INR 0,00 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="special-section">
+                    <div class="special-wrap">
+                        <div class="header">
+                            <h4>Discounts:</h4>
+                        </div>
+                        <div class="special-content">
+                            <p>Sale Discount </p>
+                            <p>INR 0.00</p>
+                        </div>
+                    </div>
+
+                    <div class="special-invoice">
+                        <h3>Total</h3>
+                        <p>INR 0.00</p>
+                    </div>
+                </div>
+
+                <div class="acc-section">
+                    <h4>Intuitive Soft Corporation, Mizone, Mangattuparamba, Kalliasseri, Kannur - 670567</h4>
+                    <h5>
+                        <a class="link" href="mailto:contact.in@dealnbuy.co.in" class="link">
+                            contact.in@dealnbuy.co.in</a>
+                    </h5>
+                    <h5>
+                        <a class="link" href="https://www.dealnbuy.in" class="link">www.dealnbuy.in</a>
+                    </h5>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="footer"></div>
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>

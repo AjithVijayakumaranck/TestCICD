@@ -6,7 +6,7 @@ const moment = require("moment")
 
 const { AUTH_EMAIL } = process.env
 
-const sendNotification = async ({}) => {
+const sendInvoice = async ({email,template,subject,products}) => {
     try {
         if (!(email)) {
             throw Error("Provide proper email")
@@ -17,9 +17,10 @@ const sendNotification = async ({}) => {
         const mailOptions ={
             from: AUTH_EMAIL,
             to: email,
-            subject,
-            template:'invoice',
+            subject:subject,
+            template:template,
             context:{
+
             }
         }
 
@@ -32,4 +33,4 @@ const sendNotification = async ({}) => {
     }
 }
 
-module.exports = { sendNotification };
+module.exports = { sendInvoice };

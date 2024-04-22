@@ -24,7 +24,22 @@ const productSchema = new schema({
   //   state:{type:String},
   //   country:{type:String}
   // },
-  
+  type:{
+    type:String,
+    default:"post",
+    enum:["post","advertisement"],
+  },
+  category:{
+    type: String, ref: 'category'
+  },
+  redirectionUrl:{
+   type: String,
+  },
+  advSize:{
+    type:Number,
+    default:1,
+    enum:[1,2,3,4]
+  },
   locality: {
     type: String,
   },

@@ -49,10 +49,11 @@ const cloudUpload = (Image, folderName) => {
                 const  aspect_ratio = await cloudinary.url(data.public_id, options2)
                 data.compressedUrl = transformedURL
                 data.aspectUrl = aspect_ratio
-                console.log(data, "traaa");
+                console.log(data);
                 deleteFile(Image)
                 resolve(data)
             }).catch((err) => {
+                console.log(err);
                 reject(err)
             });
 

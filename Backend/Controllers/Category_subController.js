@@ -26,6 +26,8 @@ module.exports = {
     getSingleCategory: async (req, res) => {
         {
             try {
+
+                console.log("singl;e cat");
                 const categoryId = req.query.categoryId
 
                 const category = await CATEGORY.findOne({ _id: categoryId }).populate("subcategory")

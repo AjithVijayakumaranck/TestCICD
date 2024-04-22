@@ -5,7 +5,8 @@ const Razorpay = require('razorpay');
 const paypal = require('@paypal/checkout-server-sdk');
 const stripe = Stripe(process.env.STRIPE_KEY)
 const shortid = require('shortid');
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { sendInvoice } = require('./invoice/sentInvoice');
 
 const instance = new Razorpay({ key_id: process.env.RAZORPAY_KEY, key_secret: process.env.RAZORPAY_SECRET })
 
@@ -53,7 +54,6 @@ module.exports = {
 
   orderValidation : async (req,res)=>{
     try {
-      console.log(req.body);
       const {razorpay_order_id,razorpay_payment_id,razorpay_signature,userId,planId} = req.body;
       const secret = process.env.RAZORPAY_SECRET
   
@@ -82,6 +82,7 @@ module.exports = {
             ImageCount: +userDetails.ImageCount + +planDetails.extra_images
           }
         }).then((response) => {
+          sendInvoice({email:userDetails.email,template:"simpleInv",subject:"Plan purchase",planDetails})
           res.status(200).json({ message: "success" }).end()
         }).catch((error) => {
           console.log(error);
