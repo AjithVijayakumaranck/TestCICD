@@ -71,6 +71,7 @@ module.exports = {
                 if (moment().diff(otpInfo.expireAt, "minutes") > 0) {
                     res.status(400).json({ message: "otp expired" });
                 } else {
+                    console.log(otpInfo,otp,email);
                     console.log(moment().diff(otpInfo.expireAt, "minutes"));
                     const verified = await verifyHashedData(otp, otpInfo.otp);
                     if (!verified) {
