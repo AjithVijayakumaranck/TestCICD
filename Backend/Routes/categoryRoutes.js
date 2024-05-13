@@ -18,6 +18,8 @@ router.delete('/delete_category',authoriseJwt,Category_subController.deleteCateg
 
 router.put('/update_category',authoriseJwt,Category_subController.updateCategory) // update existing category record 
 
+router.put('/register_clicks',Category_subController.registerClicks)
+
 
 //subcategory MANAGING ROUTES
 router.get('/get_singlesubcategory',Category_subController.getSingleSubcategory) //get an single subcategory document

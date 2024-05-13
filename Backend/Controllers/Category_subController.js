@@ -143,6 +143,30 @@ module.exports = {
         }
     },
 
+        //register clicks
+        registerClicks: async (req, res)=>{
+            try{
+                const {categoryId,userId} = req.body
+                const categoryInfo = await CATEGORY.findById(categoryId)
+                if(categoryInfo) {
+                    CATEGORY.updateOne({_id:categoryId, clicks: {$ne: userId}},{$addToSet: {clicks: userId}}).then((response)=>{
+                        if (response.matchedCount === 0){
+                            res.status(200).json({message:"registered clicks"})
+                        }else{
+                            res.status(200).json({message:"click registered"})
+                        }
+                    }).catch((err)=>{
+                        res.status(200).json({message:"user already registered"})
+                    })
+                }else{
+                    res.status(404).json({message:"Category not found"})
+                }
+            }catch(error){
+                res.status(400).json({message:error.message})
+            }
+    
+        },  
+
 
 
 
@@ -262,6 +286,9 @@ module.exports = {
 
         }
     },
+
+
+
 
 
 

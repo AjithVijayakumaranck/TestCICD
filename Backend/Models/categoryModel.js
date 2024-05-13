@@ -19,7 +19,8 @@ filters: [{
   deleted:{
     type:Boolean,
     default:false
-  }
+  },
+  clicks:[String]
 },{timestamps:true})
 
 const CATEGORY =  mongoose.model("category",CATEGORYchema);

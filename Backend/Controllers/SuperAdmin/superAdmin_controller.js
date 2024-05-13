@@ -96,7 +96,6 @@ module.exports = {
     createAdmin: async (req,res)=>{
         try {
             const {fullName,surName,email,password,locality,district,state,region,role} = req.body
-            console.log(req.body);
             const hashedPassword = await hashData(password)
             USER.create({
                 fullname:fullName,
