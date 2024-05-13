@@ -1,90 +1,152 @@
-@import '../../../StyleHelpers/Variables.scss';
+@import "../../../StyleHelpers/Variables.scss";
 
 .page_wrapper {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  .main {
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
 
-    .main {
-        margin-top: 80px;
-        display: flex;
-        flex-direction: column;
+    @include breakpoint(md) {
+      margin-top: 120px;
+    }
+
+    @include mediumScreen {
+      margin-top: 120px;
+    }
+
+    @include LargeScreen {
+      margin-top: 80px;
+    }
+
+    .productwrapper {
+      padding: 1.5rem 0;
+      min-height: 35rem;
+      background-color: #f8f8f8;
+
+      .container {
+        margin: 0 4rem;
+        display: block;
+        padding: 0 20px;
 
         @include breakpoint(md) {
-            margin-top: 120px;
+          margin: 0 0;
+          padding: 0 10px;
         }
 
         @include mediumScreen {
-            margin-top: 120px;
+          margin: 0 1rem;
         }
 
-        @include LargeScreen {
-            margin-top: 80px;
+        .heading {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+          padding: 0.5rem 0;
+          border-bottom: 2px solid $base_color;
         }
 
+        .cardWrapper {
+          display: flex;
+          flex-direction: column;
+          place-items: center;
+          place-content: center;
+          gap: 10px;
 
-        .productwrapper {
-            padding: 1.5rem 0;
-            min-height: 35rem;
-            background-color: #f8f8f8;
+          @include breakpoint(md) {
+          }
 
-            .container {
-                margin: 0 4rem;
-                display: block;
-                padding: 0 20px;
+          @include mediumScreen {
+          }
 
-                @include breakpoint(md) {
-                    margin: 0 0;
-                    padding: 0 10px;
-                }
+          @include LargeScreen {
+          }
+        }
 
-                @include mediumScreen {
-                    margin: 0 1rem;
-                }
+        .imgWrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-                .heading {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    margin-bottom: 2rem;
-                    padding: .5rem 0;
-                    border-bottom: 2px solid $base_color;
-                }
+          img {
+            width: 350px;
+            height: 450px;
+            object-fit: contain;
 
-                .cardWrapper {
-                    display: flex;
-                    flex-direction: column;
-                    place-items: center;
-                    place-content: center;
-                    gap: 10px;
-
-
-                    @include breakpoint(md) {}
-
-                    @include mediumScreen {}
-
-                    @include LargeScreen {}
-                }
-
-                .imgWrapper {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    img {
-                        width: 350px;
-                        height: 450px;
-                        object-fit: contain;
-
-                        @include breakpoint(md) {
-                            width: 250px;
-                            height: 450px;
-                        }
-                    }
-                }
+            @include breakpoint(md) {
+              width: 250px;
+              height: 450px;
             }
+          }
         }
+        .modal_wrapper {
+          position: relative;
+          background-color: #ffffff;
+          border-radius: 10px;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          width: 300px;
+          padding: 20px;
+        
 
+        }
+      }
     }
+  }
 }
+
+.modal_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  padding: 25px;
+
+  
+
+  .closeIcon_wrapper {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 50px;
+    
+
+    .back_logo{
+      padding: 10px;
+    }
+  }
+  .left_container {
+    margin-right: 20px;
+    max-width: 200px;
+    overflow: hidden;
+
+    img {
+      width: 15rem;
+      height: 12rem;
+    }
+  }
+  .right_container {
+    display: flex;
+    flex-direction: column;
+  }
+  .time_shower {
+    position: absolute;
+    bottom: 4px;
+    right: 5px;
+    color: blue;
+    font-size: 12px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 340px; 
+    margin: 0 auto; 
+  }
+ 
+}
+
