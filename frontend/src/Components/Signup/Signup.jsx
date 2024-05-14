@@ -10,8 +10,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 
 const Signup = ({ setLogin }) => {
 
-
-
   //authentication option
   const [otp, setOtp] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,7 +22,17 @@ const Signup = ({ setLogin }) => {
   const [Timer, SetTimer] = useState(60);
   const [IsTimerRunning, SetIsTimerRunning] = useState(false);
 
-  const maxDate = new Date().toISOString().split("T")[0];
+  const [registrationDate] = useState(new Date()); // Assuming this is fetched or set somewhere
+  const [minDOB] = useState(() => {
+    const minDOBDate = new Date(registrationDate);
+    minDOBDate.setFullYear(minDOBDate.getFullYear() - 90);
+    return minDOBDate;
+  });
+  const [maxDOB] = useState(() => {
+    const maxDOBDate = new Date(registrationDate);
+    maxDOBDate.setFullYear(maxDOBDate.getFullYear() - 18);
+    return maxDOBDate;
+  });
 
   // Function to toggle password visibility
   const togglePasswordVisibility = () => {
@@ -315,161 +323,183 @@ const Signup = ({ setLogin }) => {
 
 
   return (
-    <div className={Style.form_container}>
+    <div className={Style.form_wrapper}>
+      <div className={Style.form_container}>
 
-      <div className={Style.right_section}>
-        <div className={Style.img_wrapper}>
-          <img src="/Images/undraw.svg" alt="" />
+        <div className={Style.right_section}>
+          <div className={Style.img_wrapper}>
+            <img src="/Images/undraw.svg" alt="" />
+          </div>
         </div>
-      </div>
 
-      {otp ? (
-        <div className={Style.left_section}>
-          <h4 className={Style.Step_Status}>Step {Step} / 2</h4>
-          <h1>Lets Authenticate</h1>
-          <p> We have sent you a One Time Password to your {" "} <span> {isEmailOtpVerified ? "Phonenumber" : "Email"} </span>  </p>
-          <form onSubmit={(e) => { HandleOtpVerify(e); }}>
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="OTP">Enter Your Otp here</label>
-                <input
-                  type="tel"
-                  placeholder="One Time Password"
-                  id="OTP"
-                  value={otpDetails.otp}
-                  onChange={(e) => { otpHandler(e); }}
-                />
+        {otp ? (
+          <div className={Style.left_section}>
+            <h4 className={Style.Step_Status}>Step {Step} / 2</h4>
+            <h1>Lets Authenticate</h1>
+            <p> We have sent you a One Time Password to your {" "} <span> {isEmailOtpVerified ? "Phonenumber" : "Email"} </span>  </p>
+            <form onSubmit={(e) => { HandleOtpVerify(e); }}>
+              <div className={Style.input_div}>
+                <div>
+                  <label htmlFor="OTP">Enter Your Otp here</label>
+                  <input
+                    type="tel"
+                    placeholder="One Time Password"
+                    id="OTP"
+                    value={otpDetails.otp}
+                    onChange={(e) => { otpHandler(e); }}
+                  />
+                </div>
               </div>
-            </div>
-            <button >
-              {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) :
-                isEmailOtpVerified ? ("Complete Registration") : ("Continue")
-              }
+              <button >
+                {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) :
+                  isEmailOtpVerified ? ("Complete Registration") : ("Continue")
+                }
+              </button>
+            </form>
+            <button className={Style.resendBtn} onClick={(e) => { HandleResendClick(e) }} disabled={IsTimerRunning}>
+              {IsTimerRunning ? `Resend OTP in ${Timer}s` : "Resend One-Time Password"}
             </button>
-          </form>
-          <button className={Style.resendBtn} onClick={(e) => { HandleResendClick(e) }} disabled={IsTimerRunning}>
-            {IsTimerRunning ? `Resend OTP in ${Timer}s` : "Resend One-Time Password"}
-          </button>
-          <p className={Style.error_para}>{error.otp}</p>
-        </div>
-      ) : (
-        <div className={Style.left_section}>
-          <div className={Style.login_Details}>
-            <h1>Create Account</h1>
-            <p>Please provide your details to register on DealNBuy</p>
+            <p className={Style.error_para}>{error.otp}</p>
           </div>
-          <form onSubmit={(e) => { submitHandler(e); }} >
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="Full_name">First Name</label>
-                <input
-                  type="text"
-                  placeholder="First Name"
-                  onChange={(e) => { fullname_validation(e); }}
-                  required
-                  id="Full_name"
-                />
-                <p>{error.fullname}</p>
+        ) : (
+          <div className={Style.left_section}>
+
+            <div className={Style.login_Details}>
+              <h1>Create Account</h1>
+              <p>Please provide your details to register on DealNBuy</p>
+            </div>
+
+            <form onSubmit={(e) => { submitHandler(e); }} >
+
+              <div className={Style.input_div}>
+                <div>
+                  <label htmlFor="Full_name">First Name</label>
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    onChange={(e) => { fullname_validation(e); }}
+                    required
+                    id="Full_name"
+                  />
+                  <p className={Style.error}>{error.fullname}</p>
+                </div>
+
+                <div>
+                  <label htmlFor="Last Name">Sur Name</label>
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    id="lastname"
+                    required
+                    onChange={(e) => { lastname_validation(e); }}
+                  />
+                  <p className={Style.error}>{error.lastname}</p>
+                </div>
+              </div>
+
+              <div className={Style.input_div}>
+                <div>
+                  <label htmlFor="DateofBirth">Date of Birth</label>
+                  <input
+                    type="date"
+                    required
+                    placeholder="Date of birth"
+                    id="DateofBirth"
+                    className={Style.dobInput}
+                    max={maxDOB.toISOString().split('T')[0]}
+                    min={minDOB.toISOString().split('T')[0]}
+                    onChange={(e) => { dob_validation(e); }}
+                  />
+                  <p className={Style.error}>{error.dateOfbirth}</p>
+                </div>
+
+                <div>
+                  <label htmlFor="Phone Number"> Phone Number{" "} </label>
+                  <input
+                    required
+                    type="tel"
+                    placeholder="Phone Number"
+                    id="phonenumber"
+                    maxLength="10"
+                    inputmode="numeric"
+                    pattern="[0-9]*"
+                    onChange={(e) => { phone_validation(e); }}
+                  />
+                  <p className={Style.error}>{error.phonenumber}</p>
+                </div>
+              </div>
+
+              <div className={Style.input_div}>
+                <div>
+                  <label htmlFor="Email"> E-mail{" "} </label>
+                  <input
+                    required
+                    type="email"
+                    placeholder="E-mail"
+                    id="Email"
+                    onChange={(e) => { email_validation(e); }}
+                  />
+                  <p className={Style.error}>{error.email}</p>
+                </div>
+              </div>
+
+              <div className={Style.input_div}>
+                <div>
+                  <label htmlFor="password">Password</label>
+                  <div className={Style.input_Wrap}>
+                    <input
+                      type={ShowPassword ? "text" : "password"}
+                      placeholder="Password"
+                      required
+                      id="password"
+                      onChange={(e) => { password_validation(e); }}
+                    />
+                    <span className={Style.eye_icon} onClick={togglePasswordVisibility}>
+                      {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                    </span>
+                  </div>
+                  <p className={Style.error}>{error.password}</p>
+                </div>
+
+                <div>
+                  <label htmlFor="Confrim_Password">Confirm Password</label>
+                  <div className={Style.input_Wrap}>
+                    <input
+                      type={ShowConfirmPassword ? "text" : "password"}
+                      required
+                      placeholder="Confirm Password"
+                      id="Confirm_Password"
+                      onChange={(e) => { confirmPassword_validation(e); }}
+                    />
+                    <span className={Style.eye_icon} onClick={toggleConfirmPasswordVisibility}>
+                      {ShowConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                    </span>
+                  </div>
+                  <p className={Style.error}>{error.confirmPassword}</p>
+                </div>
               </div>
 
               <div>
-                <label htmlFor="Last Name">Sur Name</label>
-                <input
-                  type="text"
-                  placeholder="Last Name"
-                  id="lastname"
-                  required
-                  onChange={(e) => { lastname_validation(e); }}
-                />
-                <p>{error.lastname}</p>
-              </div>
-            </div>
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="DateofBirth">Date of birth</label>
-                <input
-                  type="date"
-                  required
-                  placeholder="Date of birth"
-                  id="DateofBirth"
-                  max={maxDate}
-                  onChange={(e) => { dob_validation(e); }}
-                />
-                <p>{error.dateOfbirth}</p>
+                <p className={Style.terms}>I here by accept the
+                  <Link to='/legal-and-privacy/terms&condition' className={Style.navigation} ><span >Terms Of Use</span></Link> and
+                  <Link to='/legal-and-privacy' className={Style.navigation} ><span>Privacy Policy</span></Link>
+                </p>
               </div>
 
-              <div>
-                <label htmlFor="Phone Number"> Phone Number{" "} </label>
-                <input
-                  required
-                  type="tel"
-                  placeholder="Phone Number"
-                  id="phonenumber"
-                  maxLength="10"
-                  inputmode="numeric"
-                  pattern="[0-9]*"
-                  onChange={(e) => { phone_validation(e); }}
-                />
-                <p>{error.phonenumber}</p>
-              </div>
+              <button> {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Continue")} </button>
+              <p className={Style.error_para}>{responseError}</p>
+
+            </form>
+
+            <div className={Style.additional_options}>
+              <p> Already Have Account?
+                <Link className={Style.navigation} onClick={() => { setLogin(false); }} > Login </Link>
+              </p>
             </div>
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="Email"> E-mail{" "} </label>
-                <input
-                  required
-                  type="email"
-                  placeholder="E-mail"
-                  id="Email"
-                  onChange={(e) => { email_validation(e); }}
-                />
-                <p>{error.email}</p>
-              </div>
-            </div>
-            <div className={Style.input_div}>
-              <div>
-                <label htmlFor="password">Password</label>
-                <div className={Style.input_Wrap}>
-                  <input
-                    type={ShowPassword ? "text" : "password"}
-                    placeholder="Password"
-                    required
-                    id="password"
-                    onChange={(e) => { password_validation(e); }}
-                  />
-                  <span className={Style.eye_icon} onClick={togglePasswordVisibility}>
-                    {ShowPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                  </span>
-                </div>
-                <p>{error.password}</p>
-              </div>
-              <div>
-                <label htmlFor="Confrim_Password">Confirm Password</label>
-                <div className={Style.input_Wrap}>
-                  <input
-                    type={ShowConfirmPassword ? "text" : "password"}
-                    required
-                    placeholder="Confirm Password"
-                    id="Confirm_Password"
-                    onChange={(e) => { confirmPassword_validation(e); }}
-                  />
-                  <span className={Style.eye_icon} onClick={toggleConfirmPasswordVisibility}>
-                    {ShowConfirmPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                  </span>
-                </div>
-                <p>{error.confirmPassword}</p>
-              </div>
-            </div>
-            <button> {loading ? (<LoadingSpin size="20px" direction="alternate" width="4px" />) : ("Continue")} </button>
-            <p className={Style.error_para}>{responseError}</p>
-          </form>
-          <div className={Style.additional_options}>
-            <p> Already Have Account?
-              <Link className={Style.navigation} onClick={() => { setLogin(false); }} > Login </Link>
-            </p>
+
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,52 @@
+@import '../../../StyleHelpers/Variables.scss';
+
+
+.products {
+    width: 100%;
+    max-width: 100%;
+    min-width: 140px;
+    overflow: hidden;
+    min-height: 350px;
+    max-height: 350px;
+    position: relative;
+    transition: box-shadow .35s ease;
+    background-color: #fff;
+    margin-bottom: 0 !important;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card_image {
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+    .read_more_button {
+        position: absolute;
+        bottom: 20px;
+        z-index: 9999;
+        min-width: 235px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: #ffffff;
+        border-radius: 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+    }
+
+}

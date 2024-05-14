@@ -51,6 +51,12 @@ const Options = ({ data, Image, WishlistCount }) => {
               <h4>My Ads</h4>
             </div>
           </Link>
+          
+          <Link to='/add_advertisement' className={Style.navigation} >
+            <div className={Style.eachopt}>
+              <h4>Add Advertisement</h4>
+            </div>
+          </Link>
 
           <Link to='/subscribe' className={Style.navigation} >
             <div className={Style.eachopt}>

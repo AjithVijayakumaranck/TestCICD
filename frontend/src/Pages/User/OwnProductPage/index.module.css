@@ -54,21 +54,21 @@
   border-bottom: 2px solid #ebebeb;
 }
 .page_wrapper .main .productwrapper .container .cardWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  place-items: center;
-  place-content: center;
-  gap: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 @media (max-width: 550px) {
   .page_wrapper .main .productwrapper .container .cardWrapper {
     grid-template-columns: 1fr 1fr;
-    gap: 10px 20px;
+    gap: 5px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {
   .page_wrapper .main .productwrapper .container .cardWrapper {
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
   }
 }
 @media (min-width: 768px) and (max-width: 900px) {

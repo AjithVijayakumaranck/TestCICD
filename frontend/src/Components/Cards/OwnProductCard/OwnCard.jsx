@@ -4,11 +4,11 @@ import { toast } from "react-toastify";
 import authInstance from '../../../instance/AuthInstance';
 import { HiOutlineViewfinderCircle } from 'react-icons/hi2';
 import { Link, useNavigate } from 'react-router-dom'
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineDelete } from 'react-icons/ai';
 import { PiCurrencyInrBold } from "react-icons/pi";
 import { UserContext } from '../../../Contexts/UserContext';
 
-const OwnCard = ({ product, reload }) => {
+const OwnCard = ({ product, reloadProducts }) => {
 
     const LoggedInUser = useContext(UserContext);
     const { User } = LoggedInUser
@@ -19,7 +19,7 @@ const OwnCard = ({ product, reload }) => {
     const [WishlistData, SetWishlistData] = useState([]);
 
 
-    //LoadCategory functions
+    //Load whishlist product functions
     useEffect(() => {
         try {
             authInstance.get(`/api/user/wishlist/get_wishlist/${User?._id}`).then((Response) => {
@@ -49,6 +49,7 @@ const OwnCard = ({ product, reload }) => {
         findItemId();
     }, [WishlistData]);
 
+    // To put product into whishlist
     const handleFavorite = (e) => {
         e.preventDefault();
         try {
@@ -79,6 +80,21 @@ const OwnCard = ({ product, reload }) => {
         }
     };
 
+    // -- Remove Product 
+    const HandleRemove = (e) => {
+        e.preventDefault()
+        try {
+            authInstance.delete(`/api/user/product/product_sold?userId=${User?._id}&productId=${product?._id}`).then((Response) => {
+                toast.success("Product removed");
+                reloadProducts();
+            }).catch((err) => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <div className={Style.products} >
@@ -92,9 +108,14 @@ const OwnCard = ({ product, reload }) => {
                     <img src={product?.images[0].url} alt="productImage" className={Style.productImage} />
                 </Link>
                 <div className={Style.productAction}>
-                    <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
-                        <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
-                    </span>
+                    {User?._id === product?.userId ?
+                        <span onClick={(e) => HandleRemove(e)} >
+                            <i><AiOutlineDelete /></i> Remove
+                        </span> :
+                        <span onClick={(e) => IsClicked ? handleFavoriteDelete(e) : handleFavorite(e)} >
+                            <i style={{ color: IsClicked ? 'red' : 'grey' }} ><AiFillHeart /></i> Favorite
+                        </span>
+                    }
                     <span onClick={() => Navigate(`/product/${product._id}`)}> <i><HiOutlineViewfinderCircle /></i> Explore </span>
                 </div>
             </div>
@@ -106,7 +127,7 @@ const OwnCard = ({ product, reload }) => {
                     <h3> {product?.title} </h3>
                 </div>
                 <div className={Style.product_price}>
-                    <PiCurrencyInrBold/> {product?.price}
+                    <PiCurrencyInrBold /> {product?.price}
                 </div>
             </div>
         </div>

@@ -494,7 +494,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                     SetStateId(e.value)
                   }}
                 />
-                <span>{Error.locality}</span>
+                <span>{Error.state}</span>
               </div>
 
               {District && District.length > 0 && (
@@ -508,7 +508,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                       SetIsLocalityDisabled(false)
                     }}
                   />
-                  <span>{Error.locality}</span>
+                  <span>{Error.district}</span>
                 </div>
               )}
             </div>
@@ -533,7 +533,7 @@ const RegisterForm = ({ FormInputs, SubCategoryData }) => {
                   options={options}
                   onChange={(e) => { SetProductData({ ...ProductData, region: e.value }) }}
                 />
-                <span>{Error.locality}</span>
+                <span>{Error.country}</span>
               </div>
             </div>
 

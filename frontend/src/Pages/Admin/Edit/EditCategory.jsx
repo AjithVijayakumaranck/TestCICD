@@ -54,7 +54,7 @@ const EditCategory = ({ title }) => {
       data.append("CategoryDet", CategoryDet)
       data.append("categoryId", categoryId)
 
-
+      console.log(data,"form data");
 
       adminInstance.put("/api/super_admin/category/update_category", data, {
         headers: { 'Content-Type': 'multipart/form-data' }

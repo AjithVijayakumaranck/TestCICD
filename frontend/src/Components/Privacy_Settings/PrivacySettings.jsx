@@ -23,23 +23,26 @@ const ToggleButton = ({ isChecked, onChange }) => (
 const PrivacySettings = ({ UserId }) => {
 
   const LoggedInUser = useContext(UserContext);
-  const { User, SetUser } = LoggedInUser
+  const { User } = LoggedInUser
 
   // -- States
 
   const [PrivacySetting, SetPrivacySetting] = useState({});
 
- 
+
   // -- Get Intial State of Toggle Button
   useEffect(() => {
     try {
       authInstance.get(`/api/user/profile/get_profile/${User?._id}`).then((Response) => {
         SetPrivacySetting({
           showName: Response.data?.showName,
+          showSurname: Response.data?.showSurname,
           showDob: Response.data?.showDob,
-          showAddress: Response.data?.showAddress,
+          streetName: Response.data?.showStreetName,
           showEmail: Response.data?.showEmail,
-          showPhonenumber: Response.data?.showPhonenumber
+          showPhonenumber: Response.data?.showPhonenumber,
+          houseDetails: Response.data?.showHouseDetails,
+          showAddress: Response.data?.showAddress,
         })
       }).catch((err) => {
         console.log(err)
@@ -61,16 +64,22 @@ const PrivacySettings = ({ UserId }) => {
           showName: !prevState.showName
         }));
         break;
+      case 'ShowSurname':
+        SetPrivacySetting(prevState => ({
+          ...prevState,
+          showSurname: !prevState.showSurname
+        }));
+        break;
       case 'ShowDob':
         SetPrivacySetting(prevState => ({
           ...prevState,
           showDob: !prevState.showDob
         }));
         break;
-      case 'ShowAddress':
+      case 'ShowStreetName':
         SetPrivacySetting(prevState => ({
           ...prevState,
-          showAddress: !prevState.showAddress
+          streetName: !prevState.streetName
         }));
         break;
       case 'ShowEmail':
@@ -83,6 +92,18 @@ const PrivacySettings = ({ UserId }) => {
         SetPrivacySetting(prevState => ({
           ...prevState,
           showPhonenumber: !prevState.showPhonenumber
+        }));
+        break;
+      case 'ShowHouseDetails':
+        SetPrivacySetting(prevState => ({
+          ...prevState,
+          houseDetails: !prevState.houseDetails
+        }));
+        break;
+      case 'ShowAddress':
+        SetPrivacySetting(prevState => ({
+          ...prevState,
+          showAddress: !prevState.showAddress
         }));
         break;
       default:
@@ -121,11 +142,21 @@ const PrivacySettings = ({ UserId }) => {
 
         <div className={Style.detailItem}>
           <div className={Style.title}>
-            <h3>Show Firstname and Lastname Information</h3>
-            <p>Allow users to hide their first name and last name from their profile.</p>
+            <h3>Show First Name Information</h3>
+            <p>Allow users to hide their first name from their profile.</p>
           </div>
           <div className={Style.toggleBtnDiv}>
             <ToggleButton isChecked={PrivacySetting.showName} onChange={() => HandleToggleMenu('ShowName')} />
+          </div>
+        </div>
+
+        <div className={Style.detailItem}>
+          <div className={Style.title}>
+            <h3>Show Last Name Information</h3>
+            <p>Allow users to hide their last name from their profile.</p>
+          </div>
+          <div className={Style.toggleBtnDiv}>
+            <ToggleButton isChecked={PrivacySetting.showSurname} onChange={() => HandleToggleMenu('ShowSurname')} />
           </div>
         </div>
 
@@ -146,6 +177,26 @@ const PrivacySettings = ({ UserId }) => {
           </div>
           <div className={Style.toggleBtnDiv}>
             <ToggleButton isChecked={PrivacySetting.showAddress} onChange={() => HandleToggleMenu('ShowAddress')} />
+          </div>
+        </div>
+
+        <div className={Style.detailItem}>
+          <div className={Style.title}>
+            <h3>Show House / Flat Name or Number Information</h3>
+            <p>Allow users to hide their house / flat name or number from their profile.</p>
+          </div>
+          <div className={Style.toggleBtnDiv}>
+            <ToggleButton isChecked={PrivacySetting.houseDetails} onChange={() => HandleToggleMenu('ShowHouseDetails')} />
+          </div>
+        </div>
+
+        <div className={Style.detailItem}>
+          <div className={Style.title}>
+            <h3>Show Street Name Information</h3>
+            <p>Allow users to hide their street name from their profile.</p>
+          </div>
+          <div className={Style.toggleBtnDiv}>
+            <ToggleButton isChecked={PrivacySetting.streetName} onChange={() => HandleToggleMenu('ShowStreetName')} />
           </div>
         </div>
 

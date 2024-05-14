@@ -53,29 +53,35 @@
                 }
 
                 .cardWrapper {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                    place-items: center;
-                    place-content: center;
-                    gap: 20px;
+                    overflow: hidden;
+            display: flex;
+            flex-wrap: wrap ;
+            // display: grid;
+            // // grid-auto-columns: auto auto auto;
+            // grid-template-columns:auto auto auto auto;
+            // place-items: center;
+            // place-content: center;
+            gap: 10px;
 
 
-                    @include breakpoint(md) {
-                        grid-template-columns: 1fr 1fr;
-                        gap: 10px 20px;
-                    }
+            @include breakpoint(md) {
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            
+            }
 
-                    @include mediumScreen {
-                        grid-template-columns: 1fr 1fr 1fr;
-                    }
+            @include mediumScreen {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 5px;
+            }
 
-                    @include extraMediumScreen {
-                        grid-template-columns: 1fr 1fr 1fr 1fr;
-                    }
+            @include extraMediumScreen {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
 
-                    @include LargeScreen {
-                        grid-template-columns: 1fr 1fr 1fr;
-                    }
+            @include LargeScreen {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
                 }
             }
         }

@@ -32,10 +32,9 @@
   font-weight: 600;
 }
 .productwrapper .container .cardWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  place-items: center;
-  place-content: center;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 @media (max-width: 550px) {

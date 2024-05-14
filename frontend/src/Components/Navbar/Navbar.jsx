@@ -170,9 +170,12 @@ const Navbar = ({ location, setLocation, reload }) => {
   }, [User?._id, reload])
 
   // -- Function for nagivation to category page
-  const HandleCategoryClick = (categoryId) => {
-    navigate(`/category/${categoryId}`);
-  }
+  
+   const HandleCategoryClick = (categoryId) => {
+     navigate(`/category/${categoryId}`);
+   };
+
+ 
 
   // -- Assigning react-select options
   const SelectOptions = Categories.map((category) => ({
@@ -212,6 +215,7 @@ const Navbar = ({ location, setLocation, reload }) => {
         fontSize: '10px', // Adjust font size for smaller screens
       },
     }),
+    
     option: (provided, state) => ({
       ...provided,
       // borderBottom: '1px solid #ccc', // Example border for options
@@ -422,6 +426,13 @@ const Navbar = ({ location, setLocation, reload }) => {
                     <li className={Style.list_items} >
                       <BsCartPlus className={Style.icons} />
                       <span>My Ads</span>
+                    </li>
+                  </Link>
+
+                  <Link to="/myads" className={Style.navigation} >
+                    <li className={Style.list_items} >
+                      <BsCartPlus className={Style.icons} />
+                      <span>Post Advertisement</span>
                     </li>
                   </Link>
 

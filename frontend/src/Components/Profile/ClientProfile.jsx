@@ -24,17 +24,29 @@ const ClientProfile = ({ profile, profileaddress, image }) => {
           <div className={Style.details}>
             <h1 className={Style.itemTitle}>
               {profile?.showName
-                ? `${profile?.fullname} ${profile?.surname}`
+                ? profile?.fullname
                 : profile.pseudoName
               }
             </h1>
+            <div className={Style.detailItem}>
+              <span className={Style.itemKey}>Surname :</span>
+              <span className={Style.itemValue}> {profile?.showSurname ? profile?.surname : null} </span>
+            </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Email :</span>
               <span className={Style.itemValue}> {profile?.showEmail ? profile?.email : null} </span>
             </div>
             <div className={Style.detailItem}>
-              <span className={Style.itemKey}>Phone :</span>
+              <span className={Style.itemKey}>Phone Number :</span>
               <span className={Style.itemValue}> {profile?.showPhonenumber ? profile?.phoneNumber : null}</span>
+            </div>
+            <div className={Style.detailItem}>
+              <span className={Style.itemKey}>House Name or Number / Flat Name or Number :</span>
+              <span className={Style.itemValue}> {profile?.showHouseDetails ? profileaddress?.houseName : null} </span>
+            </div>
+            <div className={Style.detailItem}>
+              <span className={Style.itemKey}>Street Name :</span>
+              <span className={Style.itemValue}> {profile?.showStreetName ? profileaddress?.streetName : null} </span>
             </div>
             <div className={Style.detailItem}>
               <span className={Style.itemKey}>Locality :</span>

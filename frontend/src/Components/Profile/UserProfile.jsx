@@ -19,7 +19,7 @@ const UserProfiles = ({ UserData, UserAddress }) => {
           <h2>Personal Information</h2>
         </div>
         <div className={Style.headerBtnDiv}>
-          <button onClick={() => navigate(`/updateprofile`)} > <span className={Style.icon}><FaEdit /></span>  Edit </button>
+          <button onClick={() => navigate(`/update-profile`)}> <span className={Style.icon}><FaEdit /></span>  Edit </button>
         </div>
       </div>
 
@@ -38,21 +38,35 @@ const UserProfiles = ({ UserData, UserAddress }) => {
         </div>
 
         <div className={Style.detailItem}>
+          <span className={Style.itemKey}>House Name or Number / Flat Name or Number :</span>
+          <span className={Style.itemValue}> {UserAddress?.houseName} </span>
+        </div>
+
+        <div className={Style.detailItem}>
+          <span className={Style.itemKey}>Street Name :</span>
+          <span className={Style.itemValue}> {UserAddress?.streetName} </span>
+        </div>
+
+        <div className={Style.detailItem}>
           <span className={Style.itemKey}>Locality :</span>
           <span className={Style.itemValue}> {UserAddress?.locality} </span>
         </div>
+
         <div className={Style.detailItem}>
           <span className={Style.itemKey}>District :</span>
           <span className={Style.itemValue}> {UserAddress?.district} </span>
         </div>
+
         <div className={Style.detailItem}>
           <span className={Style.itemKey}>State :</span>
           <span className={Style.itemValue}> {UserAddress?.state} </span>
         </div>
+
         <div className={Style.detailItem}>
           <span className={Style.itemKey}>Region :</span>
           <span className={Style.itemValue}>{UserAddress?.region}</span>
         </div>
+
         <div className={Style.detailItem}>
           <span className={Style.itemKey}>Email :</span>
           <div className={Style.itemValue}>
@@ -62,6 +76,7 @@ const UserProfiles = ({ UserData, UserAddress }) => {
             )}
           </div>
         </div>
+
         <div className={Style.detailItem}>
           <span className={Style.itemKey}>Phone :</span>
           <div className={Style.itemValue}>
@@ -71,8 +86,8 @@ const UserProfiles = ({ UserData, UserAddress }) => {
             )}
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   )
 }

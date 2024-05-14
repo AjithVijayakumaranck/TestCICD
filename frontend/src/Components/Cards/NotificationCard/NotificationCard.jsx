@@ -8,7 +8,8 @@ import Logo from '../../../Assets/Images/logo.webp'
 
 
 const NotificationCard = ({ HandleRead, Alert, User }) => {
-
+console.log("alert:",Alert)
+console.log("user:",User)
 
     return (
         <div className={Style.alert_wrapper}>

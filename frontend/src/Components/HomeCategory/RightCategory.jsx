@@ -1,61 +1,86 @@
-import React from 'react'
-import Style from './Style.module.css'
-import { useState } from 'react';
-import instance from '../../instance/AxiosInstance';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-
-
+import React, { useContext } from "react";
+import Style from "./Style.module.css";
+import { useState } from "react";
+import instance from "../../instance/AxiosInstance";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import authInstance from "../../instance/AuthInstance";
+import { UserContext } from "../../Contexts/UserContext";
 
 const RightCategory = () => {
+  const navigate = useNavigate();
+  const userData = useContext(UserContext);
+  const { User, SetUser } = userData;
+  const userId = User?._id;
 
-    const navigate = useNavigate()
+  console.log("userid : ", userId);
 
-    const [Categories, SetCategories] = useState([]);
-    const [DisplayLimit, SetDisplayLimit] = useState(8);
+  const [Categories, SetCategories] = useState([]);
+  const [DisplayLimit, SetDisplayLimit] = useState(8);
 
-    const loadcategory = () => {
-        instance.get("/api/category/get_categories").then((response) => {
-            SetCategories([...response.data]);
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
+  const loadcategory = () => {
+    instance
+      .get("/api/category/get_categories")
+      .then((response) => {
+        SetCategories([...response.data]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
+  //LoadCategory functions
+  useEffect(() => {
+    loadcategory();
+  }, []);
 
-    //LoadCategory functions
-    useEffect(() => {
-        loadcategory();
-    }, []);
+  // popular category
+  const registerClicks = async (catId, userId) => {
+    try {
+      const payload = {
+        categoryId: catId,
+        userId: userId,
+      };
 
+      const response = await authInstance.put(
+        "/api/category/register_clicks",
+        payload
+      );
+      console.log(response.data, "popular category");
+    } catch (error) {
+      console.error(error, "popular category error");
+    }
+  };
 
+  const onClickFun = (catId, userId) => {
+    registerClicks(catId, userId);
+    navigate(`/category/${catId}`);
+  };
 
-    return (
-        <>
-
-            <div className={Style.RContainer}>
-                <div className={Style.title}>
-                    <h3>Explore Popular Category</h3>
+  return (
+    <>
+      <div className={Style.RContainer}>
+        <div className={Style.title}>
+          <h3>Explore Popular Category</h3>
+        </div>
+        <div className={Style.box_wrapper}>
+          {Categories.slice(0, DisplayLimit).map((category, index) => {
+            return (
+              <div className={Style.item} key={index}>
+                <div
+                  className={Style.box}
+                  onClick={() => onClickFun(category?._id)}
+                >
+                  <img src={category?.icon?.url} alt="" />
                 </div>
-                <div className={Style.box_wrapper}>
-                    {Categories.slice(0, DisplayLimit).map((category, index) => {
-                        return (
-                            <div className={Style.item} key={index}>
-                                <div className={Style.box} onClick={() => navigate(`/category/${category?._id}`)} >
-                                    <img src={category?.icon?.url} alt='' />
-                                </div>
-                                <h6>{category?.categoryName}</h6>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
+                <h6>{category?.categoryName}</h6>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
+};
 
-
-        </>
-    )
-}
-
-export default RightCategory
-
+export default RightCategory;

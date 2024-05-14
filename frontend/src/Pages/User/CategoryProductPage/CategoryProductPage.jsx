@@ -39,16 +39,26 @@ const CategoryProductPage = () => {
 
 
     useEffect(() => {
-        instance.get(`/api/category/get_SingleCategory?categoryId=${categoryId}`).then((response) => {
-            SetCategories(response.data);
-            SetSubcategory(response.data?.subcategory)
-            SetFilters(response.data?.filters)
-        }).catch((error) => {
-            console.log(error);
+      instance
+        .get(`/api/category/get_SingleCategory?categoryId=${categoryId}`)
+        .then((response) => {
+          SetCategories(response.data);
+          SetSubcategory((prevCat)=>{
+          if(prevCat !== response.data?.subcategory){
+          return response.data?.subcategory;
+          }
+          return prevCat;
+          });
+
+          SetFilters(response.data?.filters);  
+        })
+        .catch((error) => {
+          console.log(error);
         });
-    }, []);
+    }, [categoryId, SetSubcategory]);
 
-
+console.log("hello ")
+console.log(Subcategory)
 
     const loadProducts = () => {
         try {

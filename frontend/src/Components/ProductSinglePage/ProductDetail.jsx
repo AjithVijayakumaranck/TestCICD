@@ -246,7 +246,7 @@ const ProductDetail = ({ ProductDet, ProductImages, OtherDet, ClientData, Client
                                 />
                                 <h3>
                                     {ClientData?.showName
-                                        ? `${ClientData?.fullname} ${ClientData?.surname}`
+                                        ? `${ClientData?.fullname}`
                                         : ClientData.pseudoName
                                     }
                                 </h3>

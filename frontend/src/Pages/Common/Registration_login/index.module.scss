@@ -5,19 +5,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .form_wrapper {
-        box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
-        background-color: aliceblue;
-        width: 50rem;
-        min-height: 30rem;
-
-        @include breakpoint(md) {
-            width: 100vw;
-            min-height: 100vh;
-        }
-
-
-    }
-
 }

@@ -13,6 +13,7 @@ export const UserContextProvider = ({ children }) => {
             if (token) {
                 const decodedToken = jwt_decode(token);
                 SetUser(decodedToken._doc);
+               
             }
 
         };
@@ -20,6 +21,7 @@ export const UserContextProvider = ({ children }) => {
         // Call the decodeToken function when the component mounts
         decodeToken();
     }, [])
+     console.log(User, "usercontext data");
     return (
         <UserContext.Provider value={{ User, SetUser }}>
             {children}

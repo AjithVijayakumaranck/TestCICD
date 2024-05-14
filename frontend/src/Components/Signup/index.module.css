@@ -1,15 +1,32 @@
-.form_container {
+.form_wrapper {
+  box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+  background-color: aliceblue;
+  width: 50rem;
+  min-height: 30rem;
+}
+@media (max-width: 550px) {
+  .form_wrapper {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .form_wrapper {
+    box-shadow: none;
+  }
+}
+.form_wrapper .form_container {
   display: flex;
   min-height: 30rem;
   overflow: hidden;
 }
 @media (max-width: 550px) {
-  .form_container {
+  .form_wrapper .form_container {
     min-height: 100vh;
     transition: 0.5s ease-in-out;
   }
 }
-.form_container .left_section {
+.form_wrapper .form_container .left_section {
   width: 100%;
   padding: 20px;
   background-color: white;
@@ -20,7 +37,12 @@
   border-bottom-right-radius: 7px;
   position: relative;
 }
-.form_container .left_section .Step_Status {
+@media (min-width: 550px) and (max-width: 768px) {
+  .form_wrapper .form_container .left_section {
+    padding: 40px 60px;
+  }
+}
+.form_wrapper .form_container .left_section .Step_Status {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
@@ -28,18 +50,18 @@
   font-weight: 600;
   color: #046BD2;
 }
-.form_container .left_section h1 {
+.form_wrapper .form_container .left_section h1 {
   color: #046BD2;
 }
-.form_container .left_section p {
+.form_wrapper .form_container .left_section p {
   font-size: 12px;
 }
-.form_container .left_section p span {
+.form_wrapper .form_container .left_section p span {
   color: #046BD2;
   font-size: 0.8rem;
   font-weight: 400;
 }
-.form_container .left_section .resendBtn {
+.form_wrapper .form_container .left_section .resendBtn {
   background: none;
   border: none;
   outline: none;
@@ -50,58 +72,73 @@
   letter-spacing: 0;
   cursor: pointer;
 }
-.form_container .left_section .resendBtn:hover {
+.form_wrapper .form_container .left_section .resendBtn:hover {
   background: none;
 }
-.form_container .left_section .error_para {
+.form_wrapper .form_container .left_section .error_para {
   color: red;
   font-size: 13px;
   text-align: center;
 }
-.form_container .left_section .login_Details h1 {
+.form_wrapper .form_container .left_section .login_Details h1 {
   color: #046BD2;
   font-size: 20px;
 }
-.form_container .left_section .login_Details p {
+.form_wrapper .form_container .left_section .login_Details p {
   padding: 5px 0px;
   font-size: 12px;
 }
-.form_container .left_section form p {
+.form_wrapper .form_container .left_section form .error {
   font-size: 12px;
   color: red;
   margin-top: 5px;
 }
-.form_container .left_section form .input_div {
+.form_wrapper .form_container .left_section form .terms {
+  color: #111;
+  margin: 5px 0;
+}
+.form_wrapper .form_container .left_section form .terms .navigation {
+  text-decoration: none;
+  color: #046BD2;
+  padding: 0 5px;
+}
+.form_wrapper .form_container .left_section form .input_div {
   padding: 2px;
   display: flex;
   gap: 10px;
 }
 @media (max-width: 550px) {
-  .form_container .left_section form .input_div {
+  .form_wrapper .form_container .left_section form .input_div {
     flex-direction: column;
     transition: 0.3s ease-all;
   }
 }
-.form_container .left_section form .input_div div {
+@media (min-width: 550px) and (max-width: 768px) {
+  .form_wrapper .form_container .left_section form .input_div {
+    flex-direction: column;
+    transition: 0.3s ease-all;
+  }
+}
+.form_wrapper .form_container .left_section form .input_div div {
   width: 100%;
   display: flex;
   gap: 6px;
   flex-direction: column;
 }
-.form_container .left_section form .input_div div p {
+.form_wrapper .form_container .left_section form .input_div div .error {
   font-size: 12px;
   color: red;
 }
-.form_container .left_section form .input_div div span {
+.form_wrapper .form_container .left_section form .input_div div span {
   color: #046BD2;
   font-size: 10px;
   margin-left: 10px;
   cursor: pointer;
 }
-.form_container .left_section form .input_div div span:hover {
+.form_wrapper .form_container .left_section form .input_div div span:hover {
   color: #10E3C2;
 }
-.form_container .left_section form .input_div div input {
+.form_wrapper .form_container .left_section form .input_div div input {
   border-color: rgba(149, 149, 149, 0.52);
   outline: none;
   border-width: 0.3px;
@@ -109,10 +146,19 @@
   padding: 14px 10px;
   background-color: #ebebeb;
 }
-.form_container .left_section form .input_div div .input_Wrap {
+.form_wrapper .form_container .left_section form .input_div div .dobInput {
+  width: 100%;
+  border-color: rgba(149, 149, 149, 0.52);
+  outline: none;
+  border-width: 0.3px;
+  border-radius: 5px;
+  padding: 13px 0;
+  background-color: #ebebeb;
+}
+.form_wrapper .form_container .left_section form .input_div div .input_Wrap {
   position: relative;
 }
-.form_container .left_section form .input_div div .input_Wrap .eye_icon {
+.form_wrapper .form_container .left_section form .input_div div .input_Wrap .eye_icon {
   position: absolute;
   right: 15px;
   top: 50%;
@@ -121,13 +167,13 @@
   cursor: pointer;
   color: #999;
 }
-.form_container .left_section form .input_div div .input_Wrap .eye_icon:hover {
+.form_wrapper .form_container .left_section form .input_div div .input_Wrap .eye_icon:hover {
   color: #046BD2;
 }
-.form_container .left_section form .input_div div label {
+.form_wrapper .form_container .left_section form .input_div div label {
   font-size: 12px;
 }
-.form_container .left_section form button {
+.form_wrapper .form_container .left_section form button {
   cursor: pointer;
   margin-top: 5px;
   background-color: #046BD2;
@@ -138,10 +184,10 @@
   padding: 14px 0px;
   font-size: 15px;
 }
-.form_container .left_section form button:hover {
+.form_wrapper .form_container .left_section form button:hover {
   background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
-.form_container .left_section .additional_options {
+.form_wrapper .form_container .left_section .additional_options {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
@@ -149,39 +195,39 @@
   align-items: center;
 }
 @media (max-width: 550px) {
-  .form_container .left_section .additional_options {
+  .form_wrapper .form_container .left_section .additional_options {
     flex-direction: row;
     justify-content: space-between;
   }
 }
-.form_container .left_section .additional_options p {
+.form_wrapper .form_container .left_section .additional_options p {
   font-size: 13px;
 }
-.form_container .left_section .additional_options .navigation {
+.form_wrapper .form_container .left_section .additional_options .navigation {
   text-decoration: none;
 }
-.form_container .left_section .Google_authentication {
+.form_wrapper .form_container .left_section .Google_authentication {
   padding-top: 20px;
 }
-.form_container .left_section .Google_authentication .break {
+.form_wrapper .form_container .left_section .Google_authentication .break {
   color: #373737;
   display: flex;
   font-size: 12px;
   justify-content: space-evenly;
   align-items: center;
 }
-.form_container .left_section .Google_authentication .break div {
+.form_wrapper .form_container .left_section .Google_authentication .break div {
   background: rgba(0, 0, 0, 0.511);
   height: 0.5px;
   width: 8rem;
 }
-.form_container .left_section .Google_authentication .GoogleButton {
+.form_wrapper .form_container .left_section .Google_authentication .GoogleButton {
   padding: 20px;
   height: 20px;
   display: flex;
   justify-content: center;
 }
-.form_container .left_section .Google_authentication button {
+.form_wrapper .form_container .left_section .Google_authentication button {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -190,11 +236,11 @@
   padding: 2rem 3rem;
   font-size: 15px;
 }
-.form_container .left_section .Google_authentication button:hover {
+.form_wrapper .form_container .left_section .Google_authentication button:hover {
   background-color: #ebebeb;
   border-radius: 50px;
 }
-.form_container .right_section {
+.form_wrapper .form_container .right_section {
   width: 45%;
   display: flex;
   justify-content: center;
@@ -204,17 +250,22 @@
   border-bottom-left-radius: 7px;
 }
 @media (max-width: 550px) {
-  .form_container .right_section {
+  .form_wrapper .form_container .right_section {
     display: none;
   }
 }
-.form_container .right_section .img_wrapper {
+@media (min-width: 550px) and (max-width: 768px) {
+  .form_wrapper .form_container .right_section {
+    display: none;
+  }
+}
+.form_wrapper .form_container .right_section .img_wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.form_container .right_section .img_wrapper img {
+.form_wrapper .form_container .right_section .img_wrapper img {
   width: 250px;
   height: 400px;
 }/*# sourceMappingURL=index.module.css.map */

@@ -15,7 +15,7 @@ const Register_Ad = () => {
   const [FormData, SetFormData] = useState([]);
 
 
-  //moount functions
+  //mount functions
   useEffect(() => {
     try {
       instance.get(`/api/category/get_singlesubcategory?subCategoryId=${subCategoryId}`).then((response) => {

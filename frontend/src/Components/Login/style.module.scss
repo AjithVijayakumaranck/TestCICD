@@ -1,85 +1,141 @@
 @import '../../StyleHelpers/Variables.scss';
 
-.form_container {
-    display: flex;
-    height: 30rem;
+.container {
 
-
-    @include breakpoint(md) {
-        min-height: 100vh;
-        transition: 0.5s ease-in-out;
-    }
-
-    .navigation {
-        text-decoration: none;
-    }
-
-    .left_section {
+    .otp_section {
         width: 100%;
         padding: 20px;
         background-color: white;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border-top-left-radius: 7px;
-        border-bottom-left-radius: 7px;
+        border-top-right-radius: 7px;
+        border-bottom-right-radius: 7px;
+        position: relative;
+
+        h1 {
+            color: $primary_color;
+        }
+
+        p {
+            font-size: 12px;
+
+            span {
+                color: $primary_color;
+                font-size: 0.8rem;
+                font-weight: 400;
+            }
+        }
+
+        .resendBtn {
+            background: none;
+            border: none;
+            outline: none;
+            color: $primary_color;
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-top: 1rem;
+            letter-spacing: 0;
+            cursor: pointer;
+
+            &:hover {
+                background: none;
+            }
+        }
+
+        .error_para {
+            color: red;
+            font-size: 13px;
+            text-align: center;
+        }
+
 
         .login_Details {
 
             h1 {
-                padding-top: 10px;
-                color: $primary_color;
-                font-size: 26px;
-            }
-
-            h2 {
-                padding: 2px;
                 color: $primary_color;
                 font-size: 20px;
             }
 
             p {
-                padding: 10px 0px;
+                padding: 5px 0px;
                 font-size: 12px;
             }
-
         }
 
         form {
 
+            p {
+                font-size: 12px;
+                color: red;
+                margin-top: 5px;
+            }
+
             .input_div {
+                padding: 2px;
                 display: flex;
-                flex-direction: column;
-                padding: 10px 0px;
-                gap: 4px;
-                position: relative;
+                gap: 10px;
 
-
-                input {
-                    border-width: .3px;
-                    border-radius: 5px;
-                    border-color: rgb(149 149 149 / 52%);
-                    outline: none;
-                    padding: 15px 10px;
-                    background-color: $base_color;
+                @include breakpoint(md) {
+                    flex-direction: column;
+                    transition: .3s ease-all;
                 }
 
-                .eye_icon {
-                    position: absolute;
-                    right: 15px;
-                    top: 65%;
-                    transform: translateY(-50%);
-                    cursor: pointer;
-                    color: #999;
+                div {
+                    width: 100%;
+                    display: flex;
+                    gap: 6px;
+                    flex-direction: column;
 
-                    &:hover{
+                    p {
+                        font-size: 12px;
+                        color: red;
+                    }
+
+                    span {
                         color: $primary_color;
+                        font-size: 10px;
+                        margin-left: 10px;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: $secondary_color;
+                        }
+                    }
+
+                    input {
+                        border-color: rgb(149 149 149 / 52%);
+                        outline: none;
+                        border-width: .3px;
+                        border-radius: 5px;
+                        padding: 14px 10px;
+                        background-color: $base_color;
+
+                    }
+
+                    .input_Wrap {
+                        position: relative;
+
+                        .eye_icon {
+                            position: absolute;
+                            right: 15px;
+                            top: 50%;
+                            font-size: 16px;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            color: #999;
+
+                            &:hover {
+                                color: $primary_color;
+                            }
+                        }
+                    }
+
+                    label {
+                        font-size: 12px;
                     }
                 }
 
-                label {
-                    font-size: 12px;
-                }
             }
 
             button {
@@ -90,116 +146,241 @@
                 color: white;
                 border: none;
                 border-radius: 5px;
-                padding: 15px 0px;
+                padding: 14px 0px;
                 font-size: 15px;
 
                 &:hover {
                     background: $gradient_color;
                 }
             }
+        }
+    }
 
+    .form_wrapper {
+        box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+        background-color: aliceblue;
+        width: 50rem;
+        min-height: 30rem;
+
+        @include breakpoint(md) {
+            width: 100vw;
+            min-height: 100vh;
         }
 
-        .additional_options {
-            padding-top: 10px;
+        @include mediumScreen {
+            width: 100vw;
+            box-shadow: none;
+        }
+
+        .form_container {
             display: flex;
-            gap: 5px;
-            justify-content: space-between;
+            height: 30rem;
 
 
             @include breakpoint(md) {
-                flex-direction: column;
-                align-items: center;
+                min-height: 100vh;
+                transition: 0.5s ease-in-out;
             }
 
-            p {
-                font-size: 13px;
-
-                .navigation {
-                    text-decoration: none;
-                    color: $primary_color;
-                }
-            }
-        }
-
-        .Google_authentication {
-
-            padding-top: 20px;
-
-            .break {
-                color: $base_color2;
-                display: flex;
-                font-size: 12px;
-                justify-content: space-evenly;
-                align-items: center;
-
-                div {
-                    background: rgba(0, 0, 0, 0.511);
-                    height: .5px;
-                    width: 8rem;
-
-                }
+            .navigation {
+                text-decoration: none;
             }
 
-            .GoogleButton {
+            .left_section {
+                width: 100%;
                 padding: 20px;
-                height: 20px;
+                background-color: white;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
+                border-top-left-radius: 7px;
+                border-bottom-left-radius: 7px;
+
+                @include mediumScreen {
+                    padding: 40px 60px;
+                }
+
+                .login_Details {
+
+                    h1 {
+                        padding-top: 10px;
+                        color: $primary_color;
+                        font-size: 26px;
+                    }
+
+                    h2 {
+                        padding: 2px;
+                        color: $primary_color;
+                        font-size: 20px;
+                    }
+
+                    p {
+                        padding: 10px 0px;
+                        font-size: 12px;
+                    }
+
+                }
+
+                form {
+
+                    .input_div {
+                        display: flex;
+                        flex-direction: column;
+                        padding: 10px 0px;
+                        gap: 4px;
+                        position: relative;
 
 
-                a {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                    text-decoration: none;
-                    border: none;
-                    font-size: 15px;
-                    background-color: white;
+                        input {
+                            border-width: .3px;
+                            border-radius: 5px;
+                            border-color: rgb(149 149 149 / 52%);
+                            outline: none;
+                            padding: 15px 10px;
+                            background-color: $base_color;
+                        }
+
+                        .eye_icon {
+                            position: absolute;
+                            right: 15px;
+                            top: 65%;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            color: #999;
+
+                            &:hover {
+                                color: $primary_color;
+                            }
+                        }
+
+                        label {
+                            font-size: 12px;
+                        }
+                    }
 
                     button {
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        border: none;
-                        background-color: transparent;
-                        padding: .5rem 1.5rem;
                         cursor: pointer;
+                        margin-top: 5px;
+                        background-color: $primary_color;
+                        width: 100%;
+                        color: white;
+                        border: none;
+                        border-radius: 5px;
+                        padding: 15px 0px;
+                        font-size: 15px;
 
                         &:hover {
-                            background-color: $base_color;
-                            border-radius: 50px;
+                            background: $gradient_color;
+                        }
+                    }
+
+                }
+
+                .additional_options {
+                    padding-top: 10px;
+                    display: flex;
+                    gap: 5px;
+                    justify-content: space-between;
+
+
+                    @include breakpoint(md) {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    p {
+                        font-size: 13px;
+
+                        .navigation {
+                            text-decoration: none;
+                            color: $primary_color;
+                        }
+                    }
+                }
+
+                .Google_authentication {
+
+                    padding-top: 20px;
+
+                    .break {
+                        color: $base_color2;
+                        display: flex;
+                        font-size: 12px;
+                        justify-content: space-evenly;
+                        align-items: center;
+
+                        div {
+                            background: rgba(0, 0, 0, 0.511);
+                            height: .5px;
+                            width: 8rem;
+
+                        }
+                    }
+
+                    .GoogleButton {
+                        padding: 20px;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+
+
+                        a {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            text-decoration: none;
+                            border: none;
+                            font-size: 15px;
+                            background-color: white;
+
+                            button {
+                                display: flex;
+                                align-items: center;
+                                gap: 5px;
+                                border: none;
+                                background-color: transparent;
+                                padding: .5rem 1.5rem;
+                                cursor: pointer;
+
+                                &:hover {
+                                    background-color: $base_color;
+                                    border-radius: 50px;
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
-    }
 
-    .right_section {
-        background-color: $primary_color;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 45%;
-        border-top-right-radius: 7px;
-        border-bottom-right-radius: 7px;
+            .right_section {
+                background-color: $primary_color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 45%;
+                border-top-right-radius: 7px;
+                border-bottom-right-radius: 7px;
 
-        @include breakpoint(md) {
-            display: none;
-            transition: .3s ease-all;
-        }
+                @include breakpoint(md) {
+                    display: none;
+                    transition: .3s ease-all;
+                }
 
-        .img_wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+                @include mediumScreen {
+                    display: none;
+                }
 
-            img {
+                .img_wrapper {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
 
-                width: 250px;
-                height: 400px;
+                    img {
+                        width: 250px;
+                        height: 400px;
+                    }
+                }
             }
         }
     }

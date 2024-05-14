@@ -1,0 +1,325 @@
+.Main_Container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  background-color: #f8f8f8;
+  padding: 40px;
+  overflow: hidden;
+  gap: 10px;
+  /*--------Registeration form-------  */
+}
+.Main_Container *:required {
+  background-color: rgb(250, 250, 250);
+}
+@media (max-width: 550px) {
+  .Main_Container {
+    padding: 10px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+  .Main_Container {
+    padding: 20px;
+  }
+}
+.Main_Container .header_wrapper {
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+.Main_Container .header_wrapper .backarrow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 60px;
+  font-size: 22px;
+  height: 80px;
+}
+.Main_Container .Container_Wrapper {
+  background-color: #fff;
+  width: 60%;
+  min-height: 480px;
+  border-radius: 5px;
+  padding: 60px;
+  overflow: hidden;
+}
+@media (max-width: 550px) {
+  .Main_Container .Container_Wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_Container .Container_Wrapper {
+    width: 70%;
+  }
+}
+.Main_Container .Container_Wrapper .path {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  margin: 10px 0;
+  padding: 20px 0;
+  border-bottom: 1px solid grey;
+}
+.Main_Container .Container_Wrapper form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.Main_Container .Container_Wrapper form .row {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.Main_Container .Container_Wrapper form .row label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+.Main_Container .Container_Wrapper form .row .listeditems {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 5px;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio input {
+  display: flex;
+  flex-direction: row;
+  height: 1.5rem;
+  width: 20px;
+  margin-right: 10px;
+}
+.Main_Container .Container_Wrapper form .row .radioFieldItems .radio .radioLabel {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.Main_Container .Container_Wrapper form .row .items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .items,
+.Main_Container .Container_Wrapper form .row .listeditems {
+  margin: 10px 0;
+}
+.Main_Container .Container_Wrapper form .row .items span,
+.Main_Container .Container_Wrapper form .row .listeditems span {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+}
+.Main_Container .Container_Wrapper form .row .items p,
+.Main_Container .Container_Wrapper form .row .listeditems p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.Main_Container .Container_Wrapper form .row .items .basic_single,
+.Main_Container .Container_Wrapper form .row .listeditems .basic_single {
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .row .items button,
+.Main_Container .Container_Wrapper form .row .listeditems button {
+  padding: 5px 15px;
+  margin: 5px;
+  line-height: 2;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  background-color: #fff;
+  text-align: center;
+  font-size: 14px;
+}
+.Main_Container .Container_Wrapper form .row .items button:hover,
+.Main_Container .Container_Wrapper form .row .listeditems button:hover {
+  background-color: #046BD2;
+  color: #fff;
+  border: 1px solid #046BD2;
+}
+.Main_Container .Container_Wrapper form .row .items select,
+.Main_Container .Container_Wrapper form .row .listeditems select {
+  height: 3rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 0 20px;
+}
+.Main_Container .Container_Wrapper form .row .items select:hover,
+.Main_Container .Container_Wrapper form .row .listeditems select:hover {
+  border-color: #046BD2;
+  color: #111;
+}
+.Main_Container .Container_Wrapper form .row .items select .selectoption,
+.Main_Container .Container_Wrapper form .row .listeditems select .selectoption {
+  font-size: 16px;
+  background-color: transparent;
+  padding: 10px;
+}
+.Main_Container .Container_Wrapper form .row .items input,
+.Main_Container .Container_Wrapper form .row .listeditems input {
+  height: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 0 5px 0 5px;
+}
+.Main_Container .Container_Wrapper form .row .items input:hover,
+.Main_Container .Container_Wrapper form .row .listeditems input:hover {
+  border-color: #046BD2;
+  color: #111;
+}
+.Main_Container .Container_Wrapper form .row .items textarea,
+.Main_Container .Container_Wrapper form .row .listeditems textarea {
+  height: 6rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+}
+.Main_Container .Container_Wrapper form .row .items textarea:hover,
+.Main_Container .Container_Wrapper form .row .listeditems textarea:hover {
+  border-color: #046BD2;
+  color: #111;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper label {
+  padding: 40px;
+  font-size: 30px;
+  border: 2px dashed lightgray;
+  cursor: pointer;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper input {
+  display: none;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper .image_sec {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper .image_sec img {
+  width: 120px;
+  height: 118px;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper .image_sec .clearbtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  outline: none;
+}
+.Main_Container .Container_Wrapper form .row .image_wrapper .image_sec .clearbtn button {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  font-size: 18px;
+}
+.Main_Container .Container_Wrapper form .row p {
+  font-size: 11px;
+  margin-top: 30px;
+}
+.Main_Container .Container_Wrapper form .price_section {
+  border-top: 1px solid #373737;
+  padding: 20px 0;
+}
+.Main_Container .Container_Wrapper form .seller_section {
+  border-top: 1px solid #373737;
+  padding: 20px 0;
+}
+.Main_Container .Container_Wrapper form .seller_section .items {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 100%;
+}
+.Main_Container .Container_Wrapper form .seller_section .items input {
+  height: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 0 5px 0 5px;
+}
+.Main_Container .Container_Wrapper form .seller_section .items input:hover {
+  border-color: #046BD2;
+  color: #111;
+}
+.Main_Container .Container_Wrapper form .seller_section .location_wrap {
+  display: flex;
+  gap: 30px;
+}
+@media (max-width: 550px) {
+  .Main_Container .Container_Wrapper form .seller_section .location_wrap {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Main_Container .Container_Wrapper form .seller_section .location_wrap {
+    gap: 40px;
+  }
+}
+.Main_Container .Container_Wrapper form .seller_section .location_wrap .col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 0;
+}
+.Main_Container .Container_Wrapper form .seller_section .location_wrap .col input {
+  height: 2.5rem;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  outline: none;
+  padding: 0 5px;
+}
+.Main_Container .Container_Wrapper form .submit_section {
+  position: relative;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Main_Container .Container_Wrapper form .submit_section button {
+  position: absolute;
+  right: 20px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #046BD2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/*--------End Registeration form-------  *//*# sourceMappingURL=Style.module.css.map */

@@ -1,17 +1,159 @@
-.form_container {
+.container .otp_section {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  position: relative;
+}
+.container .otp_section h1 {
+  color: #046BD2;
+}
+.container .otp_section p {
+  font-size: 12px;
+}
+.container .otp_section p span {
+  color: #046BD2;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+.container .otp_section .resendBtn {
+  background: none;
+  border: none;
+  outline: none;
+  color: #046BD2;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+.container .otp_section .resendBtn:hover {
+  background: none;
+}
+.container .otp_section .error_para {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+.container .otp_section .login_Details h1 {
+  color: #046BD2;
+  font-size: 20px;
+}
+.container .otp_section .login_Details p {
+  padding: 5px 0px;
+  font-size: 12px;
+}
+.container .otp_section form p {
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
+}
+.container .otp_section form .input_div {
+  padding: 2px;
+  display: flex;
+  gap: 10px;
+}
+@media (max-width: 550px) {
+  .container .otp_section form .input_div {
+    flex-direction: column;
+    transition: 0.3s ease-all;
+  }
+}
+.container .otp_section form .input_div div {
+  width: 100%;
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.container .otp_section form .input_div div p {
+  font-size: 12px;
+  color: red;
+}
+.container .otp_section form .input_div div span {
+  color: #046BD2;
+  font-size: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.container .otp_section form .input_div div span:hover {
+  color: #10E3C2;
+}
+.container .otp_section form .input_div div input {
+  border-color: rgba(149, 149, 149, 0.52);
+  outline: none;
+  border-width: 0.3px;
+  border-radius: 5px;
+  padding: 14px 10px;
+  background-color: #ebebeb;
+}
+.container .otp_section form .input_div div .input_Wrap {
+  position: relative;
+}
+.container .otp_section form .input_div div .input_Wrap .eye_icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  font-size: 16px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #999;
+}
+.container .otp_section form .input_div div .input_Wrap .eye_icon:hover {
+  color: #046BD2;
+}
+.container .otp_section form .input_div div label {
+  font-size: 12px;
+}
+.container .otp_section form button {
+  cursor: pointer;
+  margin-top: 5px;
+  background-color: #046BD2;
+  width: 100%;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 14px 0px;
+  font-size: 15px;
+}
+.container .otp_section form button:hover {
+  background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
+}
+.container .form_wrapper {
+  box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.31);
+  background-color: aliceblue;
+  width: 50rem;
+  min-height: 30rem;
+}
+@media (max-width: 550px) {
+  .container .form_wrapper {
+    width: 100vw;
+    min-height: 100vh;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .container .form_wrapper {
+    width: 100vw;
+    box-shadow: none;
+  }
+}
+.container .form_wrapper .form_container {
   display: flex;
   height: 30rem;
 }
 @media (max-width: 550px) {
-  .form_container {
+  .container .form_wrapper .form_container {
     min-height: 100vh;
     transition: 0.5s ease-in-out;
   }
 }
-.form_container .navigation {
+.container .form_wrapper .form_container .navigation {
   text-decoration: none;
 }
-.form_container .left_section {
+.container .form_wrapper .form_container .left_section {
   width: 100%;
   padding: 20px;
   background-color: white;
@@ -21,28 +163,33 @@
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }
-.form_container .left_section .login_Details h1 {
+@media (min-width: 550px) and (max-width: 768px) {
+  .container .form_wrapper .form_container .left_section {
+    padding: 40px 60px;
+  }
+}
+.container .form_wrapper .form_container .left_section .login_Details h1 {
   padding-top: 10px;
   color: #046BD2;
   font-size: 26px;
 }
-.form_container .left_section .login_Details h2 {
+.container .form_wrapper .form_container .left_section .login_Details h2 {
   padding: 2px;
   color: #046BD2;
   font-size: 20px;
 }
-.form_container .left_section .login_Details p {
+.container .form_wrapper .form_container .left_section .login_Details p {
   padding: 10px 0px;
   font-size: 12px;
 }
-.form_container .left_section form .input_div {
+.container .form_wrapper .form_container .left_section form .input_div {
   display: flex;
   flex-direction: column;
   padding: 10px 0px;
   gap: 4px;
   position: relative;
 }
-.form_container .left_section form .input_div input {
+.container .form_wrapper .form_container .left_section form .input_div input {
   border-width: 0.3px;
   border-radius: 5px;
   border-color: rgba(149, 149, 149, 0.52);
@@ -50,7 +197,7 @@
   padding: 15px 10px;
   background-color: #ebebeb;
 }
-.form_container .left_section form .input_div .eye_icon {
+.container .form_wrapper .form_container .left_section form .input_div .eye_icon {
   position: absolute;
   right: 15px;
   top: 65%;
@@ -58,13 +205,13 @@
   cursor: pointer;
   color: #999;
 }
-.form_container .left_section form .input_div .eye_icon:hover {
+.container .form_wrapper .form_container .left_section form .input_div .eye_icon:hover {
   color: #046BD2;
 }
-.form_container .left_section form .input_div label {
+.container .form_wrapper .form_container .left_section form .input_div label {
   font-size: 12px;
 }
-.form_container .left_section form button {
+.container .form_wrapper .form_container .left_section form button {
   cursor: pointer;
   margin-top: 5px;
   background-color: #046BD2;
@@ -75,50 +222,50 @@
   padding: 15px 0px;
   font-size: 15px;
 }
-.form_container .left_section form button:hover {
+.container .form_wrapper .form_container .left_section form button:hover {
   background: linear-gradient(142deg, rgb(3, 116, 208) 10%, rgb(0, 239, 189) 100%);
 }
-.form_container .left_section .additional_options {
+.container .form_wrapper .form_container .left_section .additional_options {
   padding-top: 10px;
   display: flex;
   gap: 5px;
   justify-content: space-between;
 }
 @media (max-width: 550px) {
-  .form_container .left_section .additional_options {
+  .container .form_wrapper .form_container .left_section .additional_options {
     flex-direction: column;
     align-items: center;
   }
 }
-.form_container .left_section .additional_options p {
+.container .form_wrapper .form_container .left_section .additional_options p {
   font-size: 13px;
 }
-.form_container .left_section .additional_options p .navigation {
+.container .form_wrapper .form_container .left_section .additional_options p .navigation {
   text-decoration: none;
   color: #046BD2;
 }
-.form_container .left_section .Google_authentication {
+.container .form_wrapper .form_container .left_section .Google_authentication {
   padding-top: 20px;
 }
-.form_container .left_section .Google_authentication .break {
+.container .form_wrapper .form_container .left_section .Google_authentication .break {
   color: #373737;
   display: flex;
   font-size: 12px;
   justify-content: space-evenly;
   align-items: center;
 }
-.form_container .left_section .Google_authentication .break div {
+.container .form_wrapper .form_container .left_section .Google_authentication .break div {
   background: rgba(0, 0, 0, 0.511);
   height: 0.5px;
   width: 8rem;
 }
-.form_container .left_section .Google_authentication .GoogleButton {
+.container .form_wrapper .form_container .left_section .Google_authentication .GoogleButton {
   padding: 20px;
   height: 20px;
   display: flex;
   justify-content: center;
 }
-.form_container .left_section .Google_authentication .GoogleButton a {
+.container .form_wrapper .form_container .left_section .Google_authentication .GoogleButton a {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -127,7 +274,7 @@
   font-size: 15px;
   background-color: white;
 }
-.form_container .left_section .Google_authentication .GoogleButton a button {
+.container .form_wrapper .form_container .left_section .Google_authentication .GoogleButton a button {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -136,11 +283,11 @@
   padding: 0.5rem 1.5rem;
   cursor: pointer;
 }
-.form_container .left_section .Google_authentication .GoogleButton a button:hover {
+.container .form_wrapper .form_container .left_section .Google_authentication .GoogleButton a button:hover {
   background-color: #ebebeb;
   border-radius: 50px;
 }
-.form_container .right_section {
+.container .form_wrapper .form_container .right_section {
   background-color: #046BD2;
   display: flex;
   justify-content: center;
@@ -150,18 +297,23 @@
   border-bottom-right-radius: 7px;
 }
 @media (max-width: 550px) {
-  .form_container .right_section {
+  .container .form_wrapper .form_container .right_section {
     display: none;
     transition: 0.3s ease-all;
   }
 }
-.form_container .right_section .img_wrapper {
+@media (min-width: 550px) and (max-width: 768px) {
+  .container .form_wrapper .form_container .right_section {
+    display: none;
+  }
+}
+.container .form_wrapper .form_container .right_section .img_wrapper {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.form_container .right_section .img_wrapper img {
+.container .form_wrapper .form_container .right_section .img_wrapper img {
   width: 250px;
   height: 400px;
 }/*# sourceMappingURL=style.module.css.map */

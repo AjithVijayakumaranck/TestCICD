@@ -1,65 +1,68 @@
-@import '../../StyleHelpers/Variables.scss';
+@import "../../StyleHelpers/Variables.scss";
 
 .productwrapper {
-    width: 100%;
-    min-height: 300px;
-    background-color: $base_color3;
+  width: 100%;
+  min-height: 300px;
+  background-color: $base_color3;
 
-    .container {
-        margin: 0 2rem;
-        display: block;
+  .container {
+    margin: 0 2rem;
+    display: block;
 
-        @include breakpoint(md) {
-            margin: 0 0;
-            padding: 0 10px;
-        }
-
-        @include mediumScreen {
-            margin: 0 1rem;
-        }
-
-        .heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            padding: .5rem 0;
-            border-bottom: 2px solid $base_color;
-
-            .left {
-                h2 {
-                    color: $base_color5;
-                    font-size: 22px;
-                    font-weight: 600;
-                }
-            }
-        }
-
-        .cardWrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            place-items: center;
-            place-content: center;
-            gap: 10px;
-
-
-            @include breakpoint(md) {
-                grid-template-columns: 1fr 1fr;
-                gap: 5px;
-            }
-
-            @include mediumScreen {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 5px;
-            }
-
-            @include extraMediumScreen {
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-            }
-
-            @include LargeScreen {
-                grid-template-columns: 1fr 1fr 1fr;
-            }
-        }
+    @include breakpoint(md) {
+      margin: 0 0;
+      padding: 0 10px;
     }
+
+    @include mediumScreen {
+      margin: 0 1rem;
+    }
+
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid $base_color;
+
+      .left {
+        h2 {
+          color: $base_color5;
+          font-size: 22px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .cardWrapper {
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      // display: grid;
+      // // grid-auto-columns: auto auto auto;
+      // grid-template-columns:auto auto auto auto;
+      // place-items: center;
+      // place-content: center;
+      gap: 10px;
+
+      @include breakpoint(md) {
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+      }
+
+      @include mediumScreen {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5px;
+      }
+
+      @include extraMediumScreen {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      @include LargeScreen {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
 }

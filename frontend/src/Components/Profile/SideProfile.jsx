@@ -48,7 +48,7 @@ const SideProfile = ({ UserData, UserImage, CustomNav, CustomNavLink }) => {
                     <Link className={Style.navigation} to='/myads'><li>My Ads</li></Link>
                     <Link className={Style.navigation} to='/chat'><li>Chat</li></Link>
                     <Link className={Style.navigation} to='/profile/privacy-settings'><li className={`${window.location.pathname === '/profile/privacy-settings' ? Style.active : null}`}>Privacy Settings</li></Link>
-                    <Link className={`${Style.navigation} ${Style.edit_profile}`} to={`/updateprofile`} ><li>Edit Profile</li></Link>
+                    <Link className={`${Style.navigation} ${Style.edit_profile}`} to={`/update-profile`} ><li>Edit Profile</li></Link>
                 </ul>
             </div>
             <div className={Style.log_section}>
