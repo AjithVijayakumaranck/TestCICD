@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authInstance from "../../instance/AuthInstance";
 import { UserContext } from "../../Contexts/UserContext";
+import registerClicks from "../../utilities/getCategoryClicks";
 
 const RightCategory = () => {
   const navigate = useNavigate();
@@ -35,23 +36,6 @@ const RightCategory = () => {
   }, []);
 
   // popular category
-  const registerClicks = async (catId, userId) => {
-    try {
-      const payload = {
-        categoryId: catId,
-        userId: userId,
-      };
-
-      const response = await authInstance.put(
-        "/api/category/register_clicks",
-        payload
-      );
-      console.log(response.data, "popular category");
-    } catch (error) {
-      console.error(error, "popular category error");
-    }
-  };
-
   const onClickFun = (catId, userId) => {
     registerClicks(catId, userId);
     navigate(`/category/${catId}`);
