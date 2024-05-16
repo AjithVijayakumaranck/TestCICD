@@ -6,60 +6,85 @@ import { UserContext } from "../../Contexts/UserContext";
 import registerClicks from "../../utilities/getCategoryClicks";
 
 const RightCategory = () => {
-  const navigate = useNavigate();
-  const userData = useContext(UserContext);
-  const { User } = userData;
-  const userId = User?._id;
+    const navigate = useNavigate();
+    const userData = useContext(UserContext);
+    const { User } = userData;
+    const userId = User?._id;
 
-  const [Categories, SetCategories] = useState([]);
-  const [DisplayLimit, SetDisplayLimit] = useState(8);
+    const [Categories, SetCategories] = useState([]);
+    const [DisplayLimit, SetDisplayLimit] = useState(8);
 
-  const loadCategories = () => {
-    instance
-      .get("/api/category/get_categories")
-      .then((response) => {
-        response.data.map((singlecategory) => {
-        console.log("unsorted",singlecategory?.clicks.length);
-          SetCategories(sortedArray);
-          console.log(sortedClicks.length, "srted clicks");
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+    // const  dummyData = [
+    //     {name:"cat 1",
+    //     clicks:["1","2","3","4"]
+    //     },
+        
+    //     {name:"cat 2",
+    //     clicks:["1","2","3","4","5"]
+    //     },
+        
+    //     {name:"cat 3",
+    //     clicks:["1","2","3","4","5","6","7","8",]
+    //     },
+        
+    //     {name:"cat 4",
+    //     clicks:["1","2","3","4","5","6","7","8","9","10","11","12"]
+    //     },
+        
+    // ]
+    // const sorteddata = dummyData.sort((a,b)=>b.clicks.length - a.clicks.length);
+    // console.log(sorteddata,"sorted summy");
 
-  useEffect(() => {
-    loadCategories();
-  }, []);
+    const loadCategories = () => {
+        instance
+            .get("/api/category/get_categories")
+            .then((response) => {
 
-  const onClickFun = (catId, userId) => {
-    registerClicks(catId, userId);
-    navigate(`/category/${catId}`);
-  };
+                const sortedObject = response.data.sort((a, b) => b.clicks.length - a.clicks.length);
+                
+                
+                SetCategories(sortedObject)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
-  return (
-    <>
-      <div className={Style.RContainer}>
-        <div className={Style.title}>
-          <h3>Explore Popular Category</h3>
-        </div>
-        <div className={Style.box_wrapper}>
-          {Categories.slice(0, DisplayLimit).map((category, index) => (
-            <div className={Style.item} key={index}>
-              <div
-                className={Style.box}
-                onClick={() => onClickFun(category?._id, userId)}
-              >
-                <img src={category?.icon?.url} alt="" />
-              </div>
-              <h6>{category?.categoryName}</h6>
+
+
+    useEffect(() => {
+        loadCategories();
+    }, []);
+
+
+
+    const onClickFun = (catId, userId) => {
+        registerClicks(catId, userId);
+        navigate(`/category/${catId}`);
+    };
+
+    return (
+        <>
+            <div className={Style.RContainer}>
+                <div className={Style.title}>
+                    <h3>Explore Popular Category</h3>
+                </div>
+                <div className={Style.box_wrapper}>
+                    {Categories.slice(0, DisplayLimit).map((category, index) => (
+                        <div className={Style.item} key={index}>
+                            <div
+                                className={Style.box}
+                                onClick={() => onClickFun(category?._id, userId)}
+                            >
+                                <img src={category?.icon?.url} alt="" />
+                            </div>
+                            <h6>{category?.categoryName}</h6>
+                        </div>
+                    ))}
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 };
 
 export default RightCategory;
