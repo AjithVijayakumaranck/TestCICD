@@ -188,11 +188,30 @@ const Navbar = ({ location, setLocation, reload }) => {
     }
   }, [User?._id, reload]);
 
+  //  const sortedCategories = response.data.sort((a, b) => {
+  //         const nameA = a.categoryName.toLowerCase();
+  //         const nameB = b.categoryName.toLowerCase();
+  //         if (nameA < nameB) return -1;
+  //         if (nameA > nameB) return 1;
+  //          if (nameA > nameB) return 1;
+  //       });
+
+    
+
   // -- Assigning react-select options
-  const SelectOptions = Categories.map((category) => ({
-    value: category?._id,
-    label: category?.categoryName,
-  }));
+const sortedCategories = Categories.sort((a, b) => {
+  const nameA = a.categoryName.toLowerCase();
+  const nameB = b.categoryName.toLowerCase();
+  if (nameA < nameB) return -1;
+  if (nameA > nameB) return 1;
+  return 0;
+});
+
+ const SelectOptions = sortedCategories.map((category) => ({
+  value: category._id,
+  label: category.categoryName,
+}));
+
 
   const customStyles = {
     control: (provided, state) => ({
