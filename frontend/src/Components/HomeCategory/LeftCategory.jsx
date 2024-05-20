@@ -19,7 +19,16 @@ const LeftCategory = () => {
     instance
       .get("/api/category/get_categories")
       .then((response) => {
-        SetCategories([...response.data]);
+        console.log(response);
+        const sortedCategories = response.data.sort((a, b) => {
+          const nameA = a.categoryName.toLowerCase();
+          const nameB = b.categoryName.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+
+        SetCategories([...sortedCategories]);
       })
       .catch((error) => {
         console.log(error);
@@ -32,10 +41,10 @@ const LeftCategory = () => {
   }, []);
 
   // popular category
- const onClickFun = (catId, userId) => {
-   registerClicks(catId, userId);
-   navigate(`/category/${catId}`);
- };
+  const onClickFun = (catId, userId) => {
+    registerClicks(catId, userId);
+    navigate(`/category/${catId}`);
+  };
 
   return (
     <div>

@@ -14,26 +14,7 @@ const RightCategory = () => {
     const [Categories, SetCategories] = useState([]);
     const [DisplayLimit, SetDisplayLimit] = useState(8);
 
-    // const  dummyData = [
-    //     {name:"cat 1",
-    //     clicks:["1","2","3","4"]
-    //     },
-        
-    //     {name:"cat 2",
-    //     clicks:["1","2","3","4","5"]
-    //     },
-        
-    //     {name:"cat 3",
-    //     clicks:["1","2","3","4","5","6","7","8",]
-    //     },
-        
-    //     {name:"cat 4",
-    //     clicks:["1","2","3","4","5","6","7","8","9","10","11","12"]
-    //     },
-        
-    // ]
-    // const sorteddata = dummyData.sort((a,b)=>b.clicks.length - a.clicks.length);
-    // console.log(sorteddata,"sorted summy");
+   
 
     const loadCategories = () => {
         instance
