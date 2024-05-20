@@ -146,7 +146,7 @@ module.exports = {
         //register clicks
         registerClicks: async (req, res)=>{
             try{
-                const {categoryId,userId} = req.body
+                const {categoryId,userId } = req.body
                 const categoryInfo = await CATEGORY.findById(categoryId)
                 if(categoryInfo) {
                     CATEGORY.updateOne({_id:categoryId, clicks: {$ne: userId}},{$addToSet: {clicks: userId}}).then((response)=>{
