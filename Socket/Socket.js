@@ -6,9 +6,7 @@ const io = require('socket.io')(8900, {
         origin: ["https://www.dealnbuy.in", "https://dealnbuy.in", "http://localhost:3000","http://195.35.22.187","https://test-repo-orpin-zeta.vercel.app"],
         credentials:true
     }
-}, () => {
-    console.log("socket working");
-})
+}, () => console.log("socket working"))
 
 //online users array
 let users = []
@@ -52,17 +50,18 @@ io.on("connection", (socket) => {
 
     //take userId and socketId from user
     socket.on("addUser", (userId) => {
+      
         addUser(userId.userId, socket.id);
+        console.log(users,"hello");
         io.emit("getUsers", users);
     });
 
 
     //capturing message senting event   
     socket.on("sendMessage",async ({ userId, receiverId, text ,offerMade = false}) => {
-        console.log( userId, receiverId, text ,offerMade ,"your message is here 222" );
+        console.log( userId, receiverId, text ,offerMade);
         const user =await getUser(receiverId)
-        console.log("before");
-        console.log(user,"hello");
+        console.log(user,"reciever found");
         io.to(user?.socketId).emit('getMessage', {
             userId, text , offerMade
         })
@@ -73,7 +72,8 @@ io.on("connection", (socket) => {
     socket.on("sentAlert",({receiverId})=> {
     console.log(receiverId,"alert seended");
         const user = getUser(receiverId)
-        console.log(user,"hello userr");
+        console.log(user,"reciever found");
+
         io.to(user?.socketId).emit('notificationAlert',{
             Alert:true
         })
