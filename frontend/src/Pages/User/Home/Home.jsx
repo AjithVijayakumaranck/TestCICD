@@ -41,14 +41,14 @@ const Home = () => {
   }, [CurrentPage]);
 
 
-  function ScrollToTopOnMount() {
-    window.scrollTo(0, 0);
-    return null;
-  }
+  // function ScrollToTopOnMount() {
+  //   window.scrollTo(0, 0);
+  //   return null;
+  // }
 
-  useEffect(() => {
-    ScrollToTopOnMount();
-  }, []);
+  // useEffect(() => {
+  //   ScrollToTopOnMount();
+  // }, []);
 
 
   //LoadSlider Image functions
@@ -110,7 +110,7 @@ const Home = () => {
 
   return (
     <div className={Style.home_container}>
-      <ScrollToTopOnMount />
+      {/* <ScrollToTopOnMount /> */}
       <Navbar setLocation={setLocation} location={location} />
       <HomeCarousel items={SliderImage} />
       < div className={Style.Main_container}>
