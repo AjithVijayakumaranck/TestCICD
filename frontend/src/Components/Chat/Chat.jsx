@@ -78,9 +78,19 @@ const Chat = ({ existingConverstaionId, HandleRead }) => {
   }, []);
 
   //scroll down
-  useEffect(() => {
-    ScrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [Message]);
+  // useEffect(() => {
+  //   const bottom = ScrollRef.current?.getBoundingClientRect();
+  //   console.log(bottom);
+  //   ScrollRef.current?.scrollTo({ top: bottom.y, behavior: "smooth" });
+  // }, [Message]);
+
+useEffect(() => {
+  const scrollElement = ScrollRef.current;
+  if (scrollElement) {
+    scrollElement.scrollTo({ top: scrollElement.scrollHeight, behavior: 'smooth' });
+  }
+}, [Message]);
+
 
   useEffect(() => {
     // Use the socket connection
@@ -271,10 +281,10 @@ const Chat = ({ existingConverstaionId, HandleRead }) => {
                   </div>
                 </div>
 
-                <div className={Style.messages}>
+                <div className={Style.messages} ref={ScrollRef}>
                   {Message.map((m, index) => {
                     return (
-                      <div ref={ScrollRef} key={index}>
+                      <div key={index}>
                         <Messages
                           msg={m}
                           own={m?.sender === User?._id}

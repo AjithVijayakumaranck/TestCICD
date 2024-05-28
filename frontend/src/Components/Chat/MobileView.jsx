@@ -74,7 +74,13 @@ const MobileView = () => {
 
   //scroll down
   useEffect(() => {
-    ScrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollElement = ScrollRef.current;
+    if (scrollElement) {
+      scrollElement.scrollTo({
+        top: scrollElement.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [Message]);
 
   useEffect(() => {
@@ -248,10 +254,10 @@ const MobileView = () => {
               </div>
             </div>
 
-            <div className={Style.messages}>
+            <div className={Style.messages} ref={ScrollRef}>
               {Message.map((m, index) => {
                 return (
-                  <div ref={ScrollRef} key={index}>
+                  <div key={index}>
                     <Messages
                       msg={m}
                       own={m?.sender === User?._id}
