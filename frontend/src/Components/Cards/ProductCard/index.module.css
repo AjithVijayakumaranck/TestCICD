@@ -9,6 +9,13 @@
   border-radius: 5px;
   cursor: pointer;
 }
+@media (max-width: 550px) {
+  .products {
+    width: 150px;
+    min-width: 150px;
+    height: 350px;
+  }
+}
 .products:hover {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }

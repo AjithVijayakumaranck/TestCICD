@@ -4,7 +4,7 @@
   width: 100%;
   min-height: 300px;
   background-color: $base_color3;
-
+ 
   .container {
     margin: 0 2rem;
     display: block;
@@ -38,6 +38,7 @@
     .cardWrapper {
       overflow: hidden;
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       // display: grid;
       // // grid-auto-columns: auto auto auto;
@@ -46,10 +47,13 @@
       // place-content: center;
       gap: 10px;
 
-      @include breakpoint(md) {
-        grid-template-columns: 1fr 1fr;
-        gap: 5px;
-      }
+        @include breakpoint(md) {
+            flex: 1 1 50%;
+            align-items: center;
+            width: 100%;
+            justify-content: space-evenly;
+            margin-inline: auto;
+        }
 
       @include mediumScreen {
         grid-template-columns: 1fr 1fr 1fr;
