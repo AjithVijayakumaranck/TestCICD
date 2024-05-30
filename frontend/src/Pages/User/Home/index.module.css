@@ -44,7 +44,7 @@
 }
 .home_container .Main_container .Left {
   background-color: #f8f8f8;
-  width: 23%;
+  width: 21%;
   max-width: 340px;
 }
 @media (max-width: 550px) {
@@ -64,7 +64,7 @@
 }
 @media (min-width: 900px) and (max-width: 1024px) {
   .home_container .Main_container .Left {
-    width: 30%;
+    width: 25%;
   }
 }
 .home_container .Main_container .Right {
