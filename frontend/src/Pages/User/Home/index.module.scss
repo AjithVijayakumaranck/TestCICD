@@ -1,161 +1,155 @@
-@import '../../../StyleHelpers/Variables.scss';
+@import "../../../StyleHelpers/Variables.scss";
 
 .home_container {
-    //height: 100vh;
-    width: 100%;
-    margin-top: 5rem;
+  //height: 100vh;
+  width: 100%;
+  margin-top: 5rem;
+
+  @include breakpoint(md) {
+    margin-top: 7rem;
+  }
+
+  @include mediumScreen {
+    margin-top: 110px;
+  }
+
+  .Main_container {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+    min-height: 510px;
+    overflow: hidden;
+    padding: 0 60px;
 
     @include breakpoint(md) {
-        margin-top: 7rem;
+      min-height: 510px;
+      padding: 0;
     }
 
     @include mediumScreen {
-        margin-top: 110px;
+      min-height: 510px;
+      padding: 0;
     }
 
-    .Main_container {
+    @include extraMediumScreen {
+      padding: 0;
+    }
+
+    @include LargeScreen {
+      padding: 0 40px;
+    }
+
+    .Left {
+      background-color: $base_color3;
+      width: 21%;
+      max-width: 340px;
+
+      @include breakpoint(md) {
+        display: none;
+      }
+
+      @include mediumScreen {
+        display: none;
+      }
+
+      @include extraMediumScreen {
+        display: none;
+      }
+
+      @include LargeScreen {
+        width: 25%;
+      }
+    }
+
+    .Right {
+      width: 77%;
+      max-width: 1080px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      @include breakpoint(md) {
+        width: 100%;
+      }
+
+      @include mediumScreen {
+        width: 100%;
+      }
+
+      @include extraMediumScreen {
+        width: 100%;
+      }
+
+      @include LargeScreen {
+        width: 70%;
+      }
+
+      .cardWrapper {
+        width: 100%;
         display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 0.2rem;
-        min-height: 510px;
-        overflow: hidden;
-        padding: 0 60px;
+        flex-direction: column;
+        background-color: $base_color3;
+        margin-top: 0.2rem;
+        padding: 2rem 0;
 
-        @include breakpoint(md) {
-            min-height: 510px;
-            padding: 0;
-        }
+        .loadbtn {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
+          padding: 3rem 0 1rem 0;
 
-        @include mediumScreen {
-            min-height: 510px;
-            padding: 0;
-        }
-
-        @include extraMediumScreen {
-            padding: 0;
-        }
-
-        @include LargeScreen {
-            padding: 0 40px;
-        }
-
-
-        .Left {
-            background-color: $base_color3;
-            width: 23%;
-            max-width: 340px;
-
-            @include breakpoint(md) {
-                display: none;
-            }
-
-            @include mediumScreen {
-                display: none;
-            }
-
-            @include extraMediumScreen {
-                display: none;
-            }
-
-
-            @include LargeScreen {
-                width: 30%;
-            }
-
-        }
-
-        .Right {
-            width: 77%;
-            max-width: 1080px;
+          .inactiveBtn {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            gap: 10px;
+            color: $base_color5;
+            background-color: transparent;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
 
+            &:hover {
+              color: $base_color5;
+            }
+          }
 
-            @include breakpoint(md) {
-                width: 100%;
+          .activeBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: $base_color5;
+            background-color: transparent;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+              color: $primary_color;
             }
 
-            @include mediumScreen {
-                width: 100%;
+            .icon {
+              font-size: 20px;
+              font-weight: 900;
             }
-
-            @include extraMediumScreen {
-                width: 100%;
-            }
-
-
-            @include LargeScreen {
-                width: 70%;
-            }
-
-            .cardWrapper {
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                background-color: $base_color3;
-                margin-top: 0.2rem;
-                padding: 2rem 0;
-
-
-                .loadbtn {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: row;
-                    align-items: center;
-                    gap: 20px;
-                    padding: 3rem 0 1rem 0;
-
-                    .inactiveBtn {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                        color: $base_color5;
-                        background-color: transparent;
-                        padding: 10px;
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        line-height: 1.2;
-                        border-radius: 5px;
-                        border: none;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: $base_color5;
-                        }
-                    }
-
-                    .activeBtn {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 10px;
-                        color: $base_color5;
-                        background-color: transparent;
-                        padding: 10px;
-                        font-size: 1.2rem;
-                        font-weight: 700;
-                        line-height: 1.2;
-                        border-radius: 5px;
-                        border: none;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: $primary_color;
-                        }
-
-                        .icon {
-                            font-size: 20px;
-                            font-weight: 900;
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
+  }
 }
