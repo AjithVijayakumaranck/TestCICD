@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Style from "./Style.module.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../../instance/AxiosInstance";
-import { FaBars } from "react-icons/fa";
 import { UserContext } from "../../Contexts/UserContext";
 import registerClicks from "../../utilities/getCategoryClicks";
 
@@ -51,9 +50,6 @@ const LeftCategory = () => {
       <div className={Style.LeftContainer}>
         <div className={Style.title}>
           <span>Browse Categories</span>
-          <i>
-            <FaBars />
-          </i>
         </div>
         {Categories.map((category, index) => {
           return (
