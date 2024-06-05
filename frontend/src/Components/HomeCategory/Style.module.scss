@@ -1,240 +1,314 @@
-@import '../../StyleHelpers/Variables.scss';
-
+@import "../../StyleHelpers/Variables.scss";
 
 /*--------Left Container---------*/
 
-
-
 .LeftContainer {
+  background-color: $base-color3;
+  width: 100%;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: flex-start;
 
-    background-color: $base-color3;
+  @include breakpoint(md) {
+    display: none;
+  }
+
+  @include mediumScreen {
+    display: none;
+  }
+
+  @include LargeScreen {
     width: 100%;
-    border-radius: 5px;
+  }
+
+  .navigation {
+    text-decoration: none;
+    color: #111;
+  }
+
+  .title {
+    position: relative;
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
-
-    @include breakpoint(md) {
-        display: none;
-    }
-
-    @include mediumScreen {
-        display: none;
-
-    }
+    justify-content: space-between;
+    padding: 0.8rem;
+    color: #fff;
+    text-transform: none;
+    background-color: $primary_color;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 
     @include LargeScreen {
-        width: 100%;
+      padding: 0.8rem;
     }
 
-    .navigation {
-        text-decoration: none;
-        color: #111;
+    span {
+      font-size: 1rem;
+      font-weight: 500;
     }
 
-    .title {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.8rem;
+    i {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px 20px;
+
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+
+    span {
+      margin: 0px 20px;
+      text-transform: capitalize;
+      text-align: start;
+    }
+
+    &:hover {
+      background-color: $primary-color;
+      cursor: pointer;
+
+      span {
         color: #fff;
-        text-transform: none;
-        background-color: $primary_color;
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #fff;
-
-        @include LargeScreen {
-            padding: .8rem;
-        }
-
-        span {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        i {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
+      }
     }
-
-    .box {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 8px 20px;
-
-        img {
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-        }
-
-        span {
-            margin: 0px 20px;
-            text-transform: capitalize;
-            text-align: start;
-        }
-
-        &:hover {
-            background-color: $primary-color;
-            cursor: pointer;
-
-            span {
-                color: #fff;
-            }
-        }
-    }
+  }
 }
 
 /*--------End Left Container---------*/
 
-
 /*--------Right Container---------*/
 
 .RContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  background-color: $base-color3;
+  animation: move 2s 1 normal;
 
-    display: flex;
+  @keyframes move {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(1%);
+    }
+  }
+
+  .title {
+    margin-top: 20px;
+
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: $base-color5;
+
+      @include breakpoint(md) {
+        font-size: 20px;
+      }
+
+      @include mediumScreen {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .box_wrapper {
+    width: 100%;
+    min-height: 260px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    background-color: $base-color3;
-    animation: move 2s 1 normal;
+    place-content: center;
+    place-items: center;
+    grid-gap: 20px;
+    padding: 40px 0px;
 
-    @keyframes move {
-        0% {
-            transform: translateY(-100%);
-        }
-
-        100% {
-            transform: translateY(1%);
-        }
+    @include breakpoint(md) {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      width: 100%;
+      padding: 20px;
     }
 
-    .title {
-        margin-top: 20px;
-
-        h3 {
-            font-size: 24px;
-            font-weight: 600;
-            color: $base-color5;
-
-            @include breakpoint(md) {
-                font-size: 20px;
-            }
-
-            @include mediumScreen {
-                font-size: 24px;
-            }
-        }
+    @include mediumScreen {
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      width: 100%;
+      padding: 20px;
     }
 
-    .box_wrapper {
-        width: 100%;
-        min-height: 260px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+    @include LargeScreen {
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      width: 100%;
+      padding: 20px 0;
+      gap: 10px;
+    }
+
+    .item {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      background-color: transparent;
+
+      .box {
+        display: flex;
         align-items: center;
         justify-content: center;
-        place-content: center;
-        place-items: center;
-        grid-gap: 20px;
-        padding: 40px 0px;
-
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        background-color: white;
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
 
         @include breakpoint(md) {
-            grid-template-columns: repeat(2, 1fr);
-            align-items: center;
-            width: 100%;
-            padding: 20px;
+          width: 90px;
+          height: 90px;
         }
 
         @include mediumScreen {
-            grid-template-columns: repeat(4, 1fr);
-            align-items: center;
-            width: 100%;
-            padding: 20px;
+          width: 90px;
+          height: 90px;
         }
 
         @include LargeScreen {
-            grid-template-columns: repeat(4, 1fr);
-            align-items: center;
-            width: 100%;
-            padding: 20px 0;
-            gap: 10px;
+          width: 90px;
+          height: 90px;
         }
 
-
-
-        .item {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 10px;
-            background-color: transparent;
-
-            .box {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 100px;
-                height: 100px;
-                text-align: center;
-                background-color: white;
-                padding: 5px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                cursor: pointer;
-
-                @include breakpoint(md) {
-                    width: 90px;
-                    height: 90px;
-                }
-
-                @include mediumScreen {
-                    width: 90px;
-                    height: 90px;
-                }
-
-                @include LargeScreen {
-                    width: 90px;
-                    height: 90px;
-                }
-
-                img {
-                    width: 80%;
-                    height: 80%;
-                    object-fit: contain;
-                }
-            }
-
-            h6 {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                font-size: 12px;
-                font-weight: 500;
-                line-height: 1;
-                color: $base-color5;
-                cursor: default;
-
-                @include breakpoint(md) {
-                    display: none;
-                }
-
-                @include mediumScreen {
-                    font-size: 12px;
-                }
-            }
+        img {
+          width: 80%;
+          height: 80%;
+          object-fit: contain;
         }
+      }
+
+      h6 {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1;
+        color: $base-color5;
+        cursor: default;
+
+        @include breakpoint(md) {
+          display: none;
+        }
+
+        @include mediumScreen {
+          font-size: 12px;
+        }
+      }
     }
+  }
 }
 
-
 /*--------End Right Container---------*/
+
+// ----------Top Category started---------
+
+.Tcontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40;
+  background-color: white;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+  -moz-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+  box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+
+  @include breakpoint(md) {
+    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+   overflow: hidden;
+   font-size: 7px;
+   gap: 5px;
+   height: 30px;
+   margin: 0;
+
+  }
+
+  @include mediumScreen {
+    font-size: 10px;
+  }
+
+  .categorylist {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-direction: row;
+
+    .category_btn{
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      @include breakpoint(md) {
+      display: none;
+    
+      }
+      
+  @include mediumScreen {
+   display: none;
+  }
+
+button{
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font: inherit;
+  margin: inherit;
+  padding: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+      .iconWrapper{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      cursor: pointer;
+
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+}

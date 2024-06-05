@@ -9,7 +9,7 @@ import { HiOutlineArrowNarrowLeft, HiOutlineArrowNarrowRight } from 'react-icons
 import HomeCarousel from '../../../Components/Carousels/HomeCarousel/HomeCarousel'
 import LeftCategory from '../../../Components/HomeCategory/LeftCategory'
 import RightCategory from '../../../Components/HomeCategory/RightCategory'
-
+import TopCategory from '../../../Components/HomeCategory/TopCategory'
 
 
 const Home = () => {
@@ -21,7 +21,13 @@ const Home = () => {
   const [CurrentPage, SetCurrentPage] = useState(0);
   const [SliderImage, SetSliderImage] = useState([]);
   const [IsLastPage, SetIsLastPage] = useState(false);
+  const [catToggle, setCatToggle] = useState(false);
 
+
+// dispaly function for all categories in Top bar
+  const changeToggle = () => {
+    setCatToggle((prev) => !prev);
+  };
 
   const loadProducts = () => {
     try {
@@ -110,13 +116,21 @@ const Home = () => {
 
   return (
     <div className={Style.home_container}>
+       <div className={Style.Top_container}>
+         
+          <TopCategory togglefunc = {setCatToggle} toggleState={catToggle}/>
+        </div>
       {/* <ScrollToTopOnMount /> */}
       <Navbar setLocation={setLocation} location={location} />
       <HomeCarousel items={SliderImage} />
       < div className={Style.Main_container}>
-        <div className={Style.Left}>
-          <LeftCategory />
-        </div>
+     {
+      catToggle &&  
+      <div className={Style.Left}>
+        <LeftCategory />
+      </div> 
+     }
+
         <div className={Style.Right}>
           <RightCategory />
           <div className={Style.cardWrapper}>
