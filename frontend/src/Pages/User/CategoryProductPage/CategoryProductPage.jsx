@@ -57,7 +57,7 @@ const CategoryProductPage = () => {
         });
     }, [categoryId, SetSubcategory]);
 
-console.log("hello ")
+
 console.log(Subcategory)
 
     const loadProducts = () => {

@@ -263,7 +263,7 @@
   .categorylist {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 50px;
     flex-direction: row;
 
@@ -271,7 +271,7 @@
       display: flex;
       align-items: center;
       gap: 2px;
-
+      cursor: pointer;
       @include breakpoint(md) {
       display: none;
     

@@ -40,11 +40,37 @@
     @include LargeScreen {
       padding: 0 40px;
     }
+   /* LeftCategory.module.scss */
+.left_cat {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-30px); /* Adjusted for top-to-bottom animation */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out, visibility 0s 0.5s;
+  height: auto;
+  
+
+}
+
+.left_catenter {
+  opacity: 1;
+  visibility: visible;
+  max-height: 500px; /* Set to a value that accommodates the content */
+  transform: translateY(0);
+  transition-delay: 0s, 0s, 0s, 0s;
+ 
+}
+
+    
 
     .Left {
       background-color: $base_color3;
       width: 21%;
       max-width: 340px;
+    
+
+
 
       @include breakpoint(md) {
         display: none;

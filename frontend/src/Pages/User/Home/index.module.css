@@ -19,6 +19,7 @@
   min-height: 510px;
   overflow: hidden;
   padding: 0 60px;
+  /* LeftCategory.module.scss */
 }
 @media (max-width: 550px) {
   .home_container .Main_container {
@@ -41,6 +42,22 @@
   .home_container .Main_container {
     padding: 0 40px;
   }
+}
+.home_container .Main_container .left_cat {
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-30px); /* Adjusted for top-to-bottom animation */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, max-height 0.5s ease-out, visibility 0s 0.5s;
+  height: auto;
+}
+.home_container .Main_container .left_catenter {
+  opacity: 1;
+  visibility: visible;
+  max-height: 500px; /* Set to a value that accommodates the content */
+  transform: translateY(0);
+  transition-delay: 0s, 0s, 0s, 0s;
 }
 .home_container .Main_container .Left {
   background-color: #f8f8f8;
