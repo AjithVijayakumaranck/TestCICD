@@ -24,7 +24,7 @@ router.put('/register_clicks_subcat',authoriseJwt,Category_subController.registe
 
 
 //subcategory MANAGING ROUTES
-router.get('/get_subcategory',authoriseJwt,Category_subController.getSubCategories) //get  entire subcategory documents 
+router.get('/get_subcategory',Category_subController.getSubCategories) //get  entire subcategory documents 
 
 router.get('/get_singlesubcategory',Category_subController.getSingleSubcategory) //get an single subcategory document
 
