@@ -1,4 +1,5 @@
-const CATEGORY = require("../Models/categoryModel")
+const CATEGORY = require("../Models/categoryModel");
+const NESTEDCAT = require("../Models/nestedCategories");
 const PRODUCT = require("../Models/productModal")
 const SUBCAT = require("../Models/subCategoryModel");
 const { cloudUpload } = require("../utilities/cloudinary");
@@ -167,6 +168,30 @@ module.exports = {
     
         },  
 
+        //register clicks subcat
+        registerClicksSubcat: async (req, res)=>{
+            try{
+                const {subCatId,userId } = req.body
+                const subCatInfo = await CATEGORY.findById(subCatId)
+                if(subCatInfo) {
+                    SUBCAT.updateOne({_id:subCatId, clicks: {$ne: userId}},{$addToSet: {clicks: userId}}).then((response)=>{
+                        if (response.matchedCount === 0){
+                            res.status(200).json({message:"registered clicks"})
+                        }else{
+                            res.status(200).json({message:"click registered"})
+                        }
+                    }).catch((err)=>{
+                        res.status(200).json({message:"user already registered"})
+                    })
+                }else{
+                    res.status(404).json({message:"subcat not found"})
+                }
+            }catch(error){
+                res.status(400).json({message:error.message})
+            }
+    
+        },  
+
 
 
 
@@ -174,7 +199,7 @@ module.exports = {
 
     getSubCategories: async (req, res) => {
         try {
-            const subcategories = await SUBCAT.find({ deleted: false })
+            const subcategories = await SUBCAT.find({ deleted: false }).populate("nestedCategories")
             if (subcategories) {
                 res.status(200).json(subcategories)
             } else {
@@ -226,7 +251,7 @@ module.exports = {
 
                 const subCategoryId = req.query.subCategoryId
 
-                const subCategory = await SUBCAT.findOne({ _id: subCategoryId })
+                const subCategory = await SUBCAT.findOne({ _id: subCategoryId }).populate("nestedCategories")
 
                 if (subCategory) {
                     res.status(200).json(subCategory)
@@ -250,7 +275,7 @@ module.exports = {
             if (subCategoryInfo) {
                 SUBCAT.updateOne({ _id: subcategoryId }, { deleted: true }).then(() => {
                     CATEGORY.updateOne({ _id: categoryId }, { $pull: { subcategory: subcategoryId } }).then(() => {
-                        res.status(200).json({ message: "successfylly deleted" })
+                        res.status(200).json({ message: "successfully deleted" })
                     }).catch((err) => {
                         res.status(500).json({ message: err.message });
                     })
@@ -286,6 +311,41 @@ module.exports = {
 
         }
     },
+
+
+
+    //add nested category
+    addNested : async (req,res)=>{
+        try {
+            const { subcategoryId, nestedCategory} = req.body
+            console.log(req.body);
+            const nestedInfo = await NESTEDCAT.findOne({ nestedCat: nestedCategory , subcategory:subcategoryId})
+            if (nestedInfo) {
+                res.status(400).json({ message: "nested cat already exists in this subcategory" })
+            } else {
+                const nestedCatTemplate = new NESTEDCAT({
+                    subcategory: subcategoryId,
+                    nestedCat: nestedCategory
+                })
+                nestedCatTemplate.save().then((response) => {
+                    SUBCAT.updateOne({ _id: subcategoryId }, { $push: { nestedCategories: response._id } })
+                        .then((response) => {
+                            if (response.nMatched === 0) {
+                                res.status(400).json({ message: "subacategory does not exist" })
+                            } else {
+                                res.status(200).json({ message: "Successfully added" })
+                            }
+                        }).catch((err) => {
+                            console.log(err);
+                            res.status(500).json({ message: "Something went wrong" })
+                        })
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({message:"something went wrong"})
+        }
+    }
 
 
 

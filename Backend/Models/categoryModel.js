@@ -1,7 +1,7 @@
 const mongoose= require('mongoose');
 const schema = mongoose.Schema;
 
-const CATEGORYchema = new schema({
+const CATEGORYschema = new schema({
 
   categoryName:{
     type:String
@@ -23,6 +23,6 @@ filters: [{
   clicks:[String]
 },{timestamps:true})
 
-const CATEGORY =  mongoose.model("category",CATEGORYchema);
+const CATEGORY =  mongoose.model("category",CATEGORYschema);
 
 module.exports = CATEGORY

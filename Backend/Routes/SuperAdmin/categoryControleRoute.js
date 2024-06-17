@@ -30,4 +30,8 @@ router.delete('/delete_subcategory',authoriseJwt,Category_subController.deleteSu
 router.put('/update_subcategory',authoriseJwt,Category_subController.updateSubcategory) //update existing record to subcategory collection
 
 
+//nested category
+router.post('/add_nested',authoriseJwt,Category_subController.addNested)
+
+
 module.exports = router;

@@ -24,4 +24,5 @@ read:[{
 },{ timestamps: true })
 
 const NOTIFICATION=mongoose.model('notification',NOTIFICATION_SCHEMA)
+
 module.exports={NOTIFICATION};

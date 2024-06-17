@@ -20,6 +20,8 @@ router.put('/update_category',authoriseJwt,Category_subController.updateCategory
 
 router.put('/register_clicks',authoriseJwt,Category_subController.registerClicks)
 
+router.put('/register_clicks_subcat',authoriseJwt,Category_subController.registerClicksSubcat)
+
 
 //subcategory MANAGING ROUTES
 router.get('/get_singlesubcategory',Category_subController.getSingleSubcategory) //get an single subcategory document
@@ -29,6 +31,9 @@ router.post('/add_subcategory',authoriseJwt,Category_subController.addSubcategor
 router.delete('/delete_subcategory',authoriseJwt,Category_subController.deleteSubCategory) //delete existing record from subcategory collection
 
 router.put('/update_subcategory',authoriseJwt,Category_subController.updateSubcategory) //update existing record to subcategory collection
+
+
+//nestedcategory
 
 
 

@@ -11,6 +11,10 @@ const SubCategoryschema = new schema({
         type: String,
         ref: "category"
     },
+    nestedCategories:[{
+        type:String,
+        ref:"nestedcategories"
+    }],
     formInputs: [{
         type: schema.Types.Mixed
     }],

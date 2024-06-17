@@ -91,7 +91,10 @@ const productSchema = new schema({
     type:Number,
     required:true
   },
-  SubCategory: { type: String, ref: 'subcategory'}
+  SubCategory: { type: String, ref: 'subcategory'},
+  nested: { type: String, ref: 'nestedcategories'},
+
+
 
 }, { timestamps: true })
 

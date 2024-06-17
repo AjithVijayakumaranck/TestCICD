@@ -50,7 +50,7 @@ module.exports = {
 
 
         } catch (error) {
-            res.status(500).json({ messasge: "something went wrong" })
+            res.status(500).json({ message: "something went wrong" })
         }
     },
 
@@ -129,7 +129,7 @@ module.exports = {
     // filter using location
     filterProducts: async (req, res) => {
         try {
-            let { state, category, subcategory, district, locality, max, min, page, other } = req.query
+            let { state, category, subcategory,nestedcat, district, locality, max, min, page, other } = req.query
             let otherFilters = await JSON.parse(other)
             let query = [{ deleted: false }]
             if (state != "") {
@@ -147,6 +147,10 @@ module.exports = {
             if (category != "") {
                 query.push({ category: category })
             }
+            if (nestedcat != ""){
+                query.push({ nested: nestedcat })
+            }
+
             if (subcategory != "") {
                 query.push({ SubCategory: subcategory })
             }
