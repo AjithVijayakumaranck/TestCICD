@@ -18,6 +18,7 @@ const SubCategoryschema = new schema({
     formInputs: [{
         type: schema.Types.Mixed
     }],
+    clicks:[String],
     deleted: {
         type: Boolean,
         default: false
