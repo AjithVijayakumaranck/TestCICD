@@ -226,11 +226,12 @@
   flex-direction: row;
   justify-content: center;
   gap: 40;
-  background-color: white;
+  background-color: #046BD2;
   align-items: center;
   height: 50px;
   margin-bottom: 10px;
   box-shadow: 1px 7px 5px -3px rgb(194, 183, 194);
+  color: white;
 }
 @media (max-width: 550px) {
   .Tcontainer {
@@ -255,6 +256,7 @@
   justify-content: space-between;
   gap: 50px;
   flex-direction: row;
+  color: white;
 }
 .Tcontainer .categorylist .category_btn {
   display: flex;
