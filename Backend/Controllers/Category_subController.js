@@ -172,7 +172,7 @@ module.exports = {
         registerClicksSubcat: async (req, res)=>{
             try{
                 const {subCatId,userId } = req.body
-                const subCatInfo = await CATEGORY.findById(subCatId)
+                const subCatInfo = await SUBCAT.findById(subCatId)
                 if(subCatInfo) {
                     SUBCAT.updateOne({_id:subCatId, clicks: {$ne: userId}},{$addToSet: {clicks: userId}}).then((response)=>{
                         if (response.matchedCount === 0){
