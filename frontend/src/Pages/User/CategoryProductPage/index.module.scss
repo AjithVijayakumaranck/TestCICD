@@ -145,12 +145,14 @@
 
               .popSub{
                 width: 100%;
+                min-width: 900px;
+                overflow: hidden;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
+                align-items: center;
                 gap: 40;
                 background-color: $base-color3;
-                align-items: center;
                 height: 50px;
                 margin-bottom: 10px;
                 -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
@@ -158,6 +160,7 @@
                 box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
                 color:black;
                 margin-bottom: 40px;
+                padding: 20px;
               
                 @include breakpoint(md) {
                   width: 100%;

@@ -9,7 +9,7 @@ const registerSubCatClicks = async (catId, userId) => {
 
   try {
     const payload = {
-      categoryId: catId,
+      subCatId: catId,
       userId: userId,
     };
 

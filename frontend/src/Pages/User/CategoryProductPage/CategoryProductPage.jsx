@@ -1,5 +1,5 @@
-import React, { useState, useEffect,useContext } from "react";
-import {useNavigate} from "react-router-dom"
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Style from "./index.module.css";
 import { useLocation } from "react-router-dom";
 import Breadcrumb from "../../../Components/Breadcrumb/Breadcrumb";
@@ -15,8 +15,6 @@ import { useParams } from "react-router-dom";
 import ProductFilter from "../../../Components/ProductFilter/ProductFilter";
 import registerSubCatClicks from "../../../utilities/getSubCategoryClicks";
 import { UserContext } from "../../../Contexts/UserContext";
-
-
 
 const CategoryProductPage = () => {
   const navigate = useNavigate();
@@ -47,45 +45,58 @@ const CategoryProductPage = () => {
   const [DisplayLimit, SetDisplayLimit] = useState(8);
   const [Subcategories, SetSubcategories] = useState([]);
   const [FilteredSubCat, SetFilteredSubCat] = useState([]);
-  
-  //poular catrgories state
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [showNestedCategories, setShowNestedCategories] = useState(false);
+  const [nestedCategories, setNestedCategories] = useState([]);
+
+
+
+  //passing sub cat handling to the productfilter page
+  const fetchNestedCategories = (subcategoryId) => {
+    instance
+      .get(`/api/category/get_singlesubcategory?subCategoryId=${subcategoryId}`)
+      .then((response) => {
+        const nestedCategories = response.data?.nestedCategories || [];
+        setNestedCategories(nestedCategories);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  //popular categories state
   const [PopCat, SetPopCat] = useState([]);
 
   //subcategory fetching function
-  
-const userData = useContext(UserContext);
-const { User } = userData;
-const userId = User?._id;
+  const userData = useContext(UserContext);
+  const { User } = userData;
+  const userId = User?._id;
 
   const loadSubCategories = () => {
     instance
       .get("/api/category/get_subcategory")
       .then((response) => {
-        const sortedObject = response.data.sort((a, b) => b.clicks.length - a.clicks.length);
-        
+        const sortedObject = response.data.sort(
+          (a, b) => b.clicks.length - a.clicks.length
+        );
 
         const filteredSubCats = sortedObject.filter(
           (subCat) => subCat.mainCategoryId === categoryId
         );
-      
-        SetFilteredSubCat(filteredSubCats);
 
-        
+        SetFilteredSubCat(filteredSubCats);
       })
       .catch((error) => {
-        console.log(error);
+     
       });
   };
-
-
 
   useEffect(() => {
     loadSubCategories();
   }, [categoryId]);
 
   
-  //top pick modal on mobile divices
-
+  //top pick modal on mobile devices
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
 
@@ -135,8 +146,7 @@ const userId = User?._id;
       });
   }, [categoryId, SetSubcategory]);
 
-  //popoular category function
-
+  //popular category function
   const loadCategories = () => {
     instance
       .get("/api/category/get_categories")
@@ -155,7 +165,6 @@ const userId = User?._id;
   useEffect(() => {
     loadCategories();
   }, []);
-
 
   const loadProducts = () => {
     try {
@@ -243,7 +252,7 @@ const userId = User?._id;
     SetSubValue("");
     SetStateValue("");
     SetDistrictValue("");
-    SetOtherSelectedFilter("");
+    SetOtherSelectedFilter({});
   };
 
   const HandleMin = (value) => {
@@ -280,12 +289,20 @@ const userId = User?._id;
   }, []);
 
 
+  const handleSubcategoryChange = (subcategoryId) => {
+    setSelectedSubcategory(subcategoryId);
+    fetchNestedCategories(subcategoryId);
+    setShowNestedCategories(true); // Show the nested categories when a subcategory is selected
+  };
   
-  const onClickFun = (catId, userId) => {
-    // registerSubCatClicks(catId, userId);
-    navigate(`/category/${catId}`);
-};
-console.log(Categories._id,"category Id");
+
+  const onClickFun = (subcatId, userId) => {
+    handleSubcategoryChange(subcatId); // This will fetch and show nested categories
+    registerSubCatClicks(subcatId, userId);
+    SetSubValue(subcatId);
+  };
+  
+
 
   return (
     <div className={Style.page_wrapper}>
@@ -309,18 +326,24 @@ console.log(Categories._id,"category Id");
 
             <div className={Style.Wrapper}>
               <div className={Style.Left_container}>
-                <ProductFilter
-                  FilterOptions={Filters}
-                  Subcategories={Subcategory}
-                  onChangeSubcategory={HandleSubcategory}
-                  onMax={HandleMax}
-                  onMin={HandleMin}
-                  otherSelectedFilter={HandleOtherFilter}
-                  onDistrict={HandleDistrict}
-                  onState={HandleState}
-                  load={HandleDefault}
-                  OtherSelectedFilter={OtherSelectedFilter}
-                />
+              <ProductFilter
+                FilterOptions={Filters}
+                Subcategories={Subcategory}
+                onChangeSubcategory={HandleSubcategory}
+                onMax={HandleMax}
+                onMin={HandleMin}
+                otherSelectedFilter={HandleOtherFilter}
+                onDistrict={HandleDistrict}
+                onState={HandleState}
+                load={HandleDefault}
+                OtherSelectedFilter={OtherSelectedFilter}
+                showNestedCategories={showNestedCategories}
+                selectedSubcategory={selectedSubcategory}
+                nestedCategories={nestedCategories}
+                setNestedCategories={setNestedCategories}
+                onSubcategoryChange={handleSubcategoryChange}
+              />
+
               </div>
 
               <div className={Style.right_parentcontainer}>
@@ -330,8 +353,17 @@ console.log(Categories._id,"category Id");
                   </div>
                   {(isToggled || !isMobile) && (
                     <div className={Style.popSub}>
-                      {Subcategories.slice(0, 5).map((subCat, index) => {
-                        return <p key={index} onClick={onClickFun(categoryId,userId)}>{subCat.subcategory}</p>;
+                      {Subcategory.slice(0, 5).map((subCat) => {
+                        return (
+                          <p
+                            key={subCat._id}
+                            onClick={() => {
+                              onClickFun(subCat._id, userId);
+                            }}
+                          >
+                            {subCat.subcategory}
+                          </p>
+                        );
                       })}
                     </div>
                   )}
