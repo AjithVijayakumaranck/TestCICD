@@ -8,6 +8,8 @@ import Select from "react-select";
 import Tooltip from "@mui/material/Tooltip";
 
 const ProductFilter = ({
+  nestSelected,
+  setSelectedNest,
   OtherSelectedFilter,
   load,
   FilterOptions,
@@ -22,8 +24,11 @@ const ProductFilter = ({
   setNestedCategories,
   selectedSubcategory,
   onSubcategoryChange,
+  setFilterBySubcategory,
+  filterBySubcategory
 }) => {
   const [CategoryToggle, SetCategoryToggle] = useState(true);
+  const [NestedCategoryToggle, SetNestedCategoryToggle] = useState(true);
   const [LocationToggle, SetLocationToggle] = useState(true);
   const [States, SetStates] = useState([]);
   const [District, SetDistrict] = useState([]);
@@ -32,7 +37,7 @@ const ProductFilter = ({
   const [tooltipText, setTooltipText] = useState("");
   const [minValue, setMinValue] = useState("");
   const [maxValue, setMaxValue] = useState("");
-  const [filterBySubcategory, setFilterBySubcategory] = useState(null);
+  // const [filterBySubcategory, setFilterBySubcategory] = useState(null);
   const [filterByState, setFilterByState] = useState(null);
   const [filterByDistrict, setFilterByDistrict] = useState(null);
   const [filterByMinPrice, setFilterByMinPrice] = useState(null);
@@ -46,7 +51,7 @@ const ProductFilter = ({
         label: data.subcategory,
       }))
     : [];
-
+console.log();
   // Fetching single subcategory for adding nested cat input
   useEffect(() => {
     if (filterBySubcategory) {
@@ -58,7 +63,7 @@ const ProductFilter = ({
           const nestedCategory = response.data?.nestedCategories || [];
           setNestedCategories(nestedCategory);
         })
-        .catch((error) => { 
+        .catch((error) => {
           console.log(error);
         });
     }
@@ -66,11 +71,13 @@ const ProductFilter = ({
 
   // Function to handle nested category change
   const handleNestedCategoryChange = (e) => {
-    setSelectedNestedCategory(e.target.value);
-    setFilterByNestedCategory(e.target.value);
+    console.log(e.target.value,"hhhhs");
+    setSelectedNest(e.target.value)
+    // setSelectedNestedCategory(e.value);
+    // setFilterByNestedCategory(e.value);
     setFilterCollection({
       ...filterCollection,
-      ["NestedCategory"]: e.target.value,
+      ["NestedCategory"]: e.label,
     });
   };
 
@@ -216,6 +223,11 @@ const ProductFilter = ({
     setNestedCategories([]);
     load();
   };
+
+  const handlecategoryToggle = () => {
+    SetCategoryToggle(!CategoryToggle);
+    SetNestedCategoryToggle(!NestedCategoryToggle);
+  };
   return (
     <div className={Style.Container}>
       <div className={Style.top}>
@@ -245,11 +257,8 @@ const ProductFilter = ({
       <div className={Style.bottom}>
         <div className={Style.accordion}>
           <div className={Style.accordion_item}>
-            <div
-              className={Style.titleDiv}
-              onClick={() => SetCategoryToggle(!CategoryToggle)}
-            >
-              <h3>Category</h3>
+            <div className={Style.titleDiv} onClick={handlecategoryToggle}>
+              <h3 style={{fontWeight:'inherit',color:'black'}}>SubCategory</h3>
               <span>
                 {CategoryToggle ? <AiOutlineMinus /> : <AiOutlinePlus />}{" "}
               </span>
@@ -282,28 +291,38 @@ const ProductFilter = ({
                 })}
               </div>
             </div>
+
+            
+            <div
+              className={CategoryToggle === true ? Style.show : Style.content}
+            >
+              <div className={Style.items}>
+              {filterBySubcategory &&  nestedCategories.length > 0 && (
+              <div className={Style.nestedCategoryContainer}>
+                <h4 style={{fontWeight:'inherit',color:'black'}}>Nested Categories</h4>
+                {nestedCategories.map((nestedData, nestedIndex) => {
+                  return (
+                    <div className={Style.radioField_wrapper} key={nestedIndex}>
+                      <input
+                        type="radio"
+                        name="NestedCategory"
+                        id={nestedData._id}
+                        value={nestedData._id}
+                        checked={nestSelected === nestedData._id}
+                        onChange={handleNestedCategoryChange}
+                      />
+                      <label htmlFor={nestedData.nestedCat}>
+                        {nestedData.nestedCat}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+              </div>
+            </div>
           </div>
-          {filterBySubcategory && nestedCategories.length > 0 && (
-                  <div className={Style.nestedCategoryContainer}>
-                    <h4>Nested Categories</h4>
-                    {nestedCategories.map((nestedData, nestedIndex) => {
-                      console.log(nestedData); 
-                      return (
-                        <div className={Style.radioField_wrapper} key={nestedIndex}>
-                          <input
-                            type="radio"
-                            name="NestedCategory"
-                            id={nestedData._id}
-                            value={nestedData._id}
-                            checked={filterByNestedCategory === nestedData.value}
-                            onChange={handleNestedCategoryChange}
-                          />
-                          <label htmlFor={nestedData.nestedCat}>{nestedData.nestedCat}</label>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
+
           <div className={Style.accordion_item}>
             <div
               className={Style.titleDiv}

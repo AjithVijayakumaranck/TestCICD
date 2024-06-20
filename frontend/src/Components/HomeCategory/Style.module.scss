@@ -246,14 +246,7 @@
   color: white;
 
   @include breakpoint(md) {
-    width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-   overflow: hidden;
-   font-size: 7px;
-   gap: 5px;
-   height: 30px;
-   margin: 0;
+display: none;
 
   }
 

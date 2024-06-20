@@ -5,6 +5,7 @@
 .Container {
     display: block;
     min-height: 100%;
+ 
 
     .icon {
         font-size: 14px;
@@ -104,10 +105,12 @@
                 overflow-y: hidden;
                 max-height: 0;
                 transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+                display: none; 
+                
             }
 
             .show {
-                background-color: #fff;
+                background-color: white;
                 display: flex;
                 align-items: center;
                 margin: 2px 0;
@@ -126,7 +129,6 @@
                 }
 
 
-
                 .items {
                     width: 100%;
                     min-height: 3rem;
@@ -136,11 +138,13 @@
                     align-items: flex-start;
                     gap: 5px;
                     color: #111;
+                    background-color: #ffffff;
                     overflow-y: auto;
                     cursor: pointer;
-
+                   
                     .items_wrapper {
                         width: 100%;
+                        
 
                         p {
                             margin: .4rem .6rem;
@@ -161,6 +165,7 @@
                         }
                     }
 
+
                     .radioField_wrapper {
                         display: flex;
                         align-items: center;
@@ -168,7 +173,11 @@
                         width: 100%;
                         padding: 4px 0;
                         cursor: pointer;
+
                     }
+
+                   
+                        
 
                 }
 

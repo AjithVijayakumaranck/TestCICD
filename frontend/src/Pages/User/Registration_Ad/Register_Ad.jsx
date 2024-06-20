@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Footer from "../../../Components/Footer/Footer";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ const Register_Ad = () => {
   //mount functions
   useEffect(() => {
     try {
-      instance.get(`/api/category/get_singlesubcategory?subCategoryId=${subCategoryId}`).then((response) => {
+      instance.get(`/api/category/get_singlesubcategory?subCategoryId=${subCategoryId}`).then((response) => {   
         SetSubCategory(response.data);
         SetFormData(response.data.formInputs)
       }).catch((err) => {
@@ -33,7 +33,7 @@ const Register_Ad = () => {
 
   return (
     <React.Fragment>
-      <RegisterForm FormInputs={FormData} SubCategoryData={SubCategory} />
+      <RegisterForm FormInputs={FormData} SubCategoryData={SubCategory} subCategoryId = {subCategoryId} />
       <Footer />
     </React.Fragment>
   );

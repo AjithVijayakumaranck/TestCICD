@@ -27,6 +27,7 @@ const CategoryProductPage = () => {
   const [Products, SetProducts] = useState([]);
   const [CurrentPage, SetCurrentPage] = useState(0);
   const [Subcategory, SetSubcategory] = useState([]);
+  const [SelectedNest,SetSelectedNest] = useState("")
   const [Filters, SetFilters] = useState([]);
 
   const [DefaultId, SetDefaultId] = useState(categoryId);
@@ -48,6 +49,9 @@ const CategoryProductPage = () => {
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
   const [showNestedCategories, setShowNestedCategories] = useState(false);
   const [nestedCategories, setNestedCategories] = useState([]);
+
+
+  const [filterBySubcategory, setFilterBySubcategory] = useState(null);
 
 
 
@@ -171,7 +175,7 @@ const CategoryProductPage = () => {
       instance
         .get(
           `/api/user/filter/filter_products?category=${categoryId}&min=${Min}&max=${Max}&page=${CurrentPage}
-            &state=${StateValue}&subcategory=${SubValue}&district=${DistrictValue}&other=${JSON.stringify(
+            &state=${StateValue}&subcategory=${SubValue}&nestedcat=${SelectedNest}&district=${DistrictValue}&other=${JSON.stringify(
             OtherSelectedFilter
           )}`
         )
@@ -231,6 +235,7 @@ const CategoryProductPage = () => {
     OtherSelectedFilter,
     categoryId,
     DefaultId,
+    SelectedNest
   ]);
 
   const handlePreviousPage = () => {
@@ -297,7 +302,10 @@ const CategoryProductPage = () => {
   
 
   const onClickFun = (subcatId, userId) => {
+    setFilterBySubcategory(subcatId);
+    HandleSubcategory(subcatId);
     handleSubcategoryChange(subcatId); // This will fetch and show nested categories
+
     registerSubCatClicks(subcatId, userId);
     SetSubValue(subcatId);
   };
@@ -342,6 +350,10 @@ const CategoryProductPage = () => {
                 nestedCategories={nestedCategories}
                 setNestedCategories={setNestedCategories}
                 onSubcategoryChange={handleSubcategoryChange}
+                setFilterBySubcategory={setFilterBySubcategory}
+                filterBySubcategory={filterBySubcategory}
+                nestSelected = {SelectedNest}
+                setSelectedNest = {SetSelectedNest}
               />
 
               </div>

@@ -100,7 +100,6 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-        
 
             .rightside_container {
               display: flex;
@@ -113,7 +112,7 @@
                 align-items: center;
                 width: 90px;
                 height: 50px;
-                background-color:$primary-color;
+                background-color: $primary-color;
                 border-radius: 10px;
                 padding: 2px;
                 -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
@@ -123,27 +122,24 @@
                 color: white;
                 font-size: 13px;
 
-                @include breakpoint(md){
+                @include breakpoint(md) {
                   width: 80px;
                   height: 23px;
-                  padding: 2px;  
+                  padding: 2px;
                   font-size: 10px;
                 }
-        
-              
+
                 p {
                   font-size: 5px; // Adjust font size for a smaller sub-heading
                   font-weight: bold; // Set font weight to normal or as needed
-                  color:white; // Set text color
+                  color: white; // Set text color
                   margin: 0; // Remove default margin
                   padding: 2px 0; // Adjust padding for spacing
-                  text-align: left; 
-                
+                  text-align: left;
                 }
               }
 
-
-              .popSub{
+              .popSub {
                 width: 100%;
                 min-width: 900px;
                 overflow: hidden;
@@ -158,160 +154,183 @@
                 -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
                 -moz-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
                 box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
-                color:black;
+                color: black;
                 margin-bottom: 40px;
-                padding: 20px;
-              
+                padding: 25px;
+                cursor: pointer;
+
                 @include breakpoint(md) {
-                  width: 100%;
-                  height: 400px;
-                  display: flex;
-                 flex-direction: column;
-                  justify-content:center;
-                  background-color: $base-color3;
+                  min-width:0%;
+                  flex-direction: column;
+                  justify-content: start;
                   align-items: start;
+                  height: auto;
+                  gap: 15;
                   -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
                   -moz-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
                   box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
-                  color:black;
-                  margin-bottom: 40px;
-                 transition: opacity 0.5s ease-in-out;
-              
+                  color: black;
+                  padding: 10px;
+                  border-bottom: 1px solid rgba(26, 25, 25, 0.308);
+                p{
+                  width: 70%;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.289);
+                  display: flex;
+                  justify-content: start;
+                  padding: 15px;
+
+                  
+                }
+
                 }
 
                 @include mediumScreen {
-                  font-size: 10px;
+                  min-width:500px;
+                  flex-direction: column;
+                  justify-content: start;
+                  align-items: start;
+                  height: auto;
+                  gap: 15;
+                  -webkit-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+                  -moz-box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+                  box-shadow: 1px 7px 5px -3px rgba(194, 183, 194, 1);
+                  color: black;
+                  padding: 10px;
+                  border-bottom: 1px solid rgba(26, 25, 25, 0.308);
+                p{
+                  width: 70%;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.289);
+                  display: flex;
+                  justify-content: start;
+                  padding: 15px;
+                }
                 }
 
-                .popSubItem{
-                  font-size: medium;  
-                padding: 20px;
-                cursor: pointer;             }
-              
-
-              } 
-
-             
-
-            .Right_container {
-              display: flex;
-              width: 75%;
-              min-height: 100%;
-              align-items: center;
-              flex-direction: column;
-              justify-content: space-between;
-              gap: 20px;
-
-              @include breakpoint(md) {
-                width: 100%;
-                padding: 0;
+                .popSubItem {
+                  font-size: medium;
+                  padding: 20px;
+                  cursor: pointer;
+                }
               }
 
-              @include mediumScreen {
-                width: 100%;
-                padding: 0;
-              }
-
-              @include LargeScreen {
-                width: 75%;
-              }
-
-            
-
-              .error_container {
-                height: 100%;
+              .Right_container {
                 display: flex;
+                width: 75%;
+                min-height: 100%;
                 align-items: center;
-                justify-content: center;
                 flex-direction: column;
-
-                img {
-                  width: 350px;
-                  height: 350px;
-                  object-fit: contain;
-                }
-
-                h1 {
-                  color: $base-color5;
-                }
-              }
-
-              .card_container {
-                width: 100%;
-                position: relative;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr;
-                place-items: center;
-                gap: 10px;
-                margin-bottom: 1rem;
+                justify-content: space-between;
+                gap: 20px;
 
                 @include breakpoint(md) {
-                  grid-template-columns: 1fr 1fr;
+                  width: 100%;
+                  padding: 0;
                 }
 
                 @include mediumScreen {
-                  grid-template-columns: 1fr 1fr 1fr;
+                  width: 100%;
+                  padding: 0;
                 }
 
                 @include LargeScreen {
-                  grid-template-columns: 1fr 1fr 1fr;
+                  width: 75%;
+                }
+
+                .error_container {
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+
+                  img {
+                    width: 350px;
+                    height: 350px;
+                    object-fit: contain;
+                  }
+
+                  h1 {
+                    color: $base-color5;
+                  }
+                }
+
+                .card_container {
+                  width: 100%;
+                  position: relative;
+                  display: grid;
+                  grid-template-columns: 1fr 1fr 1fr 1fr;
+                  place-items: center;
+                  gap: 10px;
+                  margin-bottom: 1rem;
+
+                  @include breakpoint(md) {
+                    grid-template-columns: 1fr 1fr;
+                  }
+
+                  @include mediumScreen {
+                    grid-template-columns: 1fr 1fr 1fr;
+                  }
+
+                  @include LargeScreen {
+                    grid-template-columns: 1fr 1fr 1fr;
+                  }
                 }
               }
             }
-          }
 
-          .pagination {
-            .loadbtn {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              flex-direction: row;
-              align-items: center;
-              gap: 20px;
-              padding: 1rem 0;
-
-              .inactiveBtn {
+            .pagination {
+              .loadbtn {
+                width: 100%;
                 display: flex;
                 justify-content: center;
+                flex-direction: row;
                 align-items: center;
-                gap: 10px;
-                color: $base_color5;
-                background-color: transparent;
-                padding: 10px;
-                font-size: 1.2rem;
-                font-weight: 700;
-                line-height: 1.2;
-                border-radius: 5px;
-                border: none;
-                cursor: pointer;
+                gap: 20px;
+                padding: 1rem 0;
 
-                &:hover {
+                .inactiveBtn {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 10px;
                   color: $base_color5;
-                }
-              }
+                  background-color: transparent;
+                  padding: 10px;
+                  font-size: 1.2rem;
+                  font-weight: 700;
+                  line-height: 1.2;
+                  border-radius: 5px;
+                  border: none;
+                  cursor: pointer;
 
-              .activeBtn {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 10px;
-                color: $base_color5;
-                background-color: transparent;
-                padding: 10px;
-                font-size: 1.2rem;
-                font-weight: 700;
-                line-height: 1.2;
-                border-radius: 5px;
-                border: none;
-                cursor: pointer;
-
-                &:hover {
-                  color: $primary_color;
+                  &:hover {
+                    color: $base_color5;
+                  }
                 }
 
-                .icon {
-                  font-size: 20px;
-                  font-weight: 900;
+                .activeBtn {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 10px;
+                  color: $base_color5;
+                  background-color: transparent;
+                  padding: 10px;
+                  font-size: 1.2rem;
+                  font-weight: 700;
+                  line-height: 1.2;
+                  border-radius: 5px;
+                  border: none;
+                  cursor: pointer;
+
+                  &:hover {
+                    color: $primary_color;
+                  }
+
+                  .icon {
+                    font-size: 20px;
+                    font-weight: 900;
+                  }
                 }
               }
             }
@@ -320,4 +339,4 @@
       }
     }
   }
-  }}
+}
