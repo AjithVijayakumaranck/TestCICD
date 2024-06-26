@@ -293,16 +293,13 @@ console.log();
             </div>
 
             
-            <div
-              className={CategoryToggle === true ? Style.show : Style.content}
-            >
               <div className={Style.items}>
               {filterBySubcategory &&  nestedCategories.length > 0 && (
-              <div className={Style.nestedCategoryContainer}>
+              <div className={Style.nestedCategoryContainer} style={{backgroundColor:'white',paddingInline:'10px',gap:'10px'}} >
                 <h4 style={{fontWeight:'inherit',color:'black'}}>Nested Categories</h4>
                 {nestedCategories.map((nestedData, nestedIndex) => {
                   return (
-                    <div className={Style.radioField_wrapper} key={nestedIndex}>
+                    <div className={Style.radioField_wrapper} key={nestedIndex} style={{padding:'5px'}}>
                       <input
                         type="radio"
                         name="NestedCategory"
@@ -310,6 +307,7 @@ console.log();
                         value={nestedData._id}
                         checked={nestSelected === nestedData._id}
                         onChange={handleNestedCategoryChange}
+                        
                       />
                       <label htmlFor={nestedData.nestedCat}>
                         {nestedData.nestedCat}
@@ -319,7 +317,6 @@ console.log();
                 })}
               </div>
             )}
-              </div>
             </div>
           </div>
 
@@ -634,7 +631,7 @@ console.log();
                       )}
                     </div>
                     <div className={Style.slider_wrapper}>
-                      <p>Choose Range From Below</p>
+                      <p>Choose Range From Between</p>
                       <div className={Style.slider_label}>
                         <span>
                           {minValue !== ""

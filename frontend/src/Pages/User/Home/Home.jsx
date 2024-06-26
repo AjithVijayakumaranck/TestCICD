@@ -24,11 +24,14 @@ const Home = () => {
   const [catToggle, setCatToggle] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
+
+
+
   // dispaly function for all categories in Top bar
   const changeToggle = () => {
     setCatToggle((prev) => !prev);
   };
-
+  
   //animation to left cat bar
 
   useEffect(() => {
@@ -130,11 +133,11 @@ const Home = () => {
 
   return (
     <div className={Style.home_container}>
-      <div className={Style.Top_container}>
+      {/* <div className={Style.Top_container}>
         <TopCategory togglefunc={setCatToggle} toggleState={catToggle} />
-      </div>
+      </div> */}
       {/* <ScrollToTopOnMount /> */}
-      <Navbar setLocation={setLocation} location={location} />
+      <Navbar setLocation={setLocation} location={location} togglefunc={setCatToggle} toggleState={catToggle}/>
       <HomeCarousel items={SliderImage} />
       <div className={Style.Main_container}>
         <div className={Style.Left} style={{display:catToggle ? 'block': 'none'}}>

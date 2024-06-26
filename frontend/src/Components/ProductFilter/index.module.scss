@@ -80,14 +80,14 @@
         .accordion {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            // gap: 10px;
 
             .titleDiv {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background: #fff;
-                padding: .8rem;
+                background: #fff;   
+                padding: .5rem;
 
                 h3 {
                     font-size: 16px;
@@ -144,8 +144,6 @@
                    
                     .items_wrapper {
                         width: 100%;
-                        
-
                         p {
                             margin: .4rem .6rem;
 
@@ -194,7 +192,7 @@
                         width: 100%;
 
                         .item_Title {
-                            padding-bottom: 5px;
+                            padding-bottom: 2px;
 
                             h3 {
                                 font-size: 15px;
@@ -207,7 +205,7 @@
 
             .inputContent {
                 background: #fff;
-                padding: 1.5rem 1rem;
+                padding: 0.5rem 1rem;
                 margin: 2px 0;
 
                 .inputFields {
@@ -341,7 +339,7 @@
 
                             .progress {
                                 height: 5px;
-                                background: $primary_color;
+                                // background: $primary_color;
                                 position: absolute;
                                 left: 25%;
                                 right: 25%;

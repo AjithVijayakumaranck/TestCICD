@@ -373,7 +373,12 @@ const RegisterForm = ({FormInputs,SubCategoryData,subCategoryId}) => {
           })}
 
           {/* nestedcat selector */}
-          <div className={Style.row}>
+      {NestedData.length > 0 ?
+      
+            <div className={Style.row}>
+             {
+              console.log(NestedData ,"njan ibide indu") 
+             }
             <label>
               Nested category <span className="star">*</span>{" "}
             </label>
@@ -387,7 +392,8 @@ const RegisterForm = ({FormInputs,SubCategoryData,subCategoryId}) => {
                 }}
               />
             </div>
-          </div>
+          </div> : null
+      }
 
           {/* text input */}
           {FormInputs.map((Input, index) => {

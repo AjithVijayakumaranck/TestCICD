@@ -12,9 +12,7 @@ const TopCategory = ({togglefunc,toggleState}) => {
   const { User, SetUser } = userData;
   const userId = User?._id;
 
- const togglefunction = ()=>{
-
- }
+ 
   const [Categories, SetCategories] = useState([]);
   const [DisplayLimit, SetDisplayLimit] = useState(8);
 

@@ -28,8 +28,10 @@ import Select from "react-select";
 import { Blank_Profile } from "../../Assets/Constants";
 import BoxOptions from "../Tooltip/BoxOptions";
 import registerClicks from "../../utilities/getCategoryClicks";
+import TopArrow from "../../Assets/Icons/TopArrow";
+import DownArrow from "../../Assets/Icons/DownArrow";
 
-const Navbar = ({ location, setLocation, reload }) => {
+const Navbar = ({ location, setLocation, reload,togglefunc,toggleState }) => {
   const LoggedInUser = useContext(UserContext);
   const { User, SetUser } = LoggedInUser; //LoggedInUser Id
 
@@ -53,6 +55,7 @@ const Navbar = ({ location, setLocation, reload }) => {
   const [ConversationCount, SetConversationCount] = useState(0);
 
   const [isHovered, setIsHovered] = useState(false);
+  const currenturl = window.location.pathname
   // Set back to false after 5 seconds
   useEffect(() => {
     if (window.location.pathname === "/") {
@@ -328,7 +331,23 @@ const sortedCategories = Categories.sort((a, b) => {
 
         <div className={Style.Search}>
           <div className={Style.Search_container}>
-            <div className={Style.dropdown}>
+          {currenturl =="/" ?   <div className={Style.dropdown} onClick={()=>{togglefunc(!toggleState)}}>
+           <p >All Category</p>  
+             <div className={Style.iconWrapper}>
+            {toggleState ? (
+              <TopArrow />
+            ) : (
+              <DownArrow className={Style.DownArrow} />
+            )}
+          </div>
+            </div> :   <Select
+                placeholder="All Categories"
+                options={SelectOptions}
+                onChange={(e) => onChangeFunc(e.value, User._id)}
+                styles={customStyles}
+              />
+             }
+            <div className={Style.dropdown_mobile}>
               <Select
                 placeholder="All Categories"
                 options={SelectOptions}
