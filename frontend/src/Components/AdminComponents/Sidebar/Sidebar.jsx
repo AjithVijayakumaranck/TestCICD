@@ -97,6 +97,12 @@ const Sidebar = () => {
               <span>SubCategory</span>
             </li>
           </Link>
+          <Link to="/admin/nestedcategory" className={Style.navigation} >
+            <li className={` ${window.location.pathname === '/admin/subcategory' ? Style.active : null}`}>
+              <CategoryIcon className={Style.icons} />
+              <span>NestedCategory</span>
+            </li>
+          </Link>
           {AdminRole === "superadmin" ?
             <Link to="/admin/plans" className={Style.navigation} >
               <li className={` ${window.location.pathname === '/admin/plans' ? Style.active : null}`}>

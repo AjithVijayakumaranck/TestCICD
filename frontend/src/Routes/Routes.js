@@ -48,6 +48,7 @@ import SubcategoryList from '../Pages/Admin/List/SubcategoryList'
 import UsersDetails from '../Pages/Admin/Single/UsersDetails'
 import AdminDetails from '../Pages/Admin/Single/AdminDetails'
 import SubcategoryForm from '../Pages/Admin/New/SubcategoryForm'
+import NestedcategoryForm from '../Pages/Admin/New/NestedcategoryForm'
 import EditForm from '../Pages/Admin/Edit/EditForm'
 import EditCategory from '../Pages/Admin/Edit/EditCategory'
 import EditSubcategory from '../Pages/Admin/Edit/EditSubcategory'
@@ -182,6 +183,9 @@ const Routings = () => {
                 <Route index element={<SubcategoryList />} />
                 <Route path="form" element={<SubcategoryForm title="Add New SubCategory" />} />
                 <Route path="edit/:subcategoryId" element={<EditSubcategory title="Edit SubCategory" />} />
+              </Route>
+              <Route path="/admin/nestedcategory">
+              <Route index element={<NestedcategoryForm />} />
               </Route>
               <Route path="/admin/ads">
                 <Route index element={<AdsLists />} />

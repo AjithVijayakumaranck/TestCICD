@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/UserContext";
 import registerClicks from "../../utilities/getCategoryClicks";
 
+
 const RightCategory = () => {
     const navigate = useNavigate();
     const userData = useContext(UserContext);

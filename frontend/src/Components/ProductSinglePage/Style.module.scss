@@ -1,503 +1,494 @@
-@import '../../StyleHelpers/Variables.scss';
-
+@import "../../StyleHelpers/Variables.scss";
 
 .Container {
-    padding: 40px 60px;
-    overflow-x: hidden;
+  padding: 40px 60px;
+  overflow-x: hidden;
+
+  @include breakpoint(md) {
+    padding: 10px;
+  }
+
+  @include mediumScreen {
+    padding: 20px;
+  }
+
+  @include LargeScreen {
+  }
+
+  .row {
+    display: flex;
+    // background-color: #fff;
 
     @include breakpoint(md) {
-        padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
     }
 
     @include mediumScreen {
-        padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    @include LargeScreen {}
+    .Left_container {
+      width: 50%;
+      padding: 0 30px;
 
-    .row {
+      @include breakpoint(md) {
+        width: 100%;
+        padding: 0;
         display: flex;
-        // background-color: #fff;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      @include mediumScreen {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image_wrapper {
+        width: 100%;
 
         @include breakpoint(md) {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
+          width: 90%;
+          padding: 25px 0;
         }
 
         @include mediumScreen {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+          width: 90%;
         }
 
-        .Left_container {
-            width: 50%;
-            padding: 0 30px;
+        .box {
+          padding: 30px 0;
 
+          @include breakpoint(md) {
+            padding: 0;
+          }
+
+          .img_Container {
+            width: auto;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            position: relative;
 
             @include breakpoint(md) {
-                width: 100%;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
+              height: 350px;
+              border: 1px solid $base-color3;
             }
 
-            @include mediumScreen {
-                width: 100%;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
+            span {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              font-size: 26px;
+              color: grey;
+              background-color: #fff;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              width: 38px;
+              height: 38px;
+              -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+              box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
+              cursor: pointer;
             }
 
-            .image_wrapper {
-                width: 100%;
+            .img_index {
+              position: absolute;
+              bottom: 20px;
+              right: 20px;
+              width: 60px;
+              height: 40px;
+              border-radius: 10px;
+              font-size: 14px;
+              font-weight: 500;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: #6666665b;
+            }
 
-                @include breakpoint(md) {
-                    width: 90%;
-                    padding: 25px 0;
-                }
+            img {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+        }
+      }
 
-                @include mediumScreen {
-                    width: 90%;
-                }
+      h3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        padding: 10px;
+        border-bottom: 1px solid $base-color2;
+      }
 
-                .box {
-                    padding: 30px 0;
+      .Ad_detail {
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-                    @include breakpoint(md) {
-                        padding: 0;
-                    }
+        ul {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
 
+          @include breakpoint(md) {
+            display: flex;
+            flex-direction: column;
+          }
 
-                    .img_Container {
+          li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
 
-                        width: auto;
-                        height: 400px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 5px;
-                        position: relative;
+            label {
+              text-align: start;
+            }
 
-                        @include breakpoint(md) {
-                            height: 350px;
-                            border: 1px solid $base-color3;
-                        }
+            span {
+              text-align: end;
+            }
+          }
+        }
+      }
 
-                        span {
-                            position: absolute;
-                            top: 20px;
-                            right: 20px;
-                            font-size: 26px;
-                            color: grey;
-                            background-color: #fff;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            border-radius: 50%;
-                            width: 38px;
-                            height: 38px;
-                            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-                            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.67);
-                            cursor: pointer;
+      .des {
+        padding: 30px 10px;
 
-                        }
+        @include breakpoint(md) {
+          width: 100%;
+          padding: 20px 0;
+        }
 
-                        .img_index {
-                            position: absolute;
-                            bottom: 20px;
-                            right: 20px;
-                            width: 60px;
-                            height: 40px;
-                            border-radius: 10px;
-                            font-size: 14px;
-                            font-weight: 500;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background-color: #6666665b;
-                        }
+        @include mediumScreen {
+          width: 100%;
+          padding: 30px 0;
+        }
+      }
+    }
 
-                        img {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            width: 100%;
-                            height: 100%;
-                            object-fit: contain;
-                        }
-                    }
-                }
+    .Right_container {
+      display: flex;
+      justify-content: flex-start;
+      place-content: center;
+      align-items: center;
+      padding: 20px;
+      width: 50%;
+
+      @include breakpoint(md) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      @include mediumScreen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      @include LargeScreen {
+        padding: 10px;
+      }
+
+      .Details {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        h1 {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          font-size: 30px;
+          margin: 5px 0;
+        }
+
+        h3 {
+          font-size: 25px;
+          color: $primary_color;
+        }
+
+        h5 {
+          font-size: 14px;
+
+          span {
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: normal;
+          }
+        }
+
+        .Rating {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+
+          .ratingIcon {
+            color: goldenrod;
+          }
+        }
+
+        p {
+          font-size: 12px;
+          font-weight: 1px;
+        }
+      }
+
+      .Button_wrapper {
+        width: 100%;
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+
+        @include LargeScreen {
+          gap: 10px;
+        }
+
+        button {
+          width: 160px;
+          height: 3rem;
+          border-radius: 5px;
+          border: 2px solid $primary_color;
+          background-color: #fff;
+          font-size: 18px;
+          cursor: pointer;
+
+          @include breakpoint(md) {
+            width: 140px;
+          }
+
+          @include mediumScreen {
+            width: 160px;
+          }
+
+          @include LargeScreen {
+            width: 120px;
+          }
+
+          span {
+            margin-left: 8px;
+          }
+
+          &:hover {
+            background-color: $primary_color;
+            color: #fff;
+            border: none;
+          }
+        }
+      }
+    }
+
+    .Right_containerBottom {
+      display: flex;
+      justify-content: flex-start;
+      align-items: start;
+      padding: 20px;
+      width: 50%;
+
+      @include breakpoint(md) {
+        width: 100%;
+        padding: 0;
+      }
+
+      @include mediumScreen {
+        width: 100%;
+        padding: 0;
+      }
+
+      .seller {
+        display: flex;
+        // align-items: start;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+        gap: 10px;
+
+        @include breakpoint(md) {
+          padding: 0;
+        }
+
+        @include mediumScreen {
+          padding: 0;
+        }
+
+        @include LargeScreen {
+        }
+
+        .map_wrapper {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+          height: 200px;
+          border: 2px solid $base-color3;
+          border-radius: 5px;
+          padding: 5px 10px;
+
+          @include breakpoint(md) {
+            padding: 5px;
+          }
+
+          @include mediumScreen {
+            padding: 5px 10px;
+          }
+
+          .title_div {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 10%;
+            padding: 10px;
+
+            label {
+              text-align: start;
+              font-weight: 700;
+            }
+          }
+
+          .map_div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 90%;
+            padding: 10px;
+          }
+        }
+
+        .Id_wrap {
+          width: 100%;
+          text-align: start;
+          font-size: 12px;
+          color: $primary_color;
+        }
+
+        .seller_wrapper {
+          // width: 100%;
+          height: 100px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          border: 2px solid $base-color3;
+          border-radius: 5px;
+          cursor: pointer;
+
+          @include breakpoint(md) {
+          }
+
+          @include mediumScreen {
+          }
+
+          @include LargeScreen {
+          }
+
+          div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding: 0.5rem;
+
+            img {
+              width: 70px;
+              height: 70px;
+              border-radius: 50%;
+              margin-right: 30px;
             }
 
             h3 {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 18px;
-                padding: 10px;
-                border-bottom: 1px solid $base-color2;
+              font-size: 18px;
+              font-weight: 500;
+              text-overflow: ellipsis;
             }
 
-            .Ad_detail {
-                padding: 20px 0;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                ul {
-                    list-style: none;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-
-                    @include breakpoint(md) {
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                    li {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        width: 100%;
-
-                        label {
-                            text-align: start;
-                        }
-
-                        span {
-                            text-align: end;
-                        }
-                    }
-                }
+            span {
+              font-size: 28px;
+              font-weight: 700;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
-
-            .des {
-
-                padding: 30px 10px;
-
-                @include breakpoint(md) {
-                    width: 100%;
-                    padding: 20px 0;
-                }
-
-                @include mediumScreen {
-                    width: 100%;
-                    padding: 30px 0;
-                }
-            }
+          }
         }
-
-        .Right_container {
-            display: flex;
-            justify-content: flex-start;
-            place-content: center;
-            align-items: center;
-            padding: 20px;
-            width: 50%;
-
-            @include breakpoint(md) {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-            }
-
-            @include mediumScreen {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-            }
-
-            @include LargeScreen {
-                padding: 10px;
-            }
-
-
-            .Details {
-                padding: 10px 0;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-
-                h1 {
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
-                    font-size: 30px;
-                    margin: 5px 0;
-                }
-
-                h3 {
-                    font-size: 25px;
-                    color: $primary_color;
-                }
-
-                h5 {
-                    font-size: 14px;
-
-                    span {
-                        font-size: 14px;
-                        margin: 0 10px;
-                        font-weight: normal;
-                    }
-                }
-
-                .Rating {
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-
-                    .ratingIcon {
-                        color: goldenrod;
-                    }
-                }
-
-                p {
-                    font-size: 12px;
-                    font-weight: 1px;
-                }
-            }
-
-            .Button_wrapper {
-                width: 100%;
-                margin: 20px 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 15px;
-                text-align: center;
-
-                @include LargeScreen {
-                    gap: 10px;
-                }
-
-                button {
-                    width: 160px;
-                    height: 3rem;
-                    border-radius: 5px;
-                    border: 2px solid $primary_color;
-                    background-color: #fff;
-                    font-size: 18px;
-                    cursor: pointer;
-
-                    @include breakpoint(md) {
-                        width: 140px;
-                    }
-
-                    @include mediumScreen {
-                        width: 160px;
-                    }
-
-                    @include LargeScreen {
-                        width: 120px;
-                    }
-
-                    span {
-                        margin-left: 8px;
-                    }
-
-                    &:hover {
-                        background-color: $primary_color;
-                        color: #fff;
-                        border: none;
-                    }
-                }
-            }
-        }
-
-        .Right_containerBottom {
-            display: flex;
-            justify-content: flex-start;
-            align-items: start;
-            padding: 20px;
-            width: 50%;
-
-            @include breakpoint(md) {
-                width: 100%;
-                padding: 0;
-            }
-
-            @include mediumScreen {
-                width: 100%;
-                padding: 0;
-            }
-
-            .seller {
-                display: flex;
-                // align-items: start;
-                flex-direction: column;
-                width: 100%;
-                padding: 20px;
-                gap: 10px;
-
-                @include breakpoint(md) {
-                    padding: 0;
-                }
-
-                @include mediumScreen {
-                    padding: 0;
-                }
-
-                @include LargeScreen {}
-
-                .map_wrapper {
-                    display: flex;
-                    align-items: center;
-                    flex-direction: column;
-                    width: 100%;
-                    height: 200px;
-                    border: 2px solid $base-color3;
-                    border-radius: 5px;
-                    padding: 5px 10px;
-
-                    @include breakpoint(md) {
-                        padding: 5px;
-                    }
-
-                    @include mediumScreen {
-                        padding: 5px 10px;
-                    }
-
-
-                    .title_div {
-                        display: flex;
-                        align-items: center;
-                        width: 100%;
-                        height: 10%;
-                        padding: 10px;
-
-                        label {
-                            text-align: start;
-                            font-weight: 700;
-                        }
-                    }
-
-                    .map_div {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        width: 100%;
-                        height: 90%;
-                        padding: 10px;
-                    }
-                }
-
-                .Id_wrap {
-                    width: 100%;
-                    text-align: start;
-                    font-size: 12px;
-                    color: $primary_color;
-                }
-
-                .seller_wrapper {
-                    // width: 100%;
-                    height: 100px;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: space-between;
-                    border: 2px solid $base-color3;
-                    border-radius: 5px;
-                    cursor: pointer;
-
-                    @include breakpoint(md) {}
-
-                    @include mediumScreen {}
-
-                    @include LargeScreen {}
-
-
-                    div {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        flex-direction: row;
-                        padding: .5rem;
-
-                        img {
-                            width: 70px;
-                            height: 70px;
-                            border-radius: 50%;
-                            margin-right: 30px;
-
-                        }
-
-                        h3 {
-                            font-size: 18px;
-                            font-weight: 500;
-                            text-overflow: ellipsis;
-                        }
-
-                        span {
-                            font-size: 28px;
-                            font-weight: 700;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }
-
 
 /*----- control btn -------*/
 .control_btn {
+  .next,
+  .prev {
+    position: absolute;
+    top: 43%;
+    width: 50px;
+    height: 50px;
+    line-height: 60px;
+    background-color: #6666665b;
+    border-radius: 50%;
+    border: none;
+    transform: 0.5s;
+    z-index: 5;
 
-    .next,
-    .prev {
-        position: absolute;
-        top: 43%;
-        width: 50px;
-        height: 50px;
-        line-height: 60px;
-        background-color: #6666665b;
-        border-radius: 50%;
-        border: none;
-        transform: 0.5s;
-        z-index: 5;
-
-        @include breakpoint(md) {
-            width: 40px;
-            height: 40px;
-        }
-
-
-        i {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            transition: 0.5s;
-            color: #fff;
-
-            @include breakpoint(md) {
-                font-size: 22px;
-            }
-
-        }
+    @include breakpoint(md) {
+      width: 40px;
+      height: 40px;
     }
 
-    .prev {
-        left: 10px;
-    }
+    i {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      transition: 0.5s;
+      color: #fff;
 
-    .next {
-        right: 10px;
+      @include breakpoint(md) {
+        font-size: 22px;
+      }
     }
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
 }

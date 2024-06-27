@@ -16,7 +16,6 @@ function App() {
 
     <CategoryProviderProvider>
       <UserContextProvider>
-
         <div>
           <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnHover={false} theme="colored" />
           <Routings />
