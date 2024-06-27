@@ -327,9 +327,9 @@ const CategoryProductPage = () => {
               <div className={Style.left}>
                 <h2>{Categories?.categoryName}</h2>
               </div>
-              <div className={Style.right}>
-                <span></span>
-              </div>
+              {/* <div className={Style.right}>
+               
+              </div> */}
             </div>
 
             <div className={Style.Wrapper}>

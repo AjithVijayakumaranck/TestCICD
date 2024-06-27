@@ -30,6 +30,7 @@ import BoxOptions from "../Tooltip/BoxOptions";
 import registerClicks from "../../utilities/getCategoryClicks";
 import TopArrow from "../../Assets/Icons/TopArrow";
 import DownArrow from "../../Assets/Icons/DownArrow";
+import { ClassNames } from "@emotion/react";
 
 const Navbar = ({ location, setLocation, reload,togglefunc,toggleState }) => {
   const LoggedInUser = useContext(UserContext);
@@ -335,7 +336,7 @@ const sortedCategories = Categories.sort((a, b) => {
            <p >All Category</p>  
              <div className={Style.iconWrapper}>
             {toggleState ? (
-              <TopArrow />
+              <TopArrow className={Style.Uparrow}/>
             ) : (
               <DownArrow className={Style.DownArrow} />
             )}

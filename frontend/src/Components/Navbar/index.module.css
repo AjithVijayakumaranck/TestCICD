@@ -197,6 +197,7 @@
   align-items: center;
   border-right: 1px solid lightgrey;
   margin-right: 10px;
+  padding: 10px;
 }
 @media (max-width: 550px) {
   .header_container .Container .Search .Search_container .dropdown {

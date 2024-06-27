@@ -52,7 +52,7 @@
 .page_wrapper .main .productwrapper .container .heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 2rem;
   padding: 0.5rem 0;
   border-bottom: 2px solid #ebebeb;
