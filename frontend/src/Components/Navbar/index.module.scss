@@ -188,7 +188,7 @@
         @include LargeScreen {
           font-size: 1.8rem;
         }
-
+         
         // Your dropdown styles here
         .dropdown {
           height: 90%;
@@ -201,6 +201,8 @@
           @include breakpoint(md) {
             display: none;
             }
+
+            
          
           // Styling for the select element
         p{

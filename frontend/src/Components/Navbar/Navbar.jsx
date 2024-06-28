@@ -332,29 +332,35 @@ const sortedCategories = Categories.sort((a, b) => {
 
         <div className={Style.Search}>
           <div className={Style.Search_container}>
-          {currenturl =="/" ?   <div className={Style.dropdown} onClick={()=>{togglefunc(!toggleState)}}>
-           <p >All Category</p>  
-             <div className={Style.iconWrapper}>
-            {toggleState ? (
-              <TopArrow className={Style.Uparrow}/>
-            ) : (
-              <DownArrow className={Style.DownArrow} />
-            )}
-          </div>
-            </div> :   <Select
-                placeholder="All Categories"
-                options={SelectOptions}
-                onChange={(e) => onChangeFunc(e.value, User._id)}
-                styles={customStyles}
-              />
-             }
+            <div className="dropdown_container">
+              {currenturl =="/" ?   <div className={Style.dropdown} onClick={()=>{togglefunc(!toggleState)}}>
+              <p >All Category</p>  
+                <div className={Style.iconWrapper}>
+                {toggleState ? (
+                  <TopArrow className={Style.Uparrow}/>
+                ) : (
+                  <DownArrow className={Style.DownArrow} />
+                )}
+              </div>
+                </div> :   <Select
+                    placeholder="All Categories"
+                    options={SelectOptions}
+                    onChange={(e) => onChangeFunc(e.value, User._id)}
+                    styles={customStyles}
+                  />
+                }
+            </div>
+            
             <div className={Style.dropdown_mobile}>
-              <Select
+              {currenturl =="/" && <Select
                 placeholder="All Categories"
                 options={SelectOptions}
                 onChange={(e) => onChangeFunc(e.value, User._id)}
                 styles={customStyles}
-              />
+              /> 
+
+              }
+              
             </div>
 
             <input
