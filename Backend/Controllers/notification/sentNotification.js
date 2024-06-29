@@ -6,8 +6,9 @@ const moment = require("moment")
 
 const { AUTH_EMAIL } = process.env
 
-const sendNotification = async ({ email, subject="", notification="" , link = "" }) => {
+const sendNotification = async ({ email, subject="", notification="" , link = "" ,product = ""}) => {
     try {
+        console.log(email);
         if (!(email)) {
             throw Error("Provide proper email")
         }
@@ -21,12 +22,15 @@ const sendNotification = async ({ email, subject="", notification="" , link = ""
             template:'notification',
             context:{
                content: notification,
+               product,
                link
 
             }
         }
 
         await sendEmail(mailOptions)
+        console.log("await done");
+        return;
 
 
     } catch (error) {

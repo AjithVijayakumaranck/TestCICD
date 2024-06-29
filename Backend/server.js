@@ -8,6 +8,7 @@ const passport = require('passport');
 require('./Controllers/passport/passport')
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path')
 
 
 
@@ -38,6 +39,9 @@ const carousalRoute = require('./Routes/SuperAdmin/carousalRoute')
 const feedbackRoute = require('./Routes/SuperAdmin/feedbackRoute')
 const notificationRoute = require('./Routes/SuperAdmin/notificationRoute')
 const termRoute = require('./Routes/SuperAdmin/termsConditions')
+
+
+app.use('/public_images', express.static(path.join(__dirname, 'Views/images')))
 
 
 if (!fs.existsSync("./uploads")) {
