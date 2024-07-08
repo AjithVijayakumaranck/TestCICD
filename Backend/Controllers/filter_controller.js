@@ -129,7 +129,7 @@ module.exports = {
     // filter using location
     filterProducts: async (req, res) => {
         try {
-            let { state, category, subcategory,nestedcat, district, locality, max, min, page, other } = req.query
+            let { state, category, subcategory,nestedcat, district, locality="", max, min, page, other } = req.query
             let otherFilters = await JSON.parse(other)
             let query = [{ deleted: false }]
             if (state != "") {
@@ -142,6 +142,12 @@ module.exports = {
                         district:
                             { "$regex": district, "$options": "i" }
                     })
+                    if (locality != "") {
+                        query.push({
+                            locality:
+                                { "$regex": locality, "$options": "i" }
+                        })
+                    }
                 }
             }
             if (category != "") {
