@@ -29,7 +29,7 @@ router.post('/add_subcategory',authoriseJwt,Category_subController.addSubcategor
 
 router.post('/add_subcat_filter',authoriseJwt,Category_subController.addSubcatFilters) // add filter content
 
-router.post('/add_subcat_filter_test',Category_subController.addSubcatFilters) // add filter content
+// router.post('/add_subcat_filter_test',Category_subController.addSubcatFilters) // add filter content
 
 router.delete('/delete_subcategory',authoriseJwt,Category_subController.deleteSubCategory) //delete existing record from subcategory collection
 
