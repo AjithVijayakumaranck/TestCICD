@@ -144,6 +144,25 @@ module.exports = {
         }
     },
 
+        //add filter inputs category
+        addSubcatFilters: async (req, res) => {
+            try {
+                const { subcategoryId, filterInputs } = req.body
+                const subcategoryExist = SUBCAT.findById(subcategoryId)
+                if (!subcategoryExist) {
+                    res.status(404).json({ message: 'Subcategory Category not found' })
+                } else {
+                    SUBCAT.updateOne({ _id: subcategoryId }, { $push: { filters: { $each: filterInputs }} },{upsert:true}).then(()=>{
+                        res.status(200).json({ message:"Filter added successfully" })
+                    }).catch((error) => 
+                    { res.status(500).json({ message: "Something went wrong"})}
+                    )
+                }
+            } catch (error) {
+                res.status(500).json(error.message)
+            }
+        },
+
         //register clicks
         registerClicks: async (req, res)=>{
             try{

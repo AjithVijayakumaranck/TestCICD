@@ -11,7 +11,7 @@ router.get('/get_singlecategory',authoriseJwt,Category_subController.getSingleCa
 
 router.post('/add_category',authoriseJwt,upload.single('file'),Category_subController.addCategory) // add new category record
 
-router.post('/add_filter_test',Category_subController.addFilters) // add filter content test
+// router.post('/add_filter_test',Category_subController.addFilters) // add filter content test
 
 router.post('/add_filter',authoriseJwt,Category_subController.addFilters) // add filter content
 
@@ -26,6 +26,10 @@ router.get('/get_subcategory',authoriseJwt,Category_subController.getSubCategori
 router.get('/get_singlesubcategory',authoriseJwt,Category_subController.getSingleSubcategory) //get an single subcategory document
 
 router.post('/add_subcategory',authoriseJwt,Category_subController.addSubcategory)   //add new record to subcategory collection
+
+router.post('/add_subcat_filter',authoriseJwt,Category_subController.addSubcatFilters) // add filter content
+
+router.post('/add_subcat_filter_test',Category_subController.addSubcatFilters) // add filter content
 
 router.delete('/delete_subcategory',authoriseJwt,Category_subController.deleteSubCategory) //delete existing record from subcategory collection
 
