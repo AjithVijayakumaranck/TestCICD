@@ -130,7 +130,7 @@ module.exports = {
     // filter using location
     filterProducts: async (req, res) => {
         try {
-            let { state, category, subcategory,nestedcat, district, locality="", max, min, page, other } = req.query
+            let { state, category,subcategory,nestedcat, district, locality="", max, min, page, other } = req.query
             let otherFilters = await JSON.parse(other)
             let query = [{ deleted: false }]
             if (state != "") {
@@ -233,6 +233,7 @@ module.exports = {
                 })
             }
             const limit = 12
+            
             PRODUCT.find({ $and: query }).populate('userId').skip(page).limit(limit).then((productDetails) => {
                 // console.log(productDetails, "hhhh");
                 query = [{ deleted: false }]
