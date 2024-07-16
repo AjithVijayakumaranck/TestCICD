@@ -1,5 +1,6 @@
 const CATEGORY = require("../Models/categoryModel");
 const PRODUCT = require("../Models/productModal");
+const SUBCAT = require("../Models/subCategoryModel");
 const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding");
 const { fetchLocality, fetchLocation } = require("../utilities/localityFetch");
 
@@ -170,8 +171,38 @@ module.exports = {
             if (otherFilters) {
   
                 let currentCategory = await CATEGORY.findById(category)
+                let currentSubcategory = await SUBCAT.findById(subcategory)
 
                 currentCategory.filters.forEach(async (value, index, array) => {
+                    if (value.label in otherFilters) {
+                        if (value.type === "text") {
+                            console.log(1);
+                            query.push({ [`otherDetails.${value.label}`]: otherFilters.label })
+                        } else if (value.type === "range") {
+                            console.log(2);
+                            let min = parseInt(otherFilters[value.label].min)
+                            let max = parseInt(otherFilters[value.label].max)
+                            query.push({ [`otherDetails.${value.label}`]: { $gte: min, $lte: max } })
+                        }
+                        else if (value.type === "checkbox") {
+                            console.log(4);
+                            if (otherFilters[value.label].length != 0) {
+                                query.push({ [`otherDetails.${value.label}`]: { $in: otherFilters[value.label] } })
+                            }
+                        }
+                        else {
+                            console.log(3);
+                            if (value.mode === "gte") {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $gte: val } })
+                            } else {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $lte: val } })
+                            }
+                        }
+                    }
+                })
+                currentSubcategory.filters.forEach(async (value, index, array) => {
                     if (value.label in otherFilters) {
                         if (value.type === "text") {
                             console.log(1);
