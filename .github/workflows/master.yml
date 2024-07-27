@@ -34,14 +34,14 @@ jobs:
     - name: Prepare SSH Directory
       run: |
         mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        echo "${{secets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
         # Debug key
         ssh-keygen -y -f ~/.ssh/id_rsa
         # Test SSH connection
-        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.VPS_IP }} "echo 'SSH connection successful'"
+        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo 'SSH connection successful'"
 
     - name: Deploy to VPS
       run: |
-        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.SSH_USERNAME }}@${{ secrets.VPS_IP }} 'bash -s' < ./scripts/deploy.sh
+        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
