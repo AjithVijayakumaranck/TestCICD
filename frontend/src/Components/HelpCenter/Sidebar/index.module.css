@@ -63,7 +63,7 @@
 .content .contentWrapper .bottom ul .active {
   width: 100%;
   font-weight: 700;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .content .contentWrapper .top ul li,
 .content .contentWrapper .bottom ul li {

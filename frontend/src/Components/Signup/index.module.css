@@ -48,16 +48,16 @@
   right: 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .form_wrapper .form_container .left_section h1 {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .form_wrapper .form_container .left_section p {
   font-size: 12px;
 }
 .form_wrapper .form_container .left_section p span {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 0.8rem;
   font-weight: 400;
 }
@@ -65,7 +65,7 @@
   background: none;
   border: none;
   outline: none;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 0.8rem;
   font-weight: 400;
   margin-top: 1rem;
@@ -81,7 +81,7 @@
   text-align: center;
 }
 .form_wrapper .form_container .left_section .login_Details h1 {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 20px;
 }
 .form_wrapper .form_container .left_section .login_Details p {
@@ -99,7 +99,7 @@
 }
 .form_wrapper .form_container .left_section form .terms .navigation {
   text-decoration: none;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   padding: 0 5px;
 }
 .form_wrapper .form_container .left_section form .input_div {
@@ -130,7 +130,7 @@
   color: red;
 }
 .form_wrapper .form_container .left_section form .input_div div span {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 10px;
   margin-left: 10px;
   cursor: pointer;
@@ -168,7 +168,7 @@
   color: #999;
 }
 .form_wrapper .form_container .left_section form .input_div div .input_Wrap .eye_icon:hover {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .form_wrapper .form_container .left_section form .input_div div label {
   font-size: 12px;
@@ -176,7 +176,7 @@
 .form_wrapper .form_container .left_section form button {
   cursor: pointer;
   margin-top: 5px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   width: 100%;
   color: white;
   border: none;
@@ -245,7 +245,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #046BD2;
+  background: rgba(255, 0, 0, 0.9607843137);
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }

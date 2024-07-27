@@ -142,7 +142,7 @@
 .new .newContainer .center .right form .featuresForm .featurebtn span,
 .new .newContainer .bottomTable .right form .featuresForm .featurebtn span {
   padding: 10px 20px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -270,7 +270,7 @@
 .new .newContainer .bottomTable .right form .formproperty .formWrap .formButtonWrap .formButton {
   padding: 10px 20px;
   border: none;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 5px;
   color: white;
   cursor: pointer;
@@ -350,10 +350,10 @@
 .new .newContainer .bottomTable .right form .formproperty .toggleBtn {
   width: 180px;
   padding: 10px 20px;
-  border: 1px solid #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
   background-color: #fff;
   border-radius: 5px;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-weight: bold;
   text-align: center;
   cursor: pointer;
@@ -364,7 +364,7 @@
 .new .newContainer .bottomTable .right form .formproperty .propertyBtn {
   padding: 10px 20px;
   border: none;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 5px;
   color: white;
   cursor: pointer;
@@ -387,7 +387,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: white;
   font-weight: bold;
   margin: 20px 0;

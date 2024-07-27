@@ -67,7 +67,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: white;
 }
 .main_container .container .chat_container .Left_container .title_wrapper h3 {
@@ -396,7 +396,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   font-size: 2rem;
   border: none;
@@ -457,7 +457,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
 }
 .main_container .mobileScreen .Left_container .title_wrapper h3 {
@@ -766,7 +766,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   font-size: 1rem;
   border: none;

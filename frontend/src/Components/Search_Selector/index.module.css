@@ -78,7 +78,7 @@
 }
 .Container .Search_wrapper .ShowButton button {
   width: 100%;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   padding: 10px 0;
   border-radius: 5px;
@@ -88,6 +88,6 @@
 }
 .Container .Search_wrapper .ShowButton button:hover {
   background-color: #fff;
-  border: 1px solid #046BD2;
-  color: #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
+  color: rgba(255, 0, 0, 0.9607843137);
 }/*# sourceMappingURL=index.module.css.map */

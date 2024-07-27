@@ -1,5 +1,5 @@
 # Navigate to your application directory
-cd /dealnbuy
+cd ~/dealnbuy
 
 # Pull the latest changes
 git pull origin master
@@ -14,7 +14,8 @@ npm install
 
 
 # Navigate to client directory, install dependencies, and build
-cd ../client
+cd ../frontend
+export NODE_OPTIONS=--max_old_space_size=4096
 npm install
 npm run build
 rm -rf /var/www/dealnbuy/*

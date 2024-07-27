@@ -52,7 +52,7 @@
   }
 }
 .pageWrapper .container .content button {
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   padding: 15px;
   border-radius: 5px;

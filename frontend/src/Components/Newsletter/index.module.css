@@ -1,6 +1,6 @@
 .newsletter {
   padding: 3rem 4rem;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
 }
 @media (max-width: 550px) {
   .newsletter {
@@ -64,7 +64,7 @@
   font-size: 1.2rem;
   font-weight: 600;
   padding: 10px 20px;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   border: none;
   border-radius: 5px;
   outline: none;

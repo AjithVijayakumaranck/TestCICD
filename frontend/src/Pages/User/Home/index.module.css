@@ -165,7 +165,7 @@
   cursor: pointer;
 }
 .home_container .Main_container .Right .cardWrapper .loadbtn .activeBtn:hover {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .home_container .Main_container .Right .cardWrapper .loadbtn .activeBtn .icon {
   font-size: 20px;

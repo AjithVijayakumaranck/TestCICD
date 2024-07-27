@@ -54,7 +54,7 @@
   justify-content: center;
   font-size: 2rem;
   font-weight: 600;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 5px;
   color: #fff;
 }
@@ -103,7 +103,7 @@
 }
 .page_wrapper .main .container .right .content_wrapper .container_wrap .row .top .links,
 .page_wrapper .main .container .right .content_wrapper .container_wrap .row .bottom .links {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   margin-left: 0.5rem;
   text-decoration: none;
 }

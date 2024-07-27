@@ -51,7 +51,7 @@
 .widgets .right .icon {
   font-size: 18px;
   padding: 5px;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 3px;
   align-self: flex-end;
   color: #fff;

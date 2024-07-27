@@ -31,7 +31,7 @@
 .sidebar .top .logo {
   font-size: 26px;
   font-weight: bold;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .sidebar hr {
   height: 0;

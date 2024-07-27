@@ -107,7 +107,7 @@
   cursor: pointer;
 }
 .header_container .Container .Branding .Branding_wrapper button:hover {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 @media (max-width: 550px) {
   .header_container .Container .Branding .Branding_wrapper button {
@@ -122,7 +122,7 @@
   }
 }
 .header_container .Container .Branding h1 {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 1.6rem;
   font-weight: 700;
   margin: 0.4rem 0;
@@ -178,7 +178,7 @@
   display: flex;
   align-items: center;
   border-radius: 5px;
-  border: 1px solid #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
   padding: 5px;
 }
 @media (max-width: 550px) {
@@ -262,7 +262,7 @@
   font-size: 20px;
   border: none;
   aspect-ratio: 1;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   height: 100%;
   width: 60px;
   border-top-right-radius: 3px;
@@ -321,7 +321,7 @@
   padding: 1px;
   font-size: 0.6rem;
   color: #fff;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 50%;
 }
 @media (max-width: 550px) {
@@ -364,7 +364,7 @@
   border: none;
   background: transparent;
   color: white;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   padding: 10px 12px;
   border-radius: 5px;
   font-size: 14px;
@@ -374,8 +374,8 @@
 }
 .header_container .Container .Options .RegButtonContainer button:hover {
   background-color: white;
-  border: 1px solid #046BD2;
-  color: #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 @media (max-width: 550px) {
   .header_container .Container .Options .RegButtonContainer {
@@ -409,8 +409,8 @@
 }
 .header_container .Container .Options .ButtonContainer button:hover {
   background: white;
-  border: 1px solid #046BD2;
-  color: #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 @media (max-width: 550px) {
   .header_container .Container .Options .ButtonContainer {
@@ -483,7 +483,7 @@
   }
 }
 .header_container .Container .Mobile_screen .logoContainer .logo_wrap h1 {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -502,7 +502,7 @@
   cursor: pointer;
 }
 .header_container .Container .Mobile_screen .logoContainer div button:hover {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .header_container .Container .Mobile_screen .ProfileContainer {
   width: 100%;
@@ -523,7 +523,7 @@
   aspect-ratio: 1;
   height: 60px;
   border-radius: 100%;
-  border: 1px solid #046BD2;
+  border: 1px solid rgba(255, 0, 0, 0.9607843137);
   overflow: hidden;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap .profile img {
@@ -536,7 +536,7 @@
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap button {
   font-size: 18px;
   font-weight: 900;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   background-color: transparent;
   outline: none;
   border: none;
@@ -548,7 +548,7 @@
   gap: 3px;
 }
 .header_container .Container .Mobile_screen .ProfileContainer .profile_wrap div h5 {
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
   text-decoration: underline;
   font-size: 12px;
   font-style: normal;
@@ -591,7 +591,7 @@
 }
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul li:hover,
 .header_container .Container .Mobile_screen .menuContainer .menu_wrap ul .list_items:hover {
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   color: #fff;
   border-radius: 3px;
 }
@@ -638,7 +638,7 @@
   height: 1rem;
   font-size: 0.6rem;
   color: #fff;
-  background-color: #046BD2;
+  background-color: rgba(255, 0, 0, 0.9607843137);
   border-radius: 50%;
 }
 

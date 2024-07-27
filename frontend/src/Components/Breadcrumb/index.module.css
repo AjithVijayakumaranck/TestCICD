@@ -35,7 +35,7 @@
 }
 .breadcrumb .container .breadcrumb_wrap .item span .navlink {
   text-decoration: none;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 @media (max-width: 550px) {
   .breadcrumb .container .breadcrumb_wrap .item span .navlink {
@@ -44,7 +44,7 @@
 }
 .breadcrumb .container .breadcrumb_wrap .item .navlink {
   text-decoration: none;
-  color: #046BD2;
+  color: rgba(255, 0, 0, 0.9607843137);
 }
 .breadcrumb .container .breadcrumb_wrap .item i {
   font-size: 16px;
