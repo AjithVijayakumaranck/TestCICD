@@ -32,7 +32,6 @@ jobs:
     #   working-directory: ./frontend # Path to your client folder
 
     - name: Prepare SSH Directory
-  
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
