@@ -37,8 +37,14 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
       run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
+        eval "$(ssh-agent)"
+        ssh-add ~/.ssh/id_rsa
+        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./scripts/deploy.sh ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/
+        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash ~/deploy.sh'
+
+      # run: |
+      #   mkdir -p ~/.ssh
+      #   echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+      #   chmod 600 ~/.ssh/id_rsa
+      #   ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+      #   ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
