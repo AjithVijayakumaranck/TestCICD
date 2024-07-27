@@ -63,7 +63,9 @@ const allowedOrigins = [
     "http://localhost:3000",
     "http://195.35.22.187",
     "https://test-repo-orpin-zeta.vercel.app",
-    "https://dnb-test.vercel.app"
+    "https://dnb-test.vercel.app",
+    "http://www.dnbtest.in",
+    "http://dealnbuy.in"
 
 
 ];
