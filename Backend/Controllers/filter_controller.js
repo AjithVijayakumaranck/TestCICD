@@ -124,7 +124,6 @@ module.exports = {
         }
     },
 
-
     //product filters
 
     // filter using location
@@ -171,7 +170,10 @@ module.exports = {
             if (otherFilters) {
   
                 let currentCategory = await CATEGORY.findById(category)
-                let currentSubcategory = await SUBCAT.findById(subcategory)
+                let currentSubcategory
+                if(subcategory){
+                    currentCategory = await SUBCAT.findById(subcategory)
+                }
 
                 currentCategory.filters.forEach(async (value, index, array) => {
                     if (value.label in otherFilters) {
@@ -202,6 +204,8 @@ module.exports = {
                         }
                     }
                 })
+                if(currentCategory){
+
                 currentSubcategory.filters.forEach(async (value, index, array) => {
                     if (value.label in otherFilters) {
                         if (value.type === "text") {
@@ -232,8 +236,9 @@ module.exports = {
                     }
                 })
             }
+                }
             const limit = 12
-            
+
             PRODUCT.find({ $and: query }).populate('userId').skip(page).limit(limit).then((productDetails) => {
                 // console.log(productDetails, "hhhh");
                 query = [{ deleted: false }]
