@@ -13,42 +13,42 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'  # Specify your Node.js version
-    - name: Install backend dependencies
-      run: |
-        cd ./Backend
-        npm install
+    # - name: Set up Node.js
+    #   uses: actions/setup-node@v2
+    #   with:
+    #     node-version: '18'  # Specify your Node.js version
+    # - name: Install backend dependencies
+    #   run: |
+    #     cd ./Backend
+    #     npm install
 
-    - name: Install frontend dependencies
-      run: |
-        cd ./frontend
-        npm install
+    # - name: Install frontend dependencies
+    #   run: |
+    #     cd ./frontend
+    #     npm install
 
-    - name: Build application
-      run: npm run build
-      working-directory: ./frontend # Path to your client folder
+    # - name: Build application
+    #   run: npm run build
+    #   working-directory: ./frontend # Path to your client folder
 
     - name: Deploy to VPS
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
-      run: |
-        mkdir -p ~/.ssh
-        echo ${{secrets.SSH_PRIVATE_KEY}} > ~/.ssh/id_rsa
-        ssh-add ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-        eval "$(ssh-agent)"
-        scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./scripts/deploy.sh ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/
-        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash ~/deploy.sh'
-
       # run: |
       #   mkdir -p ~/.ssh
-      #   echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+      #   echo ${{secrets.SSH_PRIVATE_KEY}} > ~/.ssh/id_rsa
+      #   ssh-add ~/.ssh/id_rsa
       #   chmod 600 ~/.ssh/id_rsa
       #   ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-      #   ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
+      #   eval "$(ssh-agent)"
+      #   scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./scripts/deploy.sh ${{ secrets.USERNAME }}@${{ secrets.HOST }}:~/
+      #   ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash ~/deploy.sh'
+
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
