@@ -1,0 +1,41 @@
+name: Dealnbuy deployment test
+
+on:
+  push:
+    branches:
+      - master  # Change to your deployment branch if different
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'  # Specify your Node.js version
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./Backend # Path to your server folder
+      run: npm install
+      working-directory: ./frontend # Path to your client folder
+
+    - name: Build application
+      run: npm run build
+      working-directory: ./frontend # Path to your client folder
+
+    - name: Deploy to VPS
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+        ssh ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
