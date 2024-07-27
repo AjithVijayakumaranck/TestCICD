@@ -6,7 +6,7 @@ const moment = require("moment")
 
 const { AUTH_EMAIL } = process.env
 
-const sendNotification = async ({ email, subject="", message="", duration = 1 }) => {
+const senddNotification = async ({ email, subject="", message="", duration = 1 }) => {
     try {
         
         if (!(email)) {
@@ -30,4 +30,4 @@ const sendNotification = async ({ email, subject="", message="", duration = 1 })
     }
 }
 
-module.exports = { sendNotification };
+module.exports = { senddNotification };

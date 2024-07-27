@@ -18,7 +18,6 @@ const LeftCategory = () => {
     instance
       .get("/api/category/get_categories")
       .then((response) => {
-        console.log(response);
         const sortedCategories = response.data.sort((a, b) => {
           const nameA = a.categoryName.toLowerCase();
           const nameB = b.categoryName.toLowerCase();

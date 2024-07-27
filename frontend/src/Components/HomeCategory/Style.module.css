@@ -219,4 +219,75 @@
   }
 }
 
-/*--------End Right Container---------*//*# sourceMappingURL=Style.module.css.map */
+/*--------End Right Container---------*/
+.Tcontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40;
+  background-color: #046BD2;
+  align-items: center;
+  height: 50px;
+  margin-bottom: 10px;
+  box-shadow: 1px 7px 5px -3px rgb(194, 183, 194);
+  color: white;
+}
+@media (max-width: 550px) {
+  .Tcontainer {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Tcontainer {
+    font-size: 10px;
+  }
+}
+.Tcontainer .categorylist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-direction: row;
+  color: white;
+}
+.Tcontainer .categorylist .category_btn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+}
+@media (max-width: 550px) {
+  .Tcontainer .categorylist .category_btn {
+    display: none;
+  }
+}
+@media (min-width: 550px) and (max-width: 768px) {
+  .Tcontainer .categorylist .category_btn {
+    display: none;
+  }
+}
+.Tcontainer .categorylist .category_btn button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font: inherit;
+  margin: inherit;
+  padding: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+.Tcontainer .categorylist .category_btn .iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Tcontainer .categorylist ul {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  cursor: pointer;
+}
+.Tcontainer .categorylist ul li {
+  list-style-type: none;
+}/*# sourceMappingURL=Style.module.css.map */

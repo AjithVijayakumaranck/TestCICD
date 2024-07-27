@@ -14,7 +14,6 @@ module.exports = {
     login: async (req, res) => {
         try {
             const { data, password } = req.body
-            console.log(data,password);
             const userInfo = await USER.findOne({
                 $and: [{
                     $or: [

@@ -1,5 +1,6 @@
 const CATEGORY = require("../Models/categoryModel");
 const PRODUCT = require("../Models/productModal");
+const SUBCAT = require("../Models/subCategoryModel");
 const { getLocation, getReverseLocation, getPolygon } = require("../utilities/geoCoding");
 const { fetchLocality, fetchLocation } = require("../utilities/localityFetch");
 
@@ -123,13 +124,12 @@ module.exports = {
         }
     },
 
-
     //product filters
 
     // filter using location
     filterProducts: async (req, res) => {
         try {
-            let { state, category, subcategory,nestedcat, district, locality, max, min, page, other } = req.query
+            let { state, category,subcategory,nestedcat, district, locality="", max, min, page, other } = req.query
             let otherFilters = await JSON.parse(other)
             let query = [{ deleted: false }]
             if (state != "") {
@@ -142,6 +142,12 @@ module.exports = {
                         district:
                             { "$regex": district, "$options": "i" }
                     })
+                    if (locality != "") {
+                        query.push({
+                            locality:
+                                { "$regex": locality, "$options": "i" }
+                        })
+                    }
                 }
             }
             if (category != "") {
@@ -164,6 +170,10 @@ module.exports = {
             if (otherFilters) {
   
                 let currentCategory = await CATEGORY.findById(category)
+                let currentSubcategory
+                if(subcategory){
+                    currentCategory = await SUBCAT.findById(subcategory)
+                }
 
                 currentCategory.filters.forEach(async (value, index, array) => {
                     if (value.label in otherFilters) {
@@ -194,8 +204,41 @@ module.exports = {
                         }
                     }
                 })
+                if(currentCategory){
+
+                currentSubcategory.filters.forEach(async (value, index, array) => {
+                    if (value.label in otherFilters) {
+                        if (value.type === "text") {
+                            console.log(1);
+                            query.push({ [`otherDetails.${value.label}`]: otherFilters.label })
+                        } else if (value.type === "range") {
+                            console.log(2);
+                            let min = parseInt(otherFilters[value.label].min)
+                            let max = parseInt(otherFilters[value.label].max)
+                            query.push({ [`otherDetails.${value.label}`]: { $gte: min, $lte: max } })
+                        }
+                        else if (value.type === "checkbox") {
+                            console.log(4);
+                            if (otherFilters[value.label].length != 0) {
+                                query.push({ [`otherDetails.${value.label}`]: { $in: otherFilters[value.label] } })
+                            }
+                        }
+                        else {
+                            console.log(3);
+                            if (value.mode === "gte") {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $gte: val } })
+                            } else {
+                                let val = parseInt(otherFilters.label)
+                                query.push({ [`otherDetails.${value.label}`]: { $lte: val } })
+                            }
+                        }
+                    }
+                })
             }
+                }
             const limit = 12
+
             PRODUCT.find({ $and: query }).populate('userId').skip(page).limit(limit).then((productDetails) => {
                 // console.log(productDetails, "hhhh");
                 query = [{ deleted: false }]

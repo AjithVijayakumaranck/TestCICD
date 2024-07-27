@@ -45,8 +45,10 @@ transporter.verify((error, success) => {
 
 //send email
 const sendEmail = async (mailOptions) => {
+    console.log(mailOptions);
     try {
         await transporter.sendMail(mailOptions);
+        console.log("sendEmail returned");
         return;
     } catch (error) {
         throw error;

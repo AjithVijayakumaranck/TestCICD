@@ -2,10 +2,119 @@ const { cloudUpload } = require("../utilities/cloudinary")
 const path = require("path");
 const PRODUCT = require("../Models/productModal");
 const USER = require("../Models/userModel");
+const { sendNotification } = require("./notification/sentNotification");
 
 module.exports = {
+    addProduct_test: async (req, res) => {
+        try {
+            let userDetails 
+            const {
+                title="nothing",
+                description="nothing",
+                featured=false,
+                subcategory="650008a3e22c61453cbc9c00",
+                nestedCat,
+                keywords,
+                category="650008a3e22c61453cbc9c00",
+                userId="662b845fc95a3a35c4ab5680",
+                price=12132,
+                listedBy="Owner",
+                locality="sada",
+                district="dasd",
+                state="asdas",
+                region="dsad"
+            } = req.body
+            // const parsedDetails = JSON.parse(otherDetails);
+            // const Upload = req.files.map((file) => {
+            //     let locaFilePath = file.path;
+            //     return (
+            //         cloudUpload(locaFilePath, toString(title))
+            //     )
+            // })
+
+
+            // for (const key in parsedDetails) {
+            //     console.log(parsedDetails[key]);
+            //     if (isNaN(parsedDetails[key])) {
+            //         continue;
+            //     } else {
+            //         parsedDetails[key] = parseInt(parsedDetails[key])
+            //     }
+            // }
+
+
+
+            // const results = await Promise.all(Upload);
+            // if (results) {
+                const productTemplate = new PRODUCT({
+                    title: title,
+                    description: description,
+                    locality: locality,
+                    district: district,
+                    state: state,
+                    region: region,
+                    listedBy: listedBy,
+                    keywords: keywords,
+                    featured: featured,
+                    // location:{
+                    //     type:"Point",
+                    //     coordinates:[Number(longitude),Number(latitude)]
+                    // },
+                    category: category,
+                    SubCategory: subcategory,
+                    nested:nestedCat,
+                    // otherDetails: { ...parsedDetails },
+                    // images: [...results],
+                    userId: userId,
+                    price: price,
+                })
+                const SavedData = await productTemplate.save()
+                if (SavedData) {
+                    console.log(userId);
+                    USER.findOne({ _id: userId }).then((response) => {
+                        console.log(response);
+                        userDetails = response
+                        if (response.AdCount <= 0) {
+                            USER.updateOne({ _id: userId }, {
+                                AdCount: 0
+                            }).then(async (response) => {
+                                console.log(SavedData.title,"heee")
+                                // console.log(userDetails,"h,mmm");
+                                await sendNotification({email:userDetails.email,subject:"Ad live right now",link:`https://www.dealnbuy.in/product/${SavedData._id}`,product:SavedData.title})
+                                res.status(200).json({ message: 'ad posted successfully' })
+                            }).catch((err) => {
+                                res.status(400).json({ message: "problem with updating user", error: err })
+                            })
+                        } else {
+                            USER.updateOne({ _id: userId }, {
+                                $inc: { AdCount: -1 }
+                            }).then(async(response) => {
+                                console.log(SavedData.title,"heee")
+                                await sendNotification({email:userDetails.email,subject:"Ad live right now",link:`https://www.dealnbuy.in/product/${SavedData._id}`,product:SavedData.title})
+                                res.status(200).json({ message: 'ad posted successfully' })
+                            })
+                                .catch((err) => {
+                                    res.status(400).json({ message: "problem with updating user", error: err })
+                                })
+                        }
+                    })
+                } else {
+                    res.status(200).json({ message: 'add failed to post' })
+                }
+            // }
+            //  else {
+            //     res.status(400).json({ message: "something error with images" })
+            // }
+        } catch (error) {
+            res.status(500).json({ message: "something went wrong", error: error.message })
+        }
+    },
+
+
+
     addProduct: async (req, res) => {
         try {
+            let userDetails 
             const {
                 title,
                 description,
@@ -70,11 +179,12 @@ module.exports = {
                 const SavedData = await productTemplate.save()
                 if (SavedData) {
                     USER.findOne({ _id: userId }).then((response) => {
+                        userDetails = response
                         if (response.AdCount <= 0) {
                             USER.updateOne({ _id: userId }, {
                                 AdCount: 0
-                            }).then((response) => {
-                                console.log(response)
+                            }).then(async (response) => {
+                                await sendNotification({email:userDetails.email,subject:"Ad live right now",link:`https://www.dealnbuy.in/product/${SavedData._id}`,product:SavedData.title})
                                 res.status(200).json({ message: 'ad posted successfully' })
                             }).catch((err) => {
                                 res.status(400).json({ message: "problem with updating user", error: err })
@@ -82,7 +192,8 @@ module.exports = {
                         } else {
                             USER.updateOne({ _id: userId }, {
                                 $inc: { AdCount: -1 }
-                            }).then((response) => {
+                            }).then(async(response) => {
+                                await sendNotification({email:userDetails.email,subject:"Ad live right now",link:`https://www.dealnbuy.in/product/${SavedData._id}`,product:SavedData.title})
                                 res.status(200).json({ message: 'ad posted successfully' })
                             })
                                 .catch((err) => {

@@ -649,7 +649,6 @@
   justify-content: space-between;
   background-color: #fff;
   position: absolute;
-  bottom: 50px;
 }
 .main_container .mobileScreen .Right_container .chat_wrapper .offerbox .left {
   display: flex;

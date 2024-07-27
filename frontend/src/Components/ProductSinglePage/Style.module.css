@@ -262,6 +262,12 @@
   gap: 15px;
   text-align: center;
 }
+@media (max-width: 550px) {
+  .Container .row .Right_container .Button_wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+}
 @media (min-width: 900px) and (max-width: 1024px) {
   .Container .row .Right_container .Button_wrapper {
     gap: 10px;
@@ -278,7 +284,7 @@
 }
 @media (max-width: 550px) {
   .Container .row .Right_container .Button_wrapper button {
-    width: 140px;
+    width: 230px;
   }
 }
 @media (min-width: 550px) and (max-width: 768px) {

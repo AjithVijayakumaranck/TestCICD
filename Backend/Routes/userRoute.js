@@ -4,12 +4,22 @@ const passport = require('passport')
 const authentication_controllers = require('../Controllers/authentication_controllers')
 
 const user_registration = require('../Controllers/user_registration')
+const { sendNotification } = require('../Controllers/notification/sentNotification')
+
 
 const {CLIENT_URL} = process.env
 
 
-router.get('/onlinecheck',(req,res)=>{
-    res.send("yeah we are online")
+router.post('/onlinecheck',async(req,res)=>{
+    // res.send("yeah we are online")
+    try {
+        await sendNotification({email:"aji001ajith@gmail.com",subject:"New advertisement posted",link:"https://www.dealnbuy.in/product/662c90e40d65bf866f83e343"})
+        console.log("heee");
+        res.status(200).json({message:"hee"})
+    } catch (error) {
+        req.status(500).json({message:"hee"})
+    }
+    
 })
 
 

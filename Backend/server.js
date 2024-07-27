@@ -8,6 +8,7 @@ const passport = require('passport');
 require('./Controllers/passport/passport')
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path')
 
 
 
@@ -40,6 +41,9 @@ const notificationRoute = require('./Routes/SuperAdmin/notificationRoute')
 const termRoute = require('./Routes/SuperAdmin/termsConditions')
 
 
+app.use('/public_images', express.static(path.join(__dirname, 'Views/images')))
+
+
 if (!fs.existsSync("./uploads")) {
     fs.mkdirSync("./uploads");
 }
@@ -59,7 +63,9 @@ const allowedOrigins = [
     "http://localhost:3000",
     "http://195.35.22.187",
     "https://test-repo-orpin-zeta.vercel.app",
-    "https://dnb-test.vercel.app"
+    "https://dnb-test.vercel.app",
+    "http://www.dnbtest.in",
+    "http://dealnbuy.in"
 
 
 ];
