@@ -31,7 +31,7 @@ jobs:
     #   run: npm run build
     #   working-directory: ./frontend # Path to your client folder
 
-    - name: Connect with VPS
+    - name: Connect with VPS 
       uses: appleboy/ssh-action@master
       with:
           host: ${{ secrets.HOST }}
