@@ -65,7 +65,7 @@ const allowedOrigins = [
     "https://test-repo-orpin-zeta.vercel.app",
     "https://dnb-test.vercel.app",
     "http://www.dnbtest.in",
-    "http://dealnbuy.in"
+    "http://dnbtest.in"
 
 
 ];
