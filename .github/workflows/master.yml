@@ -31,19 +31,12 @@ jobs:
     #   run: npm run build
     #   working-directory: ./frontend # Path to your client folder
 
-    - name: Prepare SSH Directory
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 700 ~/.ssh
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keygen -y -f ~/.ssh/id_rsa
-        ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-        # Debug key
-        ssh-keygen -y -f ~/.ssh/id_rsa
-        # Test SSH connection
-        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} "echo 'SSH connection successful'"
-
-    - name: Deploy to VPS
-      run: |
-        ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ secrets.USERNAME }}@${{ secrets.HOST }} 'bash -s' < ./scripts/deploy.sh
+    - name: Connect with VPS
+      uses: appleboy/ssh-action@master
+      with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            bash /dealnbuy/scripts/deploy.sh
