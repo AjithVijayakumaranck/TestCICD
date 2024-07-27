@@ -39,7 +39,7 @@
   padding: 1rem 2rem;
 }
 .containerwrap .form_container .left h1 {
-  color: #046BD2;
+  color: #ff0000;
 }
 .containerwrap .form_container .left p {
   font-size: 0.8rem;
@@ -69,7 +69,7 @@
 .containerwrap .form_container .left form button {
   cursor: pointer;
   margin-top: 10px;
-  background-color: #046BD2;
+  background-color: #ff0000;
   width: 100%;
   color: white;
   border: none;
@@ -93,7 +93,7 @@
   justify-content: center;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: #046BD2;
+  background-color: #ff0000;
 }
 @media (max-width: 550px) {
   .containerwrap .right {

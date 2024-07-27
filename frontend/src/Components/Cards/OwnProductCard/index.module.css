@@ -38,7 +38,7 @@
   min-width: 40px;
   text-align: center;
   color: #fff;
-  background-color: #046BD2;
+  background-color: #ff0000;
 }
 @media (max-width: 550px) {
   .products .productmedia .productlabel {

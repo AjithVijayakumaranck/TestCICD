@@ -47,7 +47,7 @@
 }
 .productwrapper .container .heading .right span {
   cursor: pointer;
-  color: #046BD2;
+  color: #ff0000;
 }
 @media (max-width: 550px) {
   .productwrapper .container .heading .right span {

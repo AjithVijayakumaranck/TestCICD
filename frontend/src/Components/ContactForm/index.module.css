@@ -103,7 +103,7 @@
 .contact_wrapper .container .row .right .row .col .cont_info .cont_list li i {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #046BD2;
+  color: #ff0000;
 }
 .contact_wrapper .container .row .left .row .col .cont_info .cont_list li span,
 .contact_wrapper .container .row .right .row .col .cont_info .cont_list li span {
@@ -159,7 +159,7 @@
 }
 .contact_wrapper .container .row .left .main_row form .row .col input:focus,
 .contact_wrapper .container .row .right .main_row form .row .col input:focus {
-  border: 1px solid #046BD2;
+  border: 1px solid #ff0000;
 }
 .contact_wrapper .container .row .left .main_row form .row textarea,
 .contact_wrapper .container .row .right .main_row form .row textarea {
@@ -180,7 +180,7 @@
 }
 .contact_wrapper .container .row .left .main_row form .row textarea:focus,
 .contact_wrapper .container .row .right .main_row form .row textarea:focus {
-  border: 1px solid #046BD2;
+  border: 1px solid #ff0000;
 }
 .contact_wrapper .container .row .left .main_row form .row button,
 .contact_wrapper .container .row .right .main_row form .row button {
@@ -196,9 +196,9 @@
   border-radius: 5px;
   white-space: normal;
   transition: all 0.3s;
-  color: #046BD2;
+  color: #ff0000;
   background-color: #fff;
-  border: 1px solid #046BD2;
+  border: 1px solid #ff0000;
   box-shadow: none;
   outline: none;
   cursor: pointer;

@@ -148,9 +148,9 @@
 }
 .Main_Container .Container_Wrapper form .row .items button:hover,
 .Main_Container .Container_Wrapper form .row .listeditems button:hover {
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
-  border: 1px solid #046BD2;
+  border: 1px solid #ff0000;
 }
 .Main_Container .Container_Wrapper form .row .items select,
 .Main_Container .Container_Wrapper form .row .listeditems select {
@@ -162,7 +162,7 @@
 }
 .Main_Container .Container_Wrapper form .row .items select:hover,
 .Main_Container .Container_Wrapper form .row .listeditems select:hover {
-  border-color: #046BD2;
+  border-color: #ff0000;
   color: #111;
 }
 .Main_Container .Container_Wrapper form .row .items select .selectoption,
@@ -181,7 +181,7 @@
 }
 .Main_Container .Container_Wrapper form .row .items input:hover,
 .Main_Container .Container_Wrapper form .row .listeditems input:hover {
-  border-color: #046BD2;
+  border-color: #ff0000;
   color: #111;
 }
 .Main_Container .Container_Wrapper form .row .items textarea,
@@ -195,7 +195,7 @@
 }
 .Main_Container .Container_Wrapper form .row .items textarea:hover,
 .Main_Container .Container_Wrapper form .row .listeditems textarea:hover {
-  border-color: #046BD2;
+  border-color: #ff0000;
   color: #111;
 }
 .Main_Container .Container_Wrapper form .row .image_wrapper {
@@ -270,7 +270,7 @@
   padding: 0 5px 0 5px;
 }
 .Main_Container .Container_Wrapper form .seller_section .items input:hover {
-  border-color: #046BD2;
+  border-color: #ff0000;
   color: #111;
 }
 .Main_Container .Container_Wrapper form .seller_section .location_wrap {
@@ -314,7 +314,7 @@
   right: 20px;
   text-align: center;
   padding: 10px 20px;
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
   border: none;
   border-radius: 4px;

@@ -77,7 +77,7 @@
   border-bottom: 2px solid #f8f8f8;
 }
 .Left_Container .info_section h3 {
-  color: #046BD2;
+  color: #ff0000;
   font-size: 16px;
   padding: 10px 0;
 }
@@ -95,7 +95,7 @@
   }
 }
 .Left_Container .info_section ul .active {
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
   border-radius: 5px;
 }
@@ -107,7 +107,7 @@
   cursor: pointer;
 }
 .Left_Container .info_section ul li:hover {
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
   border-radius: 5px;
 }
@@ -127,7 +127,7 @@
   cursor: pointer;
 }
 .Left_Container .log_section ul li:hover {
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
   border-radius: 5px;
 }
@@ -167,7 +167,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #046BD2;
+  color: #ff0000;
   gap: 5px;
   background: none;
   border: none;

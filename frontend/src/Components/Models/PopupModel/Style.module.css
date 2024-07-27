@@ -34,8 +34,8 @@
 .popup .content .btnBox button {
   padding: 10px 15px;
   background-color: #fff;
-  color: #046BD2;
-  border: 1px solid #046BD2;
+  color: #ff0000;
+  border: 1px solid #ff0000;
   outline: none;
   border-radius: 5px;
   font-size: 14px;
@@ -43,7 +43,7 @@
   cursor: pointer;
 }
 .popup .content .btnBox button:hover {
-  background-color: #046BD2;
+  background-color: #ff0000;
   color: #fff;
   border: none;
 }/*# sourceMappingURL=Style.module.css.map */

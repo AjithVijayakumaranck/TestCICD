@@ -138,7 +138,7 @@
   cursor: pointer;
 }
 .page_wrapper .main .Wrapper .loadbtn .activeBtn:hover {
-  color: #046BD2;
+  color: #ff0000;
 }
 .page_wrapper .main .Wrapper .loadbtn .activeBtn .icon {
   font-size: 20px;
