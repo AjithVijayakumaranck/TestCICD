@@ -17,19 +17,19 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '18'  # Specify your Node.js version
-    # - name: Install backend dependencies
-    #   run: |
-    #     cd ./Backend
-    #     npm install
+    - name: Install backend dependencies
+      run: |
+        cd ./Backend
+        npm install
 
-    # - name: Install frontend dependencies
-    #   run: |
-    #     cd ./frontend
-    #     npm install
+    - name: Install frontend dependencies
+      run: |
+        cd ./frontend
+        npm install
 
-    # - name: Build application
-    #   run: npm run build
-    #   working-directory: ./frontend # Path to your client folder
+    - name: Build application
+      run: npm run build
+      working-directory: ./frontend # Path to your client folder
 
     - name: Connect with VPS 
       uses: appleboy/ssh-action@master
